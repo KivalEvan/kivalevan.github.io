@@ -1,0 +1,112 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #171717;
+    color: #eee;
+    margin-bottom: 160px;
+}
+a {
+    text-decoration: none;
+    color: #37f;
+    transition: color ease 0.125s;
+}
+a:hover {
+    color: #f00;
+}
+header {
+    position: relative;
+    width: 100%;
+    height: 12em;
+    background-color: #23241e;
+}
+header img {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    object-fit: cover;
+    overflow: hidden;
+}
+header h1 {
+    position: absolute;
+    top: 1.25em;
+    left: -2em;
+    font-size: 3em;
+    font-weight: bold;
+    text-shadow: -2px 2px 8px black;
+    transition: font-size 1s ease;
+}
+nav {
+    width: 600px;
+    padding: 2px 6em;
+    margin: 4px auto;
+    background-image: linear-gradient(
+        to right,
+        #0000,
+        #0007 10%,
+        80%,
+        #0007,
+        #0000
+    );
+}
+nav ul {
+    display: flex;
+}
+nav li {
+    font-size: 1em;
+    padding: 0.5em 0;
+}
+nav li a {
+    padding: inherit;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    transition: background-color 0.25s ease;
+}
+nav li a:hover {
+    background-color: #0003;
+}
+nav li a.active {
+    background-color: #0005;
+}
+.header-title {
+    position: relative;
+    width: 600px;
+    margin: auto;
+}
+.header-bar {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+.panel-main {
+    position: relative;
+    width: 600px;
+    margin: 16px auto;
+}
+h2 {
+    font-size: 2em;
+    margin: 0.5em 0.25em;
+}
+h3 {
+    font-size: 1.5em;
+    margin: 0.375em 0;
+}
+footer {
+    position: fixed;
+    width: 100%;
+    height: 128px;
+    bottom: 0;
+}
+footer img {
+    height: auto;
+    vertical-align: bottom;
+}
+footer span {
+    vertical-align: center;
+}
+footer div {
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+}
+
+@media only screen and (max-width: 600px) {
+}
