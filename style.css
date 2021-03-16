@@ -103,7 +103,7 @@ footer {
     bottom: 0;
 }
 footer img {
-    height: auto;
+    height: inherit;
     vertical-align: bottom;
 }
 footer span {
@@ -113,7 +113,4 @@ footer div {
     position: absolute;
     bottom: 1em;
     right: 1em;
-}
-
-@media only screen and (max-width: 600px) {
 }
