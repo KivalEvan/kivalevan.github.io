@@ -2,11 +2,11 @@
 // otherwise, hide and only show specific
 $('section').hide();
 if (location.hash !== null && location.hash !== '') {
-    const section = ['#home', '#project', '#commission', '#contact'];
-    const index = section.indexOf(location.hash);
+    const section = ['home', 'project', 'commission', 'contact'];
+    const index = section.indexOf(location.hash.substring(1));
     if (index !== -1) {
-        $('nav li').find(section[index]).addClass('active');
-        $('section' + section[index]).show();
+        $('nav li').find(`selector-${section[index]}`).addClass('active');
+        $('section#' + section[index]).show();
     } else {
         $('nav li a').first().addClass('active');
         $('section').first().show();
@@ -23,7 +23,7 @@ $('nav li a').click(function () {
         .siblings('li')
         .children()
         .removeClass('active');
-    $('section#' + $(this).attr('id'))
+    $('section#' + $(this).attr('id').substring(9))
         .show()
         .siblings('section')
         .hide();
