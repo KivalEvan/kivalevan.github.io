@@ -1,8 +1,14 @@
+:root {
+    --width-site: 40em;
+    --height-header: 12em;
+    --height-footer: 8em;
+}
+
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: #171717;
     color: #eee;
-    margin-bottom: 8em;
+    margin-bottom: var(--height-footer);
 }
 a {
     text-decoration: none;
@@ -15,7 +21,7 @@ a:hover {
 header {
     position: relative;
     width: 100%;
-    height: 12em;
+    height: var(--height-header);
     background-color: #23241e;
 }
 header img {
@@ -35,7 +41,7 @@ header h1 {
     transition: font-size 1s ease;
 }
 nav {
-    width: 40em;
+    width: var(--width-site);
     padding: 0.125em 6em;
     margin: 0.25em auto;
     background-image: linear-gradient(
@@ -69,7 +75,7 @@ nav li a.active {
 }
 .header-title {
     position: relative;
-    width: 40em;
+    width: var(--width-site);
     margin: auto;
 }
 .header-bar {
@@ -79,7 +85,7 @@ nav li a.active {
 }
 .panel-main {
     position: relative;
-    width: 40em;
+    width: var(--width-site);
     margin: 1em auto;
 }
 h2 {
@@ -93,7 +99,7 @@ h3 {
 footer {
     position: fixed;
     width: 100%;
-    height: 8em;
+    height: var(--height-footer);
     bottom: 0;
 }
 footer img {
