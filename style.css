@@ -98,6 +98,36 @@ h3 {
     font-size: 1.5em;
     margin: 0.375em 0;
 }
+h4 {
+    font-size: 1.25em;
+    margin: 0.25em 0;
+}
+section {
+    margin: 0 0.5em;
+}
+.song-card {
+    display: block;
+}
+.cover {
+    display: inline-block;
+    width: 8em;
+    height: 8em;
+    margin: 0.5em;
+    box-shadow: -0.25em 0.25em 0.5em black;
+}
+.metadata {
+    display: inline-block;
+    height: 8em;
+    margin: 0.5em;
+    vertical-align: top;
+}
+.map-link {
+    float: left;
+    vertical-align: bottom;
+}
+.song-name {
+    font-size: 1.75em;
+}
 footer {
     position: fixed;
     width: 100%;
@@ -117,11 +147,17 @@ footer div {
     right: 1em;
 }
 
-@media only screen and (max-width: 880px) {
+@media only screen and (max-width: 875px) {
     header h1 {
         left: 1em;
     }
+    section {
+        margin: 0 1em;
+    }
     nav {
         padding: 0.125em 0;
+    }
+    nav ul {
+        padding: 0 2em;
     }
 }
