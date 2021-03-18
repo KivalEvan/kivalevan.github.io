@@ -23,6 +23,7 @@ header {
     width: 100%;
     height: var(--height-header);
     background-color: #23241e;
+    transition: height 0.25s ease;
 }
 header img {
     position: absolute;
@@ -57,20 +58,21 @@ nav {
 nav ul {
     display: flex;
 }
-nav li {
+nav ul li {
     font-size: 1.25em;
     padding: 0.5em 0;
+    transition: font-size 0.375s ease;
 }
-nav li a {
+nav ul li a {
     padding: inherit;
     padding-left: 0.5em;
     padding-right: 0.5em;
     transition: background-color 0.25s ease;
 }
-nav li a:hover {
+nav ul li a:hover {
     background-color: #0003;
 }
-nav li a.active {
+nav ul li a.active {
     background-color: #0005;
     color: #f00;
 }
@@ -128,7 +130,7 @@ p {
 .link-button {
     font-weight: bold;
     padding: 0.75em 0.75em;
-    border: 2px solid #111;
+    border: 0.125em solid #111;
     border-radius: 0.75em;
     background-color: #272727;
 }
@@ -168,7 +170,11 @@ footer {
     height: var(--height-footer);
     padding-top: 1em;
     border-top: 0.125em solid #fff7;
-    background-color: #0007;
+    background-color: #000a;
+    transition: background-color 0.25s ease;
+}
+footer:hover {
+    background-color: #070707dd;
 }
 footer img {
     height: inherit;
@@ -189,6 +195,7 @@ footer div {
     header {
         width: auto;
         min-width: calc(640px + 2em);
+        height: calc(var(--height-header) + 1em);
     }
     header img {
         width: 100%;
@@ -204,5 +211,9 @@ footer div {
     }
     nav ul {
         padding: 0 2em;
+    }
+    nav ul li {
+        font-size: 1.625em;
+        padding: 0.5em 0;
     }
 }
