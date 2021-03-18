@@ -8,7 +8,7 @@ body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: #171717;
     color: #eee;
-    margin-bottom: var(--height-footer);
+    margin-bottom: calc(var(--height-footer) + 4em);
 }
 a {
     text-decoration: none;
@@ -85,6 +85,10 @@ nav li a.active {
     bottom: 0;
     overflow: hidden;
 }
+.panel-center {
+    margin: auto;
+    text-align: center;
+}
 .panel-main {
     position: relative;
     width: var(--width-site);
@@ -99,14 +103,43 @@ h3 {
     margin: 0.375em 0;
 }
 h4 {
-    font-size: 1.25em;
+    font-size: 1.375em;
     margin: 0.25em 0;
 }
-section {
-    margin: 0 0.5em;
+h5 {
+    font-size: 1.25em;
+    margin: 0.125em 0;
 }
-.song-card {
-    display: block;
+strong {
+    font-weight: bold;
+}
+section {
+    width: 100%;
+}
+section img {
+    width: inherit;
+    box-shadow: 0 0.25em 0.5em black;
+}
+p {
+    margin: 0.25em 0;
+    line-height: 1.125em;
+    text-align: justify;
+}
+.link-button {
+    font-weight: bold;
+    padding: 0.75em 0.75em;
+    border: 2px solid #111;
+    border-radius: 0.75em;
+    background-color: #272727;
+}
+.list li {
+    margin: 0.375em 0;
+    line-height: 1.125em;
+    text-align: justify;
+}
+.list li::before {
+    content: '\00BB';
+    margin-right: 0.5em;
 }
 .cover {
     display: inline-block;
@@ -130,16 +163,21 @@ section {
 }
 footer {
     position: fixed;
+    bottom: 0;
     width: 100%;
     height: var(--height-footer);
-    bottom: 0;
+    padding-top: 1em;
+    border-top: 0.125em solid #fff7;
+    background-color: #0007;
 }
 footer img {
     height: inherit;
     vertical-align: bottom;
 }
 footer span {
-    vertical-align: center;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 4em;
 }
 footer div {
     position: absolute;
@@ -148,11 +186,18 @@ footer div {
 }
 
 @media only screen and (max-width: 875px) {
+    header {
+        width: auto;
+        min-width: calc(640px + 2em);
+    }
+    header img {
+        width: 100%;
+    }
+    .panel-main {
+        padding: 0 1em;
+    }
     header h1 {
         left: 1em;
-    }
-    section {
-        margin: 0 1em;
     }
     nav {
         padding: 0.125em 0;

@@ -11,9 +11,12 @@ $('section')
 
 if (location.hash !== null && location.hash !== '') {
     const section = ['home', 'project', 'commission', 'contact'];
-    const index = section.indexOf(location.hash.substring(1));
+    let index = section.indexOf(location.hash.substring(1));
+    if (location.hash.substring(1) === 'tnc') {
+        index = 2;
+    }
     if (index !== -1) {
-        $('nav li').find(`selector-${section[index]}`).addClass('active');
+        $('nav li').find(`a#selector-${section[index]}`).addClass('active');
         $(`section#section-${section[index]}`).show();
         document.title = `Kival Evan | ${
             section[index].charAt(0).toUpperCase() + section[index].slice(1)
@@ -41,4 +44,13 @@ $('nav li a').click(function () {
         .siblings('section')
         .hide();
     document.title = `Kival Evan | ${$(this).html()}`;
+});
+
+$('.discord-popup').click(function () {
+    alert('DM me on Discord @Kival Evan#5480');
+});
+
+$('footer img').click(function () {
+    $(this).prop('src', './assets/img/ohayou-pat.png');
+    $('footer span').html('oy');
 });
