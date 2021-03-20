@@ -125,7 +125,7 @@ function calculateCost() {
         }
     }
     if (input.lighting.handcraftNormal) {
-        amt += (rate.base + rate.lighting.handcraftNormal) * rateScale;
+        amt += rate.lighting.handcraftNormal * rateScale;
     }
     $('#rate-scale').html(rateScale);
     $('#result-cost').html(`$${amt.toFixed(2)}`);

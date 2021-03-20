@@ -101,6 +101,24 @@ nav ul li a.active {
     display: flex;
     width: 100%;
 }
+.panel-input {
+    width: 100%;
+}
+.panel-input input[type='checkbox'] {
+    width: 1.5em;
+    height: 1.5em;
+    margin: 0.25em;
+    cursor: pointer;
+}
+.panel-input label {
+    display: inline-block;
+    font-size: 1.0625em;
+    padding-left: 0.5em;
+    margin-left: -0.5em;
+    margin-top: 0.25em;
+    cursor: pointer;
+    vertical-align: top;
+}
 .panel-column {
     display: inline-block;
     width: 50%;
@@ -139,7 +157,7 @@ p {
 input[type='text'] {
     font-family: monospace;
     font-size: 1.25em;
-    width: 5.5em;
+    width: 6em;
 }
 .link-button {
     font-size: 1.125em;

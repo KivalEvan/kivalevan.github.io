@@ -7,6 +7,7 @@
     <meta name="theme-color" content="#171717">
     <meta name="description" content="Estimate beat saber map commission cost.">
     <meta name="image" content="./assets/img/avatar.jpg">
+    <link rel="preload" as="image" href="./assets/img/ohayou-pat.png" as="image">
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
     <script src="./scripts/libs/jquery.slim.min.js"></script>
@@ -19,6 +20,16 @@
         <div class="header-title">
             <h1>Kival Evan</h1>
         </div>
+        <div class="header-bar">
+            <nav>
+                <ul>
+                    <li><a id="selector-home" href="./index.html#home">Home</a></li>
+                    <li><a id="selector-project" href="./index.html#project">Project</a></li>
+                    <li><a id="selector-commission" href="./index.html#commission">Commission</a></li>
+                    <li><a id="selector-contact" href="./index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
     <div class="panel-main">
         <h2>Commission</h2>
@@ -29,35 +40,41 @@
         <input type="text" class="input" id="song-length" name="song-length" placeholder="1:23 OR 83"><br>
         <span>Rate Scale: <span id="rate-scale">0</span></span><br>
         <br>
-        <span>Type:</span><br>
-        <input type="checkbox" class="input" id="type-mapper" name="type-mapper" value="type-mapper">
-        <label for="type-mapper">Mapper Style</label><br>
-        <input type="checkbox" class="input" id="type-specific" name="type-specific" value="type-specific">
-        <label for="type-specific">Specific Style</label><br>
+        <h5>Type</h5>
+        <div class="panel-input">
+            <input type="checkbox" class="input" id="type-mapper" name="type-mapper" value="type-mapper">
+            <label for="type-mapper">Mapper Style</label><br>
+            <input type="checkbox" class="input" id="type-specific" name="type-specific" value="type-specific">
+            <label for="type-specific">Specific Style</label>
+        </div>
         <br>
         <div class="panel-inner">
             <div class="panel-column">
-                <span>Difficulty:</span><br>
-                <input type="checkbox" class="input" id="difficulty-expert-plus" name="difficulty-expert-plus"
-                    value="expertPlus">
-                <label for="difficulty-expert-plus">Expert+</label><br>
-                <input type="checkbox" class="input" id="difficulty-expert" name="difficulty-expert" value="expert">
-                <label for="difficulty-expert">Expert</label><br>
-                <input type="checkbox" class="input" id="difficulty-hard" name="difficulty-hard" value="hard">
-                <label for="difficulty-hard">Hard</label><br>
-                <input type="checkbox" class="input" id="difficulty-normal" name="difficulty-normal" value="normal">
-                <label for="difficulty-normal">Normal</label><br>
-                <input type="checkbox" class="input" id="difficulty-easy" name="difficulty-easy" value="easy">
-                <label for="difficulty-easy">Easy</label><br>
+                <h5>Difficulty</h5>
+                <div class="panel-input">
+                    <input type="checkbox" class="input" id="difficulty-expert-plus" name="difficulty-expert-plus"
+                        value="expertPlus">
+                    <label for="difficulty-expert-plus">Expert+</label><br>
+                    <input type="checkbox" class="input" id="difficulty-expert" name="difficulty-expert" value="expert">
+                    <label for="difficulty-expert">Expert</label><br>
+                    <input type="checkbox" class="input" id="difficulty-hard" name="difficulty-hard" value="hard">
+                    <label for="difficulty-hard">Hard</label><br>
+                    <input type="checkbox" class="input" id="difficulty-normal" name="difficulty-normal" value="normal">
+                    <label for="difficulty-normal">Normal</label><br>
+                    <input type="checkbox" class="input" id="difficulty-easy" name="difficulty-easy" value="easy">
+                    <label for="difficulty-easy">Easy</label>
+                </div>
             </div>
             <div class="panel-column">
-                <span>Lighting:</span><br>
-                <input type="checkbox" class="input" id="lighting-handcraft-normal" name="lighting-handcraft-normal"
-                    value="lighting-handcraft-normal">
-                <label for="lighting-handcraft-normal">Handcrafted (non-Chroma)</label><br>
-                <input type="checkbox" class="input" id="lighting-lolighter" name="lighting-lolighter"
-                    value="lighting-lolighter">
-                <label for="lighting-lolighter">Lolighter (automated)</label><br>
+                <h5>Lighting</h5>
+                <div class="panel-input">
+                    <input type="checkbox" class="input" id="lighting-handcraft-normal" name="lighting-handcraft-normal"
+                        value="lighting-handcraft-normal">
+                    <label for="lighting-handcraft-normal">Handcrafted (non-Chroma)</label><br>
+                    <input type="checkbox" class="input" id="lighting-lolighter" name="lighting-lolighter"
+                        value="lighting-lolighter">
+                    <label for="lighting-lolighter">Lolighter (automated)</label>
+                </div>
             </div>
         </div>
         <br>
