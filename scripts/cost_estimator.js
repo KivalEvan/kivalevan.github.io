@@ -38,8 +38,8 @@ const regexMMSS = /^\d{1,2}:\d{2}/;
 // i dont have elegant solution to this
 // and im lazy to figure it out just for this alone
 $('#song-length').change(function () {
-    if (String(this.value).trim().match(regexMMSS)) {
-        let [min, sec] = String(this.value).split(':');
+    if (regexMMSS.test(String(this.value).trim())) {
+        let [min, sec] = String(this.value).trim().split(':');
         input.duration = parseInt(min) * 60 + parseInt(sec);
     } else {
         input.duration = Math.abs(parseInt(this.value));

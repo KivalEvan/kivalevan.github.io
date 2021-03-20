@@ -136,6 +136,11 @@ p {
     line-height: 1.125em;
     text-align: justify;
 }
+input[type='text'] {
+    font-family: monospace;
+    font-size: 1.25em;
+    width: 5.5em;
+}
 .link-button {
     font-size: 1.125em;
     font-weight: bold;
