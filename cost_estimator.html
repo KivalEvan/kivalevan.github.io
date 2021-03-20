@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=640, initial-scale=1.0, minimum-scale=0.5">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5">
     <meta name="theme-color" content="#171717">
     <meta name="description" content="Estimate beat saber map commission cost.">
     <meta name="image" content="./assets/img/avatar.jpg">
@@ -26,8 +26,8 @@
         <h3>Beat Saber Custom Map</h3>
         <h4>Cost Estimator</h4>
         <label for="song-length">Song Length:</label>
-        <input type="text" class="input" id="song-length" name="song-length" placeholder="duration in second"><br>
-        <span>I'll deal with this later.</span><br>
+        <input type="text" class="input" id="song-length" name="song-length" placeholder="1:23 OR 83"><br>
+        <span>Rate Scale: <span id="rate-scale">0</span></span><br>
         <br>
         <span>Type:</span><br>
         <input type="checkbox" class="input" id="type-mapper" name="type-mapper" value="type-mapper">
@@ -39,19 +39,15 @@
             <div class="panel-column">
                 <span>Difficulty:</span><br>
                 <input type="checkbox" class="input" id="difficulty-expert-plus" name="difficulty-expert-plus"
-                    value="difficulty-expert-plus">
+                    value="expertPlus">
                 <label for="difficulty-expert-plus">Expert+</label><br>
-                <input type="checkbox" class="input" id="difficulty-expert" name="difficulty-expert"
-                    value="difficulty-expert">
+                <input type="checkbox" class="input" id="difficulty-expert" name="difficulty-expert" value="expert">
                 <label for="difficulty-expert">Expert</label><br>
-                <input type="checkbox" class="input" id="difficulty-hard" name="difficulty-hard"
-                    value="difficulty-hard">
+                <input type="checkbox" class="input" id="difficulty-hard" name="difficulty-hard" value="hard">
                 <label for="difficulty-hard">Hard</label><br>
-                <input type="checkbox" class="input" id="difficulty-normal" name="difficulty-normal"
-                    value="difficulty-normal">
+                <input type="checkbox" class="input" id="difficulty-normal" name="difficulty-normal" value="normal">
                 <label for="difficulty-normal">Normal</label><br>
-                <input type="checkbox" class="input" id="difficulty-easy" name="difficulty-easy"
-                    value="difficulty-easy">
+                <input type="checkbox" class="input" id="difficulty-easy" name="difficulty-easy" value="easy">
                 <label for="difficulty-easy">Easy</label><br>
             </div>
             <div class="panel-column">
@@ -65,9 +61,40 @@
             </div>
         </div>
         <br>
+        <hr>
         <div>
             <h5>Estimated Price</h5>
             <span id="result-cost">$0.00</span>
+        </div>
+        <hr>
+        <br>
+        <div>
+            <h5>Price Rating</h5>
+            <p>
+                Base: $10<br>
+                <br>
+                Mapper: $0<br>
+                Specific: $5 (0.5x for additional)
+            </p><br>
+            <div class="panel-inner">
+                <div class="panel-column">
+                    <span>Difficulty:</span>
+                    <p>
+                        Expert+: $10<br>
+                        Expert: $8<br>
+                        Hard: $5<br>
+                        Normal: $2<br>
+                        Easy: $0
+                    </p>
+                </div>
+                <div class="panel-column">
+                    <span>Lighting:</span>
+                    <p>
+                        Handcrafted (non-Chroma): $15<br>
+                        Lolighter (automated): $0
+                    </p>
+                </div>
+            </div>
         </div>
         <br>
         <div>
@@ -87,7 +114,7 @@
     <footer>
         <img alt="Seija Ohayou" src="./assets/img/ohayou.png" loading="lazy">
         <span>nothin wron ere</span>
-        <div>Last updated: 2021-03-19</div>
+        <div>Last updated: 2021-03-20</div>
     </footer>
     <script defer src="scripts/cost_estimator.js"></script>
 </body>

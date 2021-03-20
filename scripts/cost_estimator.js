@@ -33,10 +33,18 @@ const rate = {
     },
 };
 
+const regexMMSS = /^\d{1,2}:\d{2}/;
+
 // i dont have elegant solution to this
 // and im lazy to figure it out just for this alone
 $('#song-length').change(function () {
-    input.duration = parseInt(this.value);
+    if (String(this.value).trim().match(regexMMSS)) {
+        let [min, sec] = String(this.value).split(':');
+        input.duration = parseInt(min) * 60 + parseInt(sec);
+    } else {
+        input.duration = Math.abs(parseInt(this.value));
+    }
+    this.value = toMMSS(input.duration);
     calculateCost();
 });
 
@@ -62,52 +70,11 @@ $('#type-specific').click(function () {
     calculateCost();
 });
 
-$('#difficulty-expert-plus').click(function () {
-    if ($(this).prop('checked')) {
-        input.difficulty.expertPlus = true;
-    } else {
-        input.difficulty.expertPlus = false;
-        if ($('#type-mapper').prop('checked')) {
-            $('#type-mapper').prop('checked', false);
-            $('#type-specific').prop('checked', true);
-            input.type.mapperStyle = false;
-            input.type.specificStyle = true;
-        }
-    }
-    calculateCost();
-});
-$('#difficulty-expert').click(function () {
-    if ($(this).prop('checked')) {
-        input.difficulty.expert = true;
-    } else {
-        input.difficulty.expert = false;
-    }
-    calculateCost();
-});
-$('#difficulty-hard').click(function () {
-    if ($(this).prop('checked')) {
-        input.difficulty.hard = true;
-    } else {
-        input.difficulty.hard = false;
-    }
-    calculateCost();
-});
-$('#difficulty-normal').click(function () {
-    if ($(this).prop('checked')) {
-        input.difficulty.normal = true;
-    } else {
-        input.difficulty.normal = false;
-    }
-    calculateCost();
-});
-$('#difficulty-easy').click(function () {
-    if ($(this).prop('checked')) {
-        input.difficulty.easy = true;
-    } else {
-        input.difficulty.easy = false;
-    }
-    calculateCost();
-});
+$('#difficulty-expert-plus').click(diffCheck);
+$('#difficulty-expert').click(diffCheck);
+$('#difficulty-hard').click(diffCheck);
+$('#difficulty-normal').click(diffCheck);
+$('#difficulty-easy').click(diffCheck);
 
 $('#lighting-handcraft-normal').click(function () {
     if (input.lighting.handcraftNormal) {
@@ -128,25 +95,39 @@ $('#lighting-lolighter').click(function () {
     calculateCost();
 });
 
+function diffCheck() {
+    input.difficulty[this.value] = this.checked;
+    if (this.value === 'expertPlus') {
+        if ($('#type-mapper').prop('checked')) {
+            $('#type-mapper').prop('checked', false);
+            $('#type-specific').prop('checked', true);
+            input.type.mapperStyle = false;
+            input.type.specificStyle = true;
+        }
+    }
+    calculateCost();
+}
+
 function calculateCost() {
     let amt = 0;
-    const durScale = calculateRateScale();
+    const rateScale = calculateRateScale();
     let multi = false;
     for (const d in input.difficulty) {
         if (input.difficulty[d]) {
             amt +=
                 (rate.base +
-                    rate.specific * (input.type.specificStyle - multi) +
+                    rate.specific * (input.type.specificStyle - multi / 2) +
                     rate.difficulty[d]) *
-                durScale;
+                rateScale;
             if (input.type.specificStyle) {
                 multi = true;
             }
         }
     }
     if (input.lighting.handcraftNormal) {
-        amt += (rate.base + rate.lighting.handcraftNormal) * durScale;
+        amt += (rate.base + rate.lighting.handcraftNormal) * rateScale;
     }
+    $('#rate-scale').html(rateScale);
     $('#result-cost').html(`$${amt.toFixed(2)}`);
 }
 function calculateRateScale() {
@@ -154,4 +135,14 @@ function calculateRateScale() {
         Math.floor(input.duration / 60) +
         Math.ceil((input.duration % 60) / 30) / 2
     );
+}
+
+function toMMSS(num) {
+    if (!num) {
+        return '0:00';
+    }
+    let numr = Math.round(num);
+    let min = Math.floor(numr / 60);
+    let sec = numr % 60;
+    return `${min}:${sec > 9 ? sec : `0${sec}`}`;
 }
