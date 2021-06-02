@@ -177,6 +177,15 @@ input[type='text'] {
     content: '\00BB';
     margin-right: 0.5em;
 }
+#refresh-map {
+    text-decoration: none;
+    color: #37f;
+    transition: color ease 0.125s;
+}
+#refresh-map:hover {
+    color: #f00;
+    cursor: pointer;
+}
 .cover {
     display: inline-block;
     width: 8em;
