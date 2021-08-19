@@ -1,0 +1,46 @@
+---
+import _beatmap from '../data/beatmap.json';
+interface Props {
+    beatmapList: any;
+    beatmapName: string;
+}
+interface BeatmapCard {
+    songName: string;
+    songSubname: string;
+    songArtist: string;
+    songBPM: {
+        base: number;
+        min: number;
+        max: number;
+    };
+    songDuration: number;
+    mapLink: {
+        [key: string]: {
+            name: string;
+            url: string;
+        }
+    };
+}
+const { beatmapList, beatmapName } = Astro.props as Props;
+const beatmap = beatmapList.find(x => x._songName === beatmapName)
+---
+<div class="song-card">
+    <img class="cover" alt={} src="./assets/img/cover/new-world.jpg" loading="lazy">
+    <div class="metadata">
+        <span class="song-name">New World</span>
+        <span class="song-subname"></span><br>
+        <span class="song-artist">FELT</span><br>
+        <span class="song-bpm">195BPM</span><br>
+        <span class="song-duration">4:09</span><br>
+        <span class="map-release"></span><br>
+        <div class="map-link">
+            <a href="https://beatsaver.com/beatmap/7f35">BeatSaver</a> |
+            <a href="https://bsaber.com/songs/7f35/">BeastSaber</a> |
+            <a href="https://youtu.be/y9yZ-4rKV_A">Video Preview</a>
+        </div>
+    </div>
+</div>
+
+<style lang="scss">
+
+</style>

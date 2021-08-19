@@ -1,0 +1,39 @@
+{
+    "link": [
+        {
+            "place": "Email",
+            "name": null,
+            "url": "mailto:kivalevan@gmail.com"
+        },
+        {
+            "place": "Github",
+            "name": "KivalEvan",
+            "url": "https://github.com/KivalEvan/"
+        },
+        {
+            "place": "Youtube",
+            "name": "Kival Evan",
+            "url": "https://www.youtube.com/channel/UC5pOhteTPou4iA8bNaEx3IA"
+        },
+        {
+            "place": "Twitter",
+            "name": "@Kival_Evan",
+            "url": "https://twitter.com/Kival_Evan"
+        },
+        {
+            "place": "Steam",
+            "name": "Kival Evan",
+            "url": "https://steamcommunity.com/id/KivalEvan/"
+        },
+        {
+            "place": "Discord",
+            "name": "Kival Evan#5480",
+            "url": null
+        },
+        {
+            "place": "BeatSaver",
+            "name": "kivalevan",
+            "url": "https://beatsaver.com/uploader/5cff0b7798cc5a672c855af3"
+        }
+    ]
+}

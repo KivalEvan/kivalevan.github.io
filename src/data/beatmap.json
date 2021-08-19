@@ -1,4 +1,4 @@
-const mapData = [
+[
     {
         "_songName": "Frightmare",
         "_songSubName": "(feat. Myles Travitz)",
@@ -110,9 +110,7 @@ const mapData = [
                 "_display": []
             }
         },
-        "_tag": [
-            "showcase"
-        ]
+        "_tag": ["showcase"]
     },
     {
         "_songName": "Hitomi ni Kakusareta Omoi",
@@ -230,9 +228,7 @@ const mapData = [
                 "_display": []
             }
         },
-        "_tag": [
-            "showcase"
-        ]
+        "_tag": ["showcase"]
     },
     {
         "_songName": "Last Wind",
@@ -350,9 +346,7 @@ const mapData = [
                 "_display": []
             }
         },
-        "_tag": [
-            "showcase"
-        ]
+        "_tag": ["showcase"]
     },
     {
         "_songName": "Yoru Naku Usagi wa Yume wo Miru",
@@ -681,9 +675,7 @@ const mapData = [
                 "_display": []
             }
         },
-        "_tag": [
-            "showcase"
-        ]
+        "_tag": ["showcase"]
     },
     {
         "_songName": "VANDALIZED AI",
@@ -834,9 +826,7 @@ const mapData = [
                 "_display": []
             }
         },
-        "_tag": [
-            "showcase"
-        ]
+        "_tag": ["showcase"]
     },
     {
         "_songName": "Azure Raindrop",
@@ -975,9 +965,7 @@ const mapData = [
                 "_display": []
             }
         },
-        "_tag": [
-            "showcase"
-        ]
+        "_tag": ["showcase"]
     },
     {
         "_songName": "Daisuke",
@@ -1364,9 +1352,7 @@ const mapData = [
                 "_display": []
             }
         },
-        "_tag": [
-            "showcase"
-        ]
+        "_tag": ["showcase"]
     },
     {
         "_songName": "werewolf howls.",
@@ -1487,9 +1473,7 @@ const mapData = [
                 "_display": []
             }
         },
-        "_tag": [
-            "showcase"
-        ]
+        "_tag": ["showcase"]
     },
     {
         "_songName": "Dark Flight Dreamer",
@@ -1610,9 +1594,7 @@ const mapData = [
                 "_display": []
             }
         },
-        "_tag": [
-            "showcase"
-        ]
+        "_tag": ["showcase"]
     },
     {
         "_songName": "KARMANATIONS",
@@ -1796,9 +1778,7 @@ const mapData = [
                 "_display": []
             }
         },
-        "_tag": [
-            "showcase"
-        ]
+        "_tag": ["showcase"]
     },
     {
         "_songName": "Psychedelic Onizakura Alliance",
@@ -2720,9 +2700,7 @@ const mapData = [
                 "_display": []
             }
         },
-        "_tag": [
-            "showcase"
-        ]
+        "_tag": ["showcase"]
     },
     {
         "_songName": "Harumachi Clover",
@@ -3203,9 +3181,7 @@ const mapData = [
                 "_display": []
             }
         },
-        "_tag": [
-            "showcase"
-        ]
+        "_tag": ["showcase"]
     },
     {
         "_songName": "Imbalance",
@@ -3609,9 +3585,7 @@ const mapData = [
                 "_display": []
             }
         },
-        "_tag": [
-            "showcase"
-        ]
+        "_tag": ["showcase"]
     },
     {
         "_songName": "Unconscious Requiem",
@@ -3877,9 +3851,7 @@ const mapData = [
                 "_display": []
             }
         },
-        "_tag": [
-            "showcase"
-        ]
+        "_tag": ["showcase"]
     },
     {
         "_songName": "Tsurupettan",
@@ -4105,9 +4077,7 @@ const mapData = [
                 "_display": []
             }
         },
-        "_tag": [
-            "showcase"
-        ]
+        "_tag": ["showcase"]
     },
     {
         "_songName": "Black Hair Drugs",
@@ -4465,9 +4435,7 @@ const mapData = [
                 "_display": []
             }
         },
-        "_tag": [
-            "showcase"
-        ]
+        "_tag": ["showcase"]
     },
     {
         "_songName": "There's A Cat Licking Your Birthday Cake",
@@ -4693,9 +4661,7 @@ const mapData = [
                 "_display": []
             }
         },
-        "_tag": [
-            "showcase"
-        ]
+        "_tag": ["showcase"]
     },
     {
         "_songName": "circles!",
@@ -4826,9 +4792,7 @@ const mapData = [
                 "_display": []
             }
         },
-        "_tag": [
-            "showcase"
-        ]
+        "_tag": ["showcase"]
     },
     {
         "_songName": "Revenge",
@@ -5181,9 +5145,7 @@ const mapData = [
                 "_display": []
             }
         },
-        "_tag": [
-            "showcase"
-        ]
+        "_tag": ["showcase"]
     },
     {
         "_songName": "Monkey Dance",
@@ -5306,4 +5268,4 @@ const mapData = [
         },
         "_tag": []
     }
-];
+]

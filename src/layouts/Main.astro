@@ -1,0 +1,22 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+<BaseLayout>
+    <div class="full-page">
+        <Header />
+        <slot></slot>
+        <Footer />
+    </div>
+</BaseLayout>
+
+<style lang="scss">
+    .full-page {
+        display: flex;
+        width: 100%;
+        min-height: 100vh;
+        flex-direction: column;
+        align-items: stretch;
+    }
+</style>
