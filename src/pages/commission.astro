@@ -1,5 +1,6 @@
 ---
 import Main from '../layouts/Main.astro';
+import BeatmapCard from '../components/BeatmapCard.astro';
 
 export interface Props {
     title: string;
@@ -25,8 +26,7 @@ const { title, description, permalink } = Astro.props as Props;
         <div class="panel-center">
             <a class="link-button" href="https://beatsaver.com/uploader/5cff0b7798cc5a672c855af3">BeatSaver</a>
             <a class="link-button" href="https://bsaber.com/songs/new/?uploaded_by=kivalevan">BeastSaber</a>
-            <a class="link-button" href="https://youtube.com/playlist?list=PLp4N5ZtOuDZlhdvoH1INSPn2Qn9zrD19b">Video
-                Preview</a>
+            <a class="link-button" href="https://youtube.com/playlist?list=PLp4N5ZtOuDZlhdvoH1INSPn2Qn9zrD19b">Video Preview</a>
         </div>
         <br><br>
         <p>
@@ -68,7 +68,7 @@ const { title, description, permalink } = Astro.props as Props;
         </p>
         <br>
         <p>
-            You may estimate cost <a href="./cost_estimator.html">here</a>, however pricing is subject to change.
+            You may estimate cost <a href="/cost_estimator">here</a>, however pricing is subject to change.
         </p>
         <br>
         <h4>Enquiry</h4>
@@ -85,70 +85,10 @@ const { title, description, permalink } = Astro.props as Props;
         <h4 id="map-showcase">Map Showcase</h4>
         <span id='refresh-map'>Refresh</span>
         <div class="map-showcase">
-            <div class="song-card">
-                <img class="cover" alt="new world" src="/assets/img/cover/new-world.jpg" loading="lazy">
-                <div class="metadata">
-                    <span class="song-name">New World</span>
-                    <span class="song-subname"></span><br>
-                    <span class="song-artist">FELT</span><br>
-                    <span class="song-bpm">195BPM</span><br>
-                    <span class="song-duration">4:09</span><br>
-                    <span class="map-release"></span><br>
-                    <div class="map-link">
-                        <a href="https://beatsaver.com/beatmap/7f35">BeatSaver</a> |
-                        <a href="https://bsaber.com/songs/7f35/">BeastSaber</a> |
-                        <a href="https://youtu.be/y9yZ-4rKV_A">Video Preview</a>
-                    </div>
-                </div>
-            </div>
-            <div class="song-card">
-                <img class="cover" alt="girly cupid" src="/assets/img/cover/girly-cupid.jpg" loading="lazy">
-                <div class="metadata">
-                    <span class="song-name">Girly Cupid</span>
-                    <span class="song-subname">feat. Marpril</span><br>
-                    <span class="song-artist">PSYQUI</span><br>
-                    <span class="song-bpm">133BPM</span><br>
-                    <span class="song-duration">4:04</span><br>
-                    <span class="map-release"></span><br>
-                    <div class="map-link">
-                        <a href="https://beatsaver.com/beatmap/abd5">BeatSaver</a> |
-                        <a href="https://bsaber.com/songs/abd5/">BeastSaber</a> |
-                        <a href="https://youtu.be/SReeKEFFYGY">Video Preview</a>
-                    </div>
-                </div>
-            </div>
-            <div class="song-card">
-                <img class="cover" alt="frightmare" src="/assets/img/cover/frightmare.jpg" loading="lazy">
-                <div class="metadata">
-                    <span class="song-name">Frightmare</span>
-                    <span class="song-subname">(feat. Myles Travitz)</span><br>
-                    <span class="song-artist">Strangers</span><br>
-                    <span class="song-bpm">128BPM</span><br>
-                    <span class="song-duration">4:45</span><br>
-                    <span class="map-release"></span><br>
-                    <div class="map-link">
-                        <a href="https://beatsaver.com/beatmap/10479">BeatSaver</a> |
-                        <a href="https://bsaber.com/songs/10479/">BeastSaber</a> |
-                        <a href="https://youtu.be/-3N5chCdBjU">Video Preview</a>
-                    </div>
-                </div>
-            </div>
-            <div class="song-card">
-                <img class="cover" alt="the pressure" src="/assets/img/cover/the-pressure.jpg" loading="lazy">
-                <div class="metadata">
-                    <span class="song-name">The Pressure</span>
-                    <span class="song-subname"></span><br>
-                    <span class="song-artist">Stonebank</span><br>
-                    <span class="song-bpm">170BPM</span><br>
-                    <span class="song-duration">4:09</span><br>
-                    <span class="map-release"></span><br>
-                    <div class="map-link">
-                        <a href="https://beatsaver.com/beatmap/65c7">BeatSaver</a> |
-                        <a href="https://bsaber.com/songs/65c7/">BeastSaber</a> |
-                        <a href="https://youtu.be/ThipRbBpb3A">Video Preview</a>
-                    </div>
-                </div>
-            </div>
+            <BeatmapCard beatmapName="new world" />
+            <BeatmapCard beatmapName="girly cupid" />
+            <BeatmapCard beatmapName="frightmare" />
+            <BeatmapCard beatmapName="the pressure" />
         </div>
         <br>
         <h4 id="tnc">Terms & Conditions</h4>
@@ -255,10 +195,10 @@ const { title, description, permalink } = Astro.props as Props;
         margin: 0.625em 0;
         line-height: 1.25em;
         text-align: justify;
-    }
-    .list li::before {
-        content: '\00BB';
-        margin-right: 0.5em;
+        &::before {
+            content: '\00BB';
+            margin-right: 0.5em;
+        }
     }
     #refresh-map {
         text-decoration: none;
@@ -268,27 +208,6 @@ const { title, description, permalink } = Astro.props as Props;
     #refresh-map:hover {
         color: #f00;
         cursor: pointer;
-    }
-    .cover {
-        display: inline-block;
-        width: 8em;
-        height: 8em;
-        margin: 0.5em;
-        box-shadow: -0.25em 0.25em 0.5em black;
-    }
-    .metadata {
-        display: inline-block;
-        width: calc(100% - 10.375em);
-        height: 8em;
-        margin: 0.5em;
-        vertical-align: top;
-    }
-    .map-link {
-        float: left;
-        vertical-align: bottom;
-    }
-    .song-name {
-        font-size: 1.75rem;
     }
     p {
         margin: 0.25em 0;

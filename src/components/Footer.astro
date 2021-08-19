@@ -14,8 +14,9 @@ const lastUpdated = `${date.getUTCDate()} ${monthName[date.getMonth()]} ${date.g
             <a class="discord-popup" title="Kival Evan#5480" href="#">Discord</a>
         </div>
         <div class="flex-item2">
-            <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support me on Ko-fi', '#e02828', 'I3I620UNJ');kofiwidget2.draw();</script> 
-            <noscript><a href='https://ko-fi.com/I3I620UNJ' rel="noopener" target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a></noscript>
+            <a class="ko-fi" href='https://ko-fi.com/I3I620UNJ' rel="noopener" target='_blank'>
+                <img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' />
+            </a>
         </div>
         <span>Last Updated: {lastUpdated}</span>
     </div>
@@ -54,5 +55,14 @@ const lastUpdated = `${date.getUTCDate()} ${monthName[date.getMonth()]} ${date.g
         font-size: 0.75rem;
         bottom: 0.5em;
         right: 0.5em;
+    }
+    .ko-fi {
+        img {
+            transition: filter 0.2s ease, transform 0.5s ease;
+        }
+        &:hover img {
+            filter: brightness(0.8) contrast(150%);
+            transform: scale(1.1, 1.1)
+        }
     }
 </style>

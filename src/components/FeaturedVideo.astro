@@ -11,11 +11,11 @@ interface FeaturedVideo {
 const featuredVideo = _featuredVideo as FeaturedVideo;
 
 let title!: string, subtitle!: string, description!: string, src!: string, uploadDate!: string;
-for (const vid in featuredVideo) {
-    title = featuredVideo[vid].title;
-    subtitle = featuredVideo[vid].subtitle;
-    description = featuredVideo[vid].description;
-    src = featuredVideo[vid].src;
+for (const vid of featuredVideo) {
+    title = vid.title;
+    subtitle = vid.subtitle;
+    description = vid.description;
+    src = vid.src;
 }
 ---
 <div class="video-container">

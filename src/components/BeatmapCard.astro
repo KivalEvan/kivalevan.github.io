@@ -1,20 +1,32 @@
 ---
 import _beatmap from '../data/beatmap.json';
+function toMMSS(seconds: number): string {
+    if (!seconds) {
+        return '0:00';
+    }
+    const numr = Math.floor(seconds);
+    const temp = numr / 60;
+    const min = temp < 0 ? `-${Math.ceil(temp).toString()}` : Math.floor(temp).toString();
+    const sec = Math.abs(numr % 60)
+        .toString()
+        .padStart(2, '0');
+    return `${min}:${sec}`;
+};
 interface Props {
     beatmapList: any;
     beatmapName: string;
 }
 interface BeatmapCard {
-    songName: string;
-    songSubname: string;
-    songArtist: string;
-    songBPM: {
+    _songName: string;
+    _songSubname: string;
+    _songAuthorName: string;
+    _beatsPerMinute: {
         base: number;
         min: number;
         max: number;
     };
-    songDuration: number;
-    mapLink: {
+    _songDuration: number;
+    _mapLink: {
         [key: string]: {
             name: string;
             url: string;
@@ -22,25 +34,46 @@ interface BeatmapCard {
     };
 }
 const { beatmapList, beatmapName } = Astro.props as Props;
-const beatmap = beatmapList.find(x => x._songName === beatmapName)
+const beatmap = _beatmap.find(x => x._songName.toLowerCase() === beatmapName.toLowerCase()) as BeatmapCard;
+const coverURL = `./assets/img/cover/small/${beatmap._songName.toLowerCase().replace(' ', '-')}.jpg`
 ---
 <div class="song-card">
-    <img class="cover" alt={} src="./assets/img/cover/new-world.jpg" loading="lazy">
+    <img class="cover" alt={beatmap._songName} src={coverURL} loading="lazy">
     <div class="metadata">
-        <span class="song-name">New World</span>
+        <span class="song-name">{beatmap._songName}</span>
         <span class="song-subname"></span><br>
-        <span class="song-artist">FELT</span><br>
-        <span class="song-bpm">195BPM</span><br>
-        <span class="song-duration">4:09</span><br>
-        <span class="map-release"></span><br>
+        <span class="song-artist">{beatmap._songAuthorName}</span><br>
+        <span class="song-bpm">{beatmap._beatsPerMinute._base}BPM</span><br>
+        <span class="song-duration">{toMMSS(beatmap._songDuration)}</span><br>
+        <br>
         <div class="map-link">
-            <a href="https://beatsaver.com/beatmap/7f35">BeatSaver</a> |
-            <a href="https://bsaber.com/songs/7f35/">BeastSaber</a> |
-            <a href="https://youtu.be/y9yZ-4rKV_A">Video Preview</a>
+            {Object.keys(beatmap._link).map((link) => 
+                <a href={beatmap._link[link]._url}>{beatmap._link[link]._name}</a>
+            )}
         </div>
     </div>
 </div>
 
 <style lang="scss">
-
+    .cover {
+        display: inline-block;
+        width: 8em;
+        height: 8em;
+        margin: 0.5em;
+        box-shadow: -0.25em 0.25em 0.5em black;
+    }
+    .metadata {
+        display: inline-block;
+        width: calc(100% - 10.375em);
+        height: 8em;
+        margin: 0.5em;
+        vertical-align: top;
+    }
+    .map-link {
+        float: left;
+        vertical-align: bottom;
+    }
+    .song-name {
+        font-size: 1.75rem;
+    }
 </style>
