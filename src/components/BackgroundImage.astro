@@ -1,0 +1,30 @@
+---
+interface Props {
+    src: string;
+    mask?: boolean;
+}
+const { src, mask } = Astro.props as Props;
+---
+<div class="background">
+    <img src={src} class={mask ? "mask" : ""}>
+</div>
+
+<style lang="scss">
+    div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: max(100vh, 36em);
+        z-index: -10;
+        overflow: hidden;
+    }
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        &.mask {
+            mask-image: linear-gradient(to bottom, rgb(0,0,0,1) 66%, rgb(0,0,0,0));
+        }
+    }
+</style>

@@ -1,0 +1,57 @@
+---
+export interface Props {
+    isHome?: boolean;
+    currPage?: string;
+}
+const { isHome, currPage } = Astro.props as Props;
+const pages = [
+    {name: 'Home', link: '/'},
+    {name: 'Project', link: '/project'},
+    {name: 'Commission', link: '/commission'},
+    {name: 'Guide', link: '/guide'}]
+// smort
+if (isHome) {
+    pages.shift();
+}
+pages.forEach(page => {
+    if (page.name.toLowerCase() === currPage?.toLowerCase()) {
+        page.active = true;
+    }
+})
+---
+<nav role="navigation">
+    {pages.map((page) => (
+        <a href={page.link} class={page.active ? "active" : ""}>{page.name}</a>
+    ))}
+</nav>
+
+<style lang="scss">
+    nav {
+        display: flex;
+        width: 100%;
+        padding-top: 0.375em;
+        padding-bottom: 0.375em;
+        justify-content: center;
+        overflow-x: auto;
+    }
+    a {
+        font-size: 1.75rem;
+        padding: 0.0625em 0.25em;
+        margin-left: 0.625em;
+        margin-right: 0.625em;
+        border-bottom: 0.0625em solid #cccccc00;
+        text-decoration: none;
+        text-shadow: 0 0 0.25em black, 0 0 0.125em black;
+        color: white;
+        transition: padding 0.2s ease, margin 0.2s ease, border 0.1875s ease;
+        &:visited {
+            color: white;
+        }
+        &:hover, &.active {
+            padding: 0.0625em 0.75em;
+            border-bottom-color: #ff0000ff;
+            margin-left: 0.125em;
+            margin-right: 0.125em;
+        }
+    }
+</style>

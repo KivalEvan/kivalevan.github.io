@@ -1,0 +1,53 @@
+<footer>
+    <div class="wrapper readable footer flex">
+        <div class="flex-item">
+            <a href="https://github.com/KivalEvan/">Github</a>
+            <a href="https://steamcommunity.com/id/KivalEvan/">Steam</a>
+            <a href="https://www.youtube.com/channel/UC5pOhteTPou4iA8bNaEx3IA">Youtube</a>
+            <a href="https://www.twitch.tv/kivalevan">Twitch</a>
+            <a href="https://twitter.com/Kival_Evan">Twitter</a>
+            <a class="discord-popup" title="Kival Evan#5480" href="#">Discord</a>
+        </div>
+        <div class="flex-item2">
+            <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support me on Ko-fi', '#e02828', 'I3I620UNJ');kofiwidget2.draw();</script> 
+            <noscript><a href='https://ko-fi.com/I3I620UNJ' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a></noscript>
+        </div>
+    </div>
+</footer>
+
+<style lang="scss">
+    footer {
+        margin-top: auto;
+        background-color: #0008;
+    }
+    .footer {
+        font-size: 1.25em;
+        padding-top: 1em;
+        padding-bottom: 1em;
+        overflow: hidden;
+    }
+    .flex {
+        display: flex;
+        flex-direction: row;
+        &-item {
+            display: flex;
+            width: calc(100% / 1.5);
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        &-item2 {
+            display: flex;
+            width: calc(100% / 3);
+            justify-content: space-evenly;
+            align-items: center;
+        }
+    }
+    a {
+        text-decoration: none;
+        color: #37f;
+        transition: color ease 0.125s;
+    }
+    a:hover {
+        color: #f00;
+    }
+</style>
