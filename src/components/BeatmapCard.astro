@@ -35,7 +35,7 @@ interface BeatmapCard {
 }
 const { beatmapList, beatmapName } = Astro.props as Props;
 const beatmap = _beatmap.find(x => x._songName.toLowerCase() === beatmapName.toLowerCase()) as BeatmapCard;
-const coverURL = `./assets/img/cover/small/${beatmap._songName.toLowerCase().replace(' ', '-')}.jpg`
+const coverURL = `/assets/img/cover/small/${beatmap._songName.toLowerCase().replace(' ', '-')}.jpg`
 ---
 <div class="song-card">
     <img class="cover" alt={beatmap._songName} src={coverURL} loading="lazy">
