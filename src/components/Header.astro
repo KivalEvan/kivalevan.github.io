@@ -10,6 +10,9 @@ import BackgroundImage from '../components/BackgroundImage.astro';
 </header>
 
 <style lang="scss">
+    $width-phone: 750px;
+    $width-widescreen: 1600px;
+
     .nav {
         width: 100%;
         margin-top: auto;
@@ -29,5 +32,9 @@ import BackgroundImage from '../components/BackgroundImage.astro';
         color: white;
         margin-top: 0.125em;
         margin-bottom: 0.125em;
+        white-space: nowrap;
+        @media (max-width: $width-phone) {
+            font-size: 4rem;
+        }
     }
 </style>

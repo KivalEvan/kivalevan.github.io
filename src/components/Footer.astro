@@ -1,3 +1,8 @@
+---
+const date = new Date();
+const monthName = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+const lastUpdated = `${date.getUTCDate()} ${monthName[date.getMonth()]} ${date.getFullYear()}`;
+---
 <footer>
     <div class="wrapper readable footer flex">
         <div class="flex-item">
@@ -10,20 +15,22 @@
         </div>
         <div class="flex-item2">
             <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support me on Ko-fi', '#e02828', 'I3I620UNJ');kofiwidget2.draw();</script> 
-            <noscript><a href='https://ko-fi.com/I3I620UNJ' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a></noscript>
+            <noscript><a href='https://ko-fi.com/I3I620UNJ' rel="noopener" target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a></noscript>
         </div>
+        <span>Last Updated: {lastUpdated}</span>
     </div>
 </footer>
 
 <style lang="scss">
     footer {
+        position: relative;
         margin-top: auto;
         background-color: #0008;
     }
     .footer {
         font-size: 1.25em;
         padding-top: 1em;
-        padding-bottom: 1em;
+        padding-bottom: 1.5em;
         overflow: hidden;
     }
     .flex {
@@ -42,12 +49,10 @@
             align-items: center;
         }
     }
-    a {
-        text-decoration: none;
-        color: #37f;
-        transition: color ease 0.125s;
-    }
-    a:hover {
-        color: #f00;
+    span {
+        position: absolute;
+        font-size: 0.75rem;
+        bottom: 0.5em;
+        right: 0.5em;
     }
 </style>

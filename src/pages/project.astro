@@ -9,7 +9,7 @@ export interface Props {
 const { title, description, permalink } = Astro.props as Props;
 ---
 <Main>
-    <div class="wrapper readable">
+    <div class="wrapper readable full-size">
         <h2>Project</h2>
         <hr>
         <h3>Beat Saber</h3>
@@ -42,3 +42,12 @@ const { title, description, permalink } = Astro.props as Props;
         <a href="https://github.com/KivalEvan/CPU-Scheduling-Simulation">CPU Scheduling Simulation</a><br>
     </div>
 </Main>
+
+<style lang="scss">
+    h2 {
+        font-size: 3rem;
+    }
+    h3 {
+        font-size: 1.75rem;
+    }
+</style>
