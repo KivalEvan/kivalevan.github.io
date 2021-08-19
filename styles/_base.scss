@@ -1,0 +1,41 @@
+$width-phone: 750px;
+$width-widescreen: 1600px;
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    color: #fff;
+    background-color: #282830;
+}
+
+.wrapper {
+    max-width: 80em;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    &.readable {
+        max-width: 50em;
+    }
+    &.full-size {
+        width: 100%;
+    }
+    @media (max-width: $width-phone) {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: #37f;
+    transition: color ease 0.125s;
+}
+a:hover {
+    color: #f00;
+}
