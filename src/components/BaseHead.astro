@@ -4,7 +4,7 @@ export interface Props {
     description: string;
     permalink: string;
 }
-const { title, description, permalink } = Astro.props as Props;
+const { title, description = "Personal website.", permalink = "https://www.kivalevan.me/" } = Astro.props as Props;
 ---
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width" />

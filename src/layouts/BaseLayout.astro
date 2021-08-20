@@ -1,9 +1,12 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
+
+const { currPage, description } = Astro.props;
+const title = "Kival Evan" + (currPage ? ` | ${currPage}` : "");
 ---
 <!DOCTYPE html>
 <html lang="en">
-<BaseHead title="Kival Evan" description="hi" permalink="https://www.kivalevan.me/"/>
+<BaseHead title={title} description={description}/>
 <body>
     <slot></slot>
 </body>

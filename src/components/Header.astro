@@ -1,11 +1,12 @@
 ---
 import Nav from './Nav.astro';
 import BackgroundImage from '../components/BackgroundImage.astro';
+const { currPage } = Astro.props;
 ---
 <header>
     <h1>Kival Evan</h1>
     <div class="nav">
-        <Nav />
+        <Nav currPage={currPage} />
     </div>
 </header>
 

@@ -8,7 +8,7 @@ const lastUpdated = `${date.getUTCDate()} ${monthName[date.getMonth()]} ${date.g
     <div class="wrapper readable footer flex">
         <div class="flex-item">
             {contact.map((c) => 
-                <a class="padding" href={c.url}>{c.place}</a>
+                c.url ? <a class="link-padding" href={c.url}>{c.place}</a> : <span class="fake-link link-padding" id={c.place + '-link'} title={c.name} tabindex="0">{c.place}</span>
             )}
         </div>
         <div class="flex-item2">
@@ -53,13 +53,14 @@ const lastUpdated = `${date.getUTCDate()} ${monthName[date.getMonth()]} ${date.g
         bottom: 0.5em;
         right: 0.5em;
     }
-    .padding {
+    .link-padding {
         padding-left: 0.125em;
         padding-right: 0.125em;
     }
     .ko-fi {
         width: min(100%, 160px);
         margin: auto;
+        line-height: 0;
         img {
             width: 100%;
             transition: filter 0.2s ease, transform 0.5s ease;

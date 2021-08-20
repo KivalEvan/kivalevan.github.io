@@ -2,10 +2,12 @@
 import BaseLayout from './BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+
+const { currPage, description } = Astro.props;
 ---
-<BaseLayout>
+<BaseLayout currPage={currPage} description={description}>
     <div class="full-page">
-        <Header />
+        <Header currPage={currPage} />
         <slot></slot>
         <Footer />
     </div>

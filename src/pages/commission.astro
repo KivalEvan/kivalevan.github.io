@@ -1,16 +1,9 @@
 ---
 import Main from '../layouts/Main.astro';
 import BeatmapCard from '../components/BeatmapCard.astro';
-
-export interface Props {
-    title: string;
-    description: string;
-    permalink: string;
-}
-
-const { title, description, permalink } = Astro.props as Props;
+const pageName = 'Commission';
 ---
-<Main>
+<Main currPage={pageName}>
     <div class="wrapper readable full-size">
         <h2>Commission</h2>
         <hr>
