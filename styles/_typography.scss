@@ -1,9 +1,53 @@
+@use './var' as *;
+
 :root {
-    --font-primary: 'Noto Sans', 'Gill Sans', 'Trebuchet MS', Geneva, Verdana, sans-serif;
+    --font-primary: 'Noto Sans', 'Gill Sans', 'Trebuchet MS', Geneva, Verdana,
+        sans-serif;
     --font-secondary: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     --font-monospace: 'Courier New', Courier, monospace;
     font-family: var(--font-primary);
     font-size: 1rem;
     --user-font-scale: 1rem - 16px;
-    font-size: clamp(0.875rem, 0.4626rem + 1.0309vw + var(--user-font-scale), 1.125rem);
+    font-size: clamp(
+        0.875rem,
+        0.4626rem + 1.0309vw + var(--user-font-scale),
+        1.125rem
+    );
+}
+
+h1 {
+    font-size: 6rem;
+    text-transform: uppercase;
+    white-space: nowrap;
+    @media (max-width: $breakpoint-mobile) {
+        font-size: 4rem;
+    }
+}
+h2 {
+    font-size: 3rem;
+}
+h3 {
+    font-size: 1.75rem;
+}
+
+a {
+    text-decoration: none;
+    color: #37f;
+    transition: color ease 0.125s;
+    &:hover {
+        color: #f00;
+    }
+    @at-root .fake-link {
+        @extend a;
+        cursor: pointer;
+    }
+}
+
+p {
+}
+
+.text {
+    &-shadow {
+        text-shadow: 0 0 0.1875em black, 0 0 0.0625em black;
+    }
 }

@@ -1,5 +1,4 @@
-$width-phone: 750px;
-$width-widescreen: 1600px;
+@use './var' as *;
 
 * {
     box-sizing: border-box;
@@ -14,33 +13,27 @@ body {
 }
 
 .wrapper {
-    max-width: 80em;
+    max-width: $wrapper-size;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: $wrapper-padding;
+    padding-right: $wrapper-padding;
     &.readable {
-        max-width: 50em;
+        max-width: $wrapper-readable-size;
     }
     &.full-size {
         width: 100%;
     }
-    @media (max-width: $width-phone) {
-        padding-left: 1rem;
-        padding-right: 1rem;
+    @media (max-width: $breakpoint-mobile) {
+        padding-left: #{$wrapper-padding} / 2;
+        padding-right: #{$wrapper-padding} / 2;
     }
 }
 
-a {
-    text-decoration: none;
-    color: #37f;
-    transition: color ease 0.125s;
-    &:hover {
-        color: #f00;
-    }
-}
-
-.fake-link {
-    @extend a;
-    cursor: pointer;
+.full-page {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    flex-direction: column;
+    align-items: stretch;
 }
