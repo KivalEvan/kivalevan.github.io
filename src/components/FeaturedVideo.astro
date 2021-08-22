@@ -21,9 +21,9 @@ for (const vid of featuredVideo) {
 <div class="video-container">
     <iframe class="video-iframe" src={src} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
-<span class="title">{title}</span><br>
-<span class="subtitle">{subtitle}</span><br>
-<p class="description">{description}</p>
+<span class="title text-shadow">{title}</span><br>
+<span class="subtitle text-shadow">{subtitle}</span><br>
+<p class="description text-shadow">{description}</p>
 
 <style lang="scss">
     .video {
@@ -41,17 +41,14 @@ for (const vid of featuredVideo) {
     }
     .title {
         font-size: 2.5rem;
-        text-shadow: 0 0 0.25em black, 0 0 0.125em black;
         color: white;
     }
     .subtitle {
         font-size: 1.75rem;
-        text-shadow: 0 0 0.25em black, 0 0 0.125em black;
         color: white;
     }
     .description {
         font-size: 1.25rem;
-        text-shadow: 0 0 0.25em black, 0 0 0.125em black;
         color: white;
     }
 </style>

@@ -46,9 +46,9 @@ const coverURL = `/assets/img/cover/small/${beatmap._songName.toLowerCase().repl
         <span class="song-bpm">{beatmap._beatsPerMinute._base}BPM</span><br>
         <span class="song-duration">{toMMSS(beatmap._songDuration)}</span><br>
         <br>
-        <div class="map-link">
+        <div>
             {Object.keys(beatmap._link).map((link) => 
-                <a href={beatmap._link[link]._url}>{beatmap._link[link]._name}</a>
+                <a class="map-link" href={beatmap._link[link]._url}>{beatmap._link[link]._name}</a>
             )}
         </div>
     </div>
@@ -69,9 +69,16 @@ const coverURL = `/assets/img/cover/small/${beatmap._songName.toLowerCase().repl
         margin: 0.5em;
         vertical-align: top;
     }
-    .map-link {
-        float: left;
-        vertical-align: bottom;
+    .map-link:not(:last-child) {
+        &::after {
+            content: '|';
+            color: white;
+            margin-left: 0.25em;
+            margin-right: 0.25em;
+            &:hover {
+                color: white;
+            }
+        }
     }
     .song-name {
         font-size: 1.75rem;

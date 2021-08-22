@@ -1,0 +1,48 @@
+<div class="btt">
+    <a class="btt-button" href="#"><span>⮝</span></a>
+</div>
+
+<style lang="scss">
+    @use '../../public/styles/_var' as *;
+    @use 'sass:math';
+
+    $radius: math.div($wrapper-padding, 1.5);
+    .btt {
+        display: block;
+        position: sticky;
+        bottom: 1em;
+        right: 1em;
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: auto;
+        margin-bottom: 1em;
+        width: 100%;
+        max-width: calc(#{$wrapper-readable-size} + #{$radius * 4});
+        &-button {
+            display: none;
+            position: relative;
+            width: $radius * 2;
+            height: $radius * 2;
+            margin-left: auto;
+            margin-right: 1em;
+            border: 0.125em solid #808080;
+            border-radius: $radius;
+            background-color: #080808;
+            box-shadow: 0 0 0 0.1875em #080808;
+            color: #ccc;
+            &:hover {
+                color: #fff;
+            }
+            span {
+                position: absolute;
+                font-size: $radius * 1.5;
+                top: 45%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            @media (min-height: 100vh) {
+                display: block;
+            }
+        }
+    }
+</style>

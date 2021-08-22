@@ -3,18 +3,11 @@ import Main from '../layouts/Main.astro';
 const pageName = 'Guide';
 ---
 <Main currPage={pageName}>
-    <div class="wrapper readable full-size">
-        <h2>Guide</h2>
-        There is no guide available right now but I do plan to make one hopefully.<br>
-        Or probably turn it into blog, one of the two.
-    </div>
+    <h2>{pageName}</h2>
+    <hr>
+    There is no guide available right now but I do plan to make one hopefully.<br>
+    Or probably turn it into blog, one of the two.
 </Main>
 
 <style lang="scss">
-    h2 {
-        font-size: 3rem;
-    }
-    h3 {
-        font-size: 1.75rem;
-    }
 </style>

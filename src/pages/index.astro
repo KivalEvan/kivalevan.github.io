@@ -4,13 +4,6 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import BackgroundImage from '../components/BackgroundImage.astro';
 import FeaturedVideo from '../components/FeaturedVideo.astro';
-
-export interface Props {
-    title: string;
-    description: string;
-    permalink: string;
-}
-const { title, description, permalink } = Astro.props as Props;
 ---
 <BaseLayout>
     <div class="full-page">
@@ -18,12 +11,12 @@ const { title, description, permalink } = Astro.props as Props;
         <header>
             <div class="flex">
                 <div class="flex-item">
-                    <h1>Kival Evan</h1>
-                    <p>
+                    <h1 class="text-shadow">Kival Evan</h1>
+                    <p class="text-shadow">
                         An undergraduate, computer science student.<br>
                         Learning as I develop new things.
                     </p>
-                    <p>
+                    <p class="text-shadow">
                         <br>
                         I'm a Beat Saber player and a mapper.<br>
                         I create the tools and scripts for mapping.
@@ -37,34 +30,24 @@ const { title, description, permalink } = Astro.props as Props;
             </div>
         </header>
         <div class="nav">
-            <Nav isHome=true />
+            <Nav />
         </div>
-        <div class="footer">
-            <Footer />
-        </div>
+        <Footer />
     </div>
 </BaseLayout>
 
 <style lang="scss">
-    $width-phone: 750px;
-    $width-widescreen: 1600px;
+    @use '../../public/styles/_var' as *;
 
-    .full-page {
-        display: flex;
-        width: 100%;
-        min-height: 100vh;
-        flex-direction: column;
-        align-items: stretch;
-    }
     header {
         width: 100%;
         max-width: 100em;
-        padding-top: 1em;
+        padding-top: 1rem;
         padding-left: 4em;
         padding-right: 4em;
         margin-left: auto;
         margin-right: auto;
-        @media (max-width: $width-phone) {
+        @media (max-width: $breakpoint-mobile) {
             padding-left: 1em;
             padding-right: 1em;
         }
@@ -73,14 +56,14 @@ const { title, description, permalink } = Astro.props as Props;
         display: flex;
         width: 100%;
         flex-direction: row;
-        @media (max-width: $width-widescreen) {
+        @media (max-width: $breakpoint-widescreen) {
             flex-direction: column;
         }
         &-item {
             display: flex;
             flex-direction: column;
             width: 50%;
-            @media (max-width: $width-widescreen) {
+            @media (max-width: $breakpoint-widescreen) {
                 width: 100%;
             }
         }
@@ -93,9 +76,9 @@ const { title, description, permalink } = Astro.props as Props;
         width: 90%;
         margin-top: 1.5em;
         margin-bottom: 1.5em;
-        @media (max-width: $width-widescreen) {
+        @media (max-width: $breakpoint-widescreen) {
             width: 100%;
-            max-width: calc(#{$width-widescreen} / 2);
+            max-width: calc(#{$breakpoint-widescreen} / 2);
         }
     }
     .nav {
@@ -104,32 +87,18 @@ const { title, description, permalink } = Astro.props as Props;
         margin-bottom: 3em;
         background-image: linear-gradient(to left, rgba(0,0,0,0), rgba(0,0,0,0.375) 10%, rgba(0,0,0,0.375) 90%, rgba(0,0,0,0));
     }
-    .footer {
-        width: 100%;
-    }
     h1 {
-        text-align: start;
-        font-size: 6rem;
-        text-transform: uppercase;
-        text-shadow: 0 0 0.25em black, 0 0 0.125em black;
-        color: white;
-        @media (max-width: $width-widescreen) {
+        @media (max-width: $breakpoint-widescreen) {
             text-align: center;
-        }
-        @media (max-width: $width-phone) {
-            font-size: 4rem;
         }
     }
     p {
-        text-align: start;
         font-size: 2rem;
         white-space: nowrap;
-        text-shadow: 0 0 0.25em black, 0 0 0.125em black;
-        color: white;
-        @media (max-width: $width-widescreen) {
+        @media (max-width: $breakpoint-widescreen) {
             text-align: center;
         }
-        @media (max-width: $width-phone) {
+        @media (max-width: $breakpoint-mobile) {
             font-size: 1.5rem;
             white-space: unset;
         }

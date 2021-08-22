@@ -3,39 +3,35 @@ export interface Props {
     isHome?: boolean;
     currPage?: string;
 }
-const { isHome, currPage } = Astro.props as Props;
+const { currPage } = Astro.props as Props;
 const pages = [
-    {name: 'Home', link: '/'},
+    {name: 'About', link: '/about'},
     {name: 'Project', link: '/project'},
     {name: 'Commission', link: '/commission'},
     {name: 'Guide', link: '/guide'}];
-// smort
-if (isHome) {
-    pages.shift();
-}
 pages.forEach(page => {
     if (page.name.toLowerCase() === currPage?.toLowerCase()) {
         page.active = true;
     }
 })
 ---
-<div class="container">
-    <nav role="navigation">
+<nav role="navigation">
+    <div class="container">
         {pages.map((page) => (
-            <a href={page.link} class={page.active ? "active" : ""}><span>{page.name}</span></a>
+            <a href={page.link} class={`text-shadow ${page.active ? "active" : ""}`}><span>{page.name}</span></a>
         ))}
-    </nav>
-</div>
+    </div>
+</nav>
 
 <style lang="scss">
     $width-phone: 750px;
     $width-widescreen: 1600px;
 
-    .container {
+    nav {
         display: flex;
         justify-content: center;
     }
-    nav {
+    .container {
         padding-top: 0.5em;
         padding-bottom: 0.5em;
         white-space :nowrap;
@@ -47,7 +43,6 @@ pages.forEach(page => {
         margin-left: 0.75em;
         margin-right: 0.75em;
         border-bottom: 0.0625em solid #cccccc00;
-        text-shadow: 0 0 0.25em black, 0 0 0.125em black;
         text-decoration: none;
         text-transform: uppercase;
         font-weight: bold;
