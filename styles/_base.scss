@@ -1,8 +1,10 @@
 @use './var' as *;
+@use 'sass:math';
 
 * {
     box-sizing: border-box;
     margin: 0;
+    padding: 0;
 }
 
 body {
@@ -10,6 +12,11 @@ body {
     min-height: 100vh;
     color: #fff;
     background-color: #282830;
+}
+
+hr {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
 }
 
 .wrapper {
@@ -25,8 +32,8 @@ body {
         width: 100%;
     }
     @media (max-width: $breakpoint-mobile) {
-        padding-left: #{$wrapper-padding} / 2;
-        padding-right: #{$wrapper-padding} / 2;
+        padding-left: math.div($wrapper-padding, 3);
+        padding-right: math.div($wrapper-padding, 3);
     }
 }
 
