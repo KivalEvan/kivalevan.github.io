@@ -6,7 +6,7 @@
     @use '../../public/styles/_var' as *;
     @use 'sass:math';
 
-    $radius: math.div($wrapper-padding, 1.5);
+    $radius: $wrapper-padding * 1.25;
     .btt {
         display: block;
         position: sticky;
@@ -21,8 +21,8 @@
         &-button {
             display: none;
             position: relative;
-            width: $radius * 2;
-            height: $radius * 2;
+            width: $radius;
+            height: $radius;
             margin-left: auto;
             margin-right: 1em;
             border: 0.125em solid #808080;
@@ -35,10 +35,11 @@
             }
             span {
                 position: absolute;
-                font-size: $radius * 1.5;
                 top: 45%;
                 left: 50%;
                 transform: translate(-50%, -50%);
+                font-size: math.div($radius, 1.5);
+                text-align: center;
             }
             @media (min-height: 100vh) {
                 display: block;

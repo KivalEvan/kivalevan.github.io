@@ -1,9 +1,13 @@
 ---
-import Main from '../layouts/Main.astro';
-const pageName = 'About';
+import Main from '$layouts/Main.astro';
+const pageDetails = {
+    title: 'About',
+    description: 'A personal website of mine.',
+    overrideTitle: false,
+}
 ---
-<Main currPage={pageName}>
-    <h2>{pageName} Me</h2>
+<Main pageDetails={pageDetails}>
+    <h2>{pageDetails.title} Me</h2>
     <hr>
     To be filled later.
 </Main>

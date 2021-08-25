@@ -1,10 +1,14 @@
 ---
-import Main from '../layouts/Main.astro';
-import BeatmapCard from '../components/BeatmapCard.astro';
-const pageName = 'Commission';
+import Main from '$layouts/Main.astro';
+import BeatmapCard from '$components/BeatmapCard.astro';
+const pageDetails = {
+    title: 'Commission',
+    description: 'A personal website of mine.',
+    overrideTitle: false,
+}
 ---
-<Main currPage={pageName}>
-    <h2>{pageName}</h2>
+<Main pageDetails={pageDetails}>
+    <h2>{pageDetails.title}</h2>
     <hr>
     <h3>Beat Saber Custom Map</h3>
     <img alt="header-commission-beat-saber" src="/assets/img/commission-beat-saber.jpg" loading="lazy"><br>

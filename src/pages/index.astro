@@ -1,11 +1,17 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
-import BackgroundImage from '../components/BackgroundImage.astro';
-import FeaturedVideo from '../components/FeaturedVideo.astro';
+import BaseLayout from '$layouts/BaseLayout.astro';
+import Nav from '$components/Nav.astro';
+import Footer from '$components/Footer.astro';
+import BackgroundImage from '$components/BackgroundImage.astro';
+import FeaturedVideo from '$components/FeaturedVideo.astro';
+
+const pageDetails = {
+    title: 'Kival Evan',
+    description: 'A personal website of mine.',
+    overrideTitle: true,
+}
 ---
-<BaseLayout>
+<BaseLayout pageDetails={pageDetails}>
     <div class="full-page">
         <BackgroundImage src="/assets/img/bg/background.jpg" mask=true />
         <header>

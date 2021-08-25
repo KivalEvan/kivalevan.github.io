@@ -1,0 +1,28 @@
+---
+import BaseLayout from '$layouts/BaseLayout.astro';
+
+const pageDetails = {
+    name: '404',
+    description: 'Page not found.',
+    overrideTitle: false,
+}
+---
+<BaseLayout pageDetails={pageDetails}>
+    <div class="full-page">
+        <div class="center">
+            <span>Error 404 - Page not found</span><br>
+            <img src="/assets/img/404.png" alt="cirno 404"><br>
+            <a href="/">Take me to home</a>
+        </div>
+    </div>
+</BaseLayout>
+
+<style lang="scss">
+    .center {
+        margin: auto;
+        text-align: center;
+    }
+    img {
+        height: clamp(128px, 75vh, 318px);
+    }
+</style>

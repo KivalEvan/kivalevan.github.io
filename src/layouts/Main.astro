@@ -1,16 +1,20 @@
 ---
 import BaseLayout from './BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import BackToTopButton from '../components/BackToTopButton.astro';
+import Header from '$components/Header.astro';
+import Footer from '$components/Footer.astro';
+import BackToTopButton from '$components/BackToTopButton.astro';
 
-const { currPage, description } = Astro.props;
+export interface Props {
+    pageDetails: PageDetails;
+}
+
+const { pageDetails } = Astro.props as Props;
 ---
-<BaseLayout currPage={currPage} description={description}>
+<BaseLayout pageDetails={pageDetails}>
     <div class="full-page">
-        <Header currPage={currPage} />
+        <Header pageDetails={pageDetails} />
         <main class="wrapper readable full-size">
-            <slot></slot>
+            <slot />
         </main>
         <BackToTopButton />
         <Footer />

@@ -1,0 +1,23 @@
+---
+import Main from './Main.astro';
+
+export interface Props {
+    content: any;
+}
+
+const { content } = Astro.props as Props;
+const { title, description, author, publishDate, updatedDate } = content;
+
+const pageDetails = {
+    title: title,
+    description: description,
+    overrideTitle: false,
+};
+---
+<Main pageDetails={pageDetails}>
+    <link rel="stylesheet" href="/styles/blog.css" />
+    <h2>{title}</h2>
+    <time datetime={publishDate} class="publish-date">{publishDate}</time>
+    <hr>
+    <slot />
+</Main>

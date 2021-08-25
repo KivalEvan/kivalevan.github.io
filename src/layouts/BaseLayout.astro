@@ -1,13 +1,26 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
+import BaseHead from '$components/BaseHead.astro';
 
-const { currPage, description } = Astro.props;
-const title = "Kival Evan" + (currPage ? ` | ${currPage}` : "");
+export interface PageDetails {
+    title: string;
+    description: string;
+    overrideTitle: boolean;
+}
+
+export interface Props {
+    pageDetails: PageDetails;
+}
+
+const { pageDetails } = Astro.props as Props;
+const { title, description, overrideTitle } = pageDetails;
+const headTitle = overrideTitle ? title : "Kival Evan" + (title ? ` | ${title}` : "");
 ---
 <!DOCTYPE html>
 <html lang="en">
-<BaseHead title={title} description={description}/>
+<head>
+    <BaseHead title={headTitle} description={description}/>
+</head>
 <body>
-    <slot></slot>
+    <slot />
 </body>
 </html>

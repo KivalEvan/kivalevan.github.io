@@ -1,9 +1,13 @@
 ---
-import Main from '../layouts/Main.astro';
-const pageName = 'Project';
+import Main from '$layouts/Main.astro';
+const pageDetails = {
+    title: 'Project',
+    description: 'A personal website of mine.',
+    overrideTitle: false,
+}
 ---
-<Main currPage={pageName}>
-    <h2>{pageName}</h2>
+<Main pageDetails={pageDetails}>
+    <h2>{pageDetails.title}</h2>
     <hr>
     <h3>Beat Saber</h3>
     <a href="https://kivalevan.github.io/BeatSaber-MapCheck/">Map Check</a><br>
