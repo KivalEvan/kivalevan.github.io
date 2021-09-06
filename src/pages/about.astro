@@ -1,5 +1,6 @@
 ---
 import Main from '$layouts/Main.astro';
+import Avatar from '$components/Avatar.astro';
 const pageDetails = {
     title: 'About',
     description: 'A personal website of mine.',
@@ -9,8 +10,79 @@ const pageDetails = {
 <Main pageDetails={pageDetails}>
     <h2>{pageDetails.title} Me</h2>
     <hr>
-    To be filled later.
+    <section class="profile flex">
+        <figure class="profile-avatar">
+            <Avatar filePath="kival_evan.jpg" />
+            <figcaption>Image by <a href="https://www.pixiv.net/en/users/1020785">まひる</a></figcaption>
+        </figure>
+        <div class="profile-info">
+            An undergraduate, computer science student.<br>
+            Just doing things alone on my free time.<br>
+            <br>
+            Age: 22<br>
+            Birthday: June 10th<br>
+        </div>
+    </section>
+    <hr>
+    <section>
+        <h3>Skills & Interests</h3>
+        <h4>Programming language I am familiar with in no particular order:</h4>
+        <ul class="list-tag">
+            <li>JavaScript</li>
+            <li>Typescript</li>
+            <li>PHP</li>
+            <li>C++</li>
+            <li>C#</li>
+            <li>Visual Basic</li>
+            <li>Python</li>
+        </ul>
+    </section>
+    <br>
+    <section>
+        <h3>Stuff I'm using</h3>
+        <div>
+            <h4>PC Setup:</h4>
+            <ul class="list-arrow">
+                <li>Intel Core i9-9900K</li>
+                <li>ZOTAC GAMING Geforce GTX 1660 SUPER</li>
+                <li>Corsair 2x8GB DDR4 2133MHz</li>
+                <li>Asus ROG Maximus XI Gene</li>
+            </ul>
+        <br>
+            <p>NOTE: not sure if this is a temporary setup but it should last well long enough</p>
+        </div>
+        <br>
+        <div>
+            <h4>Peripherals:</h4>
+            <ul class="list-arrow">
+                <li>Samsung 24" Curved Monitor CF390</li>
+                <li>ViewSonic 24" Monitor VA2419-sh</li>
+                <li>Audio-Technica ATH-M40x</li>
+                <li>Ducky One 2 Tuxedo Full Size</li>
+                <li>Logitech G403 Wireless</li>
+            </ul>
+        </div>
+        <br>
+        <div>
+            <h4>VR Setup:</h4>
+            <ul class="list-arrow">
+                <li>Oculus Quest 2</li>
+                <li>VRCover Facial Interface (Dark Grey & Black)</li>
+                <li>HTC Vive Deluxe Audio Strap (Frankenquest Modification)</li>
+                <li>AMVR Knuckle Controller Grip</li>
+                <li>AMVR 5M Link Cable</li>
+                <li>AMVR Powerbank Fixing Bracket</li>
+                <li>Anker PowerCore Select 10000</li>
+            </ul>
+        </div>
+    </section>
 </Main>
 
 <style lang="scss">
+    .profile {
+        &-info {
+            width: 100%;
+            padding: 0.25em 1em;
+        }
+    }
 </style>

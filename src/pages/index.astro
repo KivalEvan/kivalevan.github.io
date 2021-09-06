@@ -18,14 +18,15 @@ const pageDetails = {
             <div class="flex">
                 <div class="flex-item">
                     <h1 class="text-shadow">Kival Evan</h1>
+                    <div class="nav-mobile">
+                        <Nav />
+                    </div>
                     <p class="text-shadow">
-                        An undergraduate, computer science student.<br>
-                        Learning as I develop new things.
-                    </p>
-                    <p class="text-shadow">
+                        I'm an undergraduate, computer science student<br>
+                        Learning as I develop new things<br>
                         <br>
-                        I'm a Beat Saber player and a mapper.<br>
-                        I create the tools and scripts for mapping.
+                        I'm a Beat Saber player and a mapper<br>
+                        Created the tools and scripts for mapping
                     </p>
                 </div>
                 <div class="flex-item2">      
@@ -43,16 +44,16 @@ const pageDetails = {
 </BaseLayout>
 
 <style lang="scss">
-    @use '../../public/styles/_var' as *;
+    @use '../styles/_var' as *;
 
     header {
         width: 100%;
         max-width: 100em;
-        padding-top: 1rem;
         padding-left: 4em;
         padding-right: 4em;
         margin-left: auto;
         margin-right: auto;
+        margin-bottom: auto;
         @media (max-width: $breakpoint-mobile) {
             padding-left: 1em;
             padding-right: 1em;
@@ -83,7 +84,6 @@ const pageDetails = {
         margin-top: 1.5em;
         margin-bottom: 1.5em;
         @media (max-width: $breakpoint-widescreen) {
-            width: 100%;
             max-width: calc(#{$breakpoint-widescreen} / 2);
         }
     }
@@ -92,21 +92,35 @@ const pageDetails = {
         margin-top: auto;
         margin-bottom: 3em;
         background-image: linear-gradient(to left, rgba(0,0,0,0), rgba(0,0,0,0.375) 10%, rgba(0,0,0,0.375) 90%, rgba(0,0,0,0));
+        @media (max-width: $breakpoint-widescreen) {
+            display: none;
+        }
+        @at-root .nav-mobile {
+            @extend .nav;
+            margin-top: 0;
+            margin-bottom: 1.5em;
+            @media (min-width: $breakpoint-widescreen) {
+                display: none;
+            }
+            @media (max-width: $breakpoint-widescreen) {
+                display: block;
+            }
+        }
     }
     h1 {
+        margin-top: 1rem;
+        margin-bottom: 1.5rem;
         @media (max-width: $breakpoint-widescreen) {
             text-align: center;
         }
     }
     p {
-        font-size: 2rem;
-        white-space: nowrap;
+        font-size: 1.75rem;
         @media (max-width: $breakpoint-widescreen) {
             text-align: center;
         }
         @media (max-width: $breakpoint-mobile) {
-            font-size: 1.5rem;
-            white-space: unset;
+            font-size: 1.25rem;
         }
     }
 </style>

@@ -1,0 +1,15 @@
+---
+export interface Props {
+    filePath: string;
+}
+const { filePath } = Astro.props as Props;
+---
+<img src={`/assets/img/avatar/${filePath}`}>
+
+<style lang="scss">
+    img {
+        width: 12rem;
+        box-shadow: -0.125rem 0.125rem 0.5rem black;
+        border-radius: 50%;
+    }
+</style>

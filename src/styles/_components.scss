@@ -1,0 +1,29 @@
+figure {
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+    text-align: justify;
+    line-height: 1.25;
+    &.list-tag {
+        li {
+            display: inline-block;
+            padding: 0.25em;
+            margin: 0.25em;
+            border: 1px solid whitesmoke;
+            border-radius: 0.5rem;
+        }
+    }
+    &.list-arrow {
+        li {
+            &:not(:last-child) {
+                margin-bottom: 0.5em;
+            }
+            &::before {
+                content: '\00BB';
+                margin-right: 0.5em;
+            }
+        }
+    }
+}

@@ -23,8 +23,7 @@ pages.forEach(page => {
 </nav>
 
 <style lang="scss">
-    $width-phone: 750px;
-    $width-widescreen: 1600px;
+    @use '../styles/_var' as *;
 
     nav {
         display: flex;
@@ -64,7 +63,7 @@ pages.forEach(page => {
                 transform: scale(1.1, 1.1);
             }
         }
-        @media (max-width: $width-phone) {
+        @media (max-width: $breakpoint-mobile) {
             font-size: 1.625rem;
         }
     }

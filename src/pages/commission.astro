@@ -41,7 +41,7 @@ const pageDetails = {
     <div class="panel-inner">
         <div class="panel-column">
             <h5>Mapping</h5>
-            <ul class="list">
+            <ul class="list-arrow">
                 <li><strong>$20</strong> Mapper style</li>
                 <li><strong>$25</strong> Specific style</li>
                 <li><strong>$10+</strong> Additional difficulty</li>
@@ -49,7 +49,7 @@ const pageDetails = {
         </div>
         <div class="panel-column">
             <h5>Lighting</h5>
-            <ul class="list">
+            <ul class="list-arrow">
                 <li><strong>$15</strong> Handcrafted (non-Chroma)</li>
                 <li><strong>Free</strong> Lolighter (automated)</li>
             </ul>
@@ -79,7 +79,7 @@ const pageDetails = {
     </p>
     <br>
     <h4 id="map-showcase">Map Showcase</h4>
-    <span id='refresh-map'>Refresh</span>
+    <span class='fake-link'>Refresh</span>
     <div class="map-showcase">
         <BeatmapCard beatmapName="new world" />
         <BeatmapCard beatmapName="girly cupid" />
@@ -88,7 +88,7 @@ const pageDetails = {
     </div>
     <br>
     <h4 id="tnc">Terms & Conditions</h4>
-    <ul class="list">
+    <ul class="list-arrow">
         <li>I have the right to deny any commission.</li>
         <li>The map will be uploaded to my own BeatSaver account.</li>
         <li>Map will be released & uploaded as soon after completion and full payment made, but are allowed to
@@ -172,28 +172,6 @@ const pageDetails = {
         &:hover {
             background-color: #202020;
         }
-    }
-    ul {
-        padding: 0;
-        list-style-type: none;
-    }
-    .list li {
-        margin: 0.625em 0;
-        line-height: 1.25em;
-        text-align: justify;
-        &::before {
-            content: '\00BB';
-            margin-right: 0.5em;
-        }
-    }
-    #refresh-map {
-        text-decoration: none;
-        color: #37f;
-        transition: color ease 0.125s;
-    }
-    #refresh-map:hover {
-        color: #f00;
-        cursor: pointer;
     }
     p {
         margin: 0.25em 0;

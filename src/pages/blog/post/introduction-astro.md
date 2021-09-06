@@ -2,7 +2,7 @@
 title: 'Introduction + Astro'
 description: 'An introductory post to my website and myself, including my thought on Astro.'
 author: 'kival evan'
-publishDate: '2021, August 25'
+publishDate: 'August 25, 2021 13:00:00'
 updatedDate: ''
 layout: '$layouts/BlogPost.astro'
 ---

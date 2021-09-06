@@ -7,11 +7,7 @@
     --font-monospace: 'Courier New', Courier, monospace;
     font-family: var(--font-primary);
     --user-font-scale: 1rem - 16px;
-    font-size: clamp(
-        0.875rem,
-        0.4626rem + 1.0309vw + var(--user-font-scale),
-        1.125rem
-    );
+    font-size: clamp(0.875rem, 0.4626rem + 1.0309vw + var(--user-font-scale), 1.125rem);
 }
 
 h1,
@@ -56,10 +52,10 @@ h6 {
 
 a {
     text-decoration: none;
-    color: #37f;
+    color: #48f;
     transition: color ease 0.125s;
     &:hover {
-        color: #f00;
+        color: #f11;
     }
     @at-root .fake-link {
         @extend a;
@@ -73,6 +69,6 @@ p {
 
 .text {
     &-shadow {
-        text-shadow: 0 0 0.1875em black, 0 0 0.0625em black;
+        text-shadow: 0 0 0.0625em black, 0 0 0.0625rem black, 0 0 0.125rem black;
     }
 }

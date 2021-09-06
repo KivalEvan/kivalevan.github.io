@@ -10,8 +10,7 @@ const { pageDetails } = Astro.props;
 </header>
 
 <style lang="scss">
-    $width-phone: 750px;
-    $width-widescreen: 1600px;
+    @use '../styles/_var' as *;
 
     .container {
         width: 100%;
@@ -30,7 +29,7 @@ const { pageDetails } = Astro.props;
         a {
             color: white;
         }
-        @media (max-width: $width-phone) {
+        @media (max-width: $breakpoint-mobile) {
             font-size: 4rem;
         }
     }

@@ -1,24 +1,6 @@
 @use './var' as *;
 @use 'sass:math';
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    width: 100%;
-    min-height: 100vh;
-    color: #fff;
-    background-color: #282830;
-}
-
-hr {
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-}
-
 .wrapper {
     max-width: $wrapper-size;
     margin-left: auto;
@@ -43,4 +25,8 @@ hr {
     min-height: 100vh;
     flex-direction: column;
     align-items: stretch;
+}
+
+.flex {
+    display: flex;
 }

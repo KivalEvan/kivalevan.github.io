@@ -13,11 +13,15 @@ const pageDetails = {
     description: description,
     overrideTitle: false,
 };
+
+const date = new Date(publishDate);
+const monthName = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const dateString = `${monthName[date.getMonth()]} ${date.getUTCDate()}, ${date.getFullYear()}`;
 ---
 <Main pageDetails={pageDetails}>
-    <link rel="stylesheet" href="/styles/blog.css" />
+    <link rel="stylesheet" href="{Astro.resolve('../styles/blog.css')}" />
     <h2>{title}</h2>
-    <time datetime={publishDate} class="publish-date">{publishDate}</time>
+    <time datetime={publishDate} class="publish-date">{dateString}</time>
     <hr>
     <slot />
 </Main>
