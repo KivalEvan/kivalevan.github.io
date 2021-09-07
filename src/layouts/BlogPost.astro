@@ -19,7 +19,6 @@ const monthName = ['January', 'February', 'March', 'April', 'May', 'June', 'July
 const dateString = `${monthName[date.getMonth()]} ${date.getUTCDate()}, ${date.getFullYear()}`;
 ---
 <Main pageDetails={pageDetails}>
-    <link rel="stylesheet" href="{Astro.resolve('../styles/blog.css')}" />
     <h2>{title}</h2>
     <time datetime={publishDate} class="publish-date">{dateString}</time>
     <hr>

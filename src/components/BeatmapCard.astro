@@ -38,7 +38,7 @@ const beatmap = _beatmap.find(x => x._songName.toLowerCase() === beatmapName.toL
 const coverURL = `/assets/img/cover/small/${beatmap._songName.toLowerCase().replace(' ', '-')}.jpg`
 ---
 <div class="song-card">
-    <img class="cover" alt={beatmap._songName} src={coverURL} loading="lazy">
+    <img class="cover" loading="lazy" alt={beatmap._songName} src={coverURL}>
     <div class="metadata">
         <span class="song-name">{beatmap._songName}</span>
         <span class="song-subname"></span><br>

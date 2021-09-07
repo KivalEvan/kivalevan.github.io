@@ -52,10 +52,10 @@ h6 {
 
 a {
     text-decoration: none;
-    color: #48f;
+    color: #6af;
     transition: color ease 0.125s;
     &:hover {
-        color: #f11;
+        color: #f44;
     }
     @at-root .fake-link {
         @extend a;
@@ -64,10 +64,19 @@ a {
 }
 
 p {
+    text-align: justify;
+    margin-top: 1em;
+    margin-bottom: 1em;
     line-height: 1.25;
 }
 
 .text {
+    &-justify {
+        text-align: justify;
+    }
+    &-center {
+        text-align: center;
+    }
     &-shadow {
         text-shadow: 0 0 0.0625em black, 0 0 0.0625rem black, 0 0 0.125rem black;
     }

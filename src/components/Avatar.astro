@@ -4,11 +4,12 @@ export interface Props {
 }
 const { filePath } = Astro.props as Props;
 ---
-<img src={`/assets/img/avatar/${filePath}`}>
+<img class="avatar" loading="lazy" alt={`${filePath.split('.')[0]}`} src={`/assets/img/avatar/${filePath}`}>
 
 <style lang="scss">
-    img {
-        width: 12rem;
+    .avatar {
+        width: 100%;
+        height: auto;
         box-shadow: -0.125rem 0.125rem 0.5rem black;
         border-radius: 50%;
     }

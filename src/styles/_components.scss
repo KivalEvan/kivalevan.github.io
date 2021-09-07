@@ -27,3 +27,47 @@ ul {
         }
     }
 }
+
+dl {
+    dt {
+        &:not(:first-child) {
+            margin-top: 1em;
+        }
+    }
+    dd {
+        margin-left: 1em;
+    }
+}
+
+.panel {
+    &-center {
+        margin: auto;
+        text-align: center;
+    }
+    &-inner {
+        display: flex;
+        width: 100%;
+    }
+    &-input {
+        width: 100%;
+    }
+    &-input input[type='checkbox'] {
+        width: 1.5em;
+        height: 1.5em;
+        margin: 0.25em;
+        cursor: pointer;
+    }
+    &-input label {
+        display: inline-block;
+        font-size: 1.0625rem;
+        padding-left: 0.5em;
+        margin-left: -0.5em;
+        margin-top: 0.25em;
+        cursor: pointer;
+        vertical-align: top;
+    }
+    &-column {
+        display: inline-block;
+        width: 50%;
+    }
+}

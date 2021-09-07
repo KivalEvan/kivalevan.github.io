@@ -6,7 +6,7 @@ interface Props {
 const { src, mask } = Astro.props as Props;
 ---
 <div class="background">
-    <img src={src} alt="background image" class={mask ? "mask" : ""}>
+    <img src={src} alt="background image" class={mask ? "mask" : ""} loading="lazy">
 </div>
 
 <style lang="scss">
