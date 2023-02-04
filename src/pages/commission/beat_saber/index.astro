@@ -28,7 +28,7 @@ const pageDetails = {
         </p>
         <ul class="list-tag">
             <li><a href="#map-showcase">Showcase</a></li>
-            <li><a href="https://beatsaver.com/uploader/5cff0b7798cc5a672c855af3">BeatSaver</a></li>
+            <li><a href="https://beatsaver.com/profile/4285062">BeatSaver</a></li>
             <li><a href="https://bsaber.com/songs/new/?uploaded_by=kivalevan">BeastSaber</a></li>
             <li><a href="https://youtube.com/playlist?list=PLp4N5ZtOuDZlhdvoH1INSPn2Qn9zrD19b">Video Preview</a></li>
         </ul>
@@ -46,22 +46,27 @@ const pageDetails = {
                     <tr>
                         <th>$25</th>
                         <td>Expert+</td>
+                        <td class="description">Every details matter, more sound is mapped with plenty of complicated pattern.</td>
                     </tr>
                     <tr>
                         <th>$20</th>
                         <td>Expert</td>
+                        <td class="description">Mapped to the rhythm and prominent instrument of the song, fairly challenging.</td>
                     </tr>
                     <tr>
                         <th>$18</th>
                         <td>Hard</td>
+                        <td class="description">Pick up the heat, a faster rhythm and beat is considered.</td>
                     </tr>
                     <tr>
                         <th>$15</th>
                         <td>Normal</td>
+                        <td class="description">Get to the beat, an easy challenge for the casual player.</td>
                     </tr>
                     <tr>
                         <th>$10</th>
                         <td>Easy</td>
+                        <td class="description">A good introductory to someone new and familiar to the game, heavily undermapped.</td>
                     </tr>
                 </table>
             </div>
@@ -71,22 +76,27 @@ const pageDetails = {
                     <tr>
                         <th>$35</th>
                         <td>Chroma Advanced</td>
+                        <td class="description">Sophisticated form of lighting with individual light piece is controlled.</td>
                     </tr>
                     <tr>
                         <th>$25</th>
                         <td>Chroma Basic</td>
+                        <td class="description">Basic form of Chroma lighting on color and spin control.</td>
                     </tr>
                     <tr>
                         <th>$35</th>
                         <td>Vanilla (V3)</td>
+                        <td class="description">Advanced lighting introduced since Weave.</td>
                     </tr>
                     <tr>
                         <th>$20</th>
                         <td>Vanilla (V2)</td>
+                        <td class="description">Basic yet effective lighting using (custom) environment prior Weave.</td>
                     </tr>
                     <tr>
                         <th>Free</th>
-                        <td>Lolighter (automated)</td>
+                        <td>Lolighter</td>
+                        <td class="description">Automated lighting, generally underwhelming in certain scenario.</td>
                     </tr>
                 </table>
             </div>
@@ -112,14 +122,19 @@ const pageDetails = {
                     <tr>
                         <th>Ask for price</th>
                         <td>Custom Environment</td>
+                        <td class="description">An existing platform may be reused here. Otherwise, a new, unique environment can be created at a price (any reference is appreciated).</td>
                     </tr>
                 </table>
             </div>
         </div>
         <div class="wrapper readable">
+            <ul class="list-tag">
+                <li><a href="/commission/beat_saber/cost_estimator">Cost Estimator</a></li>
+            </ul>
             <p>
                 Pricing rate is based on price per minute.<br>
-                Rounded to next nearest minute, halved price for closest to next half minute.
+                Rounded to next nearest minute, halved price for closest to next half minute.<br>
+                Pricing can be subjected to change.
             </p>
             <div>
                 <h5>Note:</h5>
@@ -128,12 +143,10 @@ const pageDetails = {
                         Additional bonus is free-of-charge but not a choice.
                         If I enjoy the song and the mapping allows for creativity, you may receive one of the listed bonus.
                         Alternatively, you may ask for it but cannot be guaranteed.
-                        Custom environment may be used fittingly if existing available, otherwise new unique environment can be created depending on complexity with a price. 
+                        Custom environment may be used fittingly if existing available. 
                     </li>
                     <li>Rate may increase depending on the complexity of the song, difficulty in map creation, or if it contain multiple (complex) BPM changes.</li>
                 </ul>
-                <br>
-                You may <a href="/commission/beat_saber/cost_estimator">estimate cost here</a> as I will be using this calculation, however pricing is subjected to change.
             </div>
             <br>
             <div>
@@ -203,6 +216,13 @@ const pageDetails = {
 </Main>
 
 <style lang="scss">
+    th, td {
+        display: inline-block;
+        &.description {
+            color: #ddd;
+            font-size: 0.875rem;
+        }
+    }
     .banner {
         position: relative;
         display: flex;
