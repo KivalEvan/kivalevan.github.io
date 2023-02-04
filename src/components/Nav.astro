@@ -1,0 +1,70 @@
+---
+export interface Props {
+    currentPage?: string;
+}
+const { currentPage } = Astro.props as Props;
+const pages: { name: string, link: string, active?: boolean }[] = [
+    {name: 'About', link: '/about'},
+    {name: 'Blog', link: '/blog'},
+    {name: 'Project', link: '/project'},
+    {name: 'Commission', link: '/commission'}];
+pages.forEach(page => {
+    if (page.name.toLowerCase() === currentPage?.toLowerCase()) {
+        page.active = true;
+    }
+})
+---
+<nav role="navigation">
+    <div class="container">
+        {pages.map((page) => (
+            <a href={page.link} class={`text-shadow ${page.active ? "active" : ""}`}><span>{page.name}</span></a>
+        ))}
+    </div>
+</nav>
+
+<style lang="scss">
+    @use '../styles/_var' as *;
+
+    nav {
+        display: flex;
+        justify-content: center;
+    }
+    .container {
+        padding-top: 0.625em;
+        padding-bottom: 0.625em;
+        white-space :nowrap;
+        overflow: auto;
+    }
+    a {
+        font-size: 1.375rem;
+        padding: 0.0625em 0.125em;
+        margin-left: 0.75em;
+        margin-right: 0.75em;
+        border-bottom: 0.0625em solid #cccccc00;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: bold;
+        color: white;
+        transition: padding 0.2s ease, margin 0.2s ease, border 0.1875s ease;
+        span {
+            display: inline-block;
+            transition: transform 0.2s ease;
+        }
+        &:visited {
+            color: white;
+        }
+        &:hover, &:focus, &.active {
+            padding: 0.0625em 0.75em;
+            border-bottom-color: #ff0000ff;
+            margin-left: 0.125em;
+            margin-right: 0.125em;
+            color: white;
+            span {
+                transform: scale(1.1, 1.1);
+            }
+        }
+        @media (max-width: $breakpoint-mobile) {
+            font-size: 1.625rem;
+        }
+    }
+</style>

@@ -1,0 +1,37 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import BackToTopButton from '../components/BackToTopButton.astro';
+
+export interface PageDetails {
+    title: string;
+    titleAdditional?: string;
+    subtitle?: string;
+    browserTitle?: string;
+    noSubtitle?: boolean;
+    description: string;
+    overrideTitle?: boolean;
+}
+
+export interface Props {
+    pageDetails: PageDetails;
+}
+
+const { pageDetails } = Astro.props as Props;
+---
+<BaseLayout pageDetails={pageDetails}>
+    <div class="full-page" id="top-of-page">
+        <Header pageDetails={pageDetails} />
+        <main>
+            <div class="wrapper readable">
+                <h2>{pageDetails.title + (pageDetails.titleAdditional ? ` ${pageDetails.titleAdditional}`: '')}</h2>
+            </div>
+            {pageDetails.noSubtitle ? null : <hr>}
+            {pageDetails.subtitle && !pageDetails.noSubtitle ? <div class="wrapper readable"><h3>{pageDetails.subtitle}</h3></div> : null}
+            <slot />
+        </main>
+        <BackToTopButton />
+        <Footer />
+    </div>
+</BaseLayout>

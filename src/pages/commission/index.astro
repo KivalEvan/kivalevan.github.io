@@ -1,0 +1,31 @@
+---
+import Main from '../../layouts/Main.astro';
+
+const pageDetails = {
+    title: 'Commission',
+    description: 'A personal website of mine.',
+    overrideTitle: false,
+}
+---
+
+<Main pageDetails={pageDetails}>
+    <div class="wrapper readable">
+        <h3><a href="/commission/beat_saber">Beat Saber Custom Map</a></h3>
+        <p>
+            Missing a map or wanting an alternative map of your favourite song? You can request me to map for them
+            starting at 25USD per minute!
+        </p>
+        <h3><a href="/commission/slimevr">Unofficial DIY SlimeVR Tracker</a></h3>
+        <p>
+            Peninsular Malaysia only, DIY SlimeVR Tracker using MPU6500 IMUs starting at RM500 per set including elastic
+            straps.
+        </p>
+        <h3>3D Printing Service</h3>
+        <p>
+            Peninsular Malaysia only, maybe..?
+        </p>
+    </div>
+</Main>
+
+<style lang="scss">
+</style>
