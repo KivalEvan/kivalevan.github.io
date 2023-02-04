@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import {formatDate} from '../utils/date';
+import image from '../assets/img/avatar/kival_evan.jpg';
+import { getImage } from '@astrojs/image';
 
 const pageDetails = {
     title: 'Resume',
@@ -19,21 +21,21 @@ const skill = {
         95: 'Master',
     },
     programming: {
-        JavaScript: 80,
+        TypeScript: 80,
         HTML: 70,
         CSS: 60,
-        Python: 50,
-        'C++': 40
+        'C#': 50,
+        Python: 30,
     },
     language: {
         English: 75,
-        Malay: 40,
+        Malay: 30,
     }
 };
 
 const tier = (perc: number): string => skill.tier[Object.keys(skill.tier).reverse().find(s => parseFloat(s) <= perc)!];
 
-
+const { alt, src } = await getImage({ src: image, alt: '', format:'webp', width:256, height:256 })
 ---
 <BaseLayout pageDetails={pageDetails}>
     <div class="resume">
@@ -41,7 +43,7 @@ const tier = (perc: number): string => skill.tier[Object.keys(skill.tier).revers
             <div class="profile">
                 <div class="flex">
                     <div class="profile-avatar flex-col-tiny">
-                        <img src="/assets/img/avatar/kival_evan.webp">
+                        <img src={src}>
                     </div>
                     <div class="flex-col-huge">
                         <h1>Nabawi Azizul</h1>
@@ -188,10 +190,27 @@ const tier = (perc: number): string => skill.tier[Object.keys(skill.tier).revers
                         </ul>
                     </section>
                     <section>
-                        Last Updated: {formatDate('4 December 2021')}
+                        Last Updated: {formatDate('5 February 2023')}
                     </section>
                 </div>
                 <div class="flex-col-large">
+                    <section class="timeline">
+                        <h4>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tree" viewBox="0 0 16 16">
+                                <path d="M8.416.223a.5.5 0 0 0-.832 0l-3 4.5A.5.5 0 0 0 5 5.5h.098L3.076 8.735A.5.5 0 0 0 3.5 9.5h.191l-1.638 3.276a.5.5 0 0 0 .447.724H7V16h2v-2.5h4.5a.5.5 0 0 0 .447-.724L12.31 9.5h.191a.5.5 0 0 0 .424-.765L10.902 5.5H11a.5.5 0 0 0 .416-.777l-3-4.5zM6.437 4.758A.5.5 0 0 0 6 4.5h-.066L8 1.401 10.066 4.5H10a.5.5 0 0 0-.424.765L11.598 8.5H11.5a.5.5 0 0 0-.447.724L12.69 12.5H3.309l1.638-3.276A.5.5 0 0 0 4.5 8.5h-.098l2.022-3.235a.5.5 0 0 0 .013-.507z"/>
+                            </svg>
+                            EXTRACURRICULAR ACTIVITIES
+                        </h4>
+                        <div>
+                            <h5>MMU Esports Club | 2018 - 2021</h5>
+                            <h6>2020 - 2021 | Marketing Committee</h6><br>
+                            <h6>2018 - 2020 | Logistic Committee</h6>
+                            <ul class="list-arrow">
+                                <li>Setting up the venue before and after the event.</li>
+                                <li>Handling and ensuring the equipment is in good condition.</li>
+                            </ul>
+                        </div>
+                    </section>
                     <section class="timeline">
                         <h4>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-briefcase" viewBox="0 0 16 16">
@@ -212,18 +231,18 @@ const tier = (perc: number): string => skill.tier[Object.keys(skill.tier).revers
                     </section>
                     <section class="timeline">
                         <h4>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tree" viewBox="0 0 16 16">
-                                <path d="M8.416.223a.5.5 0 0 0-.832 0l-3 4.5A.5.5 0 0 0 5 5.5h.098L3.076 8.735A.5.5 0 0 0 3.5 9.5h.191l-1.638 3.276a.5.5 0 0 0 .447.724H7V16h2v-2.5h4.5a.5.5 0 0 0 .447-.724L12.31 9.5h.191a.5.5 0 0 0 .424-.765L10.902 5.5H11a.5.5 0 0 0 .416-.777l-3-4.5zM6.437 4.758A.5.5 0 0 0 6 4.5h-.066L8 1.401 10.066 4.5H10a.5.5 0 0 0-.424.765L11.598 8.5H11.5a.5.5 0 0 0-.447.724L12.69 12.5H3.309l1.638-3.276A.5.5 0 0 0 4.5 8.5h-.098l2.022-3.235a.5.5 0 0 0 .013-.507z"/>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-briefcase" viewBox="0 0 16 16">
+                                <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5zm1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0zM1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5z"/>
                             </svg>
-                            EXTRACURRICULAR ACTIVITIES
+                            WORK EXPERIENCE
                         </h4>
                         <div>
-                            <h5>MMU Esports Club | 2018 - 2021</h5>
-                            <h6>2020 - 2021 | Marketing Committee</h6>
-                            <h6>2018 - 2020 | Logistic Committee</h6>
+                            <h5>Web Developer Internship</h5>
+                            <h6>Azeus Convene</h6>
+                            <span>05/2022 - 08/2022</span>
                             <ul class="list-arrow">
-                                <li>Setting up the venue before and after the event.</li>
-                                <li>Handling and ensuring the equipment is in good condition.</li>
+                                <li>Created a complex reactive form from numerous of data.</li>
+                                <li>Collaborated with colleague in the back-end design.</li>
                             </ul>
                         </div>
                     </section>
@@ -237,8 +256,8 @@ const tier = (perc: number): string => skill.tier[Object.keys(skill.tier).revers
                         </h4>
                         <div>
                             <h5>
-                                <a href="https://github.com/KivalEvan/kivalevan.github.io">
-                                    Personal Website
+                                <a href="https://github.com/KivalEvan/BeatSaber-Deno">
+                                    Beat Saber Deno
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
                                         <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>
                                         <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>
@@ -246,10 +265,10 @@ const tier = (perc: number): string => skill.tier[Object.keys(skill.tier).revers
                                 </a>
                             </h5>
                             <h6>Personal Project</h6>
-                            <span>(<a href="https://astro.build/">Astro</a>, <a href="https://svelte.dev/">Svelte</a>, <a href="https://www.typescriptlang.org/">TypeScript</a>, <a href="https://sass-lang.com/">Sass</a>)</span>
+                            <span>(<a href="https://www.typescriptlang.org/">TypeScript</a>, <a href="https://deno.land/">Deno</a>)</span>
                             <p>
-                                A project that is designed to spot out the error and show extensive stats of the beatmap.
-                                Widely used in the mapping community and helped out mappers from potential errors.
+                                A library for Beat Saber beatmap scripting designed for ease of use and flexible for the user.
+                                It ensures integrity of the beatmap for it to be usable in Beat Saber.
                             </p>
                         </div>
                         <div>
@@ -265,24 +284,25 @@ const tier = (perc: number): string => skill.tier[Object.keys(skill.tier).revers
                             <h6>Personal Project</h6>
                             <span>(<a href="https://www.typescriptlang.org/">TypeScript</a>, <a href="https://sass-lang.com/">Sass</a>, <a href="https://vitejs.dev/">Vite</a>)</span>
                             <p>
-                                A project that is designed to spot out the error and show extensive stats of the beatmap.
+                                Web-based application designed to spot out the error and show extensive stats of the beatmap.
                                 Widely used in the mapping community and helped out mappers from potential errors.
                             </p>
                         </div>
                         <div>
                             <h5>
-                                <a href="https://github.com/KivalEvan/BeatSaber-MappingUtility">
-                                    Beat Saber Mapping Utility
+                                <a href="https://github.com/Caeden117/ChroMapper">
+                                    ChroMapper
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
                                         <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>
                                         <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>
                                     </svg>
                                 </a>
                             </h5>
-                            <h6>Personal Project</h6>
-                            <span>(<a href="https://www.typescriptlang.org/">TypeScript</a>, <a href="https://sass-lang.com/">Sass</a>)</span>
+                            <h6>Open-Source Project</h6>
+                            <span>(<a href="https://unity.com/">Unity</a>, <a href="https://learn.microsoft.com/en-us/dotnet/csharp/">C#</a>)</span>
                             <p>
-                                A side project to assist in Beat Saber mapping.
+                                A third-party Beat Saber beatmap editing software.
+                                Contributed in handling beatmap model and user control behaviour.
                             </p>
                         </div>
                     </section>
