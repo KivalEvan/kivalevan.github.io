@@ -20,7 +20,7 @@
     <a class="cover" href={beatmap.link['BeatSaver'].url}>
         <img
             alt={beatmap.songName}
-            src={`../assets/img/cover/${beatmap.coverImage}`}
+            src={`/assets/img/cover/${beatmap.coverImage}`}
             width={256}
             height={256}
         />
