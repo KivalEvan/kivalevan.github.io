@@ -1,0 +1,122 @@
+---
+import Main from '../layouts/Main.astro';
+import Avatar from '../components/Avatar.astro';
+
+const pageDetails = {
+    title: 'About',
+    titleAdditional: 'Me',
+    description: 'A personal website of mine.',
+    overrideTitle: false,
+}
+---
+<Main pageDetails={pageDetails}>
+    <div class="wrapper readable full-size">
+        <section class="profile flex">
+            <figure class="profile-avatar">
+                <Avatar filePath="kival_evan.jpg" />
+                <figcaption>Image by <a href="https://www.pixiv.net/en/users/1020785">まひる</a></figcaption>
+            </figure>
+            <div class="profile-info">
+                An undergraduate, computer science student<br>
+                A lil' VR-enthusiast<br>
+                <br>
+                Just doing things alone on my free time<br>
+                <br>
+                Age: 23<br>
+                Birthday: June 10<br>
+            </div>
+        </section>
+        <hr>
+        <section>
+            <h3>Skills & Interests</h3>
+            <p>
+                List shown here does not say about my proficiency,
+                just something I'm familiar with as I've used them for certain purpose.
+            </p>
+            <h4>Programming Language:</h4>
+            <ul class="list-tag">
+                <li>JavaScript</li>
+                <li>Typescript</li>
+                <li>Python</li>
+                <li>C#</li>
+                <li>C++</li>
+                <li>Rust</li>
+                <li>PHP</li>
+                <li>Java</li>
+            </ul>
+            <br>
+            <h4>Other Techs:</h4>
+            <ul class="list-tag">
+                <li>Node.js</li>
+                <li>Deno</li>
+                <li>Svelte</li>
+                <li>Git</li>
+                <li>MySQL</li>
+            </ul>
+        </section>
+        <br>
+        <section>
+            <h3>Stuff I'm using</h3>
+            <div>
+                <h4>PC Setup:</h4>
+                <ul class="list-arrow">
+                    <li>Intel Core i9-9900K</li>
+                    <li>ZOTAC GAMING Geforce GTX 1660 SUPER</li>
+                    <li>Corsair Vengeance RGB PRO 2x8GB DDR4 3600MHz</li>
+                    <li>Asus ROG Maximus XI Gene</li>
+                </ul>
+            </div>
+            <br>
+            <div>
+                <h4>Peripherals:</h4>
+                <ul class="list-arrow">
+                    <li>Samsung 24" Curved Monitor CF390</li>
+                    <li>AOC 24" Gaming Monitor 24G2SP</li>
+                    <li>Samsung 24" Monitor T35</li>
+                    <li>Audio-Technica ATH-M40x</li>
+                    <li>Ducky One 2 Tuxedo Full Size</li>
+                    <li>Logitech G502 Hero</li>
+                    <li>HyperX FURY S PRO Speed Edition XL</li>
+                    <li>Logitech C922 Pro Stream</li>
+                    <li>Logitech G29 Driving Force + Shifter</li>
+                </ul>
+            </div>
+            <br>
+            <div>
+                <h4>VR Setup:</h4>
+                <ul class="list-arrow">
+                    <li>Oculus Quest 2</li>
+                    <li>HTC Vive Deluxe Audio Strap (Frankenquest Modification)</li>
+                    <li>VRCover HTC Vive Deluxe Audio Strap Foam Replacement</li>
+                    <li>VRCover Facial Interface (Dark Grey & Black)</li>
+                    <li>VRCover Cotton VR Headphone Covers</li>
+                    <li>AMVR Knuckle Controller Grip</li>
+                    <li>AMVR 5M Link Cable</li>
+                    <li>AMVR Powerbank Fixing Bracket</li>
+                    <li>Anker PowerCore Select 10000</li>
+                </ul>
+            </div>
+            <br>
+            <div>
+                <h4>Others:</h4>
+                <ul class="list-arrow">
+                    <li>Ender-3 Pro</li>
+                    <li>Artillery Sidewinder X2</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+</Main>
+
+<style lang="scss">
+    .profile {
+        &-avatar {
+            width: clamp(10rem, 20vw, 12rem);
+        }
+
+        &-info {
+            width: 100%;
+            padding: 0.25em 1em;
+        }
+    }
+</style>

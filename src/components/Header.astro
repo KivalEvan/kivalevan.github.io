@@ -1,0 +1,44 @@
+---
+import Nav from './Nav.astro';
+
+const { pageDetails } = Astro.props;
+---
+
+<header>
+    <h1 class="text-shadow"><a href="/">Kival Evan</a></h1>
+    <div class="container">
+        <Nav currentPage={pageDetails.title} />
+    </div>
+</header>
+
+<style lang="scss">
+    @use '../styles/_var' as *;
+
+    .container {
+        width: 100%;
+        background-image: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.375) 10%, rgba(0, 0, 0, 0.375) 90%, rgba(0, 0, 0, 0));
+    }
+
+    header {
+        background-image: url("/assets/img/bg/header.webp");
+        background-position: center;
+        background-size: cover;
+        background-color: #ede0dc;
+        /* background-color: #406080; */
+        box-shadow: 0 0 0.25em black;
+    }
+
+    h1 {
+        text-align: center;
+        margin-top: 1rem;
+        margin-bottom: 1.5rem;
+
+        a, a:hover {
+            color: white;
+        }
+
+        @media (max-width: $breakpoint-mobile) {
+            font-size: 4rem;
+        }
+    }
+</style>

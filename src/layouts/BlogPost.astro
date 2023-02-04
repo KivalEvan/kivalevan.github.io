@@ -1,0 +1,36 @@
+---
+import Main from './Main.astro';
+
+export interface Props {
+    content: any;
+}
+
+export interface PageDetails {
+    title: string;
+    subtitle?: string;
+    description: string;
+    overrideTitle: boolean;
+}
+
+const { content } = Astro.props as Props;
+const { title, description, author, publishDate, updatedDate } = content;
+
+const pageDetails: PageDetails = {
+    title: title,
+    description: description,
+    overrideTitle: false,
+};
+
+const date = new Date(publishDate);
+const monthName = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const dateString = `${monthName[date.getMonth()]} ${date.getUTCDate()}, ${date.getFullYear()}`;
+---
+<Main pageDetails={pageDetails}>
+    <div class="wrapper readable">
+        <time datetime={publishDate} class="publish-date">{dateString}</time>
+    </div>
+    <hr>
+    <article class="wrapper readable full-size">
+        <slot />
+    </article>
+</Main>

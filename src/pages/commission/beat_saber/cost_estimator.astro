@@ -1,0 +1,25 @@
+---
+import Main from '../../../layouts/Main.astro';
+import CostCalculator from '../../../components/commission/CostCalculator.svelte';
+
+const pageDetails = {
+    title: 'Commission',
+    subtitle: 'Beat Saber Custom Map → Cost Estimator',
+    description: 'Estimate the cost of Beat Saber custom map commission.',
+    overrideTitle: false,
+}
+---
+<Main pageDetails={pageDetails}>
+    <div class="wrapper readable">
+        <CostCalculator client:load />
+        <div>
+            <p>
+                <strong>Note:</strong><br>
+                20% discount is added for additional lower difficulty.<br>
+                <br>
+                As this is an estimation, it may subject to change during order.
+                Do read through Terms & Conditions for further information.
+            </p>
+        </div>
+    </div>
+</Main>

@@ -1,0 +1,2224 @@
+[
+    {
+        "id": "2eafa",
+        "songName": "Genryuu Kaiko",
+        "songSubName": "",
+        "songAuthorName": "Halozy",
+        "coverImage": "2eafa.jpg",
+        "environment": "BillieEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 173,
+            "min": 173,
+            "max": 173
+        },
+        "songDuration": 307.632,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/2eafa"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/2eafa/"
+            }
+        },
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "2c663",
+        "songName": "S.A.R.I.E.L.",
+        "songSubName": "",
+        "songAuthorName": "Akatsuki Records",
+        "coverImage": "2c663.jpg",
+        "environment": "WeaveEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 178,
+            "min": 178,
+            "max": 178
+        },
+        "songDuration": 189.693,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/2c663"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/2c663/"
+            }
+        },
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "2b298",
+        "songName": "Spellbound",
+        "songSubName": "",
+        "songAuthorName": "Electron",
+        "coverImage": "2b298.jpg",
+        "environment": "HalloweenEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 94,
+            "min": 94,
+            "max": 94
+        },
+        "songDuration": 195.221,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/2b298"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/2b298/"
+            }
+        },
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "2aea2",
+        "songName": "The Charismatic Purgatory Goddess",
+        "songSubName": "",
+        "songAuthorName": "ShinRa-Bansho",
+        "coverImage": "2aea2.jpg",
+        "environment": "PyroEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 137,
+            "min": 137,
+            "max": 137
+        },
+        "songDuration": 251.106,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/2aea2"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/2aea2/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "2a038",
+        "songName": "Kishinjou set 10 ~ Reverse Ideology",
+        "songSubName": "",
+        "songAuthorName": "Rin",
+        "coverImage": "2a038.jpg",
+        "environment": "SkrillexEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 128,
+            "min": 128,
+            "max": 512
+        },
+        "songDuration": 262.496,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/2a038"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/2a038/"
+            }
+        },
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "29ada",
+        "songName": "Cathedrarhythm",
+        "songSubName": "",
+        "songAuthorName": "Team Grimoire & Aoi Sumito",
+        "coverImage": "29ada.jpg",
+        "environment": "BTSEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 182,
+            "min": 182,
+            "max": 182
+        },
+        "songDuration": 344.776,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/29ada"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/29ada/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "29643",
+        "songName": "Hitomi ni Kakusareta Omoi",
+        "songSubName": "(with senya)",
+        "songAuthorName": "Yuuhei Satellite",
+        "coverImage": "29643.jpg",
+        "environment": "PanicEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 160,
+            "min": 160,
+            "max": 160
+        },
+        "songDuration": 178.46,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/29643"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/29643/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "29260",
+        "songName": "Interlude - teatime",
+        "songSubName": "feat. Rizna",
+        "songAuthorName": "t+pazolite",
+        "coverImage": "29260.jpg",
+        "environment": "BigMirrorEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 56,
+            "min": 56,
+            "max": 56
+        },
+        "songDuration": 60.96,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/29260"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/29260/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "28e8e",
+        "songName": "Azure Raindrop",
+        "songSubName": "(Acoustic ver.)",
+        "songAuthorName": "Akatsuki Records",
+        "coverImage": "28e8e.jpg",
+        "environment": "BigMirrorEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 149,
+            "min": 149,
+            "max": 149
+        },
+        "songDuration": 238.372,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/28e8e"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/28e8e/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "284f6",
+        "songName": "Reverse Rebirth Trigger",
+        "songSubName": "",
+        "songAuthorName": "Akatsuki Records",
+        "coverImage": "284f6.jpg",
+        "environment": "SkrillexEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 167,
+            "min": 167,
+            "max": 167
+        },
+        "songDuration": 234.969,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/284f6"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/284f6/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "2848c",
+        "songName": "Undefined",
+        "songSubName": "",
+        "songAuthorName": "FELT",
+        "coverImage": "2848c.jpg",
+        "environment": "WeaveEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 89,
+            "min": 89,
+            "max": 89
+        },
+        "songDuration": 89.751,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/2848c"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/2848c/"
+            }
+        },
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "27ab1",
+        "songName": "Ghosts Play to the Audience",
+        "songSubName": "ft. Hatsune Miku",
+        "songAuthorName": "PinocchioP",
+        "coverImage": "27ab1.jpg",
+        "environment": "SkrillexEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 148,
+            "min": 148,
+            "max": 148
+        },
+        "songDuration": 227.83,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/27ab1"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/27ab1/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "269a7",
+        "songName": "ECHO",
+        "songSubName": "feat. GUMI English",
+        "songAuthorName": "Crusher-P",
+        "coverImage": "269a7.jpg",
+        "environment": "KDAEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 140,
+            "min": 140,
+            "max": 140
+        },
+        "songDuration": 231.242,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/269a7"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/269a7/"
+            }
+        },
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "25678",
+        "songName": "Angel Voices",
+        "songSubName": "",
+        "songAuthorName": "Virtual Self",
+        "coverImage": "25678.jpg",
+        "environment": "DragonsEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 83,
+            "min": 83,
+            "max": 83
+        },
+        "songDuration": 392.692,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/25678"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/25678/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "24ecd",
+        "songName": "Preserved Valkyria",
+        "songSubName": "",
+        "songAuthorName": "penoreri",
+        "coverImage": "24ecd.jpg",
+        "environment": "DragonsEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 155,
+            "min": 114,
+            "max": 220
+        },
+        "songDuration": 125.214,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/24ecd"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/24ecd/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "2443d",
+        "songName": "Deconstruction Star",
+        "songSubName": "",
+        "songAuthorName": "Halozy",
+        "coverImage": "2443d.jpg",
+        "environment": "SkrillexEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 155,
+            "min": 155,
+            "max": 155
+        },
+        "songDuration": 323.612,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/2443d"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/2443d/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "23d4d",
+        "songName": "Endless Night",
+        "songSubName": "",
+        "songAuthorName": "FELT",
+        "coverImage": "23d4d.jpg",
+        "environment": "BillieEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 120,
+            "min": 120,
+            "max": 120
+        },
+        "songDuration": 233,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/23d4d"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/23d4d/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "23c4b",
+        "songName": "HELLOHELL",
+        "songSubName": "",
+        "songAuthorName": "Akatsuki Records",
+        "coverImage": "23c4b.jpg",
+        "environment": "PyroEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 155,
+            "min": 155,
+            "max": 155
+        },
+        "songDuration": 237.491,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/23c4b"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/23c4b/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "2295d",
+        "songName": "Black Eye/Burnt Thumb",
+        "songSubName": "",
+        "songAuthorName": "Metronomy",
+        "coverImage": "2295d.jpg",
+        "environment": "DragonsEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 129,
+            "min": 129,
+            "max": 129
+        },
+        "songDuration": 283.535,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/2295d"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/2295d/"
+            }
+        },
+        "tag": [
+            "request"
+        ]
+    },
+    {
+        "id": "21b0b",
+        "songName": "Pure-Hearted Armeria",
+        "songSubName": "",
+        "songAuthorName": "ShinRa-Bansho",
+        "coverImage": "21b0b.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 172,
+            "min": 70,
+            "max": 217
+        },
+        "songDuration": 275.88,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/21b0b"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/21b0b/"
+            }
+        },
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "21660",
+        "songName": "Dreamer",
+        "songSubName": "",
+        "songAuthorName": "Akatsuki Records",
+        "coverImage": "21660.jpg",
+        "environment": "BTSEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 162,
+            "min": 162,
+            "max": 162
+        },
+        "songDuration": 253.335,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/21660"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/21660/"
+            }
+        },
+        "tag": [
+            "request"
+        ]
+    },
+    {
+        "id": "20ab6",
+        "songName": "KAEDE",
+        "songSubName": "",
+        "songAuthorName": "Ocelot",
+        "coverImage": "20ab6.jpg",
+        "environment": "SkrillexEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 177,
+            "min": 177,
+            "max": 177
+        },
+        "songDuration": 222.376,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/20ab6"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/20ab6/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "200cb",
+        "songName": "forgotten parser",
+        "songSubName": "",
+        "songAuthorName": "Pigmhall",
+        "coverImage": "200cb.jpg",
+        "environment": "SkrillexEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 133,
+            "min": 133,
+            "max": 133
+        },
+        "songDuration": 494.435,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/200cb"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/200cb/"
+            }
+        },
+        "tag": [
+            "request"
+        ]
+    },
+    {
+        "id": "1ef55",
+        "songName": "Poinsettia",
+        "songSubName": "",
+        "songAuthorName": "IOSYS",
+        "coverImage": "1ef55.jpg",
+        "environment": "TimbalandEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 180,
+            "min": 56,
+            "max": 180
+        },
+        "songDuration": 201.328,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1ef55"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/1ef55/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "1edda",
+        "songName": "the march of Yui",
+        "songSubName": "",
+        "songAuthorName": "Pigmhall",
+        "coverImage": "1edda.jpg",
+        "environment": "DragonsEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 166,
+            "min": 166,
+            "max": 166
+        },
+        "songDuration": 292.048,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1edda"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/1edda/"
+            }
+        },
+        "tag": [
+            "request"
+        ]
+    },
+    {
+        "id": "1de45",
+        "songName": "Sake Monster☆RaiRai!!",
+        "songSubName": "",
+        "songAuthorName": "ShinRa-Bansho x COOL&CREATE",
+        "coverImage": "1de45.jpg",
+        "environment": "BigMirrorEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 152,
+            "min": 105,
+            "max": 205
+        },
+        "songDuration": 270.194,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1de45"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/1de45/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "1da34",
+        "songName": "how low and low",
+        "songSubName": "",
+        "songAuthorName": "Halozy",
+        "coverImage": "1da34.jpg",
+        "environment": "BigMirrorEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 80,
+            "min": 80,
+            "max": 80
+        },
+        "songDuration": 361.497,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1da34"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/1da34/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "1d8da",
+        "songName": "OMEN",
+        "songSubName": "",
+        "songAuthorName": "Akatsuki Records",
+        "coverImage": "1d8da.jpg",
+        "environment": "KaleidoscopeEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 160,
+            "min": 160,
+            "max": 160
+        },
+        "songDuration": 221.99,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1d8da"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/1d8da/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "1d32b",
+        "songName": "Unconscious Requiem",
+        "songSubName": "",
+        "songAuthorName": "ShinRa-Bansho",
+        "coverImage": "1d32b.jpg",
+        "environment": "PanicEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 195,
+            "min": 150,
+            "max": 242
+        },
+        "songDuration": 279.485,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1d32b"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/1d32b/"
+            }
+        },
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "1d28c",
+        "songName": "Vagueness & JOURNEY",
+        "songSubName": "",
+        "songAuthorName": "FELT",
+        "coverImage": "1d28c.jpg",
+        "environment": "BTSEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 185,
+            "min": 185,
+            "max": 185
+        },
+        "songDuration": 337.999,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1d28c"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/1d28c/"
+            }
+        },
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "1cf27",
+        "songName": "Focus",
+        "songSubName": "",
+        "songAuthorName": "chipzel",
+        "coverImage": "1cf27.jpg",
+        "environment": "TimbalandEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 174,
+            "min": 174,
+            "max": 174
+        },
+        "songDuration": 164.239,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1cf27"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/1cf27/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "1c95d",
+        "songName": "Nega-Posi",
+        "songSubName": "",
+        "songAuthorName": "Liz Triangle",
+        "coverImage": "1c95d.jpg",
+        "environment": "PanicEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 182,
+            "min": 110,
+            "max": 182
+        },
+        "songDuration": 269.033,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1c95d"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/1c95d/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "1befe",
+        "songName": "Dancing Dollz",
+        "songSubName": "ft. Cold Kiss (REDALiCE Remix)",
+        "songAuthorName": "ZYTOKINE",
+        "coverImage": "1befe.jpg",
+        "environment": "DragonsEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 175,
+            "min": 175,
+            "max": 175
+        },
+        "songDuration": 223.882,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1befe"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/1befe/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "1bb74",
+        "songName": "Platinum Groove",
+        "songSubName": "",
+        "songAuthorName": "android52",
+        "coverImage": "1bb74.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 128,
+            "min": 128,
+            "max": 128
+        },
+        "songDuration": 232.048,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1bb74"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/1bb74/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "1a1fa",
+        "songName": "Tsurupettan",
+        "songSubName": "",
+        "songAuthorName": "Silver Forest",
+        "coverImage": "1a1fa.jpg",
+        "environment": "BigMirrorEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 180,
+            "min": 180,
+            "max": 180
+        },
+        "songDuration": 161.949,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1a1fa"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/1a1fa/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "19a0a",
+        "songName": "Error Code",
+        "songSubName": "",
+        "songAuthorName": "Case & Point",
+        "coverImage": "19a0a.jpg",
+        "environment": "TimbalandEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 128,
+            "min": 128,
+            "max": 128
+        },
+        "songDuration": 160.477,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/19a0a"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/19a0a/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "1988c",
+        "songName": "Paranoia",
+        "songSubName": "(with sorane) (ALR REMIX)",
+        "songAuthorName": "DiGiTAL WiNG",
+        "coverImage": "1988c.jpg",
+        "environment": "TriangleEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 150,
+            "min": 150,
+            "max": 150
+        },
+        "songDuration": 184.804,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1988c"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/1988c/"
+            }
+        },
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "1902e",
+        "songName": "fractal",
+        "songSubName": "",
+        "songAuthorName": "FELT",
+        "coverImage": "1902e.jpg",
+        "environment": "NiceEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 178,
+            "min": 178,
+            "max": 178
+        },
+        "songDuration": 97.071,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1902e"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/1902e/"
+            }
+        },
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "188a7",
+        "songName": "Psychedelic Onizakura Alliance",
+        "songSubName": "",
+        "songAuthorName": "SOUND HOLIC",
+        "coverImage": "188a7.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 160,
+            "min": 160,
+            "max": 160
+        },
+        "songDuration": 211.486,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/188a7"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/188a7/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "1857c",
+        "songName": "VENTEN",
+        "songSubName": "",
+        "songAuthorName": "Akatsuki Records",
+        "coverImage": "1857c.jpg",
+        "environment": "KaleidoscopeEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 175,
+            "min": 175,
+            "max": 175
+        },
+        "songDuration": 207.086,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1857c"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/1857c/"
+            }
+        },
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "182b1",
+        "songName": "KARMANATIONS",
+        "songSubName": "",
+        "songAuthorName": "Akatsuki Records",
+        "coverImage": "182b1.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 192,
+            "min": 192,
+            "max": 192
+        },
+        "songDuration": 228.739,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/182b1"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/182b1/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "1815a",
+        "songName": "Dark Flight Dreamer",
+        "songSubName": "",
+        "songAuthorName": "ALiCE'S EMOTiON",
+        "coverImage": "1815a.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 189,
+            "min": 189,
+            "max": 189
+        },
+        "songDuration": 193.016,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1815a"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/1815a/"
+            }
+        },
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "18159",
+        "songName": "werewolf howls.",
+        "songSubName": "",
+        "songAuthorName": "Camellia",
+        "coverImage": "18159.jpg",
+        "environment": "DragonsEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 222,
+            "min": 222,
+            "max": 222
+        },
+        "songDuration": 118.918,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/18159"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/18159/"
+            }
+        },
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "16aca",
+        "songName": "Koi wa Chaos no Shimobe Nari",
+        "songSubName": "(short edit)",
+        "songAuthorName": "Ushirokara Haiyoritai G (CVs: Asumi Kana & Matsuki Miyu & Ootsubo Yuka)",
+        "coverImage": "16aca.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 158,
+            "min": 158,
+            "max": 158
+        },
+        "songDuration": 23.31,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/16aca"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/16aca/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "16769",
+        "songName": "New World",
+        "songSubName": "",
+        "songAuthorName": "FELT",
+        "coverImage": "16769.jpg",
+        "environment": "OriginsEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 195,
+            "min": 195,
+            "max": 195
+        },
+        "songDuration": 249.236,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/16769"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/16769/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "15897",
+        "songName": "Oshama Scramble!",
+        "songSubName": "(uncut edition)",
+        "songAuthorName": "t+pazolite",
+        "coverImage": "15897.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 190,
+            "min": 190,
+            "max": 190
+        },
+        "songDuration": 256.74,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/15897"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/15897/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "15214",
+        "songName": "Daisuke",
+        "songSubName": "",
+        "songAuthorName": "Y&Co.",
+        "coverImage": "15214.jpg",
+        "environment": "RocketEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 157,
+            "min": 157,
+            "max": 157
+        },
+        "songDuration": 128.257,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/15214"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/15214/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "14182",
+        "songName": "Azure Raindrop",
+        "songSubName": "",
+        "songAuthorName": "Akatsuki Records",
+        "coverImage": "14182.jpg",
+        "environment": "BigMirrorEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 176,
+            "min": 176,
+            "max": 176
+        },
+        "songDuration": 234.536,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/14182"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/14182/"
+            }
+        },
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "132d6",
+        "songName": "VANDALIZED AI",
+        "songSubName": "",
+        "songAuthorName": "Kobaryo",
+        "coverImage": "132d6.jpg",
+        "environment": "BigMirrorEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 321,
+            "min": 321,
+            "max": 321
+        },
+        "songDuration": 236.307,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/132d6"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/132d6/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "12ca8",
+        "songName": "In my room",
+        "songSubName": "",
+        "songAuthorName": "FELT",
+        "coverImage": "12ca8.jpg",
+        "environment": "BigMirrorEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 165,
+            "min": 165,
+            "max": 165
+        },
+        "songDuration": 40.455,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/12ca8"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/12ca8/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "11c1e",
+        "songName": "Marisa wa Taihen na Mono wo Nusunde Ikimashita",
+        "songSubName": "",
+        "songAuthorName": "IOSYS",
+        "coverImage": "11c1e.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 170,
+            "min": 170,
+            "max": 170
+        },
+        "songDuration": 242.829,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/11c1e"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/11c1e/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "11bf4",
+        "songName": "Unknown x known",
+        "songSubName": "- DYES IWASAKI Remix -",
+        "songAuthorName": "Meramipop",
+        "coverImage": "11bf4.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 180,
+            "min": 180,
+            "max": 180
+        },
+        "songDuration": 269.328,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/11bf4"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/11bf4/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "10cba",
+        "songName": "Yoru Naku Usagi wa Yume wo Miru",
+        "songSubName": "",
+        "songAuthorName": "UNDEAD CORPORATION",
+        "coverImage": "10cba.jpg",
+        "environment": "LinkinParkEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 200,
+            "min": 69,
+            "max": 200
+        },
+        "songDuration": 225.598,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/10cba"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/10cba/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "10b39",
+        "songName": "Last Wind",
+        "songSubName": "",
+        "songAuthorName": "FELT",
+        "coverImage": "10b39.jpg",
+        "environment": "OriginsEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 152,
+            "min": 152,
+            "max": 152
+        },
+        "songDuration": 225.475,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/10b39"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/10b39/"
+            }
+        },
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "1095f",
+        "songName": "Hitomi ni Kakusareta Omoi",
+        "songSubName": "(with senya)",
+        "songAuthorName": "Yuuhei Satellite",
+        "coverImage": "1095f.jpg",
+        "environment": "PanicEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 160,
+            "min": 160,
+            "max": 160
+        },
+        "songDuration": 178.46,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1095f"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/1095f/"
+            }
+        },
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "10479",
+        "songName": "Frightmare",
+        "songSubName": "(feat. Myles Travitz)",
+        "songAuthorName": "Strangers",
+        "coverImage": "10479.jpg",
+        "environment": "DragonsEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 128,
+            "min": 128,
+            "max": 128
+        },
+        "songDuration": 285.932,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/10479"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/10479/"
+            }
+        },
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "fcf6",
+        "songName": "Star Velocity",
+        "songSubName": "",
+        "songAuthorName": "FELT",
+        "coverImage": "fcf6.jpg",
+        "environment": "DragonsEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 140,
+            "min": 140,
+            "max": 140
+        },
+        "songDuration": 297.471,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/fcf6"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/fcf6/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "fc8f",
+        "songName": "Monkey Dance",
+        "songSubName": "Misamiru Edit",
+        "songAuthorName": "Y&Co",
+        "coverImage": "fc8f.jpg",
+        "environment": "RocketEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 164,
+            "min": 164,
+            "max": 164
+        },
+        "songDuration": 47.142,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/fc8f"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/fc8f/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "f018",
+        "songName": "Disguise",
+        "songSubName": "",
+        "songAuthorName": "Kiryu",
+        "coverImage": "f018.jpg",
+        "environment": "DragonsEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 140,
+            "min": 140,
+            "max": 140
+        },
+        "songDuration": 144.857,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/f018"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/f018/"
+            }
+        },
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "eb9b",
+        "songName": "Monochrome",
+        "songSubName": "Tomoyuki Sakakida Remix",
+        "songAuthorName": "Syrup Comfiture",
+        "coverImage": "eb9b.jpg",
+        "environment": "OriginsEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 140,
+            "min": 140,
+            "max": 140
+        },
+        "songDuration": 279.529,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/eb9b"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/eb9b/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "def0",
+        "songName": "Revenge",
+        "songSubName": "(ReeK's \"Dude, What's A Genre?\" Remix) (feat. CaptainSparklez)",
+        "songAuthorName": "TryHardNinja",
+        "coverImage": "def0.jpg",
+        "environment": "BigMirrorEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 330,
+            "min": 65,
+            "max": 330
+        },
+        "songDuration": 276.924,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/def0"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/def0/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "dda4",
+        "songName": "circles!",
+        "songSubName": "",
+        "songAuthorName": "nekodex",
+        "coverImage": "dda4.jpg",
+        "environment": "NiceEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 184,
+            "min": 184,
+            "max": 184
+        },
+        "songDuration": 139.565,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/dda4"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/dda4/"
+            }
+        },
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "b642",
+        "songName": "T.R.Y Revolution",
+        "songSubName": "",
+        "songAuthorName": "Halozy",
+        "coverImage": "b642.jpg",
+        "environment": "GreenDayEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 152,
+            "min": 152,
+            "max": 152
+        },
+        "songDuration": 268.417,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/b642"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/b642/"
+            }
+        },
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "b1a8",
+        "songName": "There's A Cat Licking Your Birthday Cake",
+        "songSubName": "",
+        "songAuthorName": "Parry Gripp",
+        "coverImage": "b1a8.jpg",
+        "environment": "BigMirrorEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 110,
+            "min": 110,
+            "max": 110
+        },
+        "songDuration": 38.733,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/b1a8"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/b1a8/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "abd5",
+        "songName": "Girly Cupid",
+        "songSubName": "feat. Marpril",
+        "songAuthorName": "PSYQUI",
+        "coverImage": "abd5.jpg",
+        "environment": "OriginsEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 133,
+            "min": 133,
+            "max": 133
+        },
+        "songDuration": 244.072,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/abd5"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/abd5/"
+            }
+        },
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "a127",
+        "songName": "Escape",
+        "songSubName": "(ft. Summer Haze)",
+        "songAuthorName": "Jaroslav Beck",
+        "coverImage": "a127.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 175,
+            "min": 175,
+            "max": 175
+        },
+        "songDuration": 162.869,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/a127"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/a127/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "8944",
+        "songName": "Black Hair Drugs",
+        "songSubName": "",
+        "songAuthorName": "LOLIPO",
+        "coverImage": "8944.jpg",
+        "environment": "PanicEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 183,
+            "min": 183,
+            "max": 183
+        },
+        "songDuration": 350.118,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/8944"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/8944/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "7f35",
+        "songName": "New World",
+        "songSubName": "",
+        "songAuthorName": "FELT",
+        "coverImage": "7f35.jpg",
+        "environment": "Origins",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 195,
+            "min": 195,
+            "max": 195
+        },
+        "songDuration": 249.236,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/7f35"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/7f35/"
+            }
+        },
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "7b30",
+        "songName": "Tsurupettan",
+        "songSubName": "",
+        "songAuthorName": "Silver Forest",
+        "coverImage": "7b30.jpg",
+        "environment": "BigMirrorEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 180,
+            "min": 180,
+            "max": 180
+        },
+        "songDuration": 161.949,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/7b30"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/7b30/"
+            }
+        },
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "713b",
+        "songName": "Lost in the Abyss",
+        "songSubName": "",
+        "songAuthorName": "FELT",
+        "coverImage": "713b.jpg",
+        "environment": "Origins",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 183,
+            "min": 183,
+            "max": 183
+        },
+        "songDuration": 300.072,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/713b"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/713b/"
+            }
+        },
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "6d0f",
+        "songName": "Unconscious Requiem",
+        "songSubName": "",
+        "songAuthorName": "ShinRa-Bansho",
+        "coverImage": "6d0f.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 195,
+            "min": 99,
+            "max": 203
+        },
+        "songDuration": 277.734,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/6d0f"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/6d0f/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "65c7",
+        "songName": "The Pressure",
+        "songSubName": "",
+        "songAuthorName": "Stonebank",
+        "coverImage": "65c7.jpg",
+        "environment": "MonstercatEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 170,
+            "min": 170,
+            "max": 170
+        },
+        "songDuration": 249.926,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/65c7"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/65c7/"
+            }
+        },
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "6126",
+        "songName": "TRIPLE PLAY",
+        "songSubName": "",
+        "songAuthorName": "KASAI HARCORES",
+        "coverImage": "6126.jpg",
+        "environment": "TriangleEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 175,
+            "min": 175,
+            "max": 175
+        },
+        "songDuration": 253.006,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/6126"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/6126/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "5ead",
+        "songName": "Imbalance",
+        "songSubName": "",
+        "songAuthorName": "FELT",
+        "coverImage": "5ead.jpg",
+        "environment": "BigMirrorEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 138,
+            "min": 138,
+            "max": 138
+        },
+        "songDuration": 116.271,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/5ead"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/5ead/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "57e0",
+        "songName": "Phantasy",
+        "songSubName": "",
+        "songAuthorName": "Amidst",
+        "coverImage": "57e0.jpg",
+        "environment": "NiceEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 165,
+            "min": 165,
+            "max": 165
+        },
+        "songDuration": 217.156,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/57e0"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/57e0/"
+            }
+        },
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "558d",
+        "songName": "Harumachi Clover",
+        "songSubName": "(TV Size)",
+        "songAuthorName": "Hanasaka Yui (CV: M.A.O)",
+        "coverImage": "558d.jpg",
+        "environment": "NiceEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 142,
+            "min": 142,
+            "max": 142
+        },
+        "songDuration": 34.284,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/558d"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/558d/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "5487",
+        "songName": "Way Too Deep",
+        "songSubName": "",
+        "songAuthorName": "Grabbitz",
+        "coverImage": "5487.jpg",
+        "environment": "BigMirrorEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 140,
+            "min": 140,
+            "max": 140
+        },
+        "songDuration": 343.823,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/5487"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/5487/"
+            }
+        },
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "52e0",
+        "songName": "Happy birthday to You",
+        "songSubName": "(M2U Version)",
+        "songAuthorName": "M2U",
+        "coverImage": "52e0.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 110,
+            "min": 110,
+            "max": 110
+        },
+        "songDuration": 33.463,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/52e0"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/52e0/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "50c7",
+        "songName": "Nom Nom Nom Nom Nom Nom Nom",
+        "songSubName": "",
+        "songAuthorName": "Parry Gripp",
+        "coverImage": "50c7.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 128,
+            "min": 128,
+            "max": 128
+        },
+        "songDuration": 63.627,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/50c7"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/50c7/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "50af",
+        "songName": "FAITH",
+        "songSubName": "",
+        "songAuthorName": "Unlucky Morpheus",
+        "coverImage": "50af.jpg",
+        "environment": "TriangleEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 200,
+            "min": 200,
+            "max": 200
+        },
+        "songDuration": 57.664,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/50af"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/50af/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "50ae",
+        "songName": "Mermaid girl",
+        "songSubName": "",
+        "songAuthorName": "Cream puff",
+        "coverImage": "50ae.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 140,
+            "min": 140,
+            "max": 140
+        },
+        "songDuration": 122.149,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/50ae"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/50ae/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "500c",
+        "songName": "Help me, ERINNNNNN!! (Flowering Night 2007 Ver.)",
+        "songSubName": "",
+        "songAuthorName": "COOL&CREATE",
+        "coverImage": "500c.jpg",
+        "environment": "TriangleEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 183,
+            "min": 183,
+            "max": 183
+        },
+        "songDuration": 277.84,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/500c"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/500c/"
+            }
+        },
+        "tag": []
+    },
+    {
+        "id": "49e5",
+        "songName": "Platinum Groove",
+        "songSubName": "",
+        "songAuthorName": "android52",
+        "coverImage": "49e5.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": null,
+        "beatsPerMinute": {
+            "base": 128,
+            "min": 128,
+            "max": 128
+        },
+        "songDuration": 230.687,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/49e5"
+            },
+            "BeastSaber": {
+                "name": "BeastSaber",
+                "url": "https://bsaber.com/songs/49e5/"
+            }
+        },
+        "tag": []
+    }
+]
