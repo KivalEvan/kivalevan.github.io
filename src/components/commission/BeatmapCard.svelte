@@ -33,8 +33,11 @@
         <span class="song-duration">{toMMSS(beatmap.songDuration)}</span><br />
         <br />
         <div>
-            {#each Object.keys(beatmap.link) as link}
+            {#each Object.keys(beatmap.link) as link, index}
                 <a class="map-link" href={beatmap.link[link].url}>{beatmap.link[link].name}</a>
+                {#if index != Object.keys(beatmap.link).length - 1}
+                    <span> | </span>
+                {/if}
             {/each}
         </div>
     </div>
@@ -82,19 +85,6 @@
         @media (max-width: $breakpoint-mobile) {
             width: calc(100% - 10.375em);
             height: 8em;
-        }
-    }
-
-    .map-link:not(:last-child) {
-        &::after {
-            content: '|';
-            color: white;
-            margin-left: 0.25em;
-            margin-right: 0.25em;
-
-            &:hover {
-                color: white;
-            }
         }
     }
 
