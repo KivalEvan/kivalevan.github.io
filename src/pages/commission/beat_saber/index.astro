@@ -21,10 +21,10 @@ const pageDetails = {
         </div>
     </div>
     <section class="wrapper readable full-size">
-        <p>
-            I'm Kival Evan, as you may recognise the name from certain ranked maps, playlists, and other places.
-            I have crafted plentiful of maps in various different ways, and mainly I'm more into mapping Touhou Project arrangement.
-            Take a look at the maps I've made:-
+        <p class="center">
+            I am Kival Evan, the mapper for Beat Saber with over 4 years of experience.
+            You may recognise me from certain ranked maps, playlists, and other places.
+            I have crafted plenty of maps in various different ways, and mainly into mapping Touhou Project arrangement.
         </p>
         <ul class="list-tag">
             <li><a href="#map-showcase">Showcase</a></li>
@@ -32,9 +32,14 @@ const pageDetails = {
             <li><a href="https://bsaber.com/songs/new/?uploaded_by=kivalevan">BeastSaber</a></li>
             <li><a href="https://youtube.com/playlist?list=PLp4N5ZtOuDZlhdvoH1INSPn2Qn9zrD19b">Video Preview</a></li>
         </ul>
-        <p>
-            I value in making the map the best quality I could and as enjoyable as it can be, bringing high-grade assets to the map whenever possible.
+        <p class="center">
+            I value in making the map the best quality I could and as enjoyable to play for all players. The effort has resulted in several notable achievements:
         </p>
+        <ul class="list-tag">
+            <li>Top 100 BeatSaver</li>
+            <li>Beasties 2022 - Best Vanilla+ Light - Runner-Up</li>
+            <li>Building Block 2020 - 3rd Place</li>
+        </ul>
     </section>
     <section class="wrapper full-size">
         <h4 id="pricing">Pricing & Payment</h4>
@@ -56,17 +61,17 @@ const pageDetails = {
                     <tr>
                         <th>$18</th>
                         <td>Hard</td>
-                        <td class="description">Pick up the heat, a faster rhythm and beat is considered.</td>
+                        <td class="description">A faster paced map, challenging to casual but not too difficult.</td>
                     </tr>
                     <tr>
                         <th>$15</th>
                         <td>Normal</td>
-                        <td class="description">Get to the beat, an easy challenge for the casual player.</td>
+                        <td class="description">Easy challenge for the casual player.</td>
                     </tr>
                     <tr>
                         <th>$10</th>
                         <td>Easy</td>
-                        <td class="description">A good introductory to someone new and familiar to the game, heavily undermapped.</td>
+                        <td class="description">Good introductory to someone new and familiar to the game, heavily undermapped.</td>
                     </tr>
                 </table>
             </div>
@@ -128,14 +133,15 @@ const pageDetails = {
             </div>
         </div>
         <div class="wrapper readable">
+            <p class="center">
+                Price rating is based on price per minute;
+                rounded to next nearest minute, halved price for closest to next half minute.<br>
+                <br>
+                Pricing is subjected to change, please read the note below.
+            </p>
             <ul class="list-tag">
                 <li><a href="/commission/beat_saber/cost_estimator">Cost Estimator</a></li>
             </ul>
-            <p>
-                Pricing rate is based on price per minute.<br>
-                Rounded to next nearest minute, halved price for closest to next half minute.<br>
-                Pricing can be subjected to change.
-            </p>
             <div>
                 <h5>Note:</h5>
                 <ul class="list-arrow">
@@ -146,6 +152,7 @@ const pageDetails = {
                         Custom environment may be used fittingly if existing available. 
                     </li>
                     <li>Rate may increase depending on the complexity of the song, difficulty in map creation, or if it contain multiple (complex) BPM changes.</li>
+                    <li>Difficulty scaling is based on recent OST map and per song basis.</li>
                 </ul>
             </div>
             <br>
@@ -187,27 +194,24 @@ const pageDetails = {
                 <li>Map will be released & uploaded as soon after completion and full payment made, but are allowed to
                     request scheduled release.</li>
                 <li>Map released have a week of liability in case of the map is below satisfactory level or issues found
-                    that mandate changes or fixes. No duration for game-breaking issues caused by the map.</li>
-                <li>Song length depend on valid metadata if exist, otherwise use given source.</li>
+                    that mandate changes or fixes. No duration for game-breaking issues caused by the map in future game update.</li>
+                <li>Song length depend on valid metadata if exist, otherwise use given source; case-by-case on duration edge case.</li>
                 <li>Expected delivery time will be around 1-2 weeks but may vary depending on availability and option,
                     I'll keep in touch showcasing progress and other related detail, you are allowed to give feedback on
                     recent progress. Please do not spam or excessively remind me in short period of time.</li>
                 <li>Lighting will take another considerable chunk of time. If you wish to receive the map sooner,
-                    consider switching to Lolighter option. Payment will be refunded or discounted by lighting cost if
-                    you swap the option.</li>
-                <li>I have control of how I would map; this typically mean it will be high difficulty in mind.
+                    consider switching to Lolighter option, the payment will be refunded or discounted by lighting cost.</li>
+                <li>I have control of over how I map; this typically mean it will be high difficulty in mind.
                     You are free to suggest what you want in the map, including but not limited to specific difficulty, note pattern, etc.
                     However, It is not guaranteed to be applied and I have the right to refuse such that it involve bad mapping practice, against my mapping habit, or anything I disagree with.</li>
-                <li>Additional detail such as difficulty label, custom colour, platform, etc is allowed and free of
-                    charge. However, detail such as obscene text, similar coloured note, and other I
+                <li>Additional detail such as difficulty label, custom colour, base platform, etc is allowed and free-of-charge. Exception, detail such as obscene text, similar coloured note, and other I
                     disagree or deemed inappropriate will be rejected.</li>
                 <li>I may not accept nor take request outside product listed here (such as curation, playlist, advert,
                     etc), however it is negotiable.</li>
-                <li>At any given time and reason, I may cancel the commission and you will receive full refund and
-                    disclosure for cancellation.</li>
+                <li>I may cancel the commission at any time and you will receive full refund and disclosure for cancellation.</li>
             </ul>
             <br>
-            <span>Last updated: {formatDate('26 January 2022')}</span><br>
+            <span>Last updated: {formatDate('09 March 2023')}</span><br>
             <br>
             <span><strong>Note:</strong> Terms & Conditions is subjected to change; may not be applicable to existing order or enquiry depending on importance or severity.</span><br>
             <br>
@@ -216,6 +220,9 @@ const pageDetails = {
 </Main>
 
 <style lang="scss">
+    .center {
+        text-align: center;
+    }
     th, td {
         display: inline-block;
         &.description {
