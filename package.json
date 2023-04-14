@@ -12,15 +12,15 @@
         "beatmap": "deno run -A src/utils/beatmap.ts"
     },
     "dependencies": {
-        "@astrojs/image": "^0.14.0",
-        "@astrojs/svelte": "^2.0.1",
-        "astro": "^2.0.5",
-        "svelte": "^3.54.0"
+        "@astrojs/image": "^0.16.6",
+        "@astrojs/svelte": "^2.1.0",
+        "astro": "^2.3.0",
+        "svelte": "^3.58.0"
     },
     "devDependencies": {
         "astro-icon": "^0.8.0",
-        "prettier": "^2.8.3",
+        "prettier": "^2.8.7",
         "prettier-plugin-astro": "^0.8.0",
-        "sass": "^1.58.0"
+        "sass": "^1.62.0"
     }
 }
