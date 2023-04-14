@@ -13,7 +13,7 @@ const { mask } = Astro.props;
 const { alt, src } = await getImage({ src: image, alt: '', format:'webp'})
 ---
 <div class="background">
-    <img src={src} alt="background image" class={mask ? "mask" : ""} loading="lazy" />
+    <img src={src} alt="background image by Amibazh" class={mask ? "mask" : ""} loading="lazy" />
 </div>
 
 <style lang="scss">
