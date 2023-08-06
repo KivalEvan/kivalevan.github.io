@@ -2,39 +2,33 @@
 import Main from '../../layouts/Main.astro';
 
 const pageDetails = {
-    title: 'Project',
-    description: 'A personal website of mine.',
-    overrideTitle: false,
-}
+   title: 'Project',
+   description: 'A personal website of mine.',
+   overrideTitle: false,
+};
 ---
+
 <Main pageDetails={pageDetails}>
-    <div class="wrapper readable">
-        <br>
-        <div class="panel-border">
-            <h3><a href="/project/beat_saber">Beat Saber</a></h3>
-            <hr>
-            <p>
-                Stuff I made for Beat Saber.
-            </p>
-        </div>
-        <br>
-        <div class="panel-border">
-            <h3><a href="/project/homework_assignment">Homework & Assignment</a></h3>
-            <hr>
-            <p>
-                Things I've written or made while under education.
-            </p>
-        </div>
-        <br>
-        <div class="panel-border">
-            <h3><a href="https://github.com/KivalEvan/CodeDump">Code Dump</a></h3>
-            <hr>
-            <p>
-                Some random stuff I wrote for events and stuff.
-            </p>
-        </div>
-    </div>
+   <br />
+   <div class="wrapper readable">
+      <div class="panel-border">
+         <h3><a href="/project/beat_saber">Beat Saber</a></h3>
+         <hr />
+         <p>Stuff I made for Beat Saber.</p>
+      </div>
+      <br />
+      <div class="panel-border">
+         <h3><a href="/project/homework_assignment">Homework & Assignment</a></h3>
+         <hr />
+         <p>Things I've written or made while under education.</p>
+      </div>
+      <br />
+      <div class="panel-border">
+         <h3><a href="https://github.com/KivalEvan/CodeDump">Code Dump</a></h3>
+         <hr />
+         <p>Some random stuff I wrote for events and stuff.</p>
+      </div>
+   </div>
 </Main>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

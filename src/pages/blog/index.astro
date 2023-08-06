@@ -3,25 +3,38 @@ import Main from '../../layouts/Main.astro';
 import BlogPostPreview from '../../components/blog/BlogPostPreview.astro';
 
 interface Frontmatter {
-    title: string;
-    description: string;
-    author: string;
-    publishDate: string;
-    updatedDate: string;
-    layout: string;
+   title: string;
+   description: string;
+   author: string;
+   publishDate: string;
+   updatedDate: string;
+   layout: string;
 }
 
 const pageDetails = {
-    title: 'Blog',
-    description: 'A personal website of mine.',
-    overrideTitle: false,
-}
+   title: 'Blog',
+   description: 'A personal website of mine.',
+   overrideTitle: false,
+};
 
 let allPosts = await Astro.glob<Frontmatter>('./post/*.md');
-allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf());
+allPosts = allPosts.sort(
+   (a, b) =>
+      new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf(),
+);
 ---
+
 <Main pageDetails={pageDetails}>
-    <section class="wrapper readable">
-        {allPosts.map(p => <BlogPostPreview post={p} />)}
-    </section>
+   <section class="wrapper readable">
+      {
+         allPosts.map((p) => (
+            <>
+               <br />
+               <div class="panel-border">
+                  <BlogPostPreview post={p} />
+               </div>
+            </>
+         ))
+      }
+   </section>
 </Main>

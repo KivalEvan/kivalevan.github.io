@@ -2,22 +2,29 @@
 import { getImage } from '@astrojs/image';
 
 interface Props {
-    filePath: string;
+   filePath: string;
 }
 
 import image from '../assets/img/avatar/kival_evan.jpg';
 
 const { filePath } = Astro.props;
 
-const { alt, src } = await getImage({ src: image, alt: `${filePath.split('.')[0]}`, format:'webp', width:256, height:256 })
+const { alt, src } = await getImage({
+   src: image,
+   alt: `${filePath.split('.')[0]}`,
+   format: 'webp',
+   width: 256,
+   height: 256,
+});
 ---
+
 <img alt={alt} src={src} class="avatar" loading="lazy" />
 
 <style lang="scss">
-    .avatar {
-        width: 100%;
-        height: auto;
-        box-shadow: -0.125rem 0.125rem 0.25rem #0008;
-        border-radius: 50%;
-    }
+   .avatar {
+      width: 100%;
+      height: auto;
+      box-shadow: -0.125rem 0.125rem 0.25rem #0008;
+      border-radius: 50%;
+   }
 </style>
