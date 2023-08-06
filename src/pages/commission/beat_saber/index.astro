@@ -17,7 +17,7 @@ const pageDetails = {
 <Main pageDetails={pageDetails}>
    <div class="banner">
       <div class="banner-content">
-         <h3 class="text-shadow">Beat Saber Custom Map</h3>
+         <h2 class="text-shadow">Beat Saber Custom Map</h2>
       </div>
    </div>
    <section class="wrapper readable full-size">
@@ -48,7 +48,8 @@ const pageDetails = {
       </ul>
    </section>
    <section class="wrapper full-size">
-      <h4 id="enquiry">Enquiry</h4>
+      <h3 id="enquiry">Enquiry</h3>
+      <hr />
       <p class="wrapper readable center">
          If you are interested in ordering a commission or have any question regarding the
          information, you may contact me on:
@@ -66,12 +67,12 @@ const pageDetails = {
       </p>
    </section>
    <section class="wrapper full-size">
-      <h4 id="pricing">Pricing & Payment</h4>
-      <br />
+      <h3 id="pricing">Pricing & Payment</h3>
+      <hr />
       <div class="panel-inner">
          <div class="panel-column panel-border">
             <table class="table-list">
-               <caption><h5>Mapping Rate</h5></caption>
+               <caption><h4>Mapping Rate</h4></caption>
                <tr>
                   <th>$25</th>
                   <td>Expert+</td>
@@ -110,7 +111,7 @@ const pageDetails = {
          </div>
          <div class="panel-column panel-border">
             <table class="table-list">
-               <caption><h5>Lighting Rate</h5></caption>
+               <caption><h4>Lighting Rate</h4></caption>
                <tr>
                   <th>$35</th>
                   <td>Chroma Advanced</td>
@@ -148,7 +149,7 @@ const pageDetails = {
          </div>
          <div class="panel-column panel-border">
             <table class="table-list">
-               <caption><h5>Additional Bonus</h5></caption>
+               <caption><h4>Additional Bonus</h4></caption>
                <tr>
                   <th>Free</th>
                   <td>Difficulty Label</td>
@@ -218,11 +219,13 @@ const pageDetails = {
       <br />
    </section>
    <section class="wrapper full-size">
-      <h4 id="map-showcase">Map Showcase</h4>
+      <h3 id="map-showcase">Map Showcase</h3>
+      <hr />
       <BeatmapList client:load />
    </section>
    <section class="wrapper full-size">
-      <h4 id="tnc">Terms & Conditions</h4>
+      <h3 id="tnc">Terms & Conditions</h3>
+      <hr />
       <div class="wrapper readable">
          <ul class="list-arrow">
             <li>I have the right to deny any commission.</li>
@@ -307,7 +310,7 @@ const pageDetails = {
       background-size: cover;
       background-color: #181820;
       &-content {
-         h3 {
+         h2 {
             font-size: 1.75em;
             text-transform: uppercase;
             letter-spacing: 0.3125em;
@@ -356,7 +359,6 @@ const pageDetails = {
          height: 0;
          width: 84%;
          max-width: 76rem;
-         min-width: 30rem;
       }
       &::before {
          top: 0.25em;
@@ -375,9 +377,5 @@ const pageDetails = {
          font-size: 1.125rem;
          padding: 0.5em;
       }
-   }
-   h4 {
-      padding-bottom: 0.3125em;
-      border-bottom: 1px solid #fff;
    }
 </style>
