@@ -2,7 +2,6 @@
 import Main from '../../../layouts/Main.astro';
 import BeatmapList from '../../../components/commission/BeatmapList.svelte';
 import {formatDate} from '../../../utils/date';
-import Commission from '../../../data/commission.json';
 
 const pageDetails = {
     title: 'Commission',
@@ -22,8 +21,7 @@ const pageDetails = {
     </div>
     <section class="wrapper readable full-size">
         <p class="center">
-            I am Kival Evan, the mapper for Beat Saber with over 4 years of experience.
-            You may recognise me from certain ranked maps, playlists, and other places.
+            I am the mapper for Beat Saber with over 4 years of experience with involvement in ranked scene, playlists, and other places.
             I have crafted plenty of maps in various different ways, and mainly into mapping Touhou Project arrangement.
         </p>
         <ul class="list-tag">
@@ -33,14 +31,30 @@ const pageDetails = {
             <li><a href="https://youtube.com/playlist?list=PLp4N5ZtOuDZlhdvoH1INSPn2Qn9zrD19b">Video Preview</a></li>
         </ul>
         <p class="center">
-            I value in making the map the best quality I could and as enjoyable to play for all players. The effort has resulted in several notable achievements:
+            Placing value in creativity and unique aspect for each map, I strive in giving a different experience for players to try. The effort has resulted in several notable achievements:
         </p>
         <ul class="list-tag">
-            <li>Top 100 BeatSaver</li>
-            <li>Beasties 2022 - Best Vanilla+ Light - Runner-Up</li>
-            <li>BSMG Halloween 2022 Mapping Contest - 3rd Place</li>
-            <li>Building Block 2020 - 3rd Place</li>
+            <li><span>Top 100 BeatSaver</span></li>
+            <li><span>Beasties 2022 - Best Vanilla+ Light - Runner-Up</span></li>
+            <li><span>BSMG Halloween 2022 Mapping Contest - 3rd Place</span></li>
+            <li><span>Building Block 2020 - 3rd Place</span></li>
         </ul>
+    </section>
+    <section class="wrapper full-size">
+        <h4 id="enquiry">Enquiry</h4>
+        <p class="wrapper readable center">
+            If you are interested in ordering a commission or have any question regarding the information, you may contact me
+            on:
+        </p>
+        <ul class="list-tag">
+            <li><span class="fake-link discord-popup" title="Kival Evan#5480">Discord</span></li>
+            <li><a href="https://twitter.com/Kival_Evan">Twitter</a></li>
+            <li><a href="mailto:kivalevan@gmail.com">Email</a></li>
+        </ul>
+        <p class="wrapper readable center">
+            Please read below for <a href="#pricing">Pricing & Payment</a> and <a href="#tnc">Terms & Conditions</a> for further information.<br>
+            Once the order is made, you have accepted the <a href="#tnc">Terms & Conditions</a>.
+        </p>
     </section>
     <section class="wrapper full-size">
         <h4 id="pricing">Pricing & Payment</h4>
@@ -48,11 +62,11 @@ const pageDetails = {
         <div class="panel-inner">
             <div class="panel-column panel-border">
                 <table class="table-list">
-                    <caption>Mapping Rate</caption>
+                    <caption><h5>Mapping Rate</h5></caption>
                     <tr>
                         <th>$25</th>
                         <td>Expert+</td>
-                        <td class="description">Every details matter, more sound is mapped with plenty of complicated pattern.</td>
+                        <td class="description">Every details matter, more sound mapped with considerably complicated pattern.</td>
                     </tr>
                     <tr>
                         <th>$20</th>
@@ -78,7 +92,7 @@ const pageDetails = {
             </div>
             <div class="panel-column panel-border">
                 <table class="table-list">
-                    <caption>Lighting Rate</caption>
+                    <caption><h5>Lighting Rate</h5></caption>
                     <tr>
                         <th>$35</th>
                         <td>Chroma Advanced</td>
@@ -108,7 +122,7 @@ const pageDetails = {
             </div>
             <div class="panel-column panel-border">
                 <table class="table-list">
-                    <caption>Additional Bonus</caption>
+                    <caption><h5>Additional Bonus</h5></caption>
                     <tr>
                         <th>Free</th>
                         <td>Difficulty Label</td>
@@ -135,7 +149,7 @@ const pageDetails = {
         </div>
         <div class="wrapper readable">
             <p class="center">
-                Price rating is based on price per minute;
+                Price rating is based on price per minute and
                 rounded to next nearest minute, halved price for closest to next half minute.<br>
                 <br>
                 Pricing is subjected to change, please read the note below.
@@ -158,29 +172,17 @@ const pageDetails = {
             </div>
             <br>
             <div>
-                <p>
-                    Payment made over PayPal with USD currency excluding tax. If there are other valid and trusted payment service/method, we can work out with it. Tips are appreciated.
-                </p>
-                Current payment option:
+                <h5>Payment Option:</h5>
                 <ul class="list-arrow">
                     <li>50% upfront, 50% upon delivery</li>
                     <li>100% upfront</li>
                 </ul>
+                <p>
+                    Payment made over PayPal with USD currency excluding tax. If there are other valid and trusted payment service/method, I can try to work it out. Tips are appreciated.
+                </p>
             </div>
         </div>
         <br>
-    </section>
-    <section class="wrapper full-size">
-        <h4 id="enquiry">Enquiry</h4>
-        <p class="wrapper readable">
-            If you're interested in ordering a commission or have any question regarding the information, contact me
-            on <span class="fake-link discord-popup" title="Kival Evan#5480">Discord</span>,
-            <a href="https://twitter.com/Kival_Evan">Twitter</a>, or
-            <a href="mailto:kivalevan@gmail.com">Email</a>.<br>
-            <br>
-            Please read <a href="#tnc">Terms & Conditions</a> for further information.<br>
-            Once the order is made, you have accepted the Terms & Conditions.
-        </p>
     </section>
     <section class="wrapper full-size">
         <h4 id="map-showcase">Map Showcase</h4>
@@ -202,7 +204,7 @@ const pageDetails = {
                     recent progress. Please do not spam or excessively remind me in short period of time.</li>
                 <li>Lighting will take another considerable chunk of time. If you wish to receive the map sooner,
                     consider switching to Lolighter option, the payment will be refunded or discounted by lighting cost.</li>
-                <li>I have control of over how I map; this typically mean it will be high difficulty in mind.
+                <li>I have full control over what or how I map; this typically mean it will be high difficulty in mind.
                     You are free to suggest what you want in the map, including but not limited to specific difficulty, note pattern, etc.
                     However, It is not guaranteed to be applied and I have the right to refuse such that it involve bad mapping practice, against my mapping habit, or anything I disagree with.</li>
                 <li>Additional detail such as difficulty label, custom colour, base platform, etc is allowed and free-of-charge. Exception, detail such as obscene text, similar coloured note, and other I
@@ -240,7 +242,7 @@ const pageDetails = {
         background-image: url("/assets/img/commission-beat-saber.jpg");
         background-position: center;
         background-size: cover;
-        background-color: #111;
+        background-color: #181820;
         &-content {
             h3 {
                 font-size: 1.75em;
@@ -302,7 +304,7 @@ const pageDetails = {
     }
     .list-tag {
         justify-content: center;
-        li, a {
+        li, a, span {
             font-size: 1.125rem;
             padding: 0.5em;
         }

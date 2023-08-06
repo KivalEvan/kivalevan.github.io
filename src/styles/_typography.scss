@@ -1,17 +1,12 @@
-@use "./var" as *;
+@use './var' as *;
 
 :root {
-  --font-primary: "Noto Sans", "Gill Sans", "Trebuchet MS", Geneva, Verdana,
-    sans-serif;
-  --font-secondary: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  --font-monospace: "Courier New", Courier, monospace;
-  font-family: var(--font-primary);
-  --user-font-scale: 1rem - 16px;
-  font-size: clamp(
-    0.875rem,
-    0.4626rem + 1.0309vw + var(--user-font-scale),
-    1.125rem
-  );
+   --font-primary: 'Noto Sans', 'Gill Sans', 'Trebuchet MS', Geneva, Verdana, sans-serif;
+   --font-secondary: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+   --font-monospace: 'Courier New', Courier, monospace;
+   font-family: var(--font-primary);
+   --user-font-scale: 1rem - 16px;
+   font-size: clamp(0.875rem, 0.4626rem + 1.0309vw + var(--user-font-scale), 1.125rem);
 }
 
 h1,
@@ -20,68 +15,71 @@ h3,
 h4,
 h5,
 h6 {
-  margin-top: 0.125em;
-  margin-bottom: 0.125em;
+   margin-top: 0.125em;
+   margin-bottom: 0.125em;
 }
 
 h1 {
-  font-size: 6rem;
-  text-transform: uppercase;
-  white-space: nowrap;
-  @media (max-width: $breakpoint-mobile) {
-    font-size: 4rem;
-  }
+   font-size: 6rem;
+   text-transform: uppercase;
+   white-space: nowrap;
+   @media (max-width: $breakpoint-mobile) {
+      font-size: 4rem;
+   }
 }
 h2 {
-  font-size: 2.5rem;
-  @media (max-width: $breakpoint-mobile) {
-    font-size: 2rem;
-  }
+   font-size: 2.5rem;
+   @media (max-width: $breakpoint-mobile) {
+      font-size: 2rem;
+   }
 }
 h3 {
-  font-size: 1.75rem;
-  @media (max-width: $breakpoint-mobile) {
-    font-size: 1.5rem;
-  }
+   font-size: 1.75rem;
+   @media (max-width: $breakpoint-mobile) {
+      font-size: 1.5rem;
+   }
 }
 h4 {
-  font-size: 1.375rem;
+   font-size: 1.375rem;
 }
 h5 {
-  font-size: 1.125rem;
+   font-size: 1.125rem;
 }
 h6 {
-  font-size: 1.0625rem;
+   font-size: 1.0625rem;
 }
 
 a {
-  text-decoration: none;
-  color: #6af;
-  transition: color ease 0.125s;
-  &:hover {
-    color: #f44;
-  }
-  @at-root .fake-link {
-    @extend a;
-    cursor: pointer;
-  }
+   text-decoration: none;
+   color: #6af;
+   transition: color ease 0.125s;
+   &:hover {
+      color: #f44;
+   }
+   @at-root .fake-link {
+      @extend a;
+      cursor: pointer;
+   }
 }
 
 p {
-  text-align: justify;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  line-height: 1.375;
+   text-align: justify;
+   margin-top: 1em;
+   margin-bottom: 1em;
+   line-height: 1.375;
 }
 
 .text {
-  &-justify {
-    text-align: justify;
-  }
-  &-center {
-    text-align: center;
-  }
-  &-shadow {
-    text-shadow: 0 0 0.0625em black, 0 0 0.0625rem black, 0 0 0.125rem black;
-  }
+   &-justify {
+      text-align: justify;
+   }
+   &-center {
+      text-align: center;
+   }
+   &-shadow {
+      text-shadow:
+         0 0 0.0625em black,
+         0 0 0.0625rem black,
+         0 0 0.125rem black;
+   }
 }

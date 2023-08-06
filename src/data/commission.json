@@ -1,19 +1,19 @@
 {
-    "beatmap": {
-        "base": 10,
-        "difficulty": {
-            "expertPlus": 15,
-            "expert": 10,
-            "hard": 8,
-            "normal": 5,
-            "easy": 0
-        },
-        "lighting": {
-            "lolighter": 0,
-            "vanillaV2": 20,
-            "vanillaV3": 35,
-            "chromaBasic": 25,
-            "chromaAdvanced": 35
-        }
-    }
+   "beatmap": {
+      "base": 10,
+      "difficulty": {
+         "expertPlus": 15,
+         "expert": 10,
+         "hard": 8,
+         "normal": 5,
+         "easy": 0
+      },
+      "lighting": {
+         "lolighter": 0,
+         "vanillaV2": 20,
+         "vanillaV3": 35,
+         "chromaBasic": 25,
+         "chromaAdvanced": 35
+      }
+   }
 }
