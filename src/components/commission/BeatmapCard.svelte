@@ -1,106 +1,134 @@
 <script lang="ts">
-    import type { BeatmapDetails } from '../../utils/beatmap';
-    function toMMSS(seconds: number): string {
-        if (!seconds) {
-            return '0:00';
-        }
-        const numr = Math.floor(seconds);
-        const temp = numr / 60;
-        const min = temp < 0 ? `-${Math.ceil(temp).toString()}` : Math.floor(temp).toString();
-        const sec = Math.abs(numr % 60)
-            .toString()
-            .padStart(2, '0');
-        return `${min}:${sec}`;
-    }
+   import type { BeatmapDetails } from '../../utils/beatmap';
+   const CharacteristicRename: { readonly [key: string]: string } = {
+      Standard: 'Standard',
+      NoArrows: 'No Arrows',
+      OneSaber: 'One Saber',
+      Legacy: 'Legacy',
+      '360Degree': '360 Degree',
+      '90Degree': '90 Degree',
+      Lightshow: 'Lightshow',
+      Lawless: 'Lawless',
+   } as const;
 
-    export let beatmap: BeatmapDetails;
+   function toMMSS(seconds: number): string {
+      if (!seconds) {
+         return '0:00';
+      }
+      const numr = Math.floor(seconds);
+      const temp = numr / 60;
+      const min = temp < 0 ? `-${Math.ceil(temp).toString()}` : Math.floor(temp).toString();
+      const sec = Math.abs(numr % 60)
+         .toString()
+         .padStart(2, '0');
+      return `${min}:${sec}`;
+   }
+
+   function joinString(ary: string[]) {
+      return ary.reduce(
+         (p, v, i) =>
+            p + (ary.length - 1 === i ? (i ? ' & ' : '') : i ? ', ' : '') + CharacteristicRename[v],
+         ''
+      );
+   }
+
+   export let beatmap: BeatmapDetails;
 </script>
 
 <div class="song-card">
-    <a class="cover" href={beatmap.link['BeatSaver'].url}>
-        <img
-            alt={beatmap.songName}
-            src={`/assets/img/cover/${beatmap.coverImage}`}
-            width={256}
-            height={256}
-        />
-    </a>
-    <div class="metadata">
-        <span class="song-name">{beatmap.songName}</span>
-        <span class="song-subname">{beatmap.songSubName}</span><br />
-        <span class="song-artist">{beatmap.songAuthorName}</span><br />
-        <span class="song-bpm">{beatmap.beatsPerMinute.base}BPM</span><br />
-        <span class="song-duration">{toMMSS(beatmap.songDuration)}</span><br />
-        <br />
-        <div>
-            {#each Object.keys(beatmap.link) as link, index}
-                <a class="map-link" href={beatmap.link[link].url}>{beatmap.link[link].name}</a>
-                {#if index != Object.keys(beatmap.link).length - 1}
-                    <span> | </span>
-                {/if}
-            {/each}
-        </div>
-    </div>
+   <a class="cover" href={beatmap.link['BeatSaver'].url}>
+      <img
+         alt={beatmap.songName}
+         src={`/assets/img/cover/${beatmap.coverImage}`}
+         width={256}
+         height={256}
+      />
+   </a>
+   <div class="metadata">
+      <span class="song-name">{beatmap.songName}</span>
+      <span class="song-subname">{beatmap.songSubName}</span><br />
+      <span class="song-artist">{beatmap.songAuthorName}</span><br />
+      <span class="song-bpm">{beatmap.beatsPerMinute.base}BPM</span><br />
+      <span class="song-duration">{toMMSS(beatmap.songDuration)}</span><br />
+      <br />
+   </div>
+   <div>
+      {#if beatmap.difficulty === 5 && beatmap.mode.length === 1}
+         Full Spread {CharacteristicRename[beatmap.mode[0]]}
+      {:else}
+         {beatmap.difficulty}
+         {beatmap.difficulty === 1 ? 'Difficulty' : 'Difficulties'}
+         {joinString(beatmap.mode)}
+      {/if}
+      <br />
+      {#each Object.keys(beatmap.link) as link, index}
+         <a class="map-link" href={beatmap.link[link].url}> {beatmap.link[link].name} </a>
+         {#if index !== Object.keys(beatmap.link).length - 1}
+            <span> | </span>
+         {/if}
+      {/each}
+   </div>
 </div>
 
 <style lang="scss">
-    @use '../../styles/_var' as *;
+   @use '../../styles/_var' as *;
 
-    .cover {
-        display: inline-block;
-        width: 9em;
-        height: 9em;
-        margin: 0.5em;
-        box-shadow: -0.1875em 0.1875em 0.375em #0008;
-        transition: transform ease 0.25s, box-shadow ease 0.25s;
+   .cover {
+      display: inline-block;
+      width: 9em;
+      height: 9em;
+      margin: 0.5em;
+      box-shadow: -0.1875em 0.1875em 0.375em #0008;
+      transition: transform ease 0.25s, box-shadow ease 0.25s;
 
-        @media (max-width: $breakpoint-mobile) {
+      @media (max-width: $breakpoint-mobile) {
+         width: 8em;
+         height: 8em;
+      }
+
+      img {
+         width: 9em;
+         height: 9em;
+
+         @media (max-width: $breakpoint-mobile) {
             width: 8em;
             height: 8em;
-        }
+         }
+      }
 
-        img {
-            width: 9em;
-            height: 9em;
+      &:hover {
+         box-shadow: -0.125em 0.125em 0.5em #000f;
+         transform: scale(1.1);
+      }
+   }
 
-            @media (max-width: $breakpoint-mobile) {
-                width: 8em;
-                height: 8em;
-            }
-        }
+   .metadata {
+      display: inline-block;
+      position: relative;
+      width: calc(100% - 11.375em);
+      height: 9em;
+      margin: 0.5em;
+      vertical-align: top;
 
-        &:hover {
-            box-shadow: -0.125em 0.125em 0.5em #000f;
-            transform: scale(1.1);
-        }
-    }
+      @media (max-width: $breakpoint-mobile) {
+         width: calc(100% - 10.375em);
+         height: 8em;
+      }
+   }
 
-    .metadata {
-        display: inline-block;
-        width: calc(100% - 11.375em);
-        height: 9em;
-        margin: 0.5em;
-        vertical-align: top;
+   .song-name {
+      font-size: 1.5rem;
 
-        @media (max-width: $breakpoint-mobile) {
-            width: calc(100% - 10.375em);
-            height: 8em;
-        }
-    }
+      @media (max-width: $breakpoint-mobile) {
+         font-size: 1.25rem;
+      }
+   }
 
-    .song-name {
-        font-size: 1.5rem;
+   .song-artist {
+      font-size: 1.1875rem;
 
-        @media (max-width: $breakpoint-mobile) {
-            font-size: 1.25rem;
-        }
-    }
-
-    .song-artist {
-        font-size: 1.1875rem;
-
-        @media (max-width: $breakpoint-mobile) {
-            font-size: 1rem;
-        }
-    }
+      @media (max-width: $breakpoint-mobile) {
+         font-size: 1rem;
+      }
+   }
 </style>

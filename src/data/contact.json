@@ -1,38 +1,38 @@
 [
-    {
-        "place": "Github",
-        "name": "KivalEvan",
-        "url": "https://github.com/KivalEvan/",
-        "img": ""
-    },
-    {
-        "place": "Steam",
-        "name": "Kival Evan",
-        "url": "https://steamcommunity.com/id/KivalEvan/",
-        "img": ""
-    },
-    {
-        "place": "Youtube",
-        "name": "Kival Evan",
-        "url": "https://www.youtube.com/channel/UC5pOhteTPou4iA8bNaEx3IA",
-        "img": ""
-    },
-    {
-        "place": "Twitch",
-        "name": "KivalEvan",
-        "url": "https://www.twitch.tv/kivalevan",
-        "img": ""
-    },
-    {
-        "place": "Twitter",
-        "name": "@Kival_Evan",
-        "url": "https://twitter.com/Kival_Evan",
-        "img": ""
-    },
-    {
-        "place": "Discord",
-        "name": "Kival Evan#5480",
-        "url": null,
-        "img": ""
-    }
+   {
+      "place": "Github",
+      "name": "KivalEvan",
+      "url": "https://github.com/KivalEvan/",
+      "img": ""
+   },
+   {
+      "place": "Steam",
+      "name": "Kival Evan",
+      "url": "https://steamcommunity.com/id/KivalEvan/",
+      "img": ""
+   },
+   {
+      "place": "Youtube",
+      "name": "Kival Evan",
+      "url": "https://www.youtube.com/channel/UC5pOhteTPou4iA8bNaEx3IA",
+      "img": ""
+   },
+   {
+      "place": "Twitch",
+      "name": "KivalEvan",
+      "url": "https://www.twitch.tv/kivalevan",
+      "img": ""
+   },
+   {
+      "place": "Twitter",
+      "name": "@Kival_Evan",
+      "url": "https://twitter.com/Kival_Evan",
+      "img": ""
+   },
+   {
+      "place": "Discord",
+      "name": "Kival Evan#5480",
+      "url": null,
+      "img": ""
+   }
 ]
