@@ -1,148 +1,268 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import {formatDate} from '../utils/date';
+import { formatDate } from '../utils/date';
 import image from '../assets/img/avatar/kival_evan.jpg';
 import { getImage } from '@astrojs/image';
 
 const pageDetails = {
-    title: 'Resume',
-    description: 'CV',
-    overrideTitle: false,
-}
-
-const interest = ['Cybersecurity', 'Machine Learning', 'Database Management', '3D Modelling', 'Electronic Engineering'];
-
-const skill = {
-    tier: {
-        0: 'Beginner',
-        25: 'Novice',
-        50: 'Intermediate',
-        75: 'Advanced',
-        95: 'Master',
-    },
-    programming: {
-        TypeScript: 80,
-        HTML: 70,
-        CSS: 60,
-        'C#': 50,
-        Python: 30,
-    },
-    language: {
-        English: 75,
-        Malay: 30,
-    }
+   title: 'Resume',
+   description: 'CV',
+   overrideTitle: false,
 };
 
-const tier = (perc: number): string => skill.tier[Object.keys(skill.tier).reverse().find(s => parseFloat(s) <= perc)!];
+const interest = [
+   'Cybersecurity',
+   'Machine Learning',
+   'Database Management',
+   '3D Modelling',
+   'Electronic Engineering',
+];
 
-const { alt, src } = await getImage({ src: image, alt: '', format:'webp', width:256, height:256 })
+const skill = {
+   tier: {
+      0: 'Beginner',
+      25: 'Novice',
+      50: 'Intermediate',
+      75: 'Advanced',
+      95: 'Master',
+   },
+   programming: {
+      TypeScript: 80,
+      HTML: 70,
+      CSS: 60,
+      'C#': 50,
+      Python: 30,
+   },
+   language: {
+      English: 75,
+      Malay: 30,
+   },
+};
+
+const tier = (perc: number): string =>
+   skill.tier[
+      Object.keys(skill.tier)
+         .reverse()
+         .find((s) => parseFloat(s) <= perc)!
+   ];
+
+const { alt, src } = await getImage({
+   src: image,
+   alt: '',
+   format: 'webp',
+   width: 256,
+   height: 256,
+});
 ---
+
 <BaseLayout pageDetails={pageDetails}>
-    <div class="resume">
-        <div class="container">
-            <div class="profile">
-                <div class="flex">
-                    <div class="profile-avatar flex-col-tiny">
-                        <img src={src}>
-                    </div>
-                    <div class="flex-col-huge">
-                        <h1>Nabawi Azizul</h1>
-                        <h2>Software Engineer</h2>
-                        <p>
-                            An undergraduate student pursuing employment. Focusing heavily on developing high-performance, efficient, and reliable software.
-                            Pledged to utilise learned skills and expand further knowledges within the IT industry.
-                        </p>
-                    </div>
-                </div>
-                <div>
-                    <div class="flex flex-se">
-                        <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
-                                <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
-                                <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                            </svg>
-                            Puchong, Selangor, Malaysia
-                        </span>
-                        <span>
-                            <a href="mailto:kivalevan@gmail.com">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
-                                    <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
-                                </svg>
-                                kivalevan@gmail.com
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
-                                    <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>
-                                    <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>
-                                </svg>
-                            </a>
-                        </span>
-                        <span>
-                            <a href="https://www.linkedin.com/in/nabawiazizul/">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
-                                    <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
-                                </svg>
-                                Upon Request
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
-                                    <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>
-                                    <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>
-                                </svg>
-                            </a>
-                        </span>
-                    </div>
-                </div>
+   <div class="resume">
+      <div class="container">
+         <div class="profile">
+            <div class="flex">
+               <div class="profile-avatar flex-col-tiny">
+                  <img src={src} />
+               </div>
+               <div class="flex-col-huge">
+                  <h1>Nabawi Azizul</h1>
+                  <h2>Software Engineer</h2>
+                  <p>
+                     An undergraduate student pursuing employment. Focusing heavily on developing
+                     high-performance, efficient, and reliable software. Pledged to utilise learned
+                     skills and expand further knowledges within the IT industry.
+                  </p>
+               </div>
             </div>
-            <div class="main flex">
-                <div class="flex-col-small">
-                    <section class="timeline">
-                        <h4>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
-                                <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
-                            </svg>
-                            EDUCATION
-                        </h4>
-                        <div>
-                            <h5>Bachelor of Computer Science (Software Engineering)</h5>
-                            <h6>Multimedia University, Cyberjaya</h6>
-                            07/2018 - Present, CGPA 3.27/4.00
-                        </div>
-                        <div>
-                            <h5>Foundation in Information Technology</h5>
-                            <h6>Multimedia University, Cyberjaya</h6>
-                            07/2017 - 06/2018, CGPA 3.16/4.00
-                        </div>
-                    </section>
-                    <section>
-                        <h4>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-                                <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
-                            </svg>
-                            SKILLS
-                        </h4>
-                        <div>
-                            <h5>Programming</h5>
-                            <ul class="list-arrow list-skill">
-                                {Object.keys(skill.programming).map(s => <li><span class="skill-name">{s}</span><span class="skill-progress"><span style={`width:${skill.programming[s]}%`}></span></span><span class="skill-tier">{tier(skill.programming[s])}</span></li>)}
-                            </ul>
-                        </div>
-                        <br>
-                        <div>
-                            <h5>Languages</h5>
-                            <ul class="list-arrow list-skill">
-                                {Object.keys(skill.language).map(s => <li><span class="skill-name">{s}</span><span class="skill-progress"><span style={`width:${skill.language[s]}%`}></span></span><span class="skill-tier">{tier(skill.language[s])}</span></li>)}
-                            </ul>
-                        </div>
-                    </section>
-                    <section>
-                        <h4>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-binoculars" viewBox="0 0 16 16">
-                                <path d="M3 2.5A1.5 1.5 0 0 1 4.5 1h1A1.5 1.5 0 0 1 7 2.5V5h2V2.5A1.5 1.5 0 0 1 10.5 1h1A1.5 1.5 0 0 1 13 2.5v2.382a.5.5 0 0 0 .276.447l.895.447A1.5 1.5 0 0 1 15 7.118V14.5a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 14.5v-3a.5.5 0 0 1 .146-.354l.854-.853V9.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v.793l.854.853A.5.5 0 0 1 7 11.5v3A1.5 1.5 0 0 1 5.5 16h-3A1.5 1.5 0 0 1 1 14.5V7.118a1.5 1.5 0 0 1 .83-1.342l.894-.447A.5.5 0 0 0 3 4.882V2.5zM4.5 2a.5.5 0 0 0-.5.5V3h2v-.5a.5.5 0 0 0-.5-.5h-1zM6 4H4v.882a1.5 1.5 0 0 1-.83 1.342l-.894.447A.5.5 0 0 0 2 7.118V13h4v-1.293l-.854-.853A.5.5 0 0 1 5 10.5v-1A1.5 1.5 0 0 1 6.5 8h3A1.5 1.5 0 0 1 11 9.5v1a.5.5 0 0 1-.146.354l-.854.853V13h4V7.118a.5.5 0 0 0-.276-.447l-.895-.447A1.5 1.5 0 0 1 12 4.882V4h-2v1.5a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V4zm4-1h2v-.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5V3zm4 11h-4v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14zm-8 0H2v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14z"/>
-                            </svg>
-                            INTERESTS
-                        </h4>
-                        <ul class="list-tag">
-                            {interest.map(i => <li>{i}</li>)}
-                        </ul>
-                    </section>
-                    <!--
+            <div>
+               <div class="flex flex-se">
+                  <span>
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-geo-alt"
+                        viewBox="0 0 16 16"
+                     >
+                        <path
+                           d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"
+                        ></path>
+                        <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+                        ></path>
+                     </svg>
+                      Puchong, Selangor, Malaysia
+                  </span>
+                  <span>
+                     <a href="mailto:kivalevan@gmail.com">
+                        <svg
+                           xmlns="http://www.w3.org/2000/svg"
+                           width="16"
+                           height="16"
+                           fill="currentColor"
+                           class="bi bi-envelope"
+                           viewBox="0 0 16 16"
+                        >
+                           <path
+                              d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"
+                           ></path>
+                        </svg>
+                         kivalevan@gmail.com
+                        <svg
+                           xmlns="http://www.w3.org/2000/svg"
+                           width="16"
+                           height="16"
+                           fill="currentColor"
+                           class="bi bi-link-45deg"
+                           viewBox="0 0 16 16"
+                        >
+                           <path
+                              d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"
+                           ></path>
+                           <path
+                              d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"
+                           ></path>
+                        </svg>
+                     </a>
+                  </span>
+                  <span>
+                     <a href="https://www.linkedin.com/in/nabawiazizul/">
+                        <svg
+                           xmlns="http://www.w3.org/2000/svg"
+                           width="16"
+                           height="16"
+                           fill="currentColor"
+                           class="bi bi-telephone"
+                           viewBox="0 0 16 16"
+                        >
+                           <path
+                              d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"
+                           ></path>
+                        </svg>
+                         Upon Request
+                        <svg
+                           xmlns="http://www.w3.org/2000/svg"
+                           width="16"
+                           height="16"
+                           fill="currentColor"
+                           class="bi bi-link-45deg"
+                           viewBox="0 0 16 16"
+                        >
+                           <path
+                              d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"
+                           ></path>
+                           <path
+                              d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"
+                           ></path>
+                        </svg>
+                     </a>
+                  </span>
+               </div>
+            </div>
+         </div>
+         <div class="main flex">
+            <div class="flex-col-small">
+               <section class="timeline">
+                  <h4>
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-book"
+                        viewBox="0 0 16 16"
+                     >
+                        <path
+                           d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"
+                        ></path>
+                     </svg>
+                      EDUCATION
+                  </h4>
+                  <div>
+                     <h5>Bachelor of Computer Science (Software Engineering)</h5>
+                     <h6>Multimedia University, Cyberjaya</h6>
+                      07/2018 - Present, CGPA 3.27/4.00
+                  </div>
+                  <div>
+                     <h5>Foundation in Information Technology</h5>
+                     <h6>Multimedia University, Cyberjaya</h6>
+                      07/2017 - 06/2018, CGPA 3.16/4.00
+                  </div>
+               </section>
+               <section>
+                  <h4>
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-star"
+                        viewBox="0 0 16 16"
+                     >
+                        <path
+                           d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"
+                        ></path>
+                     </svg>
+                      SKILLS
+                  </h4>
+                  <div>
+                     <h5>Programming</h5>
+                     <ul class="list-arrow list-skill">
+                        {
+                           Object.keys(skill.programming).map((s) => (
+                              <li>
+                                 <span class="skill-progress">
+                                    <span style={`width:${skill.programming[s]}%`} />
+                                 </span>
+                                 <>
+                                    <span class="skill-name">{s}</span>
+                                    <span class="skill-tier">{tier(skill.programming[s])}</span>
+                                 </>
+                              </li>
+                           ))
+                        }
+                     </ul>
+                  </div>
+                  <br />
+                  <div>
+                     <h5>Languages</h5>
+                     <ul class="list-arrow list-skill">
+                        {
+                           Object.keys(skill.language).map((s) => (
+                              <li>
+                                 <span class="skill-progress">
+                                    <span style={`width:${skill.language[s]}%`} />
+                                 </span>
+                                 <>
+                                    <span class="skill-name">{s}</span>
+                                    <span class="skill-tier">{tier(skill.language[s])}</span>
+                                 </>
+                              </li>
+                           ))
+                        }
+                     </ul>
+                  </div>
+               </section>
+               <section>
+                  <h4>
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-binoculars"
+                        viewBox="0 0 16 16"
+                     >
+                        <path
+                           d="M3 2.5A1.5 1.5 0 0 1 4.5 1h1A1.5 1.5 0 0 1 7 2.5V5h2V2.5A1.5 1.5 0 0 1 10.5 1h1A1.5 1.5 0 0 1 13 2.5v2.382a.5.5 0 0 0 .276.447l.895.447A1.5 1.5 0 0 1 15 7.118V14.5a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 14.5v-3a.5.5 0 0 1 .146-.354l.854-.853V9.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v.793l.854.853A.5.5 0 0 1 7 11.5v3A1.5 1.5 0 0 1 5.5 16h-3A1.5 1.5 0 0 1 1 14.5V7.118a1.5 1.5 0 0 1 .83-1.342l.894-.447A.5.5 0 0 0 3 4.882V2.5zM4.5 2a.5.5 0 0 0-.5.5V3h2v-.5a.5.5 0 0 0-.5-.5h-1zM6 4H4v.882a1.5 1.5 0 0 1-.83 1.342l-.894.447A.5.5 0 0 0 2 7.118V13h4v-1.293l-.854-.853A.5.5 0 0 1 5 10.5v-1A1.5 1.5 0 0 1 6.5 8h3A1.5 1.5 0 0 1 11 9.5v1a.5.5 0 0 1-.146.354l-.854.853V13h4V7.118a.5.5 0 0 0-.276-.447l-.895-.447A1.5 1.5 0 0 1 12 4.882V4h-2v1.5a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V4zm4-1h2v-.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5V3zm4 11h-4v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14zm-8 0H2v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14z"
+                        ></path>
+                     </svg>
+                      INTERESTS
+                  </h4>
+                  <ul class="list-tag">
+                     {interest.map((i) => <li>{i}</li>)}
+                  </ul>
+               </section>
+               <!--
                     <section>
                         <h4>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
@@ -154,333 +274,460 @@ const { alt, src } = await getImage({ src: image, alt: '', format:'webp', width:
                         </h4>
                     </section>
                     -->
-                    <section>
-                        <h4>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
-                                <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>
-                                <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>
-                            </svg>
-                            CONNECT LINK
-                        </h4>
-                        <ul>
-                            <li>
-                                <a href="https://www.linkedin.com/in/nabawiazizul/">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
-                                        <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
-                                    </svg>
-                                    nabawiazizul
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-globe" viewBox="0 0 16 16">
-                                        <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z"/>
-                                    </svg>
-                                    kivalevan.me
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/KivalEvan">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
-                                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-                                    </svg>
-                                    KivalEvan
-                                </a>
-                            </li>
-                        </ul>
-                    </section>
-                    <section>
-                        Last Updated: {formatDate('5 February 2023')}
-                    </section>
-                </div>
-                <div class="flex-col-large">
-                    <section class="timeline">
-                        <h4>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tree" viewBox="0 0 16 16">
-                                <path d="M8.416.223a.5.5 0 0 0-.832 0l-3 4.5A.5.5 0 0 0 5 5.5h.098L3.076 8.735A.5.5 0 0 0 3.5 9.5h.191l-1.638 3.276a.5.5 0 0 0 .447.724H7V16h2v-2.5h4.5a.5.5 0 0 0 .447-.724L12.31 9.5h.191a.5.5 0 0 0 .424-.765L10.902 5.5H11a.5.5 0 0 0 .416-.777l-3-4.5zM6.437 4.758A.5.5 0 0 0 6 4.5h-.066L8 1.401 10.066 4.5H10a.5.5 0 0 0-.424.765L11.598 8.5H11.5a.5.5 0 0 0-.447.724L12.69 12.5H3.309l1.638-3.276A.5.5 0 0 0 4.5 8.5h-.098l2.022-3.235a.5.5 0 0 0 .013-.507z"/>
-                            </svg>
-                            EXTRACURRICULAR ACTIVITIES
-                        </h4>
-                        <div>
-                            <h5>MMU Esports Club | 2018 - 2021</h5>
-                            <h6>2020 - 2021 | Marketing Committee</h6><br>
-                            <h6>2018 - 2020 | Logistic Committee</h6>
-                            <ul class="list-arrow">
-                                <li>Setting up the venue before and after the event.</li>
-                                <li>Handling and ensuring the equipment is in good condition.</li>
-                            </ul>
-                        </div>
-                    </section>
-                    <section class="timeline">
-                        <h4>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-briefcase" viewBox="0 0 16 16">
-                                <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5zm1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0zM1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5z"/>
-                            </svg>
-                            VOLUNTEER EXPERIENCE
-                        </h4>
-                        <div>
-                            <h5>Technical Team</h5>
-                            <h6>MMU Cyberplay 2018</h6>
-                            <span>06/2018 - 12/2018</span>
-                            <ul class="list-arrow">
-                                <li>Planned and strategise the event setup.</li>
-                                <li>Setup the venue and multiple tournament such as Dota 2, FIFA18, etc.</li>
-                                <li>Handling and ensuring the equipment and venue is running smoothly.</li>
-                            </ul>
-                        </div>
-                    </section>
-                    <section class="timeline">
-                        <h4>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-briefcase" viewBox="0 0 16 16">
-                                <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5zm1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0zM1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5z"/>
-                            </svg>
-                            WORK EXPERIENCE
-                        </h4>
-                        <div>
-                            <h5>Web Developer Internship</h5>
-                            <h6>Azeus Convene</h6>
-                            <span>05/2022 - 08/2022</span>
-                            <ul class="list-arrow">
-                                <li>Created a complex reactive form from numerous of data.</li>
-                                <li>Collaborated with colleague in the back-end design.</li>
-                            </ul>
-                        </div>
-                    </section>
-                    <section class="timeline">
-                        <h4>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-kanban" viewBox="0 0 16 16">
-                                <path d="M13.5 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h11zm-11-1a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2h-11z"/>
-                                <path d="M6.5 3a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V3zm-4 0a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V3zm8 0a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V3z"/>
-                            </svg>
-                            PROJECTS
-                        </h4>
-                        <div>
-                            <h5>
-                                <a href="https://github.com/KivalEvan/BeatSaber-Deno">
-                                    Beat Saber Deno
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
-                                        <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>
-                                        <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>
-                                    </svg>
-                                </a>
-                            </h5>
-                            <h6>Personal Project</h6>
-                            <span>(<a href="https://www.typescriptlang.org/">TypeScript</a>, <a href="https://deno.land/">Deno</a>)</span>
-                            <p>
-                                A library for Beat Saber beatmap scripting designed for ease of use and flexible for the user.
-                                It ensures integrity of the beatmap for it to be usable in Beat Saber.
-                            </p>
-                        </div>
-                        <div>
-                            <h5>
-                                <a href="https://github.com/KivalEvan/BeatSaber-MapCheck">
-                                    Beat Saber Map Check
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
-                                        <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>
-                                        <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>
-                                    </svg>
-                                </a>
-                            </h5>
-                            <h6>Personal Project</h6>
-                            <span>(<a href="https://www.typescriptlang.org/">TypeScript</a>, <a href="https://sass-lang.com/">Sass</a>, <a href="https://vitejs.dev/">Vite</a>)</span>
-                            <p>
-                                Web-based application designed to spot out the error and show extensive stats of the beatmap.
-                                Widely used in the mapping community and helped out mappers from potential errors.
-                            </p>
-                        </div>
-                        <div>
-                            <h5>
-                                <a href="https://github.com/Caeden117/ChroMapper">
-                                    ChroMapper
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
-                                        <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>
-                                        <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>
-                                    </svg>
-                                </a>
-                            </h5>
-                            <h6>Open-Source Project</h6>
-                            <span>(<a href="https://unity.com/">Unity</a>, <a href="https://learn.microsoft.com/en-us/dotnet/csharp/">C#</a>)</span>
-                            <p>
-                                A third-party Beat Saber beatmap editing software.
-                                Contributed in handling beatmap model and user control behaviour.
-                            </p>
-                        </div>
-                    </section>
-                </div>
+               <section>
+                  <h4>
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-link-45deg"
+                        viewBox="0 0 16 16"
+                     >
+                        <path
+                           d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"
+                        ></path>
+                        <path
+                           d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"
+                        ></path>
+                     </svg>
+                      CONNECT LINK
+                  </h4>
+                  <ul>
+                     <li>
+                        <a href="https://www.linkedin.com/in/nabawiazizul/">
+                           <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              class="bi bi-linkedin"
+                              viewBox="0 0 16 16"
+                           >
+                              <path
+                                 d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"
+                              ></path>
+                           </svg>
+                            nabawiazizul
+                        </a>
+                     </li>
+                     <li>
+                        <a href="/">
+                           <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              class="bi bi-globe"
+                              viewBox="0 0 16 16"
+                           >
+                              <path
+                                 d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z"
+                              ></path>
+                           </svg>
+                            kivalevan.me
+                        </a>
+                     </li>
+                     <li>
+                        <a href="https://github.com/KivalEvan">
+                           <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              class="bi bi-github"
+                              viewBox="0 0 16 16"
+                           >
+                              <path
+                                 d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+                              ></path>
+                           </svg>
+                            KivalEvan
+                        </a>
+                     </li>
+                  </ul>
+               </section>
+               <section>
+                  Last Updated: {formatDate('5 February 2023')}
+               </section>
             </div>
-        </div>
-    </div>
+            <div class="flex-col-large">
+               <section class="timeline">
+                  <h4>
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-tree"
+                        viewBox="0 0 16 16"
+                     >
+                        <path
+                           d="M8.416.223a.5.5 0 0 0-.832 0l-3 4.5A.5.5 0 0 0 5 5.5h.098L3.076 8.735A.5.5 0 0 0 3.5 9.5h.191l-1.638 3.276a.5.5 0 0 0 .447.724H7V16h2v-2.5h4.5a.5.5 0 0 0 .447-.724L12.31 9.5h.191a.5.5 0 0 0 .424-.765L10.902 5.5H11a.5.5 0 0 0 .416-.777l-3-4.5zM6.437 4.758A.5.5 0 0 0 6 4.5h-.066L8 1.401 10.066 4.5H10a.5.5 0 0 0-.424.765L11.598 8.5H11.5a.5.5 0 0 0-.447.724L12.69 12.5H3.309l1.638-3.276A.5.5 0 0 0 4.5 8.5h-.098l2.022-3.235a.5.5 0 0 0 .013-.507z"
+                        ></path>
+                     </svg>
+                      EXTRACURRICULAR ACTIVITIES
+                  </h4>
+                  <div>
+                     <h5>MMU Esports Club | 2018 - 2021</h5>
+                     <h6>2020 - 2021 | Marketing Committee</h6><br />
+                     <h6>2018 - 2020 | Logistic Committee</h6>
+                     <ul class="list-arrow">
+                        <li>Setting up the venue before and after the event.</li>
+                        <li>Handling and ensuring the equipment is in good condition.</li>
+                     </ul>
+                  </div>
+               </section>
+               <section class="timeline">
+                  <h4>
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-briefcase"
+                        viewBox="0 0 16 16"
+                     >
+                        <path
+                           d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5zm1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0zM1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5z"
+                        ></path>
+                     </svg>
+                      VOLUNTEER EXPERIENCE
+                  </h4>
+                  <div>
+                     <h5>Technical Team</h5>
+                     <h6>MMU Cyberplay 2018</h6>
+                     <span>06/2018 - 12/2018</span>
+                     <ul class="list-arrow">
+                        <li>Planned and strategise the event setup.</li>
+                        <li>
+                           Setup the venue and multiple tournament such as Dota 2, FIFA18, etc.
+                        </li>
+                        <li>Handling and ensuring the equipment and venue is running smoothly.</li>
+                     </ul>
+                  </div>
+               </section>
+               <section class="timeline">
+                  <h4>
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-briefcase"
+                        viewBox="0 0 16 16"
+                     >
+                        <path
+                           d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5zm1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0zM1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5z"
+                        ></path>
+                     </svg>
+                      WORK EXPERIENCE
+                  </h4>
+                  <div>
+                     <h5>Web Developer Internship</h5>
+                     <h6>Azeus Convene</h6>
+                     <span>05/2022 - 08/2022</span>
+                     <ul class="list-arrow">
+                        <li>Created a complex reactive form from numerous of data.</li>
+                        <li>Collaborated with colleague in the back-end design.</li>
+                     </ul>
+                  </div>
+               </section>
+               <section class="timeline">
+                  <h4>
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-kanban"
+                        viewBox="0 0 16 16"
+                     >
+                        <path
+                           d="M13.5 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h11zm-11-1a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2h-11z"
+                        ></path>
+                        <path
+                           d="M6.5 3a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V3zm-4 0a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V3zm8 0a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V3z"
+                        ></path>
+                     </svg>
+                      PROJECTS
+                  </h4>
+                  <div>
+                     <h5>
+                        <a href="https://github.com/KivalEvan/BeatSaber-Deno">
+                           Beat Saber Deno
+                           <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              class="bi bi-link-45deg"
+                              viewBox="0 0 16 16"
+                           >
+                              <path
+                                 d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"
+                              ></path>
+                              <path
+                                 d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"
+                              ></path>
+                           </svg>
+                        </a>
+                     </h5>
+                     <h6>Personal Project</h6>
+                     <span
+                        >(<a href="https://www.typescriptlang.org/">TypeScript</a>, <a
+                           href="https://deno.land/">Deno</a
+                        >)</span
+                     >
+                     <p>
+                        A library for Beat Saber beatmap scripting designed for ease of use and
+                        flexible for the user. It ensures integrity of the beatmap for it to be
+                        usable in Beat Saber.
+                     </p>
+                  </div>
+                  <div>
+                     <h5>
+                        <a href="https://github.com/KivalEvan/BeatSaber-MapCheck">
+                           Beat Saber Map Check
+                           <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              class="bi bi-link-45deg"
+                              viewBox="0 0 16 16"
+                           >
+                              <path
+                                 d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"
+                              ></path>
+                              <path
+                                 d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"
+                              ></path>
+                           </svg>
+                        </a>
+                     </h5>
+                     <h6>Personal Project</h6>
+                     <span
+                        >(<a href="https://www.typescriptlang.org/">TypeScript</a>, <a
+                           href="https://sass-lang.com/">Sass</a
+                        >, <a href="https://vitejs.dev/">Vite</a>)</span
+                     >
+                     <p>
+                        Web-based application designed to spot out the error and show extensive
+                        stats of the beatmap. Widely used in the mapping community and helped out
+                        mappers from potential errors.
+                     </p>
+                  </div>
+                  <div>
+                     <h5>
+                        <a href="https://github.com/Caeden117/ChroMapper">
+                           ChroMapper
+                           <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              class="bi bi-link-45deg"
+                              viewBox="0 0 16 16"
+                           >
+                              <path
+                                 d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"
+                              ></path>
+                              <path
+                                 d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"
+                              ></path>
+                           </svg>
+                        </a>
+                     </h5>
+                     <h6>Open-Source Project</h6>
+                     <span
+                        >(<a href="https://unity.com/">Unity</a>, <a
+                           href="https://learn.microsoft.com/en-us/dotnet/csharp/">C#</a
+                        >)</span
+                     >
+                     <p>
+                        A third-party Beat Saber beatmap editing software. Contributed in handling
+                        beatmap model and user control behaviour.
+                     </p>
+                  </div>
+               </section>
+            </div>
+         </div>
+      </div>
+   </div>
 </BaseLayout>
 
 <style lang="scss">
-    $background-color: #cd6060;
-    $main-color: #a33;
-    a {
-        color: inherit;
-        &:hover {
-        color: #f44;
-        }
-    }
-    .resume {
-        padding: 0;
-        max-width: 60em;
-        margin: auto;
-    }
-    h1 {
-        font-size: 2.5rem;
-    }
-    h2 {
-        font-size: 1.5rem;
-    }
-    h3 {
-        font-size: 1.125rem;
-    }
-    h4 {
-        display:inline-block;
-        font-size: 1.25rem;
-        letter-spacing: 0.1875em;
-        margin-bottom: 0.5em;
-    }
-    h6 {
-        display:inline;
-    }
-    svg {
-        display: inline;
-        vertical-align: sub;
-        width: 1em;
-        height: 1em;
-    }
-    .container {
-        position: relative;
-        font-family: sans-serif;
-        color: #111;
-        background-color: #eee;
-        margin: 1em 0;
-        box-shadow: 0 0 1em #0008;
-        &::before, &::after {
+   $background-color: #cd6060;
+   $main-color: #a33;
+   a {
+      color: inherit;
+      &:hover {
+         color: #f44;
+      }
+   }
+   .resume {
+      padding: 0;
+      max-width: 60em;
+      margin: auto;
+   }
+   h1 {
+      font-size: 2.5rem;
+   }
+   h2 {
+      font-size: 1.5rem;
+   }
+   h3 {
+      font-size: 1.125rem;
+   }
+   h4 {
+      display: inline-block;
+      font-size: 1.25rem;
+      letter-spacing: 0.1875em;
+      margin-bottom: 0.5em;
+   }
+   h6 {
+      display: inline;
+   }
+   svg {
+      display: inline;
+      vertical-align: sub;
+      width: 1em;
+      height: 1em;
+   }
+   .container {
+      position: relative;
+      font-family: sans-serif;
+      color: #111;
+      background-color: #eee;
+      margin: 1em 0;
+      box-shadow: 0 0 1em #0008;
+      &::before,
+      &::after {
+         content: '';
+         position: absolute;
+         width: 1.5em;
+         height: 1.5em;
+      }
+      &::before {
+         top: 0.75em;
+         left: 0.75em;
+         border-top: 1px solid white;
+         border-left: 1px solid white;
+      }
+      &::after {
+         bottom: 0.75em;
+         right: 0.75em;
+         border-bottom: 1px solid black;
+         border-right: 1px solid black;
+      }
+   }
+   .main,
+   .profile {
+      padding: 1em 2em;
+   }
+   .profile {
+      background-color: $background-color;
+      color: whitesmoke;
+      a:hover {
+         color: #ccc;
+      }
+      &-avatar {
+         margin: auto;
+         text-align: center;
+         img {
+            width: 10em;
+            height: 10em;
+            background-color: #ccc;
+            border-radius: 50%;
+         }
+      }
+   }
+   section {
+      &:not(:first-child) {
+         margin-top: 2em;
+      }
+   }
+   .flex {
+      &-full {
+         width: 100%;
+         padding: 0 0.5em;
+      }
+      &-col {
+         &-huge {
+            width: 70%;
+            padding: 0 0.5em;
+         }
+         &-large {
+            width: 60%;
+            padding: 0 0.5em;
+         }
+         &-medium {
+            width: 50%;
+            padding: 0 0.5em;
+         }
+         &-small {
+            width: 40%;
+            padding: 0 0.5em;
+         }
+         &-tiny {
+            width: 30%;
+            padding: 0 0.5em;
+         }
+      }
+   }
+   .timeline {
+      display: flex;
+      flex-flow: column;
+      div {
+         position: relative;
+         border-left: 0.125em solid $main-color;
+         padding-left: 1.5em;
+         padding-bottom: 1em;
+         &::before {
             content: '';
             position: absolute;
-            width: 1.5em;
-            height: 1.5em;
-        }
-        &::before {
-            top: 0.75em;
-            left: 0.75em;
-            border-top: 1px solid white;
-            border-left: 1px solid white;
-        }
-        &::after {
-            bottom: 0.75em;
-            right: 0.75em;
-            border-bottom: 1px solid black;
-            border-right: 1px solid black;
-        }
-    }
-    .main, .profile {
-        padding: 1em 2em;
-    }
-    .profile {
-        background-color: $background-color;
-        color: whitesmoke;
-        a:hover {
-            color: #ccc;
-        }
-        &-avatar {
-            margin: auto;
-            text-align: center;
-            img {
-                width: 10em;
-                height: 10em;
-                background-color: #ccc;
-                border-radius: 50%;
-            }
-        }
-    }
-    section {
-        &:not(:first-child) {
-            margin-top: 2em;
-        }
-    }
-    .flex {
-        &-full {
-            width: 100%;
-            padding: 0 0.5em;
-        }
-        &-col {
-            &-huge {
-                width: 70%;
-                padding: 0 0.5em;
-            }
-            &-large {
-                width: 60%;
-                padding: 0 0.5em;
-            }
-            &-medium {
-                width: 50%;
-                padding: 0 0.5em;
-            }
-            &-small {
-                width: 40%;
-                padding: 0 0.5em;
-            }
-            &-tiny {
-                width: 30%;
-                padding: 0 0.5em;
-            }
-        }
-    }
-    .timeline {
-        display: flex;
-        flex-flow: column;
-        div {
-            position: relative;
-            border-left: 0.125em solid $main-color;
-            padding-left: 1.5em;
-            padding-bottom: 1em;
-            &::before {
-                content: '';
-                position: absolute;
-                left: -0.5625em;
-                top: 0;
-                display: block;
-                background-color: $main-color;
-                width: 1em;
-                height: 1em;
-                border-radius: 50%;
-            }
-        }
-    }
-    .skill {
-        width: 100%;
-        &-name {
-            width: 40%;
-        }
-        &-progress {
-            width: 25%;
-            border-left: 1px solid #111;
-            border-right: 1px solid #111;
-            span {
-                height: 8px;
-                vertical-align: middle;
-                display: inline-block;
-                background-color: $main-color;
-            }
-        }
-        &-tier {
-            padding-left: 0.5em;
-            width: 35%;
-        }
-    }
-    ul {
-        &.list-tag {
-            li {
-                border: 1px solid #222;
-            }
-        }
-        &.list-skill {
-            li {
-                display: flex;
-            }
-        }
-    }
+            left: -0.5625em;
+            top: 0;
+            display: block;
+            background-color: $main-color;
+            width: 1em;
+            height: 1em;
+            border-radius: 50%;
+         }
+      }
+   }
+   .skill {
+      width: 100%;
+      &-name {
+         width: 40%;
+      }
+      &-progress {
+         width: 25%;
+         border-left: 1px solid #111;
+         border-right: 1px solid #111;
+         span {
+            height: 8px;
+            vertical-align: middle;
+            display: inline-block;
+            background-color: $main-color;
+         }
+      }
+      &-tier {
+         padding-left: 0.5em;
+         width: 35%;
+      }
+   }
+   ul {
+      &.list-tag {
+         li {
+            border: 1px solid #222;
+         }
+      }
+      &.list-skill {
+         li {
+            display: flex;
+         }
+      }
+   }
 </style>

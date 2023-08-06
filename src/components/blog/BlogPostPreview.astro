@@ -3,35 +3,37 @@ import type { MarkdownInstance } from 'astro';
 import { formatDate } from '../../utils/date';
 
 interface Frontmatter {
-    title: string;
-    description: string;
-    author: string;
-    publishDate: string;
-    updatedDate: string;
-    layout: string;
+   title: string;
+   description: string;
+   author: string;
+   publishDate: string;
+   updatedDate: string;
+   layout: string;
 }
 
 export interface Props {
-    post: MarkdownInstance<Frontmatter>;
+   post: MarkdownInstance<Frontmatter>;
 }
 
 const { post } = Astro.props as Props;
 const date = new Date(post.frontmatter.publishDate);
 const formattedDate = formatDate(date);
 ---
+
 <article class="post-preview">
-    <header>
-        <a href={post.url}><h3>{post.frontmatter.title}</h3></a>
-        <time datetime={date.toISOString()}>{formattedDate}</time>
-    </header>
-    <main>
-        <p>{post.frontmatter.description}</p>
-        <a href={post.url}>Read more</a>
-    </main>
+   <header>
+      <a href={post.url}><h3>{post.frontmatter.title}</h3></a>
+      <time datetime={date.toISOString()}>{formattedDate}</time>
+   </header>
+   <hr />
+   <main>
+      <p>{post.frontmatter.description}</p>
+      <a href={post.url}>Read more</a>
+   </main>
 </article>
 
 <style lang="scss">
-    article:not(:last-child) {
-        margin-bottom: 2em;
-    }
+   article:not(:last-child) {
+      margin-bottom: 2em;
+   }
 </style>

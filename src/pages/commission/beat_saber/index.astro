@@ -1,316 +1,383 @@
 ---
 import Main from '../../../layouts/Main.astro';
 import BeatmapList from '../../../components/commission/BeatmapList.svelte';
-import {formatDate} from '../../../utils/date';
+import { formatDate } from '../../../utils/date';
 
 const pageDetails = {
-    title: 'Commission',
-    subtitle: 'Beat Saber Custom Map',
-    browserTitle: 'Beat Saber Commission',
-    noSubtitle: true,
-    description: 'Check the link for more info.',
-    overrideTitle: false,
-    overrideSubtitle: true,
-}
+   title: 'Commission',
+   subtitle: 'Beat Saber Custom Map',
+   browserTitle: 'Beat Saber Commission',
+   noSubtitle: true,
+   description: 'Check the link for more info.',
+   overrideTitle: false,
+   overrideSubtitle: true,
+};
 ---
+
 <Main pageDetails={pageDetails}>
-    <div class="banner">
-        <div class="banner-content">
-            <h3 class="text-shadow">Beat Saber Custom Map</h3>
-        </div>
-    </div>
-    <section class="wrapper readable full-size">
-        <p class="center">
-            I am the mapper for Beat Saber with over 4 years of experience with involvement in ranked scene, playlists, and other places.
-            I have crafted plenty of maps in various different ways, and mainly into mapping Touhou Project arrangement.
-        </p>
-        <ul class="list-tag">
-            <li><a href="#map-showcase">Showcase</a></li>
-            <li><a href="https://beatsaver.com/profile/4285062">BeatSaver</a></li>
-            <li><a href="https://bsaber.com/songs/new/?uploaded_by=kivalevan">BeastSaber</a></li>
-            <li><a href="https://youtube.com/playlist?list=PLp4N5ZtOuDZlhdvoH1INSPn2Qn9zrD19b">Video Preview</a></li>
-        </ul>
-        <p class="center">
-            Placing value in creativity and unique aspect for each map, I strive in giving a different experience for players to try. The effort has resulted in several notable achievements:
-        </p>
-        <ul class="list-tag">
-            <li><span>Top 100 BeatSaver</span></li>
-            <li><span>Beasties 2022 - Best Vanilla+ Light - Runner-Up</span></li>
-            <li><span>BSMG Halloween 2022 Mapping Contest - 3rd Place</span></li>
-            <li><span>Building Block 2020 - 3rd Place</span></li>
-        </ul>
-    </section>
-    <section class="wrapper full-size">
-        <h4 id="enquiry">Enquiry</h4>
-        <p class="wrapper readable center">
-            If you are interested in ordering a commission or have any question regarding the information, you may contact me
-            on:
-        </p>
-        <ul class="list-tag">
-            <li><span class="fake-link discord-popup" title="Kival Evan#5480">Discord</span></li>
-            <li><a href="https://twitter.com/Kival_Evan">Twitter</a></li>
-            <li><a href="mailto:kivalevan@gmail.com">Email</a></li>
-        </ul>
-        <p class="wrapper readable center">
-            Please read below for <a href="#pricing">Pricing & Payment</a> and <a href="#tnc">Terms & Conditions</a> for further information.<br>
-            Once the order is made, you have accepted the <a href="#tnc">Terms & Conditions</a>.
-        </p>
-    </section>
-    <section class="wrapper full-size">
-        <h4 id="pricing">Pricing & Payment</h4>
-        <br>
-        <div class="panel-inner">
-            <div class="panel-column panel-border">
-                <table class="table-list">
-                    <caption><h5>Mapping Rate</h5></caption>
-                    <tr>
-                        <th>$25</th>
-                        <td>Expert+</td>
-                        <td class="description">Every details matter, more sound mapped with considerably complicated pattern.</td>
-                    </tr>
-                    <tr>
-                        <th>$20</th>
-                        <td>Expert</td>
-                        <td class="description">Mapped to the rhythm and prominent instrument of the song, fairly challenging.</td>
-                    </tr>
-                    <tr>
-                        <th>$18</th>
-                        <td>Hard</td>
-                        <td class="description">A faster paced map, challenging to casual but not too difficult.</td>
-                    </tr>
-                    <tr>
-                        <th>$15</th>
-                        <td>Normal</td>
-                        <td class="description">Easy challenge for the casual player.</td>
-                    </tr>
-                    <tr>
-                        <th>$10</th>
-                        <td>Easy</td>
-                        <td class="description">Good introductory to someone new and familiar to the game, heavily undermapped.</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="panel-column panel-border">
-                <table class="table-list">
-                    <caption><h5>Lighting Rate</h5></caption>
-                    <tr>
-                        <th>$35</th>
-                        <td>Chroma Advanced</td>
-                        <td class="description">Sophisticated form of lighting with individual light piece is controlled.</td>
-                    </tr>
-                    <tr>
-                        <th>$25</th>
-                        <td>Chroma Basic</td>
-                        <td class="description">Basic form of Chroma lighting on color and spin control.</td>
-                    </tr>
-                    <tr>
-                        <th>$35</th>
-                        <td>Vanilla (V3)</td>
-                        <td class="description">Advanced lighting introduced since Weave.</td>
-                    </tr>
-                    <tr>
-                        <th>$20</th>
-                        <td>Vanilla (V2)</td>
-                        <td class="description">Basic yet effective lighting using (custom) environment prior Weave.</td>
-                    </tr>
-                    <tr>
-                        <th>Free</th>
-                        <td>Lolighter</td>
-                        <td class="description">Automated lighting, generally underwhelming in certain scenario.</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="panel-column panel-border">
-                <table class="table-list">
-                    <caption><h5>Additional Bonus</h5></caption>
-                    <tr>
-                        <th>Free</th>
-                        <td>Difficulty Label</td>
-                    </tr>
-                    <tr>
-                        <th>Free</th>
-                        <td>Custom Colour</td>
-                    </tr>
-                    <tr>
-                        <th>Free</th>
-                        <td>Chroma Object</td>
-                    </tr>
-                    <tr>
-                        <th>Free</th>
-                        <td>Cinema Integration</td>
-                    </tr>
-                    <tr>
-                        <th>Ask for price</th>
-                        <td>Custom Environment</td>
-                        <td class="description">An existing platform may be reused here. Otherwise, a new, unique environment can be created at a price (any reference is appreciated).</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <div class="wrapper readable">
-            <p class="center">
-                Price rating is based on price per minute and
-                rounded to next nearest minute, halved price for closest to next half minute.<br>
-                <br>
-                Pricing is subjected to change, please read the note below.
-            </p>
-            <ul class="list-tag">
-                <li><a href="/commission/beat_saber/cost_estimator">Cost Estimator</a></li>
-            </ul>
-            <div>
-                <h5>Note:</h5>
-                <ul class="list-arrow">
-                    <li>
-                        Additional bonus is free-of-charge but not a choice.
-                        If I enjoy the song and the mapping allows for creativity, you may receive one of the listed bonus.
-                        Alternatively, you may ask for it but cannot be guaranteed.
-                        Custom environment may be used fittingly if existing available. 
-                    </li>
-                    <li>Rate may increase depending on the complexity of the song, difficulty in map creation, or if it contain multiple (complex) BPM changes.</li>
-                    <li>Difficulty scaling is based on recent OST map and per song basis.</li>
-                </ul>
-            </div>
-            <br>
-            <div>
-                <h5>Payment Option:</h5>
-                <ul class="list-arrow">
-                    <li>50% upfront, 50% upon delivery</li>
-                    <li>100% upfront</li>
-                </ul>
-                <p>
-                    Payment made over PayPal with USD currency excluding tax. If there are other valid and trusted payment service/method, I can try to work it out. Tips are appreciated.
-                </p>
-            </div>
-        </div>
-        <br>
-    </section>
-    <section class="wrapper full-size">
-        <h4 id="map-showcase">Map Showcase</h4>
-        <BeatmapList client:load />
-    </section>
-    <section class="wrapper full-size">
-        <h4 id="tnc">Terms & Conditions</h4>
-        <div class="wrapper readable">
+   <div class="banner">
+      <div class="banner-content">
+         <h3 class="text-shadow">Beat Saber Custom Map</h3>
+      </div>
+   </div>
+   <section class="wrapper readable full-size">
+      <p class="center">
+         I am the mapper for Beat Saber with over 4 years of experience with involvement in ranked
+         scene, playlists, and other places. I have crafted plenty of maps in various different
+         ways, and mainly into mapping Touhou Project arrangement.
+      </p>
+      <ul class="list-tag">
+         <li><a href="#map-showcase">Showcase</a></li>
+         <li><a href="https://beatsaver.com/profile/4285062">BeatSaver</a></li>
+         <li><a href="https://bsaber.com/songs/new/?uploaded_by=kivalevan">BeastSaber</a></li>
+         <li>
+            <a href="https://youtube.com/playlist?list=PLp4N5ZtOuDZlhdvoH1INSPn2Qn9zrD19b"
+               >Video Preview</a
+            >
+         </li>
+      </ul>
+      <p class="center">
+         Placing value in creativity and unique aspect for each map, I strive in giving a different
+         experience for players to try. The effort has resulted in several notable achievements:
+      </p>
+      <ul class="list-tag">
+         <li><span>Top 100 BeatSaver</span></li>
+         <li><span>Beasties 2022 - Best Vanilla+ Light - Runner-Up</span></li>
+         <li><span>BSMG Halloween 2022 Mapping Contest - 3rd Place</span></li>
+         <li><span>Building Block 2020 - 3rd Place</span></li>
+      </ul>
+   </section>
+   <section class="wrapper full-size">
+      <h4 id="enquiry">Enquiry</h4>
+      <p class="wrapper readable center">
+         If you are interested in ordering a commission or have any question regarding the
+         information, you may contact me on:
+      </p>
+      <ul class="list-tag">
+         <li><span class="fake-link discord-popup" title="Kival Evan#5480">Discord</span></li>
+         <li><a href="https://twitter.com/Kival_Evan">Twitter</a></li>
+         <li><a href="mailto:kivalevan@gmail.com">Email</a></li>
+      </ul>
+      <p class="wrapper readable center">
+         Please read below for <a href="#pricing">Pricing & Payment</a> and <a href="#tnc"
+            >Terms & Conditions</a
+         > for further information.<br />
+          Once the order is made, you have accepted the <a href="#tnc">Terms & Conditions</a>.
+      </p>
+   </section>
+   <section class="wrapper full-size">
+      <h4 id="pricing">Pricing & Payment</h4>
+      <br />
+      <div class="panel-inner">
+         <div class="panel-column panel-border">
+            <table class="table-list">
+               <caption><h5>Mapping Rate</h5></caption>
+               <tr>
+                  <th>$25</th>
+                  <td>Expert+</td>
+                  <td class="description"
+                     >Every details matter, more sound mapped with considerably complicated pattern.</td
+                  >
+               </tr>
+               <tr>
+                  <th>$20</th>
+                  <td>Expert</td>
+                  <td class="description"
+                     >Mapped to the rhythm and prominent instrument of the song, fairly challenging.</td
+                  >
+               </tr>
+               <tr>
+                  <th>$18</th>
+                  <td>Hard</td>
+                  <td class="description"
+                     >A faster paced map, challenging to casual but not too difficult.</td
+                  >
+               </tr>
+               <tr>
+                  <th>$15</th>
+                  <td>Normal</td>
+                  <td class="description">Easy challenge for the casual player.</td>
+               </tr>
+               <tr>
+                  <th>$10</th>
+                  <td>Easy</td>
+                  <td class="description"
+                     >Good introductory to someone new and familiar to the game, heavily
+                     undermapped.</td
+                  >
+               </tr>
+            </table>
+         </div>
+         <div class="panel-column panel-border">
+            <table class="table-list">
+               <caption><h5>Lighting Rate</h5></caption>
+               <tr>
+                  <th>$35</th>
+                  <td>Chroma Advanced</td>
+                  <td class="description"
+                     >Sophisticated form of lighting with individual light piece is controlled.</td
+                  >
+               </tr>
+               <tr>
+                  <th>$25</th>
+                  <td>Chroma Basic</td>
+                  <td class="description"
+                     >Basic form of Chroma lighting on color and spin control.</td
+                  >
+               </tr>
+               <tr>
+                  <th>$35</th>
+                  <td>Vanilla (V3)</td>
+                  <td class="description">Advanced lighting introduced since Weave.</td>
+               </tr>
+               <tr>
+                  <th>$20</th>
+                  <td>Vanilla (V2)</td>
+                  <td class="description"
+                     >Basic yet effective lighting using (custom) environment prior Weave.</td
+                  >
+               </tr>
+               <tr>
+                  <th>Free</th>
+                  <td>Lolighter</td>
+                  <td class="description"
+                     >Automated lighting, generally underwhelming in certain scenario.</td
+                  >
+               </tr>
+            </table>
+         </div>
+         <div class="panel-column panel-border">
+            <table class="table-list">
+               <caption><h5>Additional Bonus</h5></caption>
+               <tr>
+                  <th>Free</th>
+                  <td>Difficulty Label</td>
+               </tr>
+               <tr>
+                  <th>Free</th>
+                  <td>Custom Colour</td>
+               </tr>
+               <tr>
+                  <th>Free</th>
+                  <td>Chroma Object</td>
+               </tr>
+               <tr>
+                  <th>Free</th>
+                  <td>Cinema Integration</td>
+               </tr>
+               <tr>
+                  <th>Ask for price</th>
+                  <td>Custom Environment</td>
+                  <td class="description"
+                     >An existing platform may be reused here. Otherwise, a new, unique environment
+                     can be created at a price (any reference is appreciated).</td
+                  >
+               </tr>
+            </table>
+         </div>
+      </div>
+      <div class="wrapper readable">
+         <p class="center">
+            Price rating is based on price per minute and rounded to next nearest minute, halved
+            price for closest to next half minute.<br />
+            <br />
+             Pricing is subjected to change, please read the note below.
+         </p>
+         <ul class="list-tag">
+            <li><a href="/commission/beat_saber/cost_estimator">Cost Estimator</a></li>
+         </ul>
+         <div>
+            <h5>Note:</h5>
             <ul class="list-arrow">
-                <li>I have the right to deny any commission.</li>
-                <li>The map will be uploaded to my own BeatSaver account.</li>
-                <li>Map will be released & uploaded as soon after completion and full payment made, but are allowed to
-                    request scheduled release.</li>
-                <li>Map released have a week of liability in case of the map is below satisfactory level or issues found
-                    that mandate changes or fixes. No duration for game-breaking issues caused by the map in future game update.</li>
-                <li>Song length depend on valid metadata if exist, otherwise use given source; case-by-case on duration edge case.</li>
-                <li>Expected delivery time will be around 1-2 weeks but may vary depending on availability and option,
-                    I'll keep in touch showcasing progress and other related detail, you are allowed to give feedback on
-                    recent progress. Please do not spam or excessively remind me in short period of time.</li>
-                <li>Lighting will take another considerable chunk of time. If you wish to receive the map sooner,
-                    consider switching to Lolighter option, the payment will be refunded or discounted by lighting cost.</li>
-                <li>I have full control over what or how I map; this typically mean it will be high difficulty in mind.
-                    You are free to suggest what you want in the map, including but not limited to specific difficulty, note pattern, etc.
-                    However, It is not guaranteed to be applied and I have the right to refuse such that it involve bad mapping practice, against my mapping habit, or anything I disagree with.</li>
-                <li>Additional detail such as difficulty label, custom colour, base platform, etc is allowed and free-of-charge. Exception, detail such as obscene text, similar coloured note, and other I
-                    disagree or deemed inappropriate will be rejected.</li>
-                <li>I may not accept nor take request outside product listed here (such as curation, playlist, advert,
-                    etc), however it is negotiable.</li>
-                <li>I may cancel the commission at any time and you will receive full refund and disclosure for cancellation.</li>
+               <li>
+                  Additional bonus is free-of-charge but not a choice. If I enjoy the song and the
+                  mapping allows for creativity, you may receive one of the listed bonus.
+                  Alternatively, you may ask for it but cannot be guaranteed. Custom environment may
+                  be used fittingly if existing available.
+               </li>
+               <li>
+                  Rate may increase depending on the complexity of the song, difficulty in map
+                  creation, or if it contain multiple (complex) BPM changes.
+               </li>
+               <li>Difficulty scaling is based on recent OST map and per song basis.</li>
             </ul>
-            <br>
-            <span>Last updated: {formatDate('09 March 2023')}</span><br>
-            <br>
-            <span><strong>Note:</strong> Terms & Conditions is subjected to change; may not be applicable to existing order or enquiry depending on importance or severity.</span><br>
-            <br>
-        </div>
-    </section>
+         </div>
+         <br />
+         <div>
+            <h5>Payment Option:</h5>
+            <ul class="list-arrow">
+               <li>50% upfront, 50% upon delivery</li>
+               <li>100% upfront</li>
+            </ul>
+            <p>
+               Payment made over PayPal with USD currency excluding tax. If there are other valid
+               and trusted payment service/method, I can try to work it out. Tips are appreciated.
+            </p>
+         </div>
+      </div>
+      <br />
+   </section>
+   <section class="wrapper full-size">
+      <h4 id="map-showcase">Map Showcase</h4>
+      <BeatmapList client:load />
+   </section>
+   <section class="wrapper full-size">
+      <h4 id="tnc">Terms & Conditions</h4>
+      <div class="wrapper readable">
+         <ul class="list-arrow">
+            <li>I have the right to deny any commission.</li>
+            <li>The map will be uploaded to my own BeatSaver account.</li>
+            <li>
+               Map will be released & uploaded as soon after completion and full payment made, but
+               are allowed to request scheduled release.
+            </li>
+            <li>
+               Map released have a week of liability in case of the map is below satisfactory level
+               or issues found that mandate changes or fixes. No duration for game-breaking issues
+               caused by the map in future game update.
+            </li>
+            <li>
+               Song length depend on valid metadata if exist, otherwise use given source;
+               case-by-case on duration edge case.
+            </li>
+            <li>
+               Expected delivery time will be around 1-2 weeks but may vary depending on
+               availability and option, I'll keep in touch showcasing progress and other related
+               detail, you are allowed to give feedback on recent progress. Please do not spam or
+               excessively remind me in short period of time.
+            </li>
+            <li>
+               Lighting will take another considerable chunk of time. If you wish to receive the map
+               sooner, consider switching to Lolighter option, the payment will be refunded or
+               discounted by lighting cost.
+            </li>
+            <li>
+               I have full control over what or how I map; this typically mean it will be high
+               difficulty in mind. You are free to suggest what you want in the map, including but
+               not limited to specific difficulty, note pattern, etc. However, It is not guaranteed
+               to be applied and I have the right to refuse such that it involve bad mapping
+               practice, against my mapping habit, or anything I disagree with.
+            </li>
+            <li>
+               Additional detail such as difficulty label, custom colour, base platform, etc is
+               allowed and free-of-charge. Exception, detail such as obscene text, similar coloured
+               note, and other I disagree or deemed inappropriate will be rejected.
+            </li>
+            <li>
+               I may not accept nor take request outside product listed here (such as curation,
+               playlist, advert, etc), however it is negotiable.
+            </li>
+            <li>
+               I may cancel the commission at any time and you will receive full refund and
+               disclosure for cancellation.
+            </li>
+         </ul>
+         <br />
+         <span>Last updated: {formatDate('09 March 2023')}</span><br />
+         <br />
+         <span
+            ><strong>Note:</strong> Terms & Conditions is subjected to change; may not be applicable
+            to existing order or enquiry depending on importance or severity.</span
+         ><br />
+         <br />
+      </div>
+   </section>
 </Main>
 
 <style lang="scss">
-    .center {
-        text-align: center;
-    }
-    th, td {
-        display: inline-block;
-        &.description {
-            color: #ddd;
-            font-size: 0.875rem;
-        }
-    }
-    .banner {
-        position: relative;
-        display: flex;
-        height: 12em;
-        justify-content: center;
-        align-items: center;
-        background-image: url("/assets/img/commission-beat-saber.jpg");
-        background-position: center;
-        background-size: cover;
-        background-color: #181820;
-        &-content {
-            h3 {
-                font-size: 1.75em;
-                text-transform: uppercase;
-                letter-spacing: 0.3125em;
-                animation-duration: 1.2s;
-                animation-timing-function: cubic-bezier(0.125,0,0,1);
-                animation-name: explode;
-                @keyframes explode {
-                    from {
-                        letter-spacing: -0.5em;
-                    }
-                    to {
-                        letter-spacing: 0.3125em;
-                    }
-                }
+   .center {
+      text-align: center;
+   }
+   th,
+   td {
+      display: inline-block;
+      &.description {
+         color: #ddd;
+         font-size: 0.875rem;
+      }
+   }
+   .banner {
+      position: relative;
+      display: flex;
+      height: 12em;
+      justify-content: center;
+      align-items: center;
+      background-image: url('/assets/img/commission-beat-saber.jpg');
+      background-position: center;
+      background-size: cover;
+      background-color: #181820;
+      &-content {
+         h3 {
+            font-size: 1.75em;
+            text-transform: uppercase;
+            letter-spacing: 0.3125em;
+            animation-duration: 1.2s;
+            animation-timing-function: cubic-bezier(0.125, 0, 0, 1);
+            animation-name: explode;
+            @keyframes explode {
+               from {
+                  letter-spacing: -0.5em;
+               }
+               to {
+                  letter-spacing: 0.3125em;
+               }
             }
-            position:relative;
-            display: block;
-            background-color: #0006;
-            padding: 1em 2em;
-            margin: 0 1em;
-            backdrop-filter: blur(3px);
-            &::before, &::after {
-                content: '';
-                position: absolute;
-                height: 1.5em;
-                width: 1.5em;
-            }
-            &::before {
-                top: 0;
-                left: 0;
-                border-left: 0.0625em solid #ccc;
-                border-top: 0.0625em solid #ccc;
-            }
-            &::after {
-                bottom: 0;
-                right: 0;
-                border-right: 0.0625em solid #ccc;
-                border-bottom: 0.0625em solid #ccc;
-            }
-        }
-        &::before, &::after {
+         }
+         position: relative;
+         display: block;
+         background-color: #0006;
+         padding: 1em 2em;
+         margin: 0 1em;
+         backdrop-filter: blur(3px);
+         &::before,
+         &::after {
             content: '';
             position: absolute;
-            height: 0;
-            width: 84%;
-            max-width: 76rem;
-            min-width: 30rem;
-        }
-        &::before {
-            top: 0.25em;
-            border-top: 0.125em solid #8884;
-        }
-        &::after {
-            bottom: 0.25em;
-            border-bottom: 0.125em solid #8884;
-        }
-    }
-    .list-tag {
-        justify-content: center;
-        li, a, span {
-            font-size: 1.125rem;
-            padding: 0.5em;
-        }
-    }
-    h4 {
-        padding-bottom: 0.3125em;
-        border-bottom: 1px solid #fff;
-    }
+            height: 1.5em;
+            width: 1.5em;
+         }
+         &::before {
+            top: 0;
+            left: 0;
+            border-left: 0.0625em solid #ccc;
+            border-top: 0.0625em solid #ccc;
+         }
+         &::after {
+            bottom: 0;
+            right: 0;
+            border-right: 0.0625em solid #ccc;
+            border-bottom: 0.0625em solid #ccc;
+         }
+      }
+      &::before,
+      &::after {
+         content: '';
+         position: absolute;
+         height: 0;
+         width: 84%;
+         max-width: 76rem;
+         min-width: 30rem;
+      }
+      &::before {
+         top: 0.25em;
+         border-top: 0.125em solid #8884;
+      }
+      &::after {
+         bottom: 0.25em;
+         border-bottom: 0.125em solid #8884;
+      }
+   }
+   .list-tag {
+      justify-content: center;
+      li,
+      a,
+      span {
+         font-size: 1.125rem;
+         padding: 0.5em;
+      }
+   }
+   h4 {
+      padding-bottom: 0.3125em;
+      border-bottom: 1px solid #fff;
+   }
 </style>

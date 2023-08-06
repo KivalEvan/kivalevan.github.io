@@ -2,63 +2,64 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const pageDetails = {
-    title: '404',
-    description: 'Page not found.',
-    overrideTitle: false,
-}
+   title: '404',
+   description: 'Page not found.',
+   overrideTitle: false,
+};
 ---
+
 <BaseLayout pageDetails={pageDetails}>
-    <div class="full-page">
-        <div class="center">
-            <span class="floatup">Error 404 - Page not found</span><br>
-            <a href="/">
-                <img class="sketchmove" src="/assets/img/404.webp" alt="cirno 404"><br>
-                <span>take me home</span>
-            </a>
-        </div>
-    </div>
+   <div class="full-page">
+      <div class="center">
+         <span class="floatup">Error 404 - Page not found</span><br />
+         <a href="/">
+            <img class="sketchmove" src="/assets/img/404.webp" alt="cirno 404" /><br />
+            <span>take me home</span>
+         </a>
+      </div>
+   </div>
 </BaseLayout>
 
 <style lang="scss">
-    .floatup {
-        display: block;
-        animation-name: floatup;
-        animation-duration: 3s;
-        animation-timing-function: ease-out;
-        @keyframes floatup {
-            from {
-                transform: translateY(1.25em);
-            }
-            to {
-                transform: none;
-            }
-        }
-    }
-    .sketchmove {
-        animation-name: sketchmove;
-        animation-duration: 1s;
-        animation-timing-function: step-start;
-        animation-iteration-count: infinite;
-        @keyframes sketchmove {
-            0% {
-                transform: rotate(1deg) translate(2px, -2px);
-            }
-            33% {
-                transform: rotate(-2deg) translate(-3px, 0px);
-            }
-            66% {
-                transform: rotate(1.5deg) translate(2px, -3px);
-            }
-            100% {
-                transform: none;
-            }
-        }
-    }
-    .center {
-        margin: auto;
-        text-align: center;
-    }
-    img {
-        height: clamp(128px, 75vh, 318px);
-    }
+   .floatup {
+      display: block;
+      animation-name: floatup;
+      animation-duration: 3s;
+      animation-timing-function: ease-out;
+      @keyframes floatup {
+         from {
+            transform: translateY(1.25em);
+         }
+         to {
+            transform: none;
+         }
+      }
+   }
+   .sketchmove {
+      animation-name: sketchmove;
+      animation-duration: 1s;
+      animation-timing-function: step-start;
+      animation-iteration-count: infinite;
+      @keyframes sketchmove {
+         0% {
+            transform: rotate(1deg) translate(2px, -2px);
+         }
+         33% {
+            transform: rotate(-2deg) translate(-3px, 0px);
+         }
+         66% {
+            transform: rotate(1.5deg) translate(2px, -3px);
+         }
+         100% {
+            transform: none;
+         }
+      }
+   }
+   .center {
+      margin: auto;
+      text-align: center;
+   }
+   img {
+      height: clamp(128px, 75vh, 318px);
+   }
 </style>

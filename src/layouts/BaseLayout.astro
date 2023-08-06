@@ -2,25 +2,28 @@
 import Head from '../components/Head.astro';
 
 export interface PageDetails {
-    title: string;
-    subtitle?: string;
-    browserTitle?: string;
-    description?: string;
-    overrideTitle?: boolean;
+   title: string;
+   subtitle?: string;
+   browserTitle?: string;
+   description?: string;
+   overrideTitle?: boolean;
 }
 
 export interface Props {
-    pageDetails: PageDetails;
+   pageDetails: PageDetails;
 }
 
 const { pageDetails } = Astro.props as Props;
 const { title, description, browserTitle, overrideTitle } = pageDetails;
-const headTitle = overrideTitle ? title : "Kival Evan" + (title ? ` | ${browserTitle ? browserTitle : title}` : "");
+const headTitle = overrideTitle
+   ? title
+   : 'Kival Evan' + (title ? ` | ${browserTitle ? browserTitle : title}` : '');
 ---
+
 <!DOCTYPE html>
 <html lang="en">
-	<Head title={headTitle} description={description}/>
-	<body>
-		<slot />
-	</body>
+   <Head title={headTitle} description={description} />
+   <body>
+      <slot />
+   </body>
 </html>
