@@ -44,7 +44,9 @@ const dateString = `${monthName[date.getMonth()]} ${date.getUTCDate()}, ${date.g
       <h2>{pageDetails.title}</h2>
       <time datetime={publishDate} class="publish-date">{dateString}</time>
    </div>
-   <hr />
+   <div class="wrapper">
+      <hr />
+   </div>
    <article class="wrapper readable full-size">
       <slot />
    </article>
