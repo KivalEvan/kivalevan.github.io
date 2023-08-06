@@ -14,14 +14,22 @@ const pageDetails = {
 <Main pageDetails={pageDetails}>
    <div class="banner">
       <div class="banner-content">
-         <h3 class="text-shadow">Unofficial DIY SlimeVR Tracker</h3>
+         <h2 class="text-shadow">Unofficial DIY SlimeVR Tracker</h2>
       </div>
    </div>
+   <div class="wrapper readable">
+      <p>
+         <b>NOTICE:</b> I no longer accept any SlimeVR commission.
+         <br />
+          However, I do provide 3D printed SlimeVR case as a service, <a href="#pricing"
+            >see below</a
+         > for information.
+      </p>
+   </div>
+   <div class="wrapper">
+      <hr />
+   </div>
    <section class="wrapper readable full-size" style="text-align:center">
-      <h4>
-         NOTICE: I no longer accept any SlimeVR commission. However, I do provide 3D printed SlimeVR
-         case as a service, <a href="#pricing">see below</a> for information.
-      </h4>
       <p>
          SlimeVR is a set of open-sourced product to facilitate full-body tracking for VR that works
          for any SteamVR device such as HTC Vive, Valve Index, WMR, and Oculus Link. No base station
@@ -56,6 +64,7 @@ const pageDetails = {
    </section>
    <section class="wrapper full-size">
       <h4 id="how-to">How-to</h4>
+      <hr />
       <div class="wrapper readable">
          <p>
             This section is a recap of things said in <a href="https://docs.slimevr.dev/"
@@ -122,7 +131,7 @@ const pageDetails = {
    </section>
    <section class="wrapper full-size">
       <h4 id="model">Tracker Model</h4>
-      <br />
+      <hr />
       <div class="panel-inner">
          <div class="panel-column panel-border">
             <table class="table-list">
@@ -233,7 +242,7 @@ const pageDetails = {
    </section>
    <section class="wrapper full-size">
       <h4 id="pricing">Pricing & Payment</h4>
-      <br />
+      <hr />
       <div class="panel-border">
          <table class="table-list">
             <caption>Tracker Set</caption>
@@ -320,7 +329,7 @@ const pageDetails = {
                Maybank2U or CIMB Clicks. Shipping fee is included but may vary for outside
                Semenanjung Malaysia. Tips are appreciated.
             </p>
-             Current payment option:
+             Payment Option:
             <ul class="list-arrow">
                <li>50% upfront, 50% upon delivery</li>
                <li>100% upfront</li>
@@ -330,6 +339,7 @@ const pageDetails = {
       </div>
    </section><section class="wrapper full-size">
       <h4 id="enquiry">Enquiry</h4>
+      <hr />
       <div class="wrapper readable">
          <p>
             If you're interested in ordering a commission or have any question regarding the
@@ -350,6 +360,7 @@ const pageDetails = {
    <br />
    <section class="wrapper full-size">
       <h4 id="tnc">Terms & Conditions</h4>
+      <hr />
       <div class="wrapper readable">
          <ul class="list-arrow">
             <li>I have the right to deny any commission.</li>
@@ -382,6 +393,7 @@ const pageDetails = {
    </section>
    <section class="wrapper full-size">
       <h4 id="troubleshoot">Troubleshoot</h4>
+      <hr />
       <div class="wrapper readable">
          <dl>
             <dt>The tracker is on but it is not connected to SlimeVR Server.</dt>
@@ -436,6 +448,7 @@ const pageDetails = {
    </section>
    <section class="wrapper full-size">
       <h4 id="disclaimer">Disclaimer</h4>
+      <hr />
       <div class="wrapper readable">
          <p>
             I am not affiliated with nor I own SlimeVR. SlimeVR is a community-driven open-source
@@ -459,7 +472,7 @@ const pageDetails = {
       background-color: #111;
 
       &-content {
-         h3 {
+         h2 {
             font-size: 1.75em;
             text-transform: uppercase;
             letter-spacing: 0.3125em;
@@ -537,10 +550,5 @@ const pageDetails = {
          font-size: 1.125rem;
          padding: 0.5em;
       }
-   }
-
-   h4 {
-      padding-bottom: 0.3125em;
-      border-bottom: 1px solid #fff;
    }
 </style>
