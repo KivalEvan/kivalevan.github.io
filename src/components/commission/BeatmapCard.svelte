@@ -48,7 +48,12 @@
       <span class="song-name">{beatmap.songName}</span>
       <span class="song-subname">{beatmap.songSubName}</span><br />
       <span class="song-artist">{beatmap.songAuthorName}</span><br />
-      <span class="song-bpm">{beatmap.beatsPerMinute.base}BPM</span><br />
+      <span class="song-bpm">
+         {#if beatmap.beatsPerMinute.base !== beatmap.beatsPerMinute.min || beatmap.beatsPerMinute.base !== beatmap.beatsPerMinute.max}
+            ({beatmap.beatsPerMinute.min}-{beatmap.beatsPerMinute.max})
+         {/if}
+         {beatmap.beatsPerMinute.base}BPM</span
+      ><br />
       <span class="song-duration">{toMMSS(beatmap.songDuration)}</span><br />
       <br />
    </div>

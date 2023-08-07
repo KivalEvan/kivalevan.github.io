@@ -8,6 +8,9 @@ const pageDetails = {
    description: 'A personal website of mine.',
    overrideTitle: false,
 };
+
+const languages = ['JavaScript', 'Typescript', 'Python', 'C#', 'C++', 'C', 'Rust', 'PHP', 'Java'];
+const techs = ['Node.js', 'Deno', 'Astro', 'SolidJS', 'Svelte', 'Tauri Apps', 'Git', 'MySQL'];
 ---
 
 <Main pageDetails={pageDetails}>
@@ -39,27 +42,12 @@ const pageDetails = {
          </p>
          <h4>Programming Language:</h4>
          <ul class="list-tag">
-            <li>JavaScript</li>
-            <li>Typescript</li>
-            <li>Python</li>
-            <li>C#</li>
-            <li>C++</li>
-            <li>C</li>
-            <li>Rust</li>
-            <li>PHP</li>
-            <li>Java</li>
+            {languages.map((e) => <li>{e}</li>)}
          </ul>
          <br />
          <h4>Other Techs:</h4>
          <ul class="list-tag">
-            <li>Node.js</li>
-            <li>Deno</li>
-            <li>Astro</li>
-            <li>SolidJS</li>
-            <li>Svelte</li>
-            <li>Tauri Apps</li>
-            <li>Git</li>
-            <li>MySQL</li>
+            {techs.map((e) => <li>{e}</li>)}
          </ul>
       </div>
    </section>
@@ -69,59 +57,63 @@ const pageDetails = {
       <hr />
       <div class="wrapper readable">
          <div class="panel-inner">
-            <div class="panel-column panel-border">
-               <h4>PC Setup</h4>
-               <hr />
-               <ul class="list-arrow">
-                  <li>Intel Core i9-9900K</li>
-                  <li>ZOTAC GAMING Geforce GTX 1080 Ti</li>
-                  <li>Corsair Vengeance 2x16GB 3200MHz DDR4</li>
-                  <li>Asus ROG Maximus XI Gene</li>
-               </ul>
+            <div class="panel-column">
+               <div class="panel-border">
+                  <h4>PC Setup</h4>
+                  <hr />
+                  <ul class="list-arrow">
+                     <li>Intel Core i9-9900K</li>
+                     <li>ZOTAC GAMING Geforce GTX 1080 Ti</li>
+                     <li>Corsair Vengeance 2x16GB 3200MHz DDR4</li>
+                     <li>Asus ROG Maximus XI Gene</li>
+                  </ul>
+               </div>
+               <br />
+               <div class="panel-border">
+                  <h4>VR Setup</h4>
+                  <hr />
+                  <ul class="list-arrow">
+                     <li>Oculus Quest 2</li>
+                     <li>HTC Vive Deluxe Audio Strap (Frankenquest Modification)</li>
+                     <li>VRCover HTC Vive Deluxe Audio Strap Foam Replacement</li>
+                     <li>VRCover Facial Interface (Dark Grey & Black)</li>
+                     <li>VRCover Cotton VR Headphone Covers</li>
+                     <li>AMVR Knuckle Controller Grip</li>
+                     <li>AMVR 5M Link Cable</li>
+                     <li>AMVR Powerbank Fixing Bracket</li>
+                     <li>Anker PowerCore Select 10000</li>
+                     <li>SlimeVR DIY BMI160 (8+3)</li>
+                  </ul>
+               </div>
             </div>
-            <div class="panel-column panel-border">
-               <h4>Others</h4>
-               <hr />
-               <ul class="list-arrow">
-                  <li>Artillery Sidewinder X2</li>
-                  <li>2x Tesco Banquet Table</li>
-               </ul>
-            </div>
-         </div>
-         <br />
-         <div class="panel-inner">
-            <div class="panel-column panel-border">
-               <h4>VR Setup</h4>
-               <hr />
-               <ul class="list-arrow">
-                  <li>Oculus Quest 2</li>
-                  <li>HTC Vive Deluxe Audio Strap (Frankenquest Modification)</li>
-                  <li>VRCover HTC Vive Deluxe Audio Strap Foam Replacement</li>
-                  <li>VRCover Facial Interface (Dark Grey & Black)</li>
-                  <li>VRCover Cotton VR Headphone Covers</li>
-                  <li>AMVR Knuckle Controller Grip</li>
-                  <li>AMVR 5M Link Cable</li>
-                  <li>AMVR Powerbank Fixing Bracket</li>
-                  <li>Anker PowerCore Select 10000</li>
-                  <li>SlimeVR DIY BMI160 (8+3)</li>
-               </ul>
-            </div>
-            <div class="panel-column panel-border">
-               <h4>Peripherals</h4>
-               <hr />
-               <ul class="list-arrow">
-                  <li>Samsung 24" Curved Monitor CF390</li>
-                  <li>AOC 24" Gaming Monitor 24G2SP</li>
-                  <li>Samsung 24" Monitor T35</li>
-                  <li>Audio-Technica ATH-M40x</li>
-                  <li>Ducky One 2 Tuxedo Full Size</li>
-                  <li>Logitech G502 Hero</li>
-                  <li>HyperX FURY S PRO Speed Edition XL</li>
-                  <li>Logitech C922 Pro Stream</li>
-                  <li>Logitech G29 Driving Force + Shifter</li>
-                  <li>Keychron K3 V2</li>
-                  <li>Logitech MX Master 3</li>
-               </ul>
+            <br />
+            <div class="panel-column">
+               <div class="panel-border">
+                  <h4>Peripherals</h4>
+                  <hr />
+                  <ul class="list-arrow">
+                     <li>Samsung 24" Curved Monitor CF390</li>
+                     <li>AOC 24" Gaming Monitor 24G2SP</li>
+                     <li>Samsung 24" Monitor T35</li>
+                     <li>Audio-Technica ATH-M40x</li>
+                     <li>Ducky One 2 Tuxedo Full Size</li>
+                     <li>Logitech G502 Hero</li>
+                     <li>HyperX FURY S PRO Speed Edition XL</li>
+                     <li>Logitech C922 Pro Stream</li>
+                     <li>Logitech G29 Driving Force + Shifter</li>
+                     <li>Keychron K3 V2</li>
+                     <li>Logitech MX Master 3</li>
+                  </ul>
+               </div>
+               <br />
+               <div class="panel-border">
+                  <h4>Others</h4>
+                  <hr />
+                  <ul class="list-arrow">
+                     <li>Artillery Sidewinder X2</li>
+                     <li>2x Tesco Banquet Table</li>
+                  </ul>
+               </div>
             </div>
          </div>
       </div>
