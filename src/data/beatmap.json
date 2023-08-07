@@ -1,2382 +1,2646 @@
 [
-   {
-      "id": "33024",
-      "songName": "I Bet You'll Forget That Even If You Noticed That",
-      "songSubName": "(I Was Still There)",
-      "songAuthorName": "Foreground Eclipse",
-      "coverImage": "33024.jpg",
-      "environment": "RockMixtapeEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 195,
-         "min": 195,
-         "max": 195
-      },
-      "songDuration": 235.724,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/33024"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=33024"
-         }
-      },
-      "mode": ["Standard", "OneSaber"],
-      "difficulty": 8,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "2eafa",
-      "songName": "Genryuu Kaiko",
-      "songSubName": "",
-      "songAuthorName": "Halozy",
-      "coverImage": "2eafa.jpg",
-      "environment": "BillieEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 173,
-         "min": 173,
-         "max": 173
-      },
-      "songDuration": 307.632,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/2eafa"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=2eafa"
-         }
-      },
-      "mode": ["Standard", "OneSaber"],
-      "difficulty": 8,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "2c663",
-      "songName": "S.A.R.I.E.L.",
-      "songSubName": "",
-      "songAuthorName": "Akatsuki Records",
-      "coverImage": "2c663.jpg",
-      "environment": "WeaveEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 178,
-         "min": 178,
-         "max": 178
-      },
-      "songDuration": 189.693,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/2c663"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=2c663"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "2b298",
-      "songName": "Spellbound",
-      "songSubName": "",
-      "songAuthorName": "Electron",
-      "coverImage": "2b298.jpg",
-      "environment": "HalloweenEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 94,
-         "min": 94,
-         "max": 94
-      },
-      "songDuration": 195.221,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/2b298"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=2b298"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "2aea2",
-      "songName": "The Charismatic Purgatory Goddess",
-      "songSubName": "",
-      "songAuthorName": "ShinRa-Bansho",
-      "coverImage": "2aea2.jpg",
-      "environment": "PyroEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 137,
-         "min": 137,
-         "max": 137
-      },
-      "songDuration": 251.106,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/2aea2"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=2aea2"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": []
-   },
-   {
-      "id": "2a038",
-      "songName": "Kishinjou set 10 ~ Reverse Ideology",
-      "songSubName": "",
-      "songAuthorName": "Rin",
-      "coverImage": "2a038.jpg",
-      "environment": "SkrillexEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 128,
-         "min": 128,
-         "max": 512
-      },
-      "songDuration": 262.496,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/2a038"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=2a038"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "29ada",
-      "songName": "Cathedrarhythm",
-      "songSubName": "",
-      "songAuthorName": "Team Grimoire & Aoi Sumito",
-      "coverImage": "29ada.jpg",
-      "environment": "BTSEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 182,
-         "min": 182,
-         "max": 182
-      },
-      "songDuration": 344.776,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/29ada"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=29ada"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": []
-   },
-   {
-      "id": "29643",
-      "songName": "Hitomi ni Kakusareta Omoi",
-      "songSubName": "(with senya)",
-      "songAuthorName": "Yuuhei Satellite",
-      "coverImage": "29643.jpg",
-      "environment": "PanicEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 160,
-         "min": 160,
-         "max": 160
-      },
-      "songDuration": 178.46,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/29643"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=29643"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": []
-   },
-   {
-      "id": "29260",
-      "songName": "Interlude - teatime",
-      "songSubName": "feat. Rizna",
-      "songAuthorName": "t+pazolite",
-      "coverImage": "29260.jpg",
-      "environment": "BigMirrorEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 56,
-         "min": 56,
-         "max": 56
-      },
-      "songDuration": 60.96,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/29260"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=29260"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": []
-   },
-   {
-      "id": "28e8e",
-      "songName": "Azure Raindrop",
-      "songSubName": "(Acoustic ver.)",
-      "songAuthorName": "Akatsuki Records",
-      "coverImage": "28e8e.jpg",
-      "environment": "BigMirrorEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 149,
-         "min": 149,
-         "max": 149
-      },
-      "songDuration": 238.372,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/28e8e"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=28e8e"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": []
-   },
-   {
-      "id": "284f6",
-      "songName": "Reverse Rebirth Trigger",
-      "songSubName": "",
-      "songAuthorName": "Akatsuki Records",
-      "coverImage": "284f6.jpg",
-      "environment": "SkrillexEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 167,
-         "min": 167,
-         "max": 167
-      },
-      "songDuration": 234.969,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/284f6"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=284f6"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": []
-   },
-   {
-      "id": "2848c",
-      "songName": "Undefined",
-      "songSubName": "",
-      "songAuthorName": "FELT",
-      "coverImage": "2848c.jpg",
-      "environment": "WeaveEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 89,
-         "min": 89,
-         "max": 89
-      },
-      "songDuration": 89.751,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/2848c"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=2848c"
-         }
-      },
-      "mode": ["Standard", "OneSaber"],
-      "difficulty": 6,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "27ab1",
-      "songName": "Ghosts Play to the Audience",
-      "songSubName": "ft. Hatsune Miku",
-      "songAuthorName": "PinocchioP",
-      "coverImage": "27ab1.jpg",
-      "environment": "SkrillexEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 148,
-         "min": 148,
-         "max": 148
-      },
-      "songDuration": 227.83,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/27ab1"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=27ab1"
-         }
-      },
-      "mode": ["Standard", "OneSaber", "Lawless"],
-      "difficulty": 15,
-      "tag": []
-   },
-   {
-      "id": "269a7",
-      "songName": "ECHO",
-      "songSubName": "feat. GUMI English",
-      "songAuthorName": "Crusher-P",
-      "coverImage": "269a7.jpg",
-      "environment": "KDAEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 140,
-         "min": 140,
-         "max": 140
-      },
-      "songDuration": 231.242,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/269a7"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=269a7"
-         }
-      },
-      "mode": ["Standard", "Lawless"],
-      "difficulty": 6,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "25678",
-      "songName": "Angel Voices",
-      "songSubName": "",
-      "songAuthorName": "Virtual Self",
-      "coverImage": "25678.jpg",
-      "environment": "DragonsEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 83,
-         "min": 83,
-         "max": 83
-      },
-      "songDuration": 392.692,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/25678"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=25678"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": []
-   },
-   {
-      "id": "24ecd",
-      "songName": "Preserved Valkyria",
-      "songSubName": "",
-      "songAuthorName": "penoreri",
-      "coverImage": "24ecd.jpg",
-      "environment": "DragonsEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 155,
-         "min": 114,
-         "max": 220
-      },
-      "songDuration": 125.214,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/24ecd"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=24ecd"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": []
-   },
-   {
-      "id": "2443d",
-      "songName": "Deconstruction Star",
-      "songSubName": "",
-      "songAuthorName": "Halozy",
-      "coverImage": "2443d.jpg",
-      "environment": "SkrillexEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 155,
-         "min": 155,
-         "max": 155
-      },
-      "songDuration": 323.612,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/2443d"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=2443d"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": []
-   },
-   {
-      "id": "23d4d",
-      "songName": "Endless Night",
-      "songSubName": "",
-      "songAuthorName": "FELT",
-      "coverImage": "23d4d.jpg",
-      "environment": "BillieEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 120,
-         "min": 120,
-         "max": 120
-      },
-      "songDuration": 233,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/23d4d"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=23d4d"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "23c4b",
-      "songName": "HELLOHELL",
-      "songSubName": "",
-      "songAuthorName": "Akatsuki Records",
-      "coverImage": "23c4b.jpg",
-      "environment": "PyroEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 155,
-         "min": 155,
-         "max": 155
-      },
-      "songDuration": 237.491,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/23c4b"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=23c4b"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": []
-   },
-   {
-      "id": "2295d",
-      "songName": "Black Eye/Burnt Thumb",
-      "songSubName": "",
-      "songAuthorName": "Metronomy",
-      "coverImage": "2295d.jpg",
-      "environment": "DragonsEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 129,
-         "min": 129,
-         "max": 129
-      },
-      "songDuration": 283.535,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/2295d"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=2295d"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": ["request"]
-   },
-   {
-      "id": "21b0b",
-      "songName": "Pure-Hearted Armeria",
-      "songSubName": "",
-      "songAuthorName": "ShinRa-Bansho",
-      "coverImage": "21b0b.jpg",
-      "environment": "DefaultEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 172,
-         "min": 70,
-         "max": 217
-      },
-      "songDuration": 275.88,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/21b0b"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=21b0b"
-         }
-      },
-      "mode": ["OneSaber"],
-      "difficulty": 5,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "21660",
-      "songName": "Dreamer",
-      "songSubName": "",
-      "songAuthorName": "Akatsuki Records",
-      "coverImage": "21660.jpg",
-      "environment": "BTSEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 162,
-         "min": 162,
-         "max": 162
-      },
-      "songDuration": 253.335,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/21660"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=21660"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": ["request"]
-   },
-   {
-      "id": "20ab6",
-      "songName": "KAEDE",
-      "songSubName": "",
-      "songAuthorName": "Ocelot",
-      "coverImage": "20ab6.jpg",
-      "environment": "SkrillexEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 177,
-         "min": 177,
-         "max": 177
-      },
-      "songDuration": 222.376,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/20ab6"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=20ab6"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "200cb",
-      "songName": "forgotten parser",
-      "songSubName": "",
-      "songAuthorName": "Pigmhall",
-      "coverImage": "200cb.jpg",
-      "environment": "SkrillexEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 133,
-         "min": 133,
-         "max": 133
-      },
-      "songDuration": 494.435,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/200cb"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=200cb"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": ["request"]
-   },
-   {
-      "id": "1ef55",
-      "songName": "Poinsettia",
-      "songSubName": "",
-      "songAuthorName": "IOSYS",
-      "coverImage": "1ef55.jpg",
-      "environment": "TimbalandEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 180,
-         "min": 56,
-         "max": 180
-      },
-      "songDuration": 201.328,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/1ef55"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=1ef55"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": []
-   },
-   {
-      "id": "1edda",
-      "songName": "the march of Yui",
-      "songSubName": "",
-      "songAuthorName": "Pigmhall",
-      "coverImage": "1edda.jpg",
-      "environment": "DragonsEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 166,
-         "min": 166,
-         "max": 166
-      },
-      "songDuration": 292.048,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/1edda"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=1edda"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 2,
-      "tag": ["request"]
-   },
-   {
-      "id": "1de45",
-      "songName": "Sake Monster☆RaiRai!!",
-      "songSubName": "",
-      "songAuthorName": "ShinRa-Bansho x COOL&CREATE",
-      "coverImage": "1de45.jpg",
-      "environment": "BigMirrorEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 152,
-         "min": 105,
-         "max": 205
-      },
-      "songDuration": 270.194,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/1de45"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=1de45"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": []
-   },
-   {
-      "id": "1da34",
-      "songName": "how low and low",
-      "songSubName": "",
-      "songAuthorName": "Halozy",
-      "coverImage": "1da34.jpg",
-      "environment": "BigMirrorEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 80,
-         "min": 80,
-         "max": 80
-      },
-      "songDuration": 361.497,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/1da34"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=1da34"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": []
-   },
-   {
-      "id": "1d8da",
-      "songName": "OMEN",
-      "songSubName": "",
-      "songAuthorName": "Akatsuki Records",
-      "coverImage": "1d8da.jpg",
-      "environment": "KaleidoscopeEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 160,
-         "min": 160,
-         "max": 160
-      },
-      "songDuration": 221.99,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/1d8da"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=1d8da"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": []
-   },
-   {
-      "id": "1d32b",
-      "songName": "Unconscious Requiem",
-      "songSubName": "",
-      "songAuthorName": "ShinRa-Bansho",
-      "coverImage": "1d32b.jpg",
-      "environment": "PanicEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 195,
-         "min": 150,
-         "max": 242
-      },
-      "songDuration": 279.485,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/1d32b"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=1d32b"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "1d28c",
-      "songName": "Vagueness & JOURNEY",
-      "songSubName": "",
-      "songAuthorName": "FELT",
-      "coverImage": "1d28c.jpg",
-      "environment": "BTSEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 185,
-         "min": 185,
-         "max": 185
-      },
-      "songDuration": 337.999,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/1d28c"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=1d28c"
-         }
-      },
-      "mode": ["Standard", "OneSaber"],
-      "difficulty": 6,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "1cf27",
-      "songName": "Focus",
-      "songSubName": "",
-      "songAuthorName": "chipzel",
-      "coverImage": "1cf27.jpg",
-      "environment": "TimbalandEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 174,
-         "min": 174,
-         "max": 174
-      },
-      "songDuration": 164.239,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/1cf27"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=1cf27"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": []
-   },
-   {
-      "id": "1c95d",
-      "songName": "Nega-Posi",
-      "songSubName": "",
-      "songAuthorName": "Liz Triangle",
-      "coverImage": "1c95d.jpg",
-      "environment": "PanicEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 182,
-         "min": 110,
-         "max": 182
-      },
-      "songDuration": 269.033,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/1c95d"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=1c95d"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": []
-   },
-   {
-      "id": "1befe",
-      "songName": "Dancing Dollz",
-      "songSubName": "ft. Cold Kiss (REDALiCE Remix)",
-      "songAuthorName": "ZYTOKINE",
-      "coverImage": "1befe.jpg",
-      "environment": "DragonsEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 175,
-         "min": 175,
-         "max": 175
-      },
-      "songDuration": 223.882,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/1befe"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=1befe"
-         }
-      },
-      "mode": ["Standard", "Lightshow"],
-      "difficulty": 6,
-      "tag": []
-   },
-   {
-      "id": "1bb74",
-      "songName": "Platinum Groove",
-      "songSubName": "",
-      "songAuthorName": "android52",
-      "coverImage": "1bb74.jpg",
-      "environment": "DefaultEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 128,
-         "min": 128,
-         "max": 128
-      },
-      "songDuration": 232.048,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/1bb74"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=1bb74"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": []
-   },
-   {
-      "id": "1a1fa",
-      "songName": "Tsurupettan",
-      "songSubName": "",
-      "songAuthorName": "Silver Forest",
-      "coverImage": "1a1fa.jpg",
-      "environment": "BigMirrorEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 180,
-         "min": 180,
-         "max": 180
-      },
-      "songDuration": 161.949,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/1a1fa"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=1a1fa"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": []
-   },
-   {
-      "id": "19a0a",
-      "songName": "Error Code",
-      "songSubName": "",
-      "songAuthorName": "Case & Point",
-      "coverImage": "19a0a.jpg",
-      "environment": "TimbalandEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 128,
-         "min": 128,
-         "max": 128
-      },
-      "songDuration": 160.477,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/19a0a"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=19a0a"
-         }
-      },
-      "mode": ["Standard", "OneSaber", "Lightshow", "Lawless"],
-      "difficulty": 10,
-      "tag": []
-   },
-   {
-      "id": "1988c",
-      "songName": "Paranoia",
-      "songSubName": "(with sorane) (ALR REMIX)",
-      "songAuthorName": "DiGiTAL WiNG",
-      "coverImage": "1988c.jpg",
-      "environment": "TriangleEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 150,
-         "min": 150,
-         "max": 150
-      },
-      "songDuration": 184.804,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/1988c"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=1988c"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "193c1",
-      "songName": "Sunset Tea Cup",
-      "songSubName": "",
-      "songAuthorName": "YUC'e",
-      "coverImage": "193c1.jpg",
-      "environment": "DefaultEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 160,
-         "min": 160,
-         "max": 160
-      },
-      "songDuration": 185.997,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/193c1"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=193c1"
-         }
-      },
-      "mode": ["Standard", "OneSaber", "Legacy"],
-      "difficulty": 11,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "1902e",
-      "songName": "fractal",
-      "songSubName": "",
-      "songAuthorName": "FELT",
-      "coverImage": "1902e.jpg",
-      "environment": "NiceEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 178,
-         "min": 178,
-         "max": 178
-      },
-      "songDuration": 97.071,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/1902e"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=1902e"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "188a7",
-      "songName": "Psychedelic Onizakura Alliance",
-      "songSubName": "",
-      "songAuthorName": "SOUND HOLIC",
-      "coverImage": "188a7.jpg",
-      "environment": "DefaultEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 160,
-         "min": 160,
-         "max": 160
-      },
-      "songDuration": 211.486,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/188a7"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=188a7"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": []
-   },
-   {
-      "id": "1857c",
-      "songName": "VENTEN",
-      "songSubName": "",
-      "songAuthorName": "Akatsuki Records",
-      "coverImage": "1857c.jpg",
-      "environment": "KaleidoscopeEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 175,
-         "min": 175,
-         "max": 175
-      },
-      "songDuration": 207.086,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/1857c"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=1857c"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "182b1",
-      "songName": "KARMANATIONS",
-      "songSubName": "",
-      "songAuthorName": "Akatsuki Records",
-      "coverImage": "182b1.jpg",
-      "environment": "DefaultEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 192,
-         "min": 192,
-         "max": 192
-      },
-      "songDuration": 228.739,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/182b1"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=182b1"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": []
-   },
-   {
-      "id": "1815a",
-      "songName": "Dark Flight Dreamer",
-      "songSubName": "",
-      "songAuthorName": "ALiCE'S EMOTiON",
-      "coverImage": "1815a.jpg",
-      "environment": "DefaultEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 189,
-         "min": 189,
-         "max": 189
-      },
-      "songDuration": 193.016,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/1815a"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=1815a"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "18159",
-      "songName": "werewolf howls.",
-      "songSubName": "",
-      "songAuthorName": "Camellia",
-      "coverImage": "18159.jpg",
-      "environment": "DragonsEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 222,
-         "min": 222,
-         "max": 222
-      },
-      "songDuration": 118.918,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/18159"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=18159"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "16aca",
-      "songName": "Koi wa Chaos no Shimobe Nari",
-      "songSubName": "(short edit)",
-      "songAuthorName": "Ushirokara Haiyoritai G (CVs: Asumi Kana & Matsuki Miyu & Ootsubo Yuka)",
-      "coverImage": "16aca.jpg",
-      "environment": "DefaultEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 158,
-         "min": 158,
-         "max": 158
-      },
-      "songDuration": 23.31,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/16aca"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=16aca"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": []
-   },
-   {
-      "id": "16769",
-      "songName": "New World",
-      "songSubName": "",
-      "songAuthorName": "FELT",
-      "coverImage": "16769.jpg",
-      "environment": "OriginsEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 195,
-         "min": 195,
-         "max": 195
-      },
-      "songDuration": 249.236,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/16769"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=16769"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": []
-   },
-   {
-      "id": "15897",
-      "songName": "Oshama Scramble!",
-      "songSubName": "(uncut edition)",
-      "songAuthorName": "t+pazolite",
-      "coverImage": "15897.jpg",
-      "environment": "DefaultEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 190,
-         "min": 190,
-         "max": 190
-      },
-      "songDuration": 256.74,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/15897"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=15897"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": []
-   },
-   {
-      "id": "15214",
-      "songName": "Daisuke",
-      "songSubName": "",
-      "songAuthorName": "Y&Co.",
-      "coverImage": "15214.jpg",
-      "environment": "RocketEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 157,
-         "min": 157,
-         "max": 157
-      },
-      "songDuration": 128.257,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/15214"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=15214"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": []
-   },
-   {
-      "id": "14182",
-      "songName": "Azure Raindrop",
-      "songSubName": "",
-      "songAuthorName": "Akatsuki Records",
-      "coverImage": "14182.jpg",
-      "environment": "BigMirrorEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 176,
-         "min": 176,
-         "max": 176
-      },
-      "songDuration": 234.536,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/14182"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=14182"
-         }
-      },
-      "mode": ["Standard", "360Degree"],
-      "difficulty": 6,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "132d6",
-      "songName": "VANDALIZED AI",
-      "songSubName": "",
-      "songAuthorName": "Kobaryo",
-      "coverImage": "132d6.jpg",
-      "environment": "BigMirrorEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 321,
-         "min": 321,
-         "max": 321
-      },
-      "songDuration": 236.307,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/132d6"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=132d6"
-         }
-      },
-      "mode": ["Standard", "Lightshow"],
-      "difficulty": 6,
-      "tag": []
-   },
-   {
-      "id": "12ca8",
-      "songName": "In my room",
-      "songSubName": "",
-      "songAuthorName": "FELT",
-      "coverImage": "12ca8.jpg",
-      "environment": "BigMirrorEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 165,
-         "min": 165,
-         "max": 165
-      },
-      "songDuration": 40.455,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/12ca8"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=12ca8"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": []
-   },
-   {
-      "id": "11c1e",
-      "songName": "Marisa wa Taihen na Mono wo Nusunde Ikimashita",
-      "songSubName": "",
-      "songAuthorName": "IOSYS",
-      "coverImage": "11c1e.jpg",
-      "environment": "DefaultEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 170,
-         "min": 170,
-         "max": 170
-      },
-      "songDuration": 242.829,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/11c1e"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=11c1e"
-         }
-      },
-      "mode": ["Standard", "Lawless"],
-      "difficulty": 2,
-      "tag": []
-   },
-   {
-      "id": "11bf4",
-      "songName": "Unknown x known",
-      "songSubName": "- DYES IWASAKI Remix -",
-      "songAuthorName": "Meramipop",
-      "coverImage": "11bf4.jpg",
-      "environment": "DefaultEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 180,
-         "min": 180,
-         "max": 180
-      },
-      "songDuration": 269.328,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/11bf4"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=11bf4"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": []
-   },
-   {
-      "id": "10cba",
-      "songName": "Yoru Naku Usagi wa Yume wo Miru",
-      "songSubName": "",
-      "songAuthorName": "UNDEAD CORPORATION",
-      "coverImage": "10cba.jpg",
-      "environment": "LinkinParkEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 200,
-         "min": 69,
-         "max": 200
-      },
-      "songDuration": 225.598,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/10cba"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=10cba"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": []
-   },
-   {
-      "id": "10b39",
-      "songName": "Last Wind",
-      "songSubName": "",
-      "songAuthorName": "FELT",
-      "coverImage": "10b39.jpg",
-      "environment": "OriginsEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 152,
-         "min": 152,
-         "max": 152
-      },
-      "songDuration": 225.475,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/10b39"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=10b39"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "1095f",
-      "songName": "Hitomi ni Kakusareta Omoi",
-      "songSubName": "(with senya)",
-      "songAuthorName": "Yuuhei Satellite",
-      "coverImage": "1095f.jpg",
-      "environment": "PanicEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 160,
-         "min": 160,
-         "max": 160
-      },
-      "songDuration": 178.46,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/1095f"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=1095f"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "10479",
-      "songName": "Frightmare",
-      "songSubName": "(feat. Myles Travitz)",
-      "songAuthorName": "Strangers",
-      "coverImage": "10479.jpg",
-      "environment": "DragonsEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 128,
-         "min": 128,
-         "max": 128
-      },
-      "songDuration": 285.932,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/10479"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=10479"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "fcf6",
-      "songName": "Star Velocity",
-      "songSubName": "",
-      "songAuthorName": "FELT",
-      "coverImage": "fcf6.jpg",
-      "environment": "DragonsEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 140,
-         "min": 140,
-         "max": 140
-      },
-      "songDuration": 297.471,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/fcf6"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=fcf6"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": []
-   },
-   {
-      "id": "fc8f",
-      "songName": "Monkey Dance",
-      "songSubName": "Misamiru Edit",
-      "songAuthorName": "Y&Co",
-      "coverImage": "fc8f.jpg",
-      "environment": "RocketEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 164,
-         "min": 164,
-         "max": 164
-      },
-      "songDuration": 47.142,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/fc8f"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=fc8f"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 1,
-      "tag": []
-   },
-   {
-      "id": "f018",
-      "songName": "Disguise",
-      "songSubName": "",
-      "songAuthorName": "Kiryu",
-      "coverImage": "f018.jpg",
-      "environment": "DragonsEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 140,
-         "min": 140,
-         "max": 140
-      },
-      "songDuration": 144.857,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/f018"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=f018"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "eb9b",
-      "songName": "Monochrome",
-      "songSubName": "Tomoyuki Sakakida Remix",
-      "songAuthorName": "Syrup Comfiture",
-      "coverImage": "eb9b.jpg",
-      "environment": "OriginsEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 140,
-         "min": 140,
-         "max": 140
-      },
-      "songDuration": 279.529,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/eb9b"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=eb9b"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 4,
-      "tag": []
-   },
-   {
-      "id": "def0",
-      "songName": "Revenge",
-      "songSubName": "(ReeK's \"Dude, What's A Genre?\" Remix) (feat. CaptainSparklez)",
-      "songAuthorName": "TryHardNinja",
-      "coverImage": "def0.jpg",
-      "environment": "BigMirrorEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 330,
-         "min": 65,
-         "max": 330
-      },
-      "songDuration": 276.924,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/def0"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=def0"
-         }
-      },
-      "mode": ["Standard", "Lightshow"],
-      "difficulty": 4,
-      "tag": []
-   },
-   {
-      "id": "dda4",
-      "songName": "circles!",
-      "songSubName": "",
-      "songAuthorName": "nekodex",
-      "coverImage": "dda4.jpg",
-      "environment": "NiceEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 184,
-         "min": 184,
-         "max": 184
-      },
-      "songDuration": 139.565,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/dda4"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=dda4"
-         }
-      },
-      "mode": ["Standard", "Lightshow"],
-      "difficulty": 6,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "b642",
-      "songName": "T.R.Y Revolution",
-      "songSubName": "",
-      "songAuthorName": "Halozy",
-      "coverImage": "b642.jpg",
-      "environment": "GreenDayEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 152,
-         "min": 152,
-         "max": 152
-      },
-      "songDuration": 268.417,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/b642"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=b642"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "b1a8",
-      "songName": "There's A Cat Licking Your Birthday Cake",
-      "songSubName": "",
-      "songAuthorName": "Parry Gripp",
-      "coverImage": "b1a8.jpg",
-      "environment": "BigMirrorEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 110,
-         "min": 110,
-         "max": 110
-      },
-      "songDuration": 38.733,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/b1a8"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=b1a8"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": []
-   },
-   {
-      "id": "abd5",
-      "songName": "Girly Cupid",
-      "songSubName": "feat. Marpril",
-      "songAuthorName": "PSYQUI",
-      "coverImage": "abd5.jpg",
-      "environment": "OriginsEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 133,
-         "min": 133,
-         "max": 133
-      },
-      "songDuration": 244.072,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/abd5"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=abd5"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 2,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "a127",
-      "songName": "Escape",
-      "songSubName": "(ft. Summer Haze)",
-      "songAuthorName": "Jaroslav Beck",
-      "coverImage": "a127.jpg",
-      "environment": "DefaultEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 175,
-         "min": 175,
-         "max": 175
-      },
-      "songDuration": 162.869,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/a127"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=a127"
-         }
-      },
-      "mode": ["Standard", "360Degree"],
-      "difficulty": 6,
-      "tag": []
-   },
-   {
-      "id": "8944",
-      "songName": "Black Hair Drugs",
-      "songSubName": "",
-      "songAuthorName": "LOLIPO",
-      "coverImage": "8944.jpg",
-      "environment": "PanicEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 183,
-         "min": 183,
-         "max": 183
-      },
-      "songDuration": 350.118,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/8944"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=8944"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": []
-   },
-   {
-      "id": "7f35",
-      "songName": "New World",
-      "songSubName": "",
-      "songAuthorName": "FELT",
-      "coverImage": "7f35.jpg",
-      "environment": "Origins",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 195,
-         "min": 195,
-         "max": 195
-      },
-      "songDuration": 249.236,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/7f35"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=7f35"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "7b30",
-      "songName": "Tsurupettan",
-      "songSubName": "",
-      "songAuthorName": "Silver Forest",
-      "coverImage": "7b30.jpg",
-      "environment": "BigMirrorEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 180,
-         "min": 180,
-         "max": 180
-      },
-      "songDuration": 161.949,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/7b30"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=7b30"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "713b",
-      "songName": "Lost in the Abyss",
-      "songSubName": "",
-      "songAuthorName": "FELT",
-      "coverImage": "713b.jpg",
-      "environment": "Origins",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 183,
-         "min": 183,
-         "max": 183
-      },
-      "songDuration": 300.072,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/713b"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=713b"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "6d0f",
-      "songName": "Unconscious Requiem",
-      "songSubName": "",
-      "songAuthorName": "ShinRa-Bansho",
-      "coverImage": "6d0f.jpg",
-      "environment": "DefaultEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 195,
-         "min": 99,
-         "max": 203
-      },
-      "songDuration": 277.734,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/6d0f"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=6d0f"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": []
-   },
-   {
-      "id": "65c7",
-      "songName": "The Pressure",
-      "songSubName": "",
-      "songAuthorName": "Stonebank",
-      "coverImage": "65c7.jpg",
-      "environment": "MonstercatEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 170,
-         "min": 170,
-         "max": 170
-      },
-      "songDuration": 249.926,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/65c7"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=65c7"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "6126",
-      "songName": "TRIPLE PLAY",
-      "songSubName": "",
-      "songAuthorName": "KASAI HARCORES",
-      "coverImage": "6126.jpg",
-      "environment": "TriangleEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 175,
-         "min": 175,
-         "max": 175
-      },
-      "songDuration": 253.006,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/6126"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=6126"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": []
-   },
-   {
-      "id": "5ead",
-      "songName": "Imbalance",
-      "songSubName": "",
-      "songAuthorName": "FELT",
-      "coverImage": "5ead.jpg",
-      "environment": "BigMirrorEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 138,
-         "min": 138,
-         "max": 138
-      },
-      "songDuration": 116.271,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/5ead"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=5ead"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": []
-   },
-   {
-      "id": "57e0",
-      "songName": "Phantasy",
-      "songSubName": "",
-      "songAuthorName": "Amidst",
-      "coverImage": "57e0.jpg",
-      "environment": "NiceEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 165,
-         "min": 165,
-         "max": 165
-      },
-      "songDuration": 217.156,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/57e0"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=57e0"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "558d",
-      "songName": "Harumachi Clover",
-      "songSubName": "(TV Size)",
-      "songAuthorName": "Hanasaka Yui (CV: M.A.O)",
-      "coverImage": "558d.jpg",
-      "environment": "NiceEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 142,
-         "min": 142,
-         "max": 142
-      },
-      "songDuration": 34.284,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/558d"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=558d"
-         }
-      },
-      "mode": ["Standard", "NoArrows", "OneSaber", "Lawless"],
-      "difficulty": 20,
-      "tag": []
-   },
-   {
-      "id": "5487",
-      "songName": "Way Too Deep",
-      "songSubName": "",
-      "songAuthorName": "Grabbitz",
-      "coverImage": "5487.jpg",
-      "environment": "BigMirrorEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 140,
-         "min": 140,
-         "max": 140
-      },
-      "songDuration": 343.823,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/5487"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=5487"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": ["showcase"]
-   },
-   {
-      "id": "52e0",
-      "songName": "Happy birthday to You",
-      "songSubName": "(M2U Version)",
-      "songAuthorName": "M2U",
-      "coverImage": "52e0.jpg",
-      "environment": "DefaultEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 110,
-         "min": 110,
-         "max": 110
-      },
-      "songDuration": 33.463,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/52e0"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=52e0"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": []
-   },
-   {
-      "id": "50c7",
-      "songName": "Nom Nom Nom Nom Nom Nom Nom",
-      "songSubName": "",
-      "songAuthorName": "Parry Gripp",
-      "coverImage": "50c7.jpg",
-      "environment": "DefaultEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 128,
-         "min": 128,
-         "max": 128
-      },
-      "songDuration": 63.627,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/50c7"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=50c7"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": []
-   },
-   {
-      "id": "50af",
-      "songName": "FAITH",
-      "songSubName": "",
-      "songAuthorName": "Unlucky Morpheus",
-      "coverImage": "50af.jpg",
-      "environment": "TriangleEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 200,
-         "min": 200,
-         "max": 200
-      },
-      "songDuration": 57.664,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/50af"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=50af"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": []
-   },
-   {
-      "id": "50ae",
-      "songName": "Mermaid girl",
-      "songSubName": "",
-      "songAuthorName": "Cream puff",
-      "coverImage": "50ae.jpg",
-      "environment": "DefaultEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 140,
-         "min": 140,
-         "max": 140
-      },
-      "songDuration": 122.149,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/50ae"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=50ae"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": []
-   },
-   {
-      "id": "500c",
-      "songName": "Help me, ERINNNNNN!! (Flowering Night 2007 Ver.)",
-      "songSubName": "",
-      "songAuthorName": "COOL&CREATE",
-      "coverImage": "500c.jpg",
-      "environment": "TriangleEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 183,
-         "min": 183,
-         "max": 183
-      },
-      "songDuration": 277.84,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/500c"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=500c"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 2,
-      "tag": []
-   },
-   {
-      "id": "49e5",
-      "songName": "Platinum Groove",
-      "songSubName": "",
-      "songAuthorName": "android52",
-      "coverImage": "49e5.jpg",
-      "environment": "DefaultEnvironment",
-      "environment360": "GlassDesertEnvironment",
-      "beatsPerMinute": {
-         "base": 128,
-         "min": 128,
-         "max": 128
-      },
-      "songDuration": 230.687,
-      "link": {
-         "BeatSaver": {
-            "name": "BeatSaver",
-            "url": "https://beatsaver.com/maps/49e5"
-         },
-         "WebViewer": {
-            "name": "Web Viewer",
-            "url": "https://allpoland.github.io/ArcViewer/?id=49e5"
-         }
-      },
-      "mode": ["Standard"],
-      "difficulty": 5,
-      "tag": []
-   }
+    {
+        "id": "33024",
+        "songName": "I Bet You'll Forget That Even If You Noticed That",
+        "songSubName": "(I Was Still There)",
+        "songAuthorName": "Foreground Eclipse",
+        "coverImage": "33024.jpg",
+        "environment": "RockMixtapeEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 195,
+            "min": 139,
+            "max": 195
+        },
+        "songDuration": 235.724,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/33024"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=33024"
+            }
+        },
+        "mode": [
+            "Standard",
+            "OneSaber"
+        ],
+        "difficulty": 8,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "2eafa",
+        "songName": "Genryuu Kaiko",
+        "songSubName": "",
+        "songAuthorName": "Halozy",
+        "coverImage": "2eafa.jpg",
+        "environment": "BillieEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 173,
+            "min": 173,
+            "max": 173
+        },
+        "songDuration": 307.632,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/2eafa"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=2eafa"
+            }
+        },
+        "mode": [
+            "Standard",
+            "OneSaber"
+        ],
+        "difficulty": 8,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "2c663",
+        "songName": "S.A.R.I.E.L.",
+        "songSubName": "",
+        "songAuthorName": "Akatsuki Records",
+        "coverImage": "2c663.jpg",
+        "environment": "WeaveEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 178,
+            "min": 178,
+            "max": 178
+        },
+        "songDuration": 189.693,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/2c663"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=2c663"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "2b298",
+        "songName": "Spellbound",
+        "songSubName": "",
+        "songAuthorName": "Electron",
+        "coverImage": "2b298.jpg",
+        "environment": "HalloweenEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 94,
+            "min": 94,
+            "max": 94
+        },
+        "songDuration": 195.221,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/2b298"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=2b298"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "2aea2",
+        "songName": "The Charismatic Purgatory Goddess",
+        "songSubName": "",
+        "songAuthorName": "ShinRa-Bansho",
+        "coverImage": "2aea2.jpg",
+        "environment": "PyroEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 137,
+            "min": 137,
+            "max": 137
+        },
+        "songDuration": 251.106,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/2aea2"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=2aea2"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": []
+    },
+    {
+        "id": "2a038",
+        "songName": "Kishinjou set 10 ~ Reverse Ideology",
+        "songSubName": "",
+        "songAuthorName": "Rin",
+        "coverImage": "2a038.jpg",
+        "environment": "SkrillexEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 128,
+            "min": 128,
+            "max": 512
+        },
+        "songDuration": 262.496,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/2a038"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=2a038"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "29ada",
+        "songName": "Cathedrarhythm",
+        "songSubName": "",
+        "songAuthorName": "Team Grimoire & Aoi Sumito",
+        "coverImage": "29ada.jpg",
+        "environment": "BTSEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 182,
+            "min": 182,
+            "max": 182
+        },
+        "songDuration": 344.776,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/29ada"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=29ada"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": []
+    },
+    {
+        "id": "29643",
+        "songName": "Hitomi ni Kakusareta Omoi",
+        "songSubName": "(with senya)",
+        "songAuthorName": "Yuuhei Satellite",
+        "coverImage": "29643.jpg",
+        "environment": "PanicEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 160,
+            "min": 160,
+            "max": 160
+        },
+        "songDuration": 178.46,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/29643"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=29643"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": []
+    },
+    {
+        "id": "29260",
+        "songName": "Interlude - teatime",
+        "songSubName": "feat. Rizna",
+        "songAuthorName": "t+pazolite",
+        "coverImage": "29260.jpg",
+        "environment": "BigMirrorEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 56,
+            "min": 56,
+            "max": 56
+        },
+        "songDuration": 60.96,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/29260"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=29260"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": []
+    },
+    {
+        "id": "28e8e",
+        "songName": "Azure Raindrop",
+        "songSubName": "(Acoustic ver.)",
+        "songAuthorName": "Akatsuki Records",
+        "coverImage": "28e8e.jpg",
+        "environment": "BigMirrorEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 149,
+            "min": 149,
+            "max": 149
+        },
+        "songDuration": 238.372,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/28e8e"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=28e8e"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": []
+    },
+    {
+        "id": "284f6",
+        "songName": "Reverse Rebirth Trigger",
+        "songSubName": "",
+        "songAuthorName": "Akatsuki Records",
+        "coverImage": "284f6.jpg",
+        "environment": "SkrillexEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 167,
+            "min": 167,
+            "max": 167
+        },
+        "songDuration": 234.969,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/284f6"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=284f6"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": []
+    },
+    {
+        "id": "2848c",
+        "songName": "Undefined",
+        "songSubName": "",
+        "songAuthorName": "FELT",
+        "coverImage": "2848c.jpg",
+        "environment": "WeaveEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 89,
+            "min": 89,
+            "max": 89
+        },
+        "songDuration": 89.751,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/2848c"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=2848c"
+            }
+        },
+        "mode": [
+            "Standard",
+            "OneSaber"
+        ],
+        "difficulty": 6,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "27ab1",
+        "songName": "Ghosts Play to the Audience",
+        "songSubName": "ft. Hatsune Miku",
+        "songAuthorName": "PinocchioP",
+        "coverImage": "27ab1.jpg",
+        "environment": "SkrillexEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 148,
+            "min": 148,
+            "max": 148
+        },
+        "songDuration": 227.83,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/27ab1"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=27ab1"
+            }
+        },
+        "mode": [
+            "Standard",
+            "OneSaber",
+            "Lawless"
+        ],
+        "difficulty": 15,
+        "tag": []
+    },
+    {
+        "id": "269a7",
+        "songName": "ECHO",
+        "songSubName": "feat. GUMI English",
+        "songAuthorName": "Crusher-P",
+        "coverImage": "269a7.jpg",
+        "environment": "KDAEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 140,
+            "min": 140,
+            "max": 140
+        },
+        "songDuration": 231.242,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/269a7"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=269a7"
+            }
+        },
+        "mode": [
+            "Standard",
+            "Lawless"
+        ],
+        "difficulty": 6,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "25678",
+        "songName": "Angel Voices",
+        "songSubName": "",
+        "songAuthorName": "Virtual Self",
+        "coverImage": "25678.jpg",
+        "environment": "DragonsEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 83,
+            "min": 83,
+            "max": 83
+        },
+        "songDuration": 392.692,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/25678"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=25678"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": []
+    },
+    {
+        "id": "24ecd",
+        "songName": "Preserved Valkyria",
+        "songSubName": "",
+        "songAuthorName": "penoreri",
+        "coverImage": "24ecd.jpg",
+        "environment": "DragonsEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 155,
+            "min": 114,
+            "max": 220
+        },
+        "songDuration": 125.214,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/24ecd"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=24ecd"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": []
+    },
+    {
+        "id": "2443d",
+        "songName": "Deconstruction Star",
+        "songSubName": "",
+        "songAuthorName": "Halozy",
+        "coverImage": "2443d.jpg",
+        "environment": "SkrillexEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 155,
+            "min": 155,
+            "max": 155
+        },
+        "songDuration": 323.612,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/2443d"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=2443d"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": []
+    },
+    {
+        "id": "23d4d",
+        "songName": "Endless Night",
+        "songSubName": "",
+        "songAuthorName": "FELT",
+        "coverImage": "23d4d.jpg",
+        "environment": "BillieEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 120,
+            "min": 120,
+            "max": 120
+        },
+        "songDuration": 233,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/23d4d"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=23d4d"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "23c4b",
+        "songName": "HELLOHELL",
+        "songSubName": "",
+        "songAuthorName": "Akatsuki Records",
+        "coverImage": "23c4b.jpg",
+        "environment": "PyroEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 155,
+            "min": 155,
+            "max": 155
+        },
+        "songDuration": 237.491,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/23c4b"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=23c4b"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": []
+    },
+    {
+        "id": "2295d",
+        "songName": "Black Eye/Burnt Thumb",
+        "songSubName": "",
+        "songAuthorName": "Metronomy",
+        "coverImage": "2295d.jpg",
+        "environment": "DragonsEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 129,
+            "min": 129,
+            "max": 129
+        },
+        "songDuration": 283.535,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/2295d"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=2295d"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": [
+            "request"
+        ]
+    },
+    {
+        "id": "21b0b",
+        "songName": "Pure-Hearted Armeria",
+        "songSubName": "",
+        "songAuthorName": "ShinRa-Bansho",
+        "coverImage": "21b0b.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 172,
+            "min": 70,
+            "max": 217
+        },
+        "songDuration": 275.88,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/21b0b"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=21b0b"
+            }
+        },
+        "mode": [
+            "OneSaber"
+        ],
+        "difficulty": 5,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "21660",
+        "songName": "Dreamer",
+        "songSubName": "",
+        "songAuthorName": "Akatsuki Records",
+        "coverImage": "21660.jpg",
+        "environment": "BTSEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 162,
+            "min": 162,
+            "max": 162
+        },
+        "songDuration": 253.335,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/21660"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=21660"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": [
+            "request"
+        ]
+    },
+    {
+        "id": "20ab6",
+        "songName": "KAEDE",
+        "songSubName": "",
+        "songAuthorName": "Ocelot",
+        "coverImage": "20ab6.jpg",
+        "environment": "SkrillexEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 177,
+            "min": 177,
+            "max": 177
+        },
+        "songDuration": 222.376,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/20ab6"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=20ab6"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "200cb",
+        "songName": "forgotten parser",
+        "songSubName": "",
+        "songAuthorName": "Pigmhall",
+        "coverImage": "200cb.jpg",
+        "environment": "SkrillexEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 133,
+            "min": 133,
+            "max": 133
+        },
+        "songDuration": 494.435,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/200cb"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=200cb"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": [
+            "request"
+        ]
+    },
+    {
+        "id": "1ef55",
+        "songName": "Poinsettia",
+        "songSubName": "",
+        "songAuthorName": "IOSYS",
+        "coverImage": "1ef55.jpg",
+        "environment": "TimbalandEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 180,
+            "min": 56,
+            "max": 180
+        },
+        "songDuration": 201.328,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1ef55"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=1ef55"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": []
+    },
+    {
+        "id": "1edda",
+        "songName": "the march of Yui",
+        "songSubName": "",
+        "songAuthorName": "Pigmhall",
+        "coverImage": "1edda.jpg",
+        "environment": "DragonsEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 166,
+            "min": 166,
+            "max": 166
+        },
+        "songDuration": 292.048,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1edda"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=1edda"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 2,
+        "tag": [
+            "request"
+        ]
+    },
+    {
+        "id": "1de45",
+        "songName": "Sake Monster☆RaiRai!!",
+        "songSubName": "",
+        "songAuthorName": "ShinRa-Bansho x COOL&CREATE",
+        "coverImage": "1de45.jpg",
+        "environment": "BigMirrorEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 152,
+            "min": 105,
+            "max": 205
+        },
+        "songDuration": 270.194,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1de45"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=1de45"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": []
+    },
+    {
+        "id": "1da34",
+        "songName": "how low and low",
+        "songSubName": "",
+        "songAuthorName": "Halozy",
+        "coverImage": "1da34.jpg",
+        "environment": "BigMirrorEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 80,
+            "min": 80,
+            "max": 80
+        },
+        "songDuration": 361.497,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1da34"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=1da34"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": []
+    },
+    {
+        "id": "1d8da",
+        "songName": "OMEN",
+        "songSubName": "",
+        "songAuthorName": "Akatsuki Records",
+        "coverImage": "1d8da.jpg",
+        "environment": "KaleidoscopeEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 160,
+            "min": 160,
+            "max": 160
+        },
+        "songDuration": 221.99,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1d8da"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=1d8da"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": []
+    },
+    {
+        "id": "1d32b",
+        "songName": "Unconscious Requiem",
+        "songSubName": "",
+        "songAuthorName": "ShinRa-Bansho",
+        "coverImage": "1d32b.jpg",
+        "environment": "PanicEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 195,
+            "min": 150,
+            "max": 242
+        },
+        "songDuration": 279.485,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1d32b"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=1d32b"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "1d28c",
+        "songName": "Vagueness & JOURNEY",
+        "songSubName": "",
+        "songAuthorName": "FELT",
+        "coverImage": "1d28c.jpg",
+        "environment": "BTSEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 185,
+            "min": 185,
+            "max": 185
+        },
+        "songDuration": 337.999,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1d28c"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=1d28c"
+            }
+        },
+        "mode": [
+            "Standard",
+            "OneSaber"
+        ],
+        "difficulty": 6,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "1cf27",
+        "songName": "Focus",
+        "songSubName": "",
+        "songAuthorName": "chipzel",
+        "coverImage": "1cf27.jpg",
+        "environment": "TimbalandEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 174,
+            "min": 174,
+            "max": 174
+        },
+        "songDuration": 164.239,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1cf27"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=1cf27"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": []
+    },
+    {
+        "id": "1c95d",
+        "songName": "Nega-Posi",
+        "songSubName": "",
+        "songAuthorName": "Liz Triangle",
+        "coverImage": "1c95d.jpg",
+        "environment": "PanicEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 182,
+            "min": 110,
+            "max": 182
+        },
+        "songDuration": 269.033,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1c95d"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=1c95d"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": []
+    },
+    {
+        "id": "1befe",
+        "songName": "Dancing Dollz",
+        "songSubName": "ft. Cold Kiss (REDALiCE Remix)",
+        "songAuthorName": "ZYTOKINE",
+        "coverImage": "1befe.jpg",
+        "environment": "DragonsEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 175,
+            "min": 175,
+            "max": 175
+        },
+        "songDuration": 223.882,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1befe"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=1befe"
+            }
+        },
+        "mode": [
+            "Standard",
+            "Lightshow"
+        ],
+        "difficulty": 6,
+        "tag": []
+    },
+    {
+        "id": "1bb74",
+        "songName": "Platinum Groove",
+        "songSubName": "",
+        "songAuthorName": "android52",
+        "coverImage": "1bb74.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 128,
+            "min": 128,
+            "max": 128
+        },
+        "songDuration": 232.048,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1bb74"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=1bb74"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": []
+    },
+    {
+        "id": "1a1fa",
+        "songName": "Tsurupettan",
+        "songSubName": "",
+        "songAuthorName": "Silver Forest",
+        "coverImage": "1a1fa.jpg",
+        "environment": "BigMirrorEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 180,
+            "min": 180,
+            "max": 180
+        },
+        "songDuration": 161.949,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1a1fa"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=1a1fa"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": []
+    },
+    {
+        "id": "19a0a",
+        "songName": "Error Code",
+        "songSubName": "",
+        "songAuthorName": "Case & Point",
+        "coverImage": "19a0a.jpg",
+        "environment": "TimbalandEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 128,
+            "min": 128,
+            "max": 128
+        },
+        "songDuration": 160.477,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/19a0a"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=19a0a"
+            }
+        },
+        "mode": [
+            "Standard",
+            "OneSaber",
+            "Lightshow",
+            "Lawless"
+        ],
+        "difficulty": 10,
+        "tag": []
+    },
+    {
+        "id": "1988c",
+        "songName": "Paranoia",
+        "songSubName": "(with sorane) (ALR REMIX)",
+        "songAuthorName": "DiGiTAL WiNG",
+        "coverImage": "1988c.jpg",
+        "environment": "TriangleEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 150,
+            "min": 150,
+            "max": 150
+        },
+        "songDuration": 184.804,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1988c"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=1988c"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "193c1",
+        "songName": "Sunset Tea Cup",
+        "songSubName": "",
+        "songAuthorName": "YUC'e",
+        "coverImage": "193c1.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 160,
+            "min": 160,
+            "max": 160
+        },
+        "songDuration": 185.997,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/193c1"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=193c1"
+            }
+        },
+        "mode": [
+            "Standard",
+            "OneSaber",
+            "Legacy"
+        ],
+        "difficulty": 11,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "1902e",
+        "songName": "fractal",
+        "songSubName": "",
+        "songAuthorName": "FELT",
+        "coverImage": "1902e.jpg",
+        "environment": "NiceEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 178,
+            "min": 178,
+            "max": 178
+        },
+        "songDuration": 97.071,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1902e"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=1902e"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "188a7",
+        "songName": "Psychedelic Onizakura Alliance",
+        "songSubName": "",
+        "songAuthorName": "SOUND HOLIC",
+        "coverImage": "188a7.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 160,
+            "min": 160,
+            "max": 160
+        },
+        "songDuration": 211.486,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/188a7"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=188a7"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": []
+    },
+    {
+        "id": "1857c",
+        "songName": "VENTEN",
+        "songSubName": "",
+        "songAuthorName": "Akatsuki Records",
+        "coverImage": "1857c.jpg",
+        "environment": "KaleidoscopeEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 175,
+            "min": 175,
+            "max": 175
+        },
+        "songDuration": 207.086,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1857c"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=1857c"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "182b1",
+        "songName": "KARMANATIONS",
+        "songSubName": "",
+        "songAuthorName": "Akatsuki Records",
+        "coverImage": "182b1.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 192,
+            "min": 192,
+            "max": 192
+        },
+        "songDuration": 228.739,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/182b1"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=182b1"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": []
+    },
+    {
+        "id": "1815a",
+        "songName": "Dark Flight Dreamer",
+        "songSubName": "",
+        "songAuthorName": "ALiCE'S EMOTiON",
+        "coverImage": "1815a.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 189,
+            "min": 189,
+            "max": 189
+        },
+        "songDuration": 193.016,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1815a"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=1815a"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "18159",
+        "songName": "werewolf howls.",
+        "songSubName": "",
+        "songAuthorName": "Camellia",
+        "coverImage": "18159.jpg",
+        "environment": "DragonsEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 222,
+            "min": 222,
+            "max": 222
+        },
+        "songDuration": 118.918,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/18159"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=18159"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "16aca",
+        "songName": "Koi wa Chaos no Shimobe Nari",
+        "songSubName": "(short edit)",
+        "songAuthorName": "Ushirokara Haiyoritai G (CVs: Asumi Kana & Matsuki Miyu & Ootsubo Yuka)",
+        "coverImage": "16aca.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 158,
+            "min": 158,
+            "max": 158
+        },
+        "songDuration": 23.31,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/16aca"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=16aca"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": []
+    },
+    {
+        "id": "16769",
+        "songName": "New World",
+        "songSubName": "",
+        "songAuthorName": "FELT",
+        "coverImage": "16769.jpg",
+        "environment": "OriginsEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 195,
+            "min": 195,
+            "max": 195
+        },
+        "songDuration": 249.236,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/16769"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=16769"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": []
+    },
+    {
+        "id": "15897",
+        "songName": "Oshama Scramble!",
+        "songSubName": "(uncut edition)",
+        "songAuthorName": "t+pazolite",
+        "coverImage": "15897.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 190,
+            "min": 190,
+            "max": 190
+        },
+        "songDuration": 256.74,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/15897"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=15897"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": []
+    },
+    {
+        "id": "15214",
+        "songName": "Daisuke",
+        "songSubName": "",
+        "songAuthorName": "Y&Co.",
+        "coverImage": "15214.jpg",
+        "environment": "RocketEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 157,
+            "min": 157,
+            "max": 157
+        },
+        "songDuration": 128.257,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/15214"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=15214"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": []
+    },
+    {
+        "id": "14182",
+        "songName": "Azure Raindrop",
+        "songSubName": "",
+        "songAuthorName": "Akatsuki Records",
+        "coverImage": "14182.jpg",
+        "environment": "BigMirrorEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 176,
+            "min": 176,
+            "max": 176
+        },
+        "songDuration": 234.536,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/14182"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=14182"
+            }
+        },
+        "mode": [
+            "Standard",
+            "360Degree"
+        ],
+        "difficulty": 6,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "132d6",
+        "songName": "VANDALIZED AI",
+        "songSubName": "",
+        "songAuthorName": "Kobaryo",
+        "coverImage": "132d6.jpg",
+        "environment": "BigMirrorEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 321,
+            "min": 321,
+            "max": 321
+        },
+        "songDuration": 236.307,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/132d6"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=132d6"
+            }
+        },
+        "mode": [
+            "Standard",
+            "Lightshow"
+        ],
+        "difficulty": 6,
+        "tag": []
+    },
+    {
+        "id": "12ca8",
+        "songName": "In my room",
+        "songSubName": "",
+        "songAuthorName": "FELT",
+        "coverImage": "12ca8.jpg",
+        "environment": "BigMirrorEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 165,
+            "min": 165,
+            "max": 165
+        },
+        "songDuration": 40.455,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/12ca8"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=12ca8"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": []
+    },
+    {
+        "id": "11c1e",
+        "songName": "Marisa wa Taihen na Mono wo Nusunde Ikimashita",
+        "songSubName": "",
+        "songAuthorName": "IOSYS",
+        "coverImage": "11c1e.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 170,
+            "min": 170,
+            "max": 170
+        },
+        "songDuration": 242.829,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/11c1e"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=11c1e"
+            }
+        },
+        "mode": [
+            "Standard",
+            "Lawless"
+        ],
+        "difficulty": 2,
+        "tag": []
+    },
+    {
+        "id": "11bf4",
+        "songName": "Unknown x known",
+        "songSubName": "- DYES IWASAKI Remix -",
+        "songAuthorName": "Meramipop",
+        "coverImage": "11bf4.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 180,
+            "min": 180,
+            "max": 180
+        },
+        "songDuration": 269.328,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/11bf4"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=11bf4"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": []
+    },
+    {
+        "id": "10cba",
+        "songName": "Yoru Naku Usagi wa Yume wo Miru",
+        "songSubName": "",
+        "songAuthorName": "UNDEAD CORPORATION",
+        "coverImage": "10cba.jpg",
+        "environment": "LinkinParkEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 200,
+            "min": 69,
+            "max": 200
+        },
+        "songDuration": 225.598,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/10cba"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=10cba"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": []
+    },
+    {
+        "id": "10b39",
+        "songName": "Last Wind",
+        "songSubName": "",
+        "songAuthorName": "FELT",
+        "coverImage": "10b39.jpg",
+        "environment": "OriginsEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 152,
+            "min": 152,
+            "max": 152
+        },
+        "songDuration": 225.475,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/10b39"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=10b39"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "1095f",
+        "songName": "Hitomi ni Kakusareta Omoi",
+        "songSubName": "(with senya)",
+        "songAuthorName": "Yuuhei Satellite",
+        "coverImage": "1095f.jpg",
+        "environment": "PanicEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 160,
+            "min": 160,
+            "max": 160
+        },
+        "songDuration": 178.46,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/1095f"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=1095f"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "10479",
+        "songName": "Frightmare",
+        "songSubName": "(feat. Myles Travitz)",
+        "songAuthorName": "Strangers",
+        "coverImage": "10479.jpg",
+        "environment": "DragonsEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 128,
+            "min": 128,
+            "max": 128
+        },
+        "songDuration": 285.932,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/10479"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=10479"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "fcf6",
+        "songName": "Star Velocity",
+        "songSubName": "",
+        "songAuthorName": "FELT",
+        "coverImage": "fcf6.jpg",
+        "environment": "DragonsEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 140,
+            "min": 140,
+            "max": 140
+        },
+        "songDuration": 297.471,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/fcf6"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=fcf6"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": []
+    },
+    {
+        "id": "fc8f",
+        "songName": "Monkey Dance",
+        "songSubName": "Misamiru Edit",
+        "songAuthorName": "Y&Co",
+        "coverImage": "fc8f.jpg",
+        "environment": "RocketEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 164,
+            "min": 164,
+            "max": 164
+        },
+        "songDuration": 47.142,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/fc8f"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=fc8f"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 1,
+        "tag": []
+    },
+    {
+        "id": "f018",
+        "songName": "Disguise",
+        "songSubName": "",
+        "songAuthorName": "Kiryu",
+        "coverImage": "f018.jpg",
+        "environment": "DragonsEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 140,
+            "min": 140,
+            "max": 140
+        },
+        "songDuration": 144.857,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/f018"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=f018"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "eb9b",
+        "songName": "Monochrome",
+        "songSubName": "Tomoyuki Sakakida Remix",
+        "songAuthorName": "Syrup Comfiture",
+        "coverImage": "eb9b.jpg",
+        "environment": "OriginsEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 140,
+            "min": 140,
+            "max": 140
+        },
+        "songDuration": 279.529,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/eb9b"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=eb9b"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 4,
+        "tag": []
+    },
+    {
+        "id": "def0",
+        "songName": "Revenge",
+        "songSubName": "(ReeK's \"Dude, What's A Genre?\" Remix) (feat. CaptainSparklez)",
+        "songAuthorName": "TryHardNinja",
+        "coverImage": "def0.jpg",
+        "environment": "BigMirrorEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 330,
+            "min": 65,
+            "max": 330
+        },
+        "songDuration": 276.924,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/def0"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=def0"
+            }
+        },
+        "mode": [
+            "Standard",
+            "Lightshow"
+        ],
+        "difficulty": 4,
+        "tag": []
+    },
+    {
+        "id": "dda4",
+        "songName": "circles!",
+        "songSubName": "",
+        "songAuthorName": "nekodex",
+        "coverImage": "dda4.jpg",
+        "environment": "NiceEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 184,
+            "min": 184,
+            "max": 184
+        },
+        "songDuration": 139.565,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/dda4"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=dda4"
+            }
+        },
+        "mode": [
+            "Standard",
+            "Lightshow"
+        ],
+        "difficulty": 6,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "b642",
+        "songName": "T.R.Y Revolution",
+        "songSubName": "",
+        "songAuthorName": "Halozy",
+        "coverImage": "b642.jpg",
+        "environment": "GreenDayEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 152,
+            "min": 152,
+            "max": 152
+        },
+        "songDuration": 268.417,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/b642"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=b642"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "b1a8",
+        "songName": "There's A Cat Licking Your Birthday Cake",
+        "songSubName": "",
+        "songAuthorName": "Parry Gripp",
+        "coverImage": "b1a8.jpg",
+        "environment": "BigMirrorEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 110,
+            "min": 110,
+            "max": 110
+        },
+        "songDuration": 38.733,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/b1a8"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=b1a8"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": []
+    },
+    {
+        "id": "abd5",
+        "songName": "Girly Cupid",
+        "songSubName": "feat. Marpril",
+        "songAuthorName": "PSYQUI",
+        "coverImage": "abd5.jpg",
+        "environment": "OriginsEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 133,
+            "min": 133,
+            "max": 133
+        },
+        "songDuration": 244.072,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/abd5"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=abd5"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 2,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "a127",
+        "songName": "Escape",
+        "songSubName": "(ft. Summer Haze)",
+        "songAuthorName": "Jaroslav Beck",
+        "coverImage": "a127.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 175,
+            "min": 175,
+            "max": 175
+        },
+        "songDuration": 162.869,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/a127"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=a127"
+            }
+        },
+        "mode": [
+            "Standard",
+            "360Degree"
+        ],
+        "difficulty": 6,
+        "tag": []
+    },
+    {
+        "id": "8944",
+        "songName": "Black Hair Drugs",
+        "songSubName": "",
+        "songAuthorName": "LOLIPO",
+        "coverImage": "8944.jpg",
+        "environment": "PanicEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 183,
+            "min": 183,
+            "max": 183
+        },
+        "songDuration": 350.118,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/8944"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=8944"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": []
+    },
+    {
+        "id": "7f35",
+        "songName": "New World",
+        "songSubName": "",
+        "songAuthorName": "FELT",
+        "coverImage": "7f35.jpg",
+        "environment": "Origins",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 195,
+            "min": 195,
+            "max": 195
+        },
+        "songDuration": 249.236,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/7f35"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=7f35"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "7b30",
+        "songName": "Tsurupettan",
+        "songSubName": "",
+        "songAuthorName": "Silver Forest",
+        "coverImage": "7b30.jpg",
+        "environment": "BigMirrorEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 180,
+            "min": 180,
+            "max": 180
+        },
+        "songDuration": 161.949,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/7b30"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=7b30"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "713b",
+        "songName": "Lost in the Abyss",
+        "songSubName": "",
+        "songAuthorName": "FELT",
+        "coverImage": "713b.jpg",
+        "environment": "Origins",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 183,
+            "min": 183,
+            "max": 183
+        },
+        "songDuration": 300.072,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/713b"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=713b"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "6d0f",
+        "songName": "Unconscious Requiem",
+        "songSubName": "",
+        "songAuthorName": "ShinRa-Bansho",
+        "coverImage": "6d0f.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 195,
+            "min": 99,
+            "max": 203
+        },
+        "songDuration": 277.734,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/6d0f"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=6d0f"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": []
+    },
+    {
+        "id": "65c7",
+        "songName": "The Pressure",
+        "songSubName": "",
+        "songAuthorName": "Stonebank",
+        "coverImage": "65c7.jpg",
+        "environment": "MonstercatEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 170,
+            "min": 170,
+            "max": 170
+        },
+        "songDuration": 249.926,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/65c7"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=65c7"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "6126",
+        "songName": "TRIPLE PLAY",
+        "songSubName": "",
+        "songAuthorName": "KASAI HARCORES",
+        "coverImage": "6126.jpg",
+        "environment": "TriangleEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 175,
+            "min": 175,
+            "max": 175
+        },
+        "songDuration": 253.006,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/6126"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=6126"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": []
+    },
+    {
+        "id": "5ead",
+        "songName": "Imbalance",
+        "songSubName": "",
+        "songAuthorName": "FELT",
+        "coverImage": "5ead.jpg",
+        "environment": "BigMirrorEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 138,
+            "min": 138,
+            "max": 138
+        },
+        "songDuration": 116.271,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/5ead"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=5ead"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": []
+    },
+    {
+        "id": "57e0",
+        "songName": "Phantasy",
+        "songSubName": "",
+        "songAuthorName": "Amidst",
+        "coverImage": "57e0.jpg",
+        "environment": "NiceEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 165,
+            "min": 165,
+            "max": 165
+        },
+        "songDuration": 217.156,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/57e0"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=57e0"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "558d",
+        "songName": "Harumachi Clover",
+        "songSubName": "(TV Size)",
+        "songAuthorName": "Hanasaka Yui (CV: M.A.O)",
+        "coverImage": "558d.jpg",
+        "environment": "NiceEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 142,
+            "min": 142,
+            "max": 142
+        },
+        "songDuration": 34.284,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/558d"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=558d"
+            }
+        },
+        "mode": [
+            "Standard",
+            "NoArrows",
+            "OneSaber",
+            "Lawless"
+        ],
+        "difficulty": 20,
+        "tag": []
+    },
+    {
+        "id": "5487",
+        "songName": "Way Too Deep",
+        "songSubName": "",
+        "songAuthorName": "Grabbitz",
+        "coverImage": "5487.jpg",
+        "environment": "BigMirrorEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 140,
+            "min": 140,
+            "max": 140
+        },
+        "songDuration": 343.823,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/5487"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=5487"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
+        "id": "52e0",
+        "songName": "Happy birthday to You",
+        "songSubName": "(M2U Version)",
+        "songAuthorName": "M2U",
+        "coverImage": "52e0.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 110,
+            "min": 110,
+            "max": 110
+        },
+        "songDuration": 33.463,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/52e0"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=52e0"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": []
+    },
+    {
+        "id": "50c7",
+        "songName": "Nom Nom Nom Nom Nom Nom Nom",
+        "songSubName": "",
+        "songAuthorName": "Parry Gripp",
+        "coverImage": "50c7.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 128,
+            "min": 128,
+            "max": 128
+        },
+        "songDuration": 63.627,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/50c7"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=50c7"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": []
+    },
+    {
+        "id": "50af",
+        "songName": "FAITH",
+        "songSubName": "",
+        "songAuthorName": "Unlucky Morpheus",
+        "coverImage": "50af.jpg",
+        "environment": "TriangleEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 200,
+            "min": 200,
+            "max": 200
+        },
+        "songDuration": 57.664,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/50af"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=50af"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": []
+    },
+    {
+        "id": "50ae",
+        "songName": "Mermaid girl",
+        "songSubName": "",
+        "songAuthorName": "Cream puff",
+        "coverImage": "50ae.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 140,
+            "min": 140,
+            "max": 140
+        },
+        "songDuration": 122.149,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/50ae"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=50ae"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": []
+    },
+    {
+        "id": "500c",
+        "songName": "Help me, ERINNNNNN!! (Flowering Night 2007 Ver.)",
+        "songSubName": "",
+        "songAuthorName": "COOL&CREATE",
+        "coverImage": "500c.jpg",
+        "environment": "TriangleEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 183,
+            "min": 183,
+            "max": 183
+        },
+        "songDuration": 277.84,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/500c"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=500c"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 2,
+        "tag": []
+    },
+    {
+        "id": "49e5",
+        "songName": "Platinum Groove",
+        "songSubName": "",
+        "songAuthorName": "android52",
+        "coverImage": "49e5.jpg",
+        "environment": "DefaultEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 128,
+            "min": 128,
+            "max": 128
+        },
+        "songDuration": 230.687,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/49e5"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=49e5"
+            }
+        },
+        "mode": [
+            "Standard"
+        ],
+        "difficulty": 5,
+        "tag": []
+    }
 ]

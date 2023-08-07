@@ -172,6 +172,50 @@ function updateData(
    diff: bsmap.types.wrapper.IWrapDifficulty,
    mapDetails: BeatmapDetails,
 ) {
+   let curMinBPM = info.beatsPerMinute,
+      curMaxBPM = info.beatsPerMinute;
+   if (diff.bpmEvents.length) {
+      diff.bpmEvents.forEach((e) => {
+         if (e.bpm < curMinBPM) {
+            curMinBPM = e.bpm;
+         } else if (e.bpm > curMaxBPM) {
+            curMaxBPM = e.bpm;
+         }
+      });
+      if (!mapDetails.beatsPerMinute.min || !mapDetails.beatsPerMinute.max) {
+         mapDetails.beatsPerMinute.min = curMinBPM;
+         mapDetails.beatsPerMinute.max = curMaxBPM;
+      }
+      if (curMinBPM < mapDetails.beatsPerMinute.min) {
+         mapDetails.beatsPerMinute.min = curMinBPM;
+      }
+      if (curMaxBPM > mapDetails.beatsPerMinute.max) {
+         mapDetails.beatsPerMinute.max = curMaxBPM;
+      }
+      return;
+   }
+   if (diff.basicEvents.filter((e) => e.type === 100).length) {
+      diff.basicEvents
+         .filter((e) => e.type === 100)
+         .forEach((e) => {
+            if (e.floatValue < curMinBPM) {
+               curMinBPM = e.floatValue;
+            } else if (e.floatValue > curMaxBPM) {
+               curMaxBPM = e.floatValue;
+            }
+         });
+      if (!mapDetails.beatsPerMinute.min || !mapDetails.beatsPerMinute.max) {
+         mapDetails.beatsPerMinute.min = curMinBPM;
+         mapDetails.beatsPerMinute.max = curMaxBPM;
+      }
+      if (curMinBPM < mapDetails.beatsPerMinute.min) {
+         mapDetails.beatsPerMinute.min = curMinBPM;
+      }
+      if (curMaxBPM > mapDetails.beatsPerMinute.max) {
+         mapDetails.beatsPerMinute.max = curMaxBPM;
+      }
+      return;
+   }
    if (diff.customData) {
       const customData = diff.customData;
       let BPMChanges;
@@ -182,10 +226,7 @@ function updateData(
       } else if (customData.BPMChanges) {
          BPMChanges = customData._bpmChanges;
       }
-
       if (BPMChanges && Array.isArray(BPMChanges) && BPMChanges.length > 0) {
-         let curMinBPM = info.beatsPerMinute,
-            curMaxBPM = info.beatsPerMinute;
          for (let i = 0, len = BPMChanges.length; i < len; i++) {
             if (BPMChanges[i]._BPM < curMinBPM) {
                curMinBPM = BPMChanges[i]._BPM;
