@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BackgroundImage from '../components/BackgroundImage.astro';
-import Nav from '../components/Nav.astro';
+import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FeaturedVideo from '../components/FeaturedVideo.svelte';
 
@@ -15,16 +15,10 @@ const pageDetails = {
 <BaseLayout pageDetails={pageDetails}>
    <div class="full-page">
       <BackgroundImage src={'../assets/img/bg/background.jpg'} mask={true} />
-      <div class="nav">
-         <Nav />
-      </div>
-      <header>
+      <Header pageDetails={pageDetails} />
+      <main>
          <div class="flex">
             <div class="flex-item">
-               <h1 class="text-shadow">Kival Evan</h1>
-               <div class="nav-mobile">
-                  <Nav />
-               </div>
                <p class="text-shadow">
                   I am an undergraduate, computer science student, learning as I find and develop
                   more new things. I am also a Beat Saber player and a mapper for it, and have
@@ -38,7 +32,7 @@ const pageDetails = {
                </div>
             </div>
          </div>
-      </header>
+      </main>
       <Footer />
    </div>
 </BaseLayout>
@@ -46,7 +40,7 @@ const pageDetails = {
 <style lang="scss">
    @use '../styles/_var' as *;
 
-   header {
+   main {
       width: 100%;
       max-width: 100em;
       padding-left: 4em;
@@ -87,31 +81,6 @@ const pageDetails = {
          max-width: calc(#{$breakpoint-widescreen} / 2);
       }
    }
-   .nav {
-      width: 100%;
-      margin-top: 1em;
-      background-image: linear-gradient(
-         to left,
-         rgba(0, 0, 0, 0),
-         rgba(0, 0, 0, 0.375) 10%,
-         rgba(0, 0, 0, 0.375) 90%,
-         rgba(0, 0, 0, 0)
-      );
-      @media (max-width: $breakpoint-widescreen) {
-         display: none;
-      }
-      @at-root .nav-mobile {
-         @extend .nav;
-         margin-top: 0;
-         margin-bottom: 1.5em;
-         @media (min-width: $breakpoint-widescreen) {
-            display: none;
-         }
-         @media (max-width: $breakpoint-widescreen) {
-            display: block;
-         }
-      }
-   }
    h1 {
       margin-top: 0rem;
       margin-bottom: 0.25rem;
@@ -120,7 +89,7 @@ const pageDetails = {
    p {
       position: relative;
       font-size: 1.375rem;
-      padding: 0.5em;
+      padding: 0.75em 1.5em;
       background-color: $background-translucent;
       &::before,
       &::after {
@@ -130,14 +99,14 @@ const pageDetails = {
          width: 1em;
       }
       &::before {
-         top: 0;
-         left: 0;
+         top: 0.375em;
+         left: 0.375em;
          border-left: 0.0625em solid #ccc;
          border-top: 0.0625em solid #ccc;
       }
       &::after {
-         bottom: 0;
-         right: 0;
+         bottom: 0.375em;
+         right: 0.375em;
          border-right: 0.0625em solid #ccc;
          border-bottom: 0.0625em solid #ccc;
       }

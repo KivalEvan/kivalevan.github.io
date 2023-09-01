@@ -1,5 +1,5 @@
 ---
-import { getImage } from '@astrojs/image';
+import { getImage } from 'astro:assets';
 
 interface Props {
    filePath: string;
@@ -9,7 +9,7 @@ import image from '../assets/img/avatar/kival_evan.jpg';
 
 const { filePath } = Astro.props;
 
-const { alt, src } = await getImage({
+const { src } = await getImage({
    src: image,
    alt: `${filePath.split('.')[0]}`,
    format: 'webp',
@@ -18,7 +18,7 @@ const { alt, src } = await getImage({
 });
 ---
 
-<img alt={alt} src={src} class="avatar" loading="lazy" />
+<img alt="avatar" src={src} class="avatar" loading="lazy" />
 
 <style lang="scss">
    .avatar {

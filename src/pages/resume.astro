@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { formatDate } from '../utils/date';
 import image from '../assets/img/avatar/kival_evan.jpg';
-import { getImage } from '@astrojs/image';
+import { getImage } from 'astro:assets';
 
 const pageDetails = {
    title: 'Resume',
@@ -46,7 +46,7 @@ const tier = (perc: number): string =>
          .find((s) => parseFloat(s) <= perc)!
    ];
 
-const { alt, src } = await getImage({
+const { src } = await getImage({
    src: image,
    alt: '',
    format: 'webp',
