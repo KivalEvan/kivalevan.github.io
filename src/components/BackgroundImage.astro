@@ -1,5 +1,5 @@
 ---
-import { getImage } from '@astrojs/image';
+import { getImage } from 'astro:assets';
 
 interface Props {
    src: string;
@@ -10,7 +10,7 @@ import image from '../assets/img/bg/background.jpg';
 
 const { mask } = Astro.props;
 
-const { alt, src } = await getImage({ src: image, alt: '', format: 'webp' });
+const { src } = await getImage({ src: image, alt: '', format: 'webp' });
 ---
 
 <div class="background">

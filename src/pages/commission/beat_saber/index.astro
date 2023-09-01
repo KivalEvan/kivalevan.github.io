@@ -293,7 +293,7 @@ const pageDetails = {
    }
    th,
    td {
-      display: inline-block;
+      display: inline-table;
       &.description {
          color: #ddd;
          font-size: 0.875rem;
@@ -369,13 +369,16 @@ const pageDetails = {
          border-bottom: 0.125em solid #8884;
       }
    }
+   .list-arrow li {
+      display: inline-flex;
+   }
    .list-tag {
       justify-content: center;
       li,
       a,
       span {
          font-size: 1.125rem;
-         padding: 0.5em;
+         padding: 0.375em;
       }
    }
 </style>
