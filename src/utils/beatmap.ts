@@ -1,4 +1,4 @@
-import * as bsmap from 'https://raw.githubusercontent.com/KivalEvan/BeatSaber-Deno/main/mod.ts';
+import * as bsmap from '/home/kival/GitRepository/BeatSaber-Deno/mod.ts';
 import { existsSync } from 'https://deno.land/std@0.192.0/fs/mod.ts';
 import { resolve } from 'https://deno.land/std@0.192.0/path/mod.ts';
 import { Image } from 'https://deno.land/x/imagescript@1.2.15/mod.ts';
@@ -79,19 +79,20 @@ for await (const folder of Deno.readDir(INPUT_PATH)) {
       console.log(folder.name);
       const path = resolve(INPUT_PATH, folder.name);
       if (existsSync(resolve(path, 'Info.dat')) || existsSync(resolve(path, 'info.dat'))) {
-         let info: bsmap.types.IInfo;
+         let info: bsmap.types.wrapper.IWrapInfo;
          try {
             info = bsmap.load.infoSync(2, {
                directory: path,
                filePath: 'Info.dat',
             });
-         } catch {
+         } catch (e2) {
             try {
                info = bsmap.load.infoSync(2, {
                   directory: path,
                   filePath: 'info.dat',
                });
-            } catch {
+            } catch (e) {
+               console.error(e2);
                console.error('wtf?');
                continue;
             }
@@ -117,8 +118,10 @@ for await (const folder of Deno.readDir(INPUT_PATH)) {
             tag: [],
          } as BeatmapDetails;
 
-         const r = await mediainfo.get(resolve(path, info.songFilename));
-         mapDetails.songDuration = parseFloat(r.info[0].Duration);
+         try {
+            const r = await mediainfo.get(resolve(path, info.songFilename));
+            mapDetails.songDuration = parseFloat(r.info[0].Duration);
+         } catch {}
 
          const beatsaverID = folder.name.slice(0, 5).trim();
          mapDetails.id = beatsaverID;
@@ -168,13 +171,13 @@ for await (const folder of Deno.readDir(INPUT_PATH)) {
 }
 
 function updateData(
-   info: bsmap.types.IInfo,
+   info: bsmap.types.wrapper.IWrapInfo,
    diff: bsmap.types.wrapper.IWrapDifficulty,
    mapDetails: BeatmapDetails,
 ) {
    let curMinBPM = info.beatsPerMinute,
       curMaxBPM = info.beatsPerMinute;
-   if (diff.bpmEvents.length) {
+   if (diff.bpmEvents.length > 1) {
       diff.bpmEvents.forEach((e) => {
          if (e.bpm < curMinBPM) {
             curMinBPM = e.bpm;
