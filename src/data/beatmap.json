@@ -826,7 +826,7 @@
             "min": 105,
             "max": 205
         },
-        "songDuration": 270.194,
+        "songDuration": 0,
         "link": {
             "BeatSaver": {
                 "name": "BeatSaver",
@@ -1305,9 +1305,10 @@
             }
         },
         "mode": [
-            "Standard"
+            "Standard",
+            "OneSaber"
         ],
-        "difficulty": 5,
+        "difficulty": 8,
         "tag": [
             "showcase"
         ]
