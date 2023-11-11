@@ -1,7 +1,7 @@
 ---
 title: 'Early journey into web development'
 description: 'A look back towards my journey as a web developer since December 2020.'
-author: 'kival evan'
+author: 'Kival Evan'
 publishDate: 'September 07, 2021 12:00:00'
 updatedDate: ''
 layout: '../../../layouts/BlogPost.astro'
