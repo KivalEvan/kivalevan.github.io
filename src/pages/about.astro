@@ -9,8 +9,19 @@ const pageDetails = {
    overrideTitle: false,
 };
 
-const languages = ['JavaScript', 'Typescript', 'Python', 'C#', 'C++', 'C', 'Rust', 'PHP', 'Java'];
-const techs = ['Node.js', 'Deno', 'Astro', 'SolidJS', 'Svelte', 'Tauri Apps', 'Git', 'MySQL'];
+const languages = ['JavaScript', 'TypeScript', 'C#', 'C++', 'C', 'Python', 'Rust', 'PHP', 'Java'];
+const techs = [
+   'Node.js',
+   'Deno',
+   'Astro',
+   'SolidJS',
+   'Svelte',
+   'Tauri Apps',
+   'Git',
+   'MySQL',
+   'Linux',
+   'Fusion 360',
+];
 ---
 
 <Main pageDetails={pageDetails}>
@@ -24,11 +35,12 @@ const techs = ['Node.js', 'Deno', 'Astro', 'SolidJS', 'Svelte', 'Tauri Apps', 'G
       </figure>
       <div class="profile-info">
          An undergraduate, computer science student<br />
-          A lil' VR-enthusiast<br />
+          A lil VR-enthusiast<br />
          <br />
-          Just doing things alone on my free time<br />
+          Just doin things alone on my free time<br />
+          Enjoys doin coding challenge<br />
          <br />
-         <b>Age</b> :: 24<br />
+         <b>Age</b> :: <span id="age">24</span><br />
          <b>Birthday</b> :: June 10<br />
       </div>
    </section>
@@ -40,12 +52,12 @@ const techs = ['Node.js', 'Deno', 'Astro', 'SolidJS', 'Svelte', 'Tauri Apps', 'G
             List shown here does not say about my proficiency, just something I'm familiar with as
             I've used them for certain purpose.
          </p>
-         <h4>Programming Language:</h4>
+         <h4>Programmings:</h4>
          <ul class="list-tag">
             {languages.map((e) => <li>{e}</li>)}
          </ul>
          <br />
-         <h4>Other Techs:</h4>
+         <h4>Others:</h4>
          <ul class="list-tag">
             {techs.map((e) => <li>{e}</li>)}
          </ul>
@@ -66,6 +78,7 @@ const techs = ['Node.js', 'Deno', 'Astro', 'SolidJS', 'Svelte', 'Tauri Apps', 'G
                      <li>ZOTAC GAMING Geforce GTX 1080 Ti</li>
                      <li>Corsair Vengeance 2x16GB 3200MHz DDR4</li>
                      <li>Asus ROG Maximus XI Gene</li>
+                     <li>Arch Linux + Windows 10 Dual Boot</li>
                   </ul>
                </div>
                <br />
@@ -132,3 +145,11 @@ const techs = ['Node.js', 'Deno', 'Astro', 'SolidJS', 'Svelte', 'Tauri Apps', 'G
       }
    </style>
 </Main>
+
+<script>
+   const c = new Date();
+   const t = c.getFullYear() - new Date('1999-06-10').getFullYear();
+   document.getElementById('age')!.innerText = (
+      c.getMonth() >= 5 && !(c.getMonth() <= 5 && c.getDate() < 10) ? t : t - 1
+   ).toString();
+</script>

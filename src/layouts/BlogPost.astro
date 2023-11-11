@@ -7,6 +7,7 @@ export interface Props {
 
 export interface PageDetails {
    title: string;
+   section: string;
    subtitle?: string;
    description: string;
    overrideTitle: boolean;
@@ -16,6 +17,7 @@ const { content } = Astro.props as Props;
 const { title, description, author, publishDate, updatedDate } = content;
 
 const pageDetails: PageDetails = {
+   section: 'Blog',
    title: title,
    description: description,
    overrideTitle: false,
@@ -51,3 +53,27 @@ const dateString = `${monthName[date.getMonth()]} ${date.getUTCDate()}, ${date.g
       <slot />
    </article>
 </Main>
+
+<style lang="scss" is:inline>
+   article {
+      ul {
+         list-style: none;
+         text-align: justify;
+         line-height: 1.375;
+         margin-top: 0.25em;
+         padding: 0 2em;
+         li {
+            p {
+               display: inline-block;
+            }
+            &:not(:last-child) {
+               margin-bottom: 0.5em;
+            }
+            &::before {
+               content: '\00BB';
+               margin-right: 0.5em;
+            }
+         }
+      }
+   }
+</style>

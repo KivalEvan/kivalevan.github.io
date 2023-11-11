@@ -3,36 +3,36 @@
       "place": "GitHub",
       "name": "KivalEvan",
       "url": "https://github.com/KivalEvan/",
-      "img": ""
+      "img": true
    },
    {
       "place": "Steam",
       "name": "Kival Evan",
       "url": "https://steamcommunity.com/id/KivalEvan/",
-      "img": ""
+      "img": true
    },
    {
       "place": "YouTube",
       "name": "Kival Evan",
       "url": "https://www.youtube.com/channel/UC5pOhteTPou4iA8bNaEx3IA",
-      "img": ""
+      "img": true
    },
    {
       "place": "Twitch",
       "name": "KivalEvan",
       "url": "https://www.twitch.tv/kivalevan",
-      "img": ""
+      "img": true
    },
    {
       "place": "Twitter",
       "name": "@Kival_Evan",
       "url": "https://twitter.com/Kival_Evan",
-      "img": ""
+      "img": true
    },
    {
       "place": "Discord",
       "name": "Kival Evan#5480",
       "url": null,
-      "img": ""
+      "img": true
    }
 ]

@@ -25,8 +25,11 @@
 </script>
 
 <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-<span class="next-button fake-link" on:click={changeVideo} on:keypress={changeVideo} tabindex="0"
-   >Next featured video</span
+<button
+   class="next-button fake-link text-shadow"
+   on:click={changeVideo}
+   on:keypress={changeVideo}
+   tabindex="0">Next featured video</button
 >
 <div class="video-container">
    <iframe
@@ -39,13 +42,21 @@
       loading="lazy"
    />
 </div>
-<span class="title text-shadow">{title}</span><br />
-<span class="subtitle text-shadow">{subtitle}</span><br />
-<p class="description text-shadow">{description}</p>
+<div class="text-container">
+   <span class="title text-shadow">{title}</span><br />
+   <span class="subtitle text-shadow">{subtitle}</span><br />
+   <p class="description text-shadow">{description}</p>
+</div>
 
 <style lang="scss">
+   @use '../styles/_var' as *;
    .next-button {
-      padding: 0.25em;
+      background: $background-translucent;
+      border: 0;
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px;
+      font-size: 1rem;
+      padding: 0.25em 0.5em;
    }
    .title {
       font-size: 1.75rem;
@@ -58,5 +69,11 @@
    .description {
       font-size: 1rem;
       color: white;
+   }
+   .text-container {
+      background: $background-translucent;
+      padding: 0.125em 0.25em;
+      border-bottom-right-radius: 0.5em;
+      border-bottom-left-radius: 0.5em;
    }
 </style>
