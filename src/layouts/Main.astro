@@ -24,7 +24,7 @@ const { pageDetails } = Astro.props as Props;
 <BaseLayout pageDetails={pageDetails}>
    <div class="full-page" id="top-of-page">
       <Header pageDetails={pageDetails} />
-      <main>
+      <main transition:name="main" transition:animate="fade">
          {
             pageDetails.subtitle && !pageDetails.noSubtitle ? (
                <div class="wrapper readable">

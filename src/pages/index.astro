@@ -16,7 +16,7 @@ const pageDetails = {
    <div class="full-page">
       <BackgroundImage src={'../assets/img/bg/background.jpg'} mask={true} />
       <Header pageDetails={pageDetails} />
-      <main>
+      <main transition:name="main" transition:animate="fade">
          <div class="flex">
             <div class="flex-item wrapper">
                <p class="text-shadow">
