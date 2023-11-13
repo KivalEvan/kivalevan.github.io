@@ -13,7 +13,7 @@ const { mask } = Astro.props;
 const { src } = await getImage({ src: image, alt: '', format: 'webp' });
 ---
 
-<div class="background">
+<div class="background" transition:name="main" transition:animate="fade">
    <img src={src} alt="background image by Amibazh" class={mask ? 'mask' : ''} loading="lazy" />
 </div>
 
