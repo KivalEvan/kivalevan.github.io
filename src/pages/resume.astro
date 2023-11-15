@@ -29,10 +29,14 @@ const technologies: SkillTier = {
       95: 'Master',
    },
    values: {
-      Linux: 0,
-      Git: 0,
       NodeJS: 0,
       Deno: 0,
+      Astro: 0,
+      SolidJS: 0,
+      Svelte: 0,
+      Git: 0,
+      MySQL: 0,
+      Linux: 0,
    },
 };
 
@@ -45,6 +49,7 @@ const skills: SkillTier = {
       95: 'Master',
    },
    values: {
+      JavaScript: 80,
       TypeScript: 80,
       HTML: 70,
       CSS: 60,
@@ -54,7 +59,6 @@ const skills: SkillTier = {
       'C++': 25,
       C: 20,
       Python: 20,
-      MySQL: 0,
    },
 };
 
@@ -407,7 +411,7 @@ const { src } = await getImage({
                   </ul>
                </section>
                <section>
-                  Last Updated: {formatDate('10 October 2023')}
+                  Last Updated: {formatDate('15 November 2023')}
                </section>
             </div>
             <div class="flex-col-large">
@@ -488,7 +492,8 @@ const { src } = await getImage({
                      <span>05/2022 - 08/2022</span>
                      <ul class="list-arrow">
                         <li>Created a complex reactive form from numerous of data.</li>
-                        <li>Collaborated with colleague in the back-end design.</li>
+                        <li>Collaborated in the back-end design on data processing.</li>
+                        <li>Assisted in bash script.</li>
                      </ul>
                   </div>
                </section>
@@ -685,7 +690,6 @@ const { src } = await getImage({
          font-family: sans-serif;
          color: #111;
          background-color: #eee;
-         margin: 1em 0;
          box-shadow: 0 0 1em #0008;
          &::before,
          &::after {
