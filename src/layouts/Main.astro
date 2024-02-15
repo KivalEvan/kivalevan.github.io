@@ -28,7 +28,7 @@ const { pageDetails } = Astro.props as Props;
          {
             pageDetails.subtitle && !pageDetails.noSubtitle ? (
                <div class="wrapper readable">
-                  <h3>{pageDetails.subtitle}</h3>
+                  <h2>|| {pageDetails.subtitle}</h2>
                </div>
             ) : null
          }
