@@ -1,5 +1,6 @@
 <script lang="ts">
    import type { BeatmapDetails } from '../../utils/beatmap';
+   import { round } from '../../utils/misc';
    const CharacteristicRename: { readonly [key: string]: string } = {
       Standard: 'Standard',
       NoArrows: 'No Arrows',
@@ -28,7 +29,7 @@
       return ary.reduce(
          (p, v, i) =>
             p + (ary.length - 1 === i ? (i ? ' & ' : '') : i ? ', ' : '') + CharacteristicRename[v],
-         ''
+         '',
       );
    }
 
@@ -50,7 +51,7 @@
       <span class="song-artist">{beatmap.songAuthorName}</span><br />
       <span class="song-bpm">
          {#if beatmap.beatsPerMinute.base !== beatmap.beatsPerMinute.min || beatmap.beatsPerMinute.base !== beatmap.beatsPerMinute.max}
-            ({beatmap.beatsPerMinute.min}-{beatmap.beatsPerMinute.max})
+            ({round(beatmap.beatsPerMinute.min, 2)}-{round(beatmap.beatsPerMinute.max, 2)})
          {/if}
          {beatmap.beatsPerMinute.base}BPM</span
       ><br />
@@ -84,7 +85,9 @@
       height: 9em;
       margin: 0.5em;
       box-shadow: -0.1875em 0.1875em 0.375em #0008;
-      transition: transform ease 0.25s, box-shadow ease 0.25s;
+      transition:
+         transform ease 0.25s,
+         box-shadow ease 0.25s;
 
       @media (max-width: $breakpoint-mobile) {
          width: 8em;

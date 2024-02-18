@@ -11,3 +11,8 @@ export function interleave<T, U>([x, ...xs]: T[], ys: U[] = []): (T | U)[] {
       ? ys // base: no x
       : [x, ...interleave(ys, xs)]; // inductive: some x
 }
+
+export function round(num: number, d = 0): number {
+   const r = Math.pow(10, d);
+   return Math.round(num * r) / r;
+}

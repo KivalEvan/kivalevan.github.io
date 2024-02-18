@@ -87,7 +87,7 @@
          if (input.difficulty[d]) {
             amt += (rate.base + rate.difficulty[d] * multiplier) * rateScale;
             noDiscount += (rate.base + rate.difficulty[d]) * rateScale;
-            multiplier -= 0.2;
+            multiplier -= 0.25;
          }
       }
       noDiscount += rate.lighting[input.lighting] * rateScale;
