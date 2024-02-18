@@ -72,8 +72,8 @@
    }
    .text-container {
       background: $background-translucent;
-      padding: 0.125em 0.25em;
-      border-bottom-right-radius: 0.5em;
-      border-bottom-left-radius: 0.5em;
+      padding: 0.125em 0.5em;
+      border-bottom-right-radius: 0.25em;
+      border-bottom-left-radius: 0.25em;
    }
 </style>

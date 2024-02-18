@@ -1,5 +1,38 @@
 [
     {
+        "id": "39f80",
+        "songName": "Necromantic",
+        "songSubName": "",
+        "songAuthorName": "Akatsuki Records",
+        "coverImage": "39f80.jpg",
+        "environment": "TheRollingStonesEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 144,
+            "min": 143.999924,
+            "max": 152.9988
+        },
+        "songDuration": 267.504,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/39f80"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=39f80"
+            }
+        },
+        "mode": [
+            "Standard",
+            "OneSaber"
+        ],
+        "difficulty": 8,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
         "id": "33024",
         "songName": "I Bet You'll Forget That Even If You Noticed That",
         "songSubName": "(I Was Still There)",
@@ -826,7 +859,7 @@
             "min": 105,
             "max": 205
         },
-        "songDuration": 0,
+        "songDuration": 270.194,
         "link": {
             "BeatSaver": {
                 "name": "BeatSaver",

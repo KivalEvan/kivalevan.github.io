@@ -2,6 +2,7 @@
 import Main from '../../../layouts/Main.astro';
 import BeatmapList from '../../../components/commission/BeatmapList.svelte';
 import { formatDate } from '../../../utils/date';
+import Commission from '../../../data/commission.json';
 
 const pageDetails = {
    title: 'Commission',
@@ -74,33 +75,33 @@ const pageDetails = {
             <table class="table-list">
                <caption><h4>Mapping Rate</h4></caption>
                <tr>
-                  <th>$25</th>
+                  <th>${Commission.beatmap.base + Commission.beatmap.difficulty.expertPlus}</th>
                   <td>Expert+</td>
                   <td class="description"
                      >Every details matter, more sound mapped with considerably complicated pattern.</td
                   >
                </tr>
                <tr>
-                  <th>$20</th>
+                  <th>${Commission.beatmap.base + Commission.beatmap.difficulty.expert}</th>
                   <td>Expert</td>
                   <td class="description"
                      >Mapped to the rhythm and prominent instrument of the song, fairly challenging.</td
                   >
                </tr>
                <tr>
-                  <th>$18</th>
+                  <th>${Commission.beatmap.base + Commission.beatmap.difficulty.hard}</th>
                   <td>Hard</td>
                   <td class="description"
                      >A faster paced map, challenging to casual but not too difficult.</td
                   >
                </tr>
                <tr>
-                  <th>$15</th>
+                  <th>${Commission.beatmap.base + Commission.beatmap.difficulty.normal}</th>
                   <td>Normal</td>
                   <td class="description">Easy challenge for the casual player.</td>
                </tr>
                <tr>
-                  <th>$10</th>
+                  <th>${Commission.beatmap.base + Commission.beatmap.difficulty.easy}</th>
                   <td>Easy</td>
                   <td class="description"
                      >Good introductory to someone new and familiar to the game, heavily
@@ -113,26 +114,26 @@ const pageDetails = {
             <table class="table-list">
                <caption><h4>Lighting Rate</h4></caption>
                <tr>
-                  <th>$35</th>
+                  <th>${Commission.beatmap.lighting.chromaAdvanced}</th>
                   <td>Chroma Advanced</td>
                   <td class="description"
                      >Sophisticated form of lighting with individual light piece is controlled.</td
                   >
                </tr>
                <tr>
-                  <th>$25</th>
+                  <th>${Commission.beatmap.lighting.chromaBasic}</th>
                   <td>Chroma Basic</td>
                   <td class="description"
                      >Basic form of Chroma lighting on color and spin control.</td
                   >
                </tr>
                <tr>
-                  <th>$35</th>
+                  <th>${Commission.beatmap.lighting.vanillaV3}</th>
                   <td>Vanilla (V3)</td>
                   <td class="description">Advanced lighting introduced since Weave.</td>
                </tr>
                <tr>
-                  <th>$20</th>
+                  <th>${Commission.beatmap.lighting.vanillaV2}</th>
                   <td>Vanilla (V2)</td>
                   <td class="description"
                      >Basic yet effective lighting using (custom) environment prior Weave.</td

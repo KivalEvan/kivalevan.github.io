@@ -11,6 +11,7 @@ const INPUT_PATH =
 const OUTPUT_PATH = '/mnt/plextor/GitRepository/kivalevan.github.io/';
 
 const showcase = [
+   '39f80',
    '33024',
    '2eafa',
    '2c663',
@@ -84,12 +85,14 @@ for await (const folder of Deno.readDir(INPUT_PATH)) {
             info = bsmap.load.infoSync(2, {
                directory: path,
                filePath: 'Info.dat',
+               dataCheck: { throwError: false },
             });
          } catch (e2) {
             try {
                info = bsmap.load.infoSync(2, {
                   directory: path,
                   filePath: 'info.dat',
+                  dataCheck: { throwError: false },
                });
             } catch (e) {
                console.error(e2);
@@ -119,18 +122,18 @@ for await (const folder of Deno.readDir(INPUT_PATH)) {
          } as BeatmapDetails;
 
          try {
-            const r = await mediainfo.get(resolve(path, info.songFilename));
+            const r = await mediainfo.get(resolve(path, info.audio.filename));
             mapDetails.songDuration = parseFloat(r.info[0].Duration);
          } catch {}
 
          const beatsaverID = folder.name.slice(0, 5).trim();
          mapDetails.id = beatsaverID;
-         mapDetails.songName = info.songName;
-         mapDetails.songSubName = info.songSubName;
-         mapDetails.songAuthorName = info.songAuthorName;
-         mapDetails.beatsPerMinute.base = info.beatsPerMinute;
-         mapDetails.beatsPerMinute.min = info.beatsPerMinute;
-         mapDetails.beatsPerMinute.max = info.beatsPerMinute;
+         mapDetails.songName = info.song.title;
+         mapDetails.songSubName = info.song.subTitle;
+         mapDetails.songAuthorName = info.song.author;
+         mapDetails.beatsPerMinute.base = info.audio.bpm;
+         mapDetails.beatsPerMinute.min = info.audio.bpm;
+         mapDetails.beatsPerMinute.max = info.audio.bpm;
          mapDetails.environment = info.environmentName;
          mapDetails.environment360 = info.allDirectionsEnvironmentName || null;
 
@@ -160,7 +163,7 @@ for await (const folder of Deno.readDir(INPUT_PATH)) {
          mapDetails.mode = Array.from(new Set(info.listMap().map((s) => s[0])));
          mapDetails.difficulty = info.listMap().length;
 
-         const diffList = bsmap.load.difficultyFromInfoSync(info, {
+         const diffList = bsmap.load.beatmapFromInfoSync(info, {
             directory: path,
          });
 
@@ -175,8 +178,8 @@ function updateData(
    diff: bsmap.types.wrapper.IWrapDifficulty,
    mapDetails: BeatmapDetails,
 ) {
-   let curMinBPM = info.beatsPerMinute,
-      curMaxBPM = info.beatsPerMinute;
+   let curMinBPM = info.audio.bpm,
+      curMaxBPM = info.audio.bpm;
    if (diff.bpmEvents.length > 1) {
       diff.bpmEvents.forEach((e) => {
          if (e.bpm < curMinBPM) {
