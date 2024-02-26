@@ -1,5 +1,38 @@
 [
     {
+        "id": "3a68e",
+        "songName": "Necro Fantasia",
+        "songSubName": "",
+        "songAuthorName": "MISATO",
+        "coverImage": "3a68e.jpg",
+        "environment": "WeaveEnvironment",
+        "environment360": "GlassDesertEnvironment",
+        "beatsPerMinute": {
+            "base": 175,
+            "min": 175,
+            "max": 175
+        },
+        "songDuration": 348.04,
+        "link": {
+            "BeatSaver": {
+                "name": "BeatSaver",
+                "url": "https://beatsaver.com/maps/3a68e"
+            },
+            "WebViewer": {
+                "name": "Web Viewer",
+                "url": "https://allpoland.github.io/ArcViewer/?id=3a68e"
+            }
+        },
+        "mode": [
+            "Standard",
+            "OneSaber"
+        ],
+        "difficulty": 8,
+        "tag": [
+            "showcase"
+        ]
+    },
+    {
         "id": "39f80",
         "songName": "Necromantic",
         "songSubName": "",
