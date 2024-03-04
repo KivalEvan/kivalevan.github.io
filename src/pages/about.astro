@@ -9,7 +9,20 @@ const pageDetails = {
    overrideTitle: false,
 };
 
-const languages = ['JavaScript', 'TypeScript', 'C#', 'C++', 'C', 'Python', 'Rust', 'PHP', 'Java'];
+const languages = [
+   'JavaScript',
+   'TypeScript',
+   'C#',
+   'C++',
+   'C',
+   'Python',
+   'Rust',
+   'Go',
+   'Zig',
+   'PHP',
+   'Java',
+   'Bash',
+];
 const techs = [
    'Node.js',
    'Deno',
@@ -21,6 +34,17 @@ const techs = [
    'MySQL',
    'Linux',
    'Fusion 360',
+   'Blender',
+   'GitHub Actions',
+];
+const topics = [
+   'Virtual Reality',
+   'Game Development',
+   '3D Modelling',
+   'Cybersecurity',
+   'Machine Learning',
+   'Electronic Engineering',
+   'Low-level Programming',
 ];
 ---
 
@@ -35,10 +59,10 @@ const techs = [
       </figure>
       <div class="profile-info">
          An undergraduate, computer science student<br />
-          A lil VR-enthusiast<br />
+         A lil VR-enthusiast<br />
          <br />
-          Just doin things alone on my free time<br />
-          Enjoys doin coding challenge<br />
+         Just doin things alone on my free time<br />
+         Enjoys doin coding challenge<br />
          <br />
          <b>Age</b> :: <span id="age">24</span><br />
          <b>Birthday</b> :: June 10<br />
@@ -48,19 +72,19 @@ const techs = [
       <h3>Skills & Interests</h3>
       <hr />
       <div class="wrapper readable">
-         <p>
-            List shown here does not say about my proficiency, just something I'm familiar with as
-            I've used them for certain purpose.
-         </p>
-         <h4>Programmings:</h4>
+         <h4>Languages & Technologies:</h4>
          <ul class="list-tag">
-            {languages.map((e) => <li>{e}</li>)}
+            {[...languages, ...techs].map((e) => <li>{e}</li>)}
          </ul>
          <br />
-         <h4>Others:</h4>
+         <h4>Topics:</h4>
          <ul class="list-tag">
-            {techs.map((e) => <li>{e}</li>)}
+            {topics.map((e) => <li>{e}</li>)}
          </ul>
+         <p>
+            List shown here does not say about my proficiency, just something I'm familiar with as
+            I've used them or did something related for certain purpose.
+         </p>
       </div>
    </section>
    <br />
@@ -129,6 +153,7 @@ const techs = [
                </div>
             </div>
          </div>
+         <p>Will get updated over time as I get new toys and stuff.</p>
       </div>
    </section>
 
