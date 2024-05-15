@@ -83,7 +83,7 @@ function tier(data: SkillTier, perc: number): string {
       parseInt(
          Object.keys(data.tier)
             .reverse()
-            .find((s) => parseFloat(s) <= perc)!,
+            .find((s) => parseFloat(s) <= perc)!
       )
    ];
 }
@@ -414,7 +414,7 @@ const { src } = await getImage({
                   </ul>
                </section>
                <section>
-                  Last Updated: {formatDate('1 February 2024')}
+                  Last Updated: {formatDate('6 May 2024')}
                </section>
             </div>
             <div class="flex-col-large">
@@ -521,11 +521,17 @@ const { src } = await getImage({
                   <div>
                      <h5>Final Year Project - Runner-up Best Project Award Session 2022/2023</h5>
                      <span>August 2023</span>
+                     <br />
+                     <span
+                        >(<a href="https://tauri.app/">Tauri Apps</a>, <a
+                           href="https://www.typescriptlang.org/">TypeScript</a
+                        >, <a href="https://svelte.dev/">Svelte</a>)</span
+                     >
                      <p>
-                        Built a GUI-based ETL tools for databases from and to various sources and
-                        targets, designed for ease of use and to be as performant as possible. The
-                        underlying pipeline uses in-memory instead of disk storage, loading database
-                        only when needed.
+                        Built a prototype GUI-based ETL tools for databases from and to various
+                        sources and targets. The application is designed for desktop user with
+                        minimal setup required and ease of use. Contributed in back-end and
+                        front-end development.
                      </p>
                   </div>
                </section>
@@ -576,9 +582,10 @@ const { src } = await getImage({
                         >)</span
                      >
                      <p>
-                        A library for Beat Saber beatmap scripting designed for ease of use and
-                        flexible for the user. It allows user to easily manipulate with the beatmap
-                        and ensures integrity of the beatmap for it to be usable in Beat Saber.
+                        A library for Beat Saber beatmap scripting used to manipulate the beatmap
+                        data. It is designed to be lightweight, yet flexible that allows
+                        customisability and ensures integrity of the beatmap for it to be usable in
+                        Beat Saber.
                      </p>
                   </div>
                   <div>
