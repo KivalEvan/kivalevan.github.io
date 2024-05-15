@@ -1,6 +1,6 @@
-import * as bsmap from '/home/kival/GitRepository/BeatSaber-Deno/mod.ts';
-import { existsSync } from 'https://deno.land/std@0.192.0/fs/mod.ts';
-import { resolve } from 'https://deno.land/std@0.192.0/path/mod.ts';
+import * as bsmap from 'https://raw.githubusercontent.com/KivalEvan/BeatSaber-Deno/main/mod.ts';
+import { existsSync } from 'https://deno.land/std@0.224.0/fs/mod.ts';
+import { resolve } from 'https://deno.land/std@0.224.0/path/mod.ts';
 import { Image } from 'https://deno.land/x/imagescript@1.2.15/mod.ts';
 import { mediainfo } from './mediainfo.ts';
 

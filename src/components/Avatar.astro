@@ -6,19 +6,13 @@ interface Props {
 }
 
 import image from '../assets/img/avatar/kival_evan.jpg';
+import Image from 'astro/components/Image.astro';
 
 const { filePath } = Astro.props;
 
-const { src } = await getImage({
-   src: image,
-   alt: `${filePath.split('.')[0]}`,
-   format: 'webp',
-   width: 256,
-   height: 256,
-});
 ---
 
-<img alt="avatar" src={src} class="avatar" loading="lazy" />
+<Image alt="avatar" src={image} class="avatar" width=256 height=256 />
 
 <style lang="scss">
    .avatar {
