@@ -2,18 +2,18 @@
    "beatmap": {
       "base": 5,
       "difficulty": {
-         "expertPlus": 20,
-         "expert": 15,
-         "hard": 10,
-         "normal": 7,
-         "easy": 5
+         "expertPlus": 15,
+         "expert": 10,
+         "hard": 7,
+         "normal": 5,
+         "easy": 3
       },
       "lighting": {
          "lolighter": 0,
-         "vanillaV2": 15,
-         "vanillaV3": 40,
-         "chromaBasic": 20,
-         "chromaAdvanced": 40
+         "vanillaV2": 10,
+         "vanillaV3": 30,
+         "chromaBasic": 15,
+         "chromaAdvanced": 35
       }
    }
 }
