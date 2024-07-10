@@ -1,5 +1,89 @@
 [
    {
+      "id": "3db37",
+      "songName": "Master Of Tides",
+      "songSubName": "",
+      "songAuthorName": "Lindsey Stirling",
+      "coverImage": "3db37.jpg",
+      "environment": "DefaultEnvironment",
+      "environment360": "GlassDesertEnvironment",
+      "beatsPerMinute": {
+         "base": 128,
+         "min": 128,
+         "max": 128
+      },
+      "songDuration": 260.63,
+      "link": {
+         "BeatSaver": {
+            "name": "BeatSaver",
+            "url": "https://beatsaver.com/maps/3db37"
+         },
+         "WebViewer": {
+            "name": "Web Viewer",
+            "url": "https://allpoland.github.io/ArcViewer/?id=3db37"
+         }
+      },
+      "mode": ["OneSaber"],
+      "difficulty": 1,
+      "tag": []
+   },
+   {
+      "id": "3d69b",
+      "songName": "The Phoenix",
+      "songSubName": "",
+      "songAuthorName": "Fall Out Boy",
+      "coverImage": "3d69b.jpg",
+      "environment": "PyroEnvironment",
+      "environment360": "GlassDesertEnvironment",
+      "beatsPerMinute": {
+         "base": 138,
+         "min": 138,
+         "max": 138
+      },
+      "songDuration": 245.113,
+      "link": {
+         "BeatSaver": {
+            "name": "BeatSaver",
+            "url": "https://beatsaver.com/maps/3d69b"
+         },
+         "WebViewer": {
+            "name": "Web Viewer",
+            "url": "https://allpoland.github.io/ArcViewer/?id=3d69b"
+         }
+      },
+      "mode": ["Standard", "OneSaber", "360Degree", "90Degree"],
+      "difficulty": 14,
+      "tag": ["showcase"]
+   },
+   {
+      "id": "3d58d",
+      "songName": "Other Side",
+      "songSubName": "",
+      "songAuthorName": "FELT",
+      "coverImage": "3d58d.jpg",
+      "environment": "DaftPunkEnvironment",
+      "environment360": "GlassDesertEnvironment",
+      "beatsPerMinute": {
+         "base": 168,
+         "min": 168,
+         "max": 168
+      },
+      "songDuration": 229.999,
+      "link": {
+         "BeatSaver": {
+            "name": "BeatSaver",
+            "url": "https://beatsaver.com/maps/3d58d"
+         },
+         "WebViewer": {
+            "name": "Web Viewer",
+            "url": "https://allpoland.github.io/ArcViewer/?id=3d58d"
+         }
+      },
+      "mode": ["Standard", "OneSaber"],
+      "difficulty": 8,
+      "tag": ["showcase"]
+   },
+   {
       "id": "3a68e",
       "songName": "Necro Fantasia",
       "songSubName": "",
