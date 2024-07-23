@@ -12,12 +12,7 @@ const pageDetails = {
 
 type SkillTier = { tier: Record<number, string>; values: Record<string, number> };
 
-const interests = [
-   'Virtual Reality',
-   'Game Development',
-   '3D Modelling',
-   'Low-level Programming',
-];
+const interests = ['Virtual Reality', 'Game Development', '3D Modelling', 'Low-level Programming'];
 
 const technologies: SkillTier = {
    tier: {
@@ -56,13 +51,13 @@ const skills: SkillTier = {
       CSS: 60,
       PHP: 30,
       Python: 20,
-      Java: 50,
       'C#': 50,
       'C++': 25,
       C: 40,
+      Java: 50,
       OCaml: 20,
-      Go: 25,
       Rust: 25,
+      Go: 25,
    },
 };
 
@@ -343,8 +338,8 @@ const { src } = await getImage({
                   </h4>
                   <div>
                      <h5>
-                        <a href="https://github.com/KivalEvan/BeatSaber-Deno">
-                           Beat Saber Deno
+                        <a href="https://github.com/KivalEvan/BeatSaber-JSMap">
+                           Beat Saber JS Map
                            <svg
                               xmlns="http://www.w3.org/2000/svg"
                               width="16"
@@ -369,10 +364,9 @@ const { src } = await getImage({
                         >)</span
                      >
                      <p>
-                        A library for Beat Saber beatmap scripting used to manipulate the beatmap
-                        data. It is designed to be lightweight, yet flexible that allows
-                        customisability and ensures integrity of the beatmap for it to be usable in
-                        Beat Saber.
+                        A script module for Beat Saber scripting used to manipulate the beatmap data. It
+                        is designed to be lightweight, yet flexible that allows customisability and
+                        ensures integrity of the beatmap for it to be usable in Beat Saber.
                      </p>
                   </div>
                   <div>
@@ -653,7 +647,7 @@ const { src } = await getImage({
                   </ul>
                </section>
                <section>
-                  Last Updated: {formatDate('10 July 2024')}
+                  Last Updated: {formatDate('23 July 2024')}
                </section>
             </div>
          </div>
