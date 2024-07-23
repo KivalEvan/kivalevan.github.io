@@ -5,7 +5,7 @@
       "songSubName": "",
       "songAuthorName": "Lindsey Stirling",
       "coverImage": "3db37.jpg",
-      "environment": "DefaultEnvironment",
+      "environment": "BillieEnvironment",
       "environment360": "GlassDesertEnvironment",
       "beatsPerMinute": {
          "base": 128,
@@ -24,8 +24,8 @@
          }
       },
       "mode": ["OneSaber"],
-      "difficulty": 1,
-      "tag": []
+      "difficulty": 5,
+      "tag": ["showcase"]
    },
    {
       "id": "3d69b",

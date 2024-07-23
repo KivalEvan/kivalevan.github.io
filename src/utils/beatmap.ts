@@ -11,6 +11,7 @@ const INPUT_PATH =
 const OUTPUT_PATH = '/mnt/plextor/GitRepository/kivalevan.github.io/';
 
 const showcase = [
+   '3db37',
    '3d69b',
    '3d58d',
    '3a68e',
