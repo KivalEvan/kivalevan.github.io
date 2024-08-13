@@ -4,6 +4,7 @@ import { formatDate } from '../utils/date';
 import image from '../assets/img/avatar/kival_evan.jpg';
 import { getImage } from 'astro:assets';
 
+const updatedDate = formatDate('10 August 2024');
 const pageDetails = {
    title: 'Resume',
    description: 'CV',
@@ -11,9 +12,7 @@ const pageDetails = {
 };
 
 type SkillTier = { tier: Record<number, string>; values: Record<string, number> };
-
 const interests = ['Virtual Reality', 'Game Development', '3D Modelling', 'Low-level Programming'];
-
 const technologies: SkillTier = {
    tier: {
       0: 'Beginner',
@@ -23,19 +22,21 @@ const technologies: SkillTier = {
       95: 'Master',
    },
    values: {
-      NodeJS: 0,
+      'Node.js': 0,
       Deno: 0,
       Astro: 0,
       SolidJS: 0,
       Svelte: 0,
+      Qt: 0,
+      CMake: 0,
       Git: 0,
       MySQL: 0,
       Linux: 0,
       Blender: 0,
+      Docker: 0,
       'GitHub Actions': 0,
    },
 };
-
 const skills: SkillTier = {
    tier: {
       0: 'Beginner',
@@ -58,9 +59,10 @@ const skills: SkillTier = {
       OCaml: 20,
       Rust: 25,
       Go: 25,
+      Zig: 25,
+      Lua: 25,
    },
 };
-
 const languages: SkillTier = {
    tier: {
       0: 'Elementary',
@@ -74,7 +76,54 @@ const languages: SkillTier = {
    },
 };
 
-function tier(data: SkillTier, perc: number): string {
+interface Project {
+   name: string;
+   link: string;
+   type: string;
+   stack: { name: string; link: string }[];
+   description: string;
+}
+const projects: Project[] = [
+   {
+      name: 'Beat Saber JS Map',
+      link: 'https://github.com/KivalEvan/BeatSaber-JSMap',
+      type: 'Personal Project',
+      stack: [
+         { name: 'TypeScript', link: 'https://www.typescriptlang.org/' },
+         { name: 'Deno', link: 'https://deno.com/' },
+      ],
+      description: `A script module for Beat Saber scripting used to manipulate the
+beatmap data. It is designed to be lightweight, yet flexible that
+allows customisability and ensures integrity of the beatmap for it to
+be usable in Beat Saber.`,
+   },
+   {
+      name: 'Beat Saber Map Check',
+      link: 'https://github.com/KivalEvan/BeatSaber-MapCheck',
+      type: 'Personal Project',
+      stack: [
+         { name: 'TypeScript', link: 'https://www.typescriptlang.org/' },
+         { name: 'Sass', link: 'https://sass-lang.com/' },
+         { name: 'Vite', link: 'https://vitejs.dev/' },
+      ],
+      description: `Web-based application designed to analyse and provide extensive stats of the
+beatmap for Beat Saber. Widely used in the mapping community and helped out
+mappers from potential errors.`,
+   },
+   {
+      name: 'ChroMapper',
+      link: 'https://github.com/Caeden117/ChroMapper',
+      type: 'Open Source Project Contribution',
+      stack: [
+         { name: 'Unity', link: 'https://unity.com/' },
+         { name: 'C#', link: 'https://docs.microsoft.com/en-us/dotnet/csharp/' },
+      ],
+      description: `A third-party Beat Saber beatmap editing software. Contributed in handling
+beatmap model, user control behaviour and various other bug fixes.`,
+   },
+];
+
+function getTier(data: SkillTier, perc: number): string {
    return data.tier[
       parseInt(
          Object.keys(data.tier)
@@ -305,9 +354,11 @@ const { src } = await getImage({
                      <span>August 2023</span>
                      <br />
                      <span
-                        >(<a href="https://tauri.app/">Tauri Apps</a>, <a
+                        >(
+                        <a href="https://tauri.app/">Tauri Apps</a>, <a
                            href="https://www.typescriptlang.org/">TypeScript</a
-                        >, <a href="https://svelte.dev/">Svelte</a>)</span
+                        >, <a href="https://svelte.dev/">Svelte</a>
+                        )</span
                      >
                      <p>
                         Built a prototype GUI-based ETL tools for databases from and to various
@@ -336,104 +387,41 @@ const { src } = await getImage({
                      </svg>
                      PROJECTS
                   </h4>
-                  <div>
-                     <h5>
-                        <a href="https://github.com/KivalEvan/BeatSaber-JSMap">
-                           Beat Saber JS Map
-                           <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="16"
-                              height="16"
-                              fill="currentColor"
-                              class="bi bi-link-45deg"
-                              viewBox="0 0 16 16"
-                           >
-                              <path
-                                 d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"
-                              ></path>
-                              <path
-                                 d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"
-                              ></path>
-                           </svg>
-                        </a>
-                     </h5>
-                     <h6>Personal Project</h6><br />
-                     <span
-                        >(<a href="https://www.typescriptlang.org/">TypeScript</a>, <a
-                           href="https://deno.land/">Deno</a
-                        >)</span
-                     >
-                     <p>
-                        A script module for Beat Saber scripting used to manipulate the beatmap data. It
-                        is designed to be lightweight, yet flexible that allows customisability and
-                        ensures integrity of the beatmap for it to be usable in Beat Saber.
-                     </p>
-                  </div>
-                  <div>
-                     <h5>
-                        <a href="https://github.com/KivalEvan/BeatSaber-MapCheck">
-                           Beat Saber Map Check
-                           <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="16"
-                              height="16"
-                              fill="currentColor"
-                              class="bi bi-link-45deg"
-                              viewBox="0 0 16 16"
-                           >
-                              <path
-                                 d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"
-                              ></path>
-                              <path
-                                 d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"
-                              ></path>
-                           </svg>
-                        </a>
-                     </h5>
-                     <h6>Personal Project</h6><br />
-                     <span
-                        >(<a href="https://www.typescriptlang.org/">TypeScript</a>, <a
-                           href="https://sass-lang.com/">Sass</a
-                        >, <a href="https://vitejs.dev/">Vite</a>)</span
-                     >
-                     <p>
-                        Web-based application designed to analyse and provide extensive stats of the
-                        beatmap for Beat Saber. Widely used in the mapping community and helped out
-                        mappers from potential errors.
-                     </p>
-                  </div>
-                  <div>
-                     <h5>
-                        <a href="https://github.com/Caeden117/ChroMapper">
-                           ChroMapper
-                           <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="16"
-                              height="16"
-                              fill="currentColor"
-                              class="bi bi-link-45deg"
-                              viewBox="0 0 16 16"
-                           >
-                              <path
-                                 d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"
-                              ></path>
-                              <path
-                                 d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"
-                              ></path>
-                           </svg>
-                        </a>
-                     </h5>
-                     <h6>Open-Source Project</h6><br />
-                     <span
-                        >(<a href="https://unity.com/">Unity</a>, <a
-                           href="https://learn.microsoft.com/en-us/dotnet/csharp/">C#</a
-                        >)</span
-                     >
-                     <p>
-                        A third-party Beat Saber beatmap editing software. Contributed in handling
-                        beatmap model, user control behaviour and various other bug fixes.
-                     </p>
-                  </div>
+                  {
+                     projects.map((project) => (
+                        <div>
+                           <h5>
+                              <a href={project.link}>
+                                 {project.name}
+                                 <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                    fill="currentColor"
+                                    class="bi bi-link-45deg"
+                                    viewBox="0 0 16 16"
+                                 >
+                                    <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z" />
+                                    <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z" />
+                                 </svg>
+                              </a>
+                           </h5>
+                           <>
+                              <h6>{project.type}</h6>
+                              <br />
+                           </>
+                           <span>
+                              (
+                              {project.stack.flatMap((stack) => [
+                                 <a href={stack.link}>{stack.name}</a>,
+                                 <span>, </span>,
+                              ]).slice(0, -1)}
+                              )
+                           </span>
+                           <p>{project.description}</p>
+                        </div>
+                     ))
+                  }
                </section>
             </div>
             <div class="flex-col-small">
@@ -456,7 +444,7 @@ const { src } = await getImage({
                   <div>
                      <h5>Bachelor of Computer Science (Software Engineering)</h5>
                      <h6>Multimedia University, Cyberjaya</h6>
-                     07/2018 - 07/2024, CGPA 3.37/4.00
+                     07/2018 - 07/2024, CGPA 3.39/4.00
                   </div>
                   <div>
                      <h5>Foundation in Information Technology</h5>
@@ -532,7 +520,7 @@ const { src } = await getImage({
                                  <>
                                     <span class="skill-name">{s}</span>
                                     <span class="skill-tier">
-                                       {tier(languages, languages.values[s])}
+                                       {getTier(languages, languages.values[s])}
                                     </span>
                                  </>
                               </li>
@@ -647,7 +635,7 @@ const { src } = await getImage({
                   </ul>
                </section>
                <section>
-                  Last Updated: {formatDate('23 July 2024')}
+                  Last Updated: {updatedDate}
                </section>
             </div>
          </div>
@@ -693,6 +681,9 @@ const { src } = await getImage({
          height: 1em;
       }
       .container {
+         width: 100%;
+         height: auto;
+         aspect-ratio: 1 / 1.414;
          position: relative;
          font-family: sans-serif;
          color: #111;
