@@ -5,7 +5,15 @@ const { pageDetails } = Astro.props;
 ---
 
 <header>
-   <h1 class="text-shadow"><a href="/">Kival Evan</a></h1>
+   {
+      pageDetails.title === 'Kival Evan' ? (
+         <h1 class="text-shadow">Kival Evan</h1>
+      ) : (
+         <h1 class="text-shadow">
+            <a href="/">Kival Evan</a>
+         </h1>
+      )
+   }
    <div class="container">
       <Nav currentPage={pageDetails.section || pageDetails.title} />
    </div>
