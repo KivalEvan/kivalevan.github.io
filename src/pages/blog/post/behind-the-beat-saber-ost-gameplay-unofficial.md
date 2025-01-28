@@ -54,53 +54,53 @@ For the comments I received on YouTube, yes I do read them, sorry for the silent
 I'm not sure how I would want to answer them but I'll answer briefly here.
 Maybe in a QnA if needed any more specific, so here is some of the questions I often get from YouTube comments:
 
--  What VR headset are you using?
+- What VR headset are you using?
 
-   -  I'm using Meta Quest 2 on PCVR via Link.
+   - Previously used Meta Quest 2 and currently using Meta Quest 3 on PCVR via Link.
 
--  How are your sabers/notes far from you?
+- How are your sabers/notes far from you?
 
-   -  I'm using camera mod that offsets the camera back so you are able to see the whole saber movement without sacrificing the FOV. The saber/notes is still as close to me, just the spectator sees it different.
+   - I'm using camera mod that offsets the camera back so you are able to see the whole saber movement without sacrificing the FOV. The saber/notes is still as close to me, just the spectator sees it different.
 
--  How do you have that camera settings?
+- How do you have that camera settings?
 
-   -  Using either Camera2 or CameraPlus mod, whichever gets updated first. Then, I adjusted the Z-offset and FOV. Currently using 64FOV and -0.375 z-offset.
+   - Using either Camera2 or CameraPlus mod, whichever gets updated first. Then, I adjusted the Z-offset and FOV. Currently using 64FOV and -0.375 z-offset.
 
--  How do you remove the debris from camera?
+- How do you remove the debris from camera?
 
-   -  From camera mod.
+   - From camera mod.
 
--  Why do note comes at you faster/slower?
+- Why do note comes at you faster/slower?
 
-   -  That's just perspective problem especially with FOV and offset. I do try to mimic as close as what you see in VR as possible.
+   - That's just perspective problem especially with FOV and offset. I do try to mimic as close as what you see in VR as possible.
 
--  How long have you been playing?
+- How long have you been playing?
 
-   -  Over 4 years, about 3000+ playtime recorded on Steam (although it might also include me AFK in there).
+   - Over 4 years, about 3000+ playtime recorded on Steam (although it might also include me AFK in there).
 
--  How many take did you do to pass the map?
+- How many take did you do to pass the map?
 
-   -  Depend on the map, OST map are generally easy to me so a single take isn't too surprising given my experience. Maps like Camellia will take a few try to get it right.
+   - Depend on the map, OST map are generally easy to me so a single take isn't too surprising given my experience. Maps like Camellia will take a few try to get it right.
 
--  Can you do x song/difficulty?
+- Can you do x song/difficulty?
 
-   -  You'll likely find it in my channel.
+   - You'll likely find it in my channel.
 
--  How do you get as good?
+- How do you get as good?
 
-   -  Play more.
+   - Play more.
 
--  Any advice on how to get better?
+- Any advice on how to get better?
 
-   -  Play more.
+   - Play more.
 
--  How are you swinging so clean/smooth?
+- How are you swinging so clean/smooth?
 
-   -  It's a playstyle thing, maybe I'm that optimised at swinging from playing more.
+   - It's a playstyle thing, maybe I'm that optimised at swinging from playing more.
 
--  Is your wrist destroyed?
+- Is your wrist destroyed?
 
-   -  idk.
+   - idk.
 
--  Is this a human playing the game?
-   -  Maybe.
+- Is this a human playing the game?
+   - Maybe.

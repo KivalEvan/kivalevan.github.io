@@ -4,7 +4,7 @@ import { formatDate } from '../utils/date';
 import image from '../assets/img/avatar/kival_evan.jpg';
 import { getImage } from 'astro:assets';
 
-const updatedDate = formatDate('10 August 2024');
+const updatedDate = formatDate('25 November 2024');
 const pageDetails = {
    title: 'Resume',
    description: 'CV',
@@ -92,7 +92,7 @@ const projects: Project[] = [
          { name: 'TypeScript', link: 'https://www.typescriptlang.org/' },
          { name: 'Deno', link: 'https://deno.com/' },
       ],
-      description: `A script module for Beat Saber scripting used to manipulate the
+      description: `A library for Beat Saber scripting used to manipulate the
 beatmap data. It is designed to be lightweight, yet flexible that
 allows customisability and ensures integrity of the beatmap for it to
 be usable in Beat Saber.`,
@@ -155,10 +155,11 @@ const { src } = await getImage({
                   <h1>Nabawi Azizul</h1>
                   <h2>Software Engineer</h2>
                   <p>
-                     An undergraduate student with an excellent problem-solving skills and focused
+                     A fresh graduate with an excellent problem-solving skills and focused
                      on developing high-performance, efficient, and reliable software. Seeking to
                      utilise earned knowledges and further improve my skills in the industry.
                   </p>
+                  <br>
                </div>
             </div>
             <div>
@@ -320,15 +321,17 @@ const { src } = await getImage({
                      </svg>
                      WORK EXPERIENCES
                   </h4>
-                  <div>
+                  <div class="section-container">
                      <h5>Data Engineer</h5>
                      <h6>InfinitiLab</h6> - Contract<br />
-                     <span>08/2024 - Current</span>
+                     <span>08/2024 - 02/2025</span>
                      <ul class="list-arrow">
-                        <li>Ingested data from database and API across multiple teams following set of standards.</li>
+                        <li>Worked with client from PETRONAS on project to standardise data from various sources.</li>
+                        <li>Written pipelines to ingest data from database and API across multiple sources.</li>
+                        <li>Standardised the ingested data following set of standards and data mapping to master reference.</li>
                      </ul>
                   </div>
-                  <div>
+                  <div class="section-container">
                      <h5>Web Developer</h5>
                      <h6>Azeus Convene</h6> - Internship<br />
                      <span>05/2022 - 08/2022</span>
@@ -357,10 +360,9 @@ const { src } = await getImage({
                      >
                      ACHIEVEMENTS
                   </h4>
-                  <div>
+                  <div class="section-container">
                      <h5>Final Year Project - Runner-up Best Project Award Session 2022/2023</h5>
                      <span>August 2023</span>
-                     <br />
                      <span
                         >(
                         <a href="https://tauri.app/">Tauri Apps</a>, <a
@@ -397,7 +399,7 @@ const { src } = await getImage({
                   </h4>
                   {
                      projects.map((project) => (
-                        <div>
+                        <div class="section-container">
                            <h5>
                               <a href={project.link}>
                                  {project.name}
@@ -414,10 +416,7 @@ const { src } = await getImage({
                                  </svg>
                               </a>
                            </h5>
-                           <>
-                              <h6>{project.type}</h6>
-                              <br />
-                           </>
+                           <h6>{project.type}</h6>
                            <span>
                               (
                               {project.stack.flatMap((stack) => [
@@ -449,12 +448,12 @@ const { src } = await getImage({
                      </svg>
                      EDUCATIONS
                   </h4>
-                  <div>
+                  <div class="section-container">
                      <h5>Bachelor of Computer Science (Software Engineering)</h5>
                      <h6>Multimedia University, Cyberjaya</h6>
                      07/2018 - 07/2024, CGPA 3.39/4.00
                   </div>
-                  <div>
+                  <div class="section-container">
                      <h5>Foundation in Information Technology</h5>
                      <h6>Multimedia University, Cyberjaya</h6>
                      07/2017 - 06/2018, CGPA 3.16/4.00
@@ -525,12 +524,11 @@ const { src } = await getImage({
                                  <span class="skill-progress">
                                     <span style={`width:${languages.values[s]}%`} />
                                  </span>
-                                 <>
-                                    <span class="skill-name">{s}</span>
-                                    <span class="skill-tier">
-                                       {getTier(languages, languages.values[s])}
-                                    </span>
-                                 </>
+                                 <br>
+                                 <span class="skill-name">{s}</span>
+                                 <span class="skill-tier">
+                                    {getTier(languages, languages.values[s])}
+                                 </span>
                               </li>
                            ))
                         }
@@ -653,6 +651,9 @@ const { src } = await getImage({
    <style lang="scss">
       $background-color: #c55;
       $main-color: #d55;
+      p {
+         margin: 0.375em 0 0;
+      }
       a {
          color: inherit;
          &:hover {
@@ -661,8 +662,11 @@ const { src } = await getImage({
       }
       .resume {
          padding: 0;
-         max-width: 60em;
+         max-width: 64em;
          margin: auto;
+      }
+      .section-container {
+         padding-bottom: 0.75em;
       }
       h1 {
          font-size: 2.5rem;
