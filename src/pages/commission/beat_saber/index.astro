@@ -2,7 +2,7 @@
 import Main from '../../../layouts/Main.astro';
 import BeatmapList from '../../../components/commission/BeatmapList.svelte';
 import { formatDate } from '../../../utils/date';
-import Commission from '../../../data/commission.json';
+import Commission from '../../../data/commission.json' assert { type: 'json' };
 
 const pageDetails = {
    title: 'Commission',
@@ -23,7 +23,7 @@ const pageDetails = {
    </div>
    <section class="wrapper readable full-size">
       <p class="center">
-         I am the mapper for Beat Saber with over 4 years of experience with involvement in ranked
+         I am the mapper for Beat Saber with over 6 years of experience with involvement in ranked
          scene, playlists, and other places. I have crafted plenty of maps in various different
          ways, and mainly into mapping Touhou Project arrangement.
       </p>
@@ -43,6 +43,8 @@ const pageDetails = {
       </p>
       <ul class="list-tag">
          <li><span>Top 100 BeatSaver</span></li>
+         <li><span>Building Block 2025 | Standard - 1st Place</span></li>
+         <li><span>Beasties 2024 - Best Vanilla+ Light - Nominee</span></li>
          <li><span>Beasties 2022 - Best Vanilla+ Light - Runner-Up</span></li>
          <li><span>BSMG Halloween 2022 Mapping Contest - 3rd Place</span></li>
          <li><span>Building Block 2020 - 3rd Place</span></li>

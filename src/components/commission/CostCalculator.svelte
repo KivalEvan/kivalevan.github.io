@@ -17,12 +17,12 @@
       lighting: { [light in RatingLighting]: number };
       discounted: number;
    }
-   enum difficultyRename {
-      expertPlus = 'Expert+',
-      expert = 'Expert',
-      hard = 'Hard',
-      normal = 'Normal',
-      easy = 'Easy',
+   const difficultyRename = {
+      expertPlus: 'Expert+',
+      expert: 'Expert',
+      hard: 'Hard',
+      normal: 'Normal',
+      easy: 'Easy',
    }
 
    const input: Input = {
@@ -126,7 +126,10 @@
          on:change={calculateCost}
       />
       <br />
-      <span><b>Rate Scale: </b>{rateScale}x</span>
+      <span>
+         <b>Rate Scale:</b>
+         {rateScale}x
+      </span>
    </div>
    <div>
       <h5>Difficulty</h5>

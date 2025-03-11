@@ -1,11 +1,11 @@
 <script lang="ts">
    import BeatmapShowcase from './BeatmapShowcase.svelte';
-   import beatmaps from '../../data/beatmap.json';
-   import type { BeatmapDetails } from '../../utils/beatmap';
-   const showcaseMaps = (<any[]>beatmaps).filter((b) =>
+   import beatmaps from '../../data/beatmap.json' assert { type: 'json' };
+   import type { BeatmapDetails } from '../../utils/beatmap.ts';
+   const showcaseMaps = (beatmaps).filter((b) =>
       b.tag.some((t: string) => t === 'showcase')
    ) as BeatmapDetails[];
-   const requestMaps = (<any[]>beatmaps).filter((b) =>
+   const requestMaps = (beatmaps).filter((b) =>
       b.tag.some((t: string) => t === 'request')
    ) as BeatmapDetails[];
 </script>
