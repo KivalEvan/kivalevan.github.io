@@ -4,7 +4,7 @@ import CostCalculator from '../../../components/commission/CostCalculator.svelte
 
 const pageDetails = {
    title: 'Commission',
-   subtitle: 'Beat Saber Custom Map → Cost Estimator',
+   subtitle: 'Beat Saber Custom Map',
    description: 'Estimate the cost of Beat Saber custom map commission.',
    overrideTitle: false,
 };
@@ -12,7 +12,8 @@ const pageDetails = {
 
 <Main pageDetails={pageDetails}>
    <div class="wrapper readable">
-      <a href="../beat_saber">Back to commission page</a>
+      <h3>Cost Estimator</h3>
+      <a href="..">Back to commission page</a>
       <br />
       <br />
       <CostCalculator client:load />
