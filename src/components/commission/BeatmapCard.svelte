@@ -46,6 +46,18 @@
       />
    </a>
    <div class="metadata">
+      {#each Object.keys(beatmap.link) as link, index}
+         <a class="map-link" href={beatmap.link[link].url}> {beatmap.link[link].name}</a>
+         {#if index !== Object.keys(beatmap.link).length - 1}
+            <span>
+               |
+            </span>
+            <span>
+               
+            </span>
+         {/if}
+      {/each}
+      <br>
       <span class="song-name">{beatmap.songName}</span>
       <span class="song-subname">{beatmap.songSubName}</span><br />
       <span class="song-artist">{beatmap.songAuthorName}</span><br />
@@ -58,22 +70,15 @@
       <span class="song-duration">{toMMSS(beatmap.songDuration)}</span><br />
       <br />
    </div>
-   <div>
-      {#if beatmap.difficulty === 5 && beatmap.mode.length === 1}
-         Full Spread {CharacteristicRename[beatmap.mode[0]]}
-      {:else}
-         {beatmap.difficulty}
-         {beatmap.difficulty === 1 ? 'Difficulty' : 'Difficulties'}
-         {joinString(beatmap.mode)}
-      {/if}
-      <br />
-      {#each Object.keys(beatmap.link) as link, index}
-         <a class="map-link" href={beatmap.link[link].url}> {beatmap.link[link].name} </a>
-         {#if index !== Object.keys(beatmap.link).length - 1}
-            <span> | </span>
-         {/if}
-      {/each}
-   </div>
+   <!-- <div>
+      <ul class="list-tag">
+         {#each Object.entries(beatmap.difficulties) as [mode, diffs]}
+            <li>
+               {CharacteristicRename[mode]} [{diffs.length}]
+            </li>
+         {/each}
+      </ul>
+   </div> -->
 </div>
 
 <style lang="scss">

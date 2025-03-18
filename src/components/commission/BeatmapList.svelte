@@ -1,6 +1,6 @@
 <script lang="ts">
    import BeatmapShowcase from './BeatmapShowcase.svelte';
-   import beatmaps from '../../data/beatmap.json' assert { type: 'json' };
+   import beatmaps from '../../data/beatmap.json';
    import type { BeatmapDetails } from '../../utils/beatmap.ts';
    const showcaseMaps = (beatmaps).filter((b) =>
       b.tag.some((t: string) => t === 'showcase')
