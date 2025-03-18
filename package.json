@@ -1,5 +1,5 @@
 {
-   "name": "@example/basics",
+   "name": "kivalevan.github.io",
    "type": "module",
    "version": "0.0.1",
    "private": true,
@@ -14,12 +14,13 @@
    },
    "dependencies": {
       "@astrojs/svelte": "^7.0.6",
-      "astro": "^5.4.3",
-      "svelte": "^5.23.0",
+      "astro": "^5.5.2",
+      "svelte": "^5.23.1",
       "typescript": "^5.8.2"
    },
    "devDependencies": {
       "astro-icon": "^1.1.5",
+      "bsmap": "^2.1.9",
       "prettier": "^3.5.3",
       "prettier-plugin-astro": "^0.14.1",
       "sass": "^1.85.1"

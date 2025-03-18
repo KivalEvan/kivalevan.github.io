@@ -1,4 +1,4 @@
-import * as bsmap from 'https://raw.githubusercontent.com/KivalEvan/BeatSaber-Deno/main/mod.ts';
+import * as bsmap from 'bsmap';
 import { existsSync } from 'https://deno.land/std@0.224.0/fs/mod.ts';
 import { resolve } from 'https://deno.land/std@0.224.0/path/mod.ts';
 import { Image } from 'https://deno.land/x/imagescript@1.2.15/mod.ts';
@@ -7,10 +7,11 @@ import { mediainfo } from './mediainfo.ts';
 bsmap.logger.setLevel(5);
 
 const INPUT_PATH =
-   '/mnt/plextor/SteamLibrary/steamapps/common/Beat Saber/Beat Saber_Data/Kival Map/';
-const OUTPUT_PATH = '/mnt/plextor/GitRepository/kivalevan.github.io/';
+   '/mnt/programs/SteamLibrary/steamapps/common/Beat Saber/Beat Saber_Data/Kival Map/';
+const OUTPUT_PATH = '/home/kival/Code/GitRepository/kivalevan.github.io/';
 
 const showcase = [
+   '45254',
    '3db37',
    '3d69b',
    '3d58d',
@@ -50,7 +51,7 @@ const showcase = [
    '5487',
 ];
 
-const request = ['1edda', '200cb', '21660', '2295d'];
+const request = ['1edda', '200cb', '21660', '2295d', '45504', '45509', '4550b'];
 
 export interface BeatmapDetails {
    id: string;
@@ -72,8 +73,7 @@ export interface BeatmapDetails {
          url: string;
       };
    };
-   mode: string[];
-   difficulty: number;
+   difficulties: { [key: string]: string[] };
    tag: ('request' | 'showcase')[];
 }
 
@@ -84,19 +84,15 @@ for await (const folder of Deno.readDir(INPUT_PATH)) {
       console.log(folder.name);
       const path = resolve(INPUT_PATH, folder.name);
       if (existsSync(resolve(path, 'Info.dat')) || existsSync(resolve(path, 'info.dat'))) {
-         let info: bsmap.types.wrapper.IWrapInfo;
+         let info;
          try {
-            info = bsmap.load.infoSync(2, {
+            info = bsmap.readInfoFileSync('Info.dat', 2, {
                directory: path,
-               filePath: 'Info.dat',
-               dataCheck: { throwError: false },
             });
          } catch (e2) {
             try {
-               info = bsmap.load.infoSync(2, {
+               info = bsmap.readInfoFileSync('info.dat', 2, {
                   directory: path,
-                  filePath: 'info.dat',
-                  dataCheck: { throwError: false },
                });
             } catch (e) {
                console.error(e2);
@@ -128,7 +124,9 @@ for await (const folder of Deno.readDir(INPUT_PATH)) {
          try {
             const r = await mediainfo.get(resolve(path, info.audio.filename));
             mapDetails.songDuration = parseFloat(r.info[0].Duration);
-         } catch {}
+         } catch (e) {
+            console.error(e);
+         }
 
          const beatsaverID = folder.name.slice(0, 5).trim();
          mapDetails.id = beatsaverID;
@@ -164,14 +162,17 @@ for await (const folder of Deno.readDir(INPUT_PATH)) {
          if (request.includes(beatsaverID)) {
             mapDetails.tag.push('request');
          }
-         mapDetails.mode = Array.from(new Set(info.listMap().map((s) => s[0])));
-         mapDetails.difficulty = info.listMap().length;
+         mapDetails.difficulties = info.difficulties.reduce((p, v) => {
+            p[v.characteristic] ||= [];
+            p[v.characteristic].push(v.difficulty);
+            return p;
+         }, {});
 
-         const diffList = bsmap.load.beatmapFromInfoSync(info, {
+         const diffList = bsmap.readFromInfoSync(info, {
             directory: path,
          });
 
-         diffList.forEach((d) => updateData(info, d.data, mapDetails));
+         diffList.forEach((d) => updateData(info, d.beatmap, mapDetails));
          mapData.push(mapDetails);
       }
    }
@@ -267,4 +268,4 @@ function updateData(
 }
 
 mapData.sort((a, b) => parseInt(b.id, 16) - parseInt(a.id, 16));
-Deno.writeTextFileSync(`${OUTPUT_PATH}/src/data/beatmap.json`, JSON.stringify(mapData, null, 4));
+Deno.writeTextFileSync(`${OUTPUT_PATH}/src/data/beatmap.json`, JSON.stringify(mapData));
