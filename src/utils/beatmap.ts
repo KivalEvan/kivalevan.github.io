@@ -1,10 +1,11 @@
 import * as bsmap from 'bsmap';
-import { existsSync } from 'https://deno.land/std@0.224.0/fs/mod.ts';
-import { resolve } from 'https://deno.land/std@0.224.0/path/mod.ts';
-import { Image } from 'https://deno.land/x/imagescript@1.2.15/mod.ts';
+import * as bstypes from 'bsmap/types';
+import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { Image } from 'imagescript';
 import { mediainfo } from './mediainfo.ts';
 
-bsmap.logger.setLevel(5);
+bsmap.logger.setLevel(0);
 
 const INPUT_PATH =
    '/mnt/programs/SteamLibrary/steamapps/common/Beat Saber/Beat Saber_Data/Kival Map/';
@@ -51,7 +52,7 @@ const showcase = [
    '5487',
 ];
 
-const request = ['1edda', '200cb', '21660', '2295d', '45504', '45509', '4550b'];
+const request = ['1edda', '200cb', '21660', '2295d', '45504', '45509', '4550b', '45ff6', '45ff7'];
 
 export interface BeatmapDetails {
    id: string;
@@ -79,8 +80,8 @@ export interface BeatmapDetails {
 
 const mapData: BeatmapDetails[] = [];
 
-for await (const folder of Deno.readDir(INPUT_PATH)) {
-   if (folder.isDirectory) {
+for (const folder of readdirSync(INPUT_PATH, { withFileTypes: true })) {
+   if (folder.isDirectory()) {
       console.log(folder.name);
       const path = resolve(INPUT_PATH, folder.name);
       if (existsSync(resolve(path, 'Info.dat')) || existsSync(resolve(path, 'info.dat'))) {
@@ -117,7 +118,7 @@ for await (const folder of Deno.readDir(INPUT_PATH)) {
             songDuration: 0,
             link: {},
             mode: [],
-            difficulty: 0,
+            difficulties: {},
             tag: [],
          } as BeatmapDetails;
 
@@ -140,9 +141,9 @@ for await (const folder of Deno.readDir(INPUT_PATH)) {
          mapDetails.environment360 = info.allDirectionsEnvironmentName || null;
 
          mapDetails.coverImage = beatsaverID + '.jpg';
-         const img = await Image.decode(Deno.readFileSync(resolve(path, info.coverImageFilename)));
+         const img = await Image.decode(readFileSync(resolve(path, info.coverImageFilename)));
          img.resize(256, 256);
-         Deno.writeFileSync(
+         writeFileSync(
             resolve(OUTPUT_PATH, 'public', 'assets', 'img', 'cover', mapDetails.coverImage),
             await img.encodeJPEG(80),
          );
@@ -179,14 +180,14 @@ for await (const folder of Deno.readDir(INPUT_PATH)) {
 }
 
 function updateData(
-   info: bsmap.types.wrapper.IWrapInfo,
-   diff: bsmap.types.wrapper.IWrapDifficulty,
+   info: bstypes.wrapper.IWrapInfo,
+   diff: bstypes.wrapper.IWrapBeatmap,
    mapDetails: BeatmapDetails,
 ) {
    let curMinBPM = info.audio.bpm,
       curMaxBPM = info.audio.bpm;
-   if (diff.bpmEvents.length > 1) {
-      diff.bpmEvents.forEach((e) => {
+   if (diff.difficulty.bpmEvents.length > 1) {
+      diff.difficulty.bpmEvents.forEach((e) => {
          if (e.bpm < curMinBPM) {
             curMinBPM = e.bpm;
          } else if (e.bpm > curMaxBPM) {
@@ -205,8 +206,8 @@ function updateData(
       }
       return;
    }
-   if (diff.basicEvents.filter((e) => e.type === 100).length) {
-      diff.basicEvents
+   if (diff.lightshow.basicEvents.filter((e) => e.type === 100).length) {
+      diff.lightshow.basicEvents
          .filter((e) => e.type === 100)
          .forEach((e) => {
             if (e.floatValue < curMinBPM) {
@@ -228,7 +229,7 @@ function updateData(
       return;
    }
    if (diff.customData) {
-      const customData = diff.customData;
+      const customData = diff.difficulty.customData;
       let BPMChanges;
       if (customData._BPMChanges) {
          BPMChanges = customData._BPMChanges;
@@ -268,4 +269,4 @@ function updateData(
 }
 
 mapData.sort((a, b) => parseInt(b.id, 16) - parseInt(a.id, 16));
-Deno.writeTextFileSync(`${OUTPUT_PATH}/src/data/beatmap.json`, JSON.stringify(mapData));
+writeFileSync(`${OUTPUT_PATH}/src/data/beatmap.json`, JSON.stringify(mapData));
