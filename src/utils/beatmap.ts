@@ -12,6 +12,7 @@ const INPUT_PATH =
 const OUTPUT_PATH = '/home/kival/Code/GitRepository/kivalevan.github.io/';
 
 const showcase = [
+   '47a18',
    '45254',
    '3db37',
    '3d69b',
