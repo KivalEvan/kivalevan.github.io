@@ -9,17 +9,7 @@ const pageDetails = {
    overrideTitle: false,
 };
 
-const languages = [
-   'JavaScript',
-   'TypeScript',
-   'C#',
-   'C++',
-   'C',
-   'Python',
-   'Go',
-   'Lua',
-   'Bash',
-];
+const languages = ['JavaScript', 'TypeScript', 'C#', 'C++', 'C', 'Python', 'Go', 'Lua', 'Bash'];
 const techs = [
    'Node.js',
    'Deno',
@@ -95,9 +85,9 @@ const topics = [
                   <hr />
                   <ul class="list-arrow">
                      <li>Intel Core i9-12900K</li>
-                     <li>Gigabyte RTX 3080 GAMING OC</li>
-                     <li>Corsair Vengeance 2x16GB 3200MHz DDR4</li>
-                     <li>Gigabyte B660M DS3H AX DDR4</li>
+                     <li>Lenovo RTX 3080</li>
+                     <li>Kingston FURY Beast 2x16GB 5600MHz CL36 DDR5</li>
+                     <li>ASRock B760M PG SONIC WiFi</li>
                      <li>Arch Linux + Windows 10 Dual Boot</li>
                   </ul>
                </div>
@@ -109,6 +99,7 @@ const topics = [
                      <li>PlayStation VR2</li>
                      <li>PlayStation VR2 Sense Controller Charging Station</li>
                      <li>Aolion For PSVR2 PC Adapter</li>
+                     <li>Project Babble DIY</li>
                      <li>SlimeVR DIY BMI160 (8+3)</li>
                   </ul>
                </div>
@@ -145,20 +136,20 @@ const topics = [
          <p>Will get updated over time as I get new toys and stuff.</p>
       </div>
    </section>
-
-   <style lang="scss">
-      .profile {
-         &-avatar {
-            width: clamp(10rem, 20vw, 12rem);
-         }
-
-         &-info {
-            width: 100%;
-            padding: 0.25em 1em;
-         }
-      }
-   </style>
 </Main>
+
+<style lang="scss">
+   .profile {
+      &-avatar {
+         width: clamp(10rem, 20vw, 12rem);
+      }
+
+      &-info {
+         width: 100%;
+         padding: 0.25em 1em;
+      }
+   }
+</style>
 
 <script>
    const c = new Date();

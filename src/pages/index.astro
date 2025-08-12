@@ -4,35 +4,229 @@ import BackgroundImage from '../components/BackgroundImage.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FeaturedVideo from '../components/FeaturedVideo.svelte';
+import Avatar from '../components/Avatar.astro';
+import contact from '../data/contact.js';
+import BackToTopButton from '../components/BackToTopButton.astro';
 
 const pageDetails = {
    title: 'Kival Evan',
    description: 'A personal website of mine.',
    overrideTitle: true,
 };
+
+const languages = ['JavaScript', 'TypeScript', 'C#', 'C++', 'C', 'Python', 'Go', 'Lua', 'Bash'];
+const techs = [
+   'Node.js',
+   'Deno',
+   'Astro',
+   'SolidJS',
+   'Svelte',
+   'Qt',
+   'Git',
+   'MySQL',
+   'Linux',
+   'Blender',
+   'Unity',
+   'GitHub Actions',
+];
+const topics = [
+   'Virtual Reality',
+   'Game Development',
+   '3D Modelling',
+   'Electronic Engineering',
+   'Low-level Programming',
+];
 ---
 
 <BaseLayout pageDetails={pageDetails}>
    <div class="full-page">
       <BackgroundImage src={'../assets/img/bg/background.jpg'} mask={true} />
       <Header pageDetails={pageDetails} />
-      <main transition:name="main" transition:animate="fade">
-         <div class="flex">
-            <div class="flex-item wrapper">
-               <p class="text-shadow">
-                  I am a software engineer and a lil tech enthusiast, learning as I find and develop
-                  more new things. I am also a Beat Saber player and a mapper for it, contributing
-                  tools, scripts and OSS for mapping. Currently exploring different fields to find
-                  comfort in my capability.
-               </p>
+      <main transition:name="main" transition:animate="fade" class="text-shadow">
+         <div class="flex-front">
+            <div class="flex-front-item wrapper">
+               <section class="container-stuff flex flex-col">
+                  <div class="flex">
+                     <figure class="profile">
+                        <Avatar filePath="kival_evan.jpg" />
+                        <figcaption>
+                           <b>Age</b> :: <span id="age">26</span> (June 10)<br />
+                           PFP by <a href="https://www.pixiv.net/en/users/1020785">まひる</a>
+                        </figcaption>
+                     </figure>
+                     <p>
+                        I am a software developer and a lil VR enthusiast, learning as I find and
+                        develop more new things. I am also a Beat Saber player, mapper, and
+                        contributor for developing third-party tools, scripts and OSS for mapping.<br
+                        />
+                        <br />
+                        Currently exploring different fields to find comfort in my capability.
+                     </p>
+                  </div>
+                  <hr />
+                  <div class="contact flex-se">
+                     {
+                        contact.map((c) =>
+                           c.url ? (
+                              <a class="contact-item svg" href={c.url} title={c.place}>
+                                 {c.img ? <Fragment set:html={c.img} /> : c.place}
+                              </a>
+                           ) : (
+                              <span
+                                 class={
+                                    c.place === 'Discord'
+                                       ? 'contact-item discord-popup fake-link'
+                                       : 'fake-link link-padding'
+                                 }
+                                 id={`${c.place}-link`}
+                                 title={c.name}
+                                 tabindex="0"
+                              >
+                                 {c.img ? <Fragment class="svg" set:html={c.img} /> : c.place}
+                              </span>
+                           )
+                        )
+                     }
+                  </div>
+               </section>
             </div>
-            <div class="flex-item2">
+            <div class="flex-front-item2">
                <div class="video">
                   <FeaturedVideo client:load />
                </div>
             </div>
          </div>
+         <section class="wrapper full-size">
+            <h3>Skills & Interests</h3>
+            <hr />
+            <div class="wrapper readable">
+               <h4>Languages & Technologies:</h4>
+               <ul class="list-tag">
+                  {[...languages, ...techs].map((e) => <li>{e}</li>)}
+               </ul>
+               <br />
+               <h4>Topics:</h4>
+               <ul class="list-tag">
+                  {topics.map((e) => <li>{e}</li>)}
+               </ul>
+               <p>
+                  List shown here does not say about my proficiency, just something I'm familiar
+                  with as I've used them or did something related for certain purpose.
+               </p>
+            </div>
+         </section>
+         <br />
+         <section class="wrapper full-size">
+            <h3>Projects</h3>
+            <hr />
+            <div class="wrapper readable">
+               <div class="panel-inner">
+                  <div class="panel-column">
+                     <div class="panel-border">
+                        <h4>BSMap</h4>
+                        <hr />
+                        <p>
+                           General-purpose scripting library for Beat Saber map using TypeScript and compatible with various platforms.
+                        </p>
+                     </div>
+                     <br />
+                     <div class="panel-border">
+                        <h4>Beat Saber Map Check</h4>
+                        <hr />
+                        <p>
+                           Web application to read Beat Saber map for various stats and error checking.
+                        </p>
+                     </div>
+                  </div>
+                  <br />
+                  <div class="panel-column">
+                     <div class="panel-border">
+                        <h4>Beat Saber Editor Enhanced</h4>
+                        <hr />
+                        <p>
+                           Game modification to improve QOL experience and feature addition in official game editor.
+                        </p>
+                     </div>
+                     <br />
+                     <div class="panel-border">
+                        <h4>Beat Saber Custom Maps</h4>
+                        <hr />
+                        <p>
+                           Various beatmaps for Beat Saber, check out the <a href="https://beatsaver.com/profile/4285062">portfolio</a>.
+                        </p>
+                     </div>
+                  </div>
+               </div>
+               <p>
+                  For more project and information, check out <a href="/project">project</a> page.
+               </p>
+            </div>
+         </section>
+         <br />
+         <section class="wrapper">
+            <h3>Stuff I'm using</h3>
+            <hr />
+            <div class="wrapper readable">
+               <div class="panel-inner">
+                  <div class="panel-column">
+                     <div class="panel-border">
+                        <h4>PC Setup</h4>
+                        <hr />
+                        <ul class="list-arrow">
+                           <li>Intel Core i9-12900K</li>
+                           <li>Lenovo RTX 3080</li>
+                           <li>Kingston FURY Beast 2x16GB 5600MHz CL36 DDR5</li>
+                           <li>ASRock B760M PG SONIC WiFi</li>
+                           <li>Arch Linux + Windows 10 Dual Boot</li>
+                        </ul>
+                     </div>
+                     <br />
+                     <div class="panel-border">
+                        <h4>VR Setup</h4>
+                        <hr />
+                        <ul class="list-arrow">
+                           <li>PlayStation VR2</li>
+                           <li>PlayStation VR2 Sense Controller Charging Station</li>
+                           <li>Aolion For PSVR2 PC Adapter</li>
+                           <li>Project Babble DIY</li>
+                           <li>SlimeVR DIY BMI160 (8+3)</li>
+                        </ul>
+                     </div>
+                  </div>
+                  <br />
+                  <div class="panel-column">
+                     <div class="panel-border">
+                        <h4>Peripherals</h4>
+                        <hr />
+                        <ul class="list-arrow">
+                           <li>AOC 24" Gaming 24G2SP</li>
+                           <li>LG 29" UltraWide FHD 29WQ600-W</li>
+                           <li>Dell 24" UltraSharp U2412M</li>
+                           <li>Audio-Technica ATH-M40x</li>
+                           <li>Ducky One 2 Tuxedo Full Size</li>
+                           <li>Logitech G502 Hero</li>
+                           <li>HyperX FURY S PRO Speed Edition XL</li>
+                           <li>Logitech C922 Pro Stream</li>
+                           <li>Keychron K3 V2</li>
+                        </ul>
+                     </div>
+                     <br />
+                     <div class="panel-border">
+                        <h4>Others</h4>
+                        <hr />
+                        <ul class="list-arrow">
+                           <li>Samsung Galaxy S22+</li>
+                           <li>Artillery Sidewinder X2</li>
+                           <li>2x Tesco Banquet Table</li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <p>Will get updated over time as I get new toys and stuff.</p>
+            </div>
+         </section>
       </main>
+      <BackToTopButton />
       <Footer />
    </div>
 </BaseLayout>
@@ -53,7 +247,11 @@ const pageDetails = {
          padding-right: 0;
       }
    }
-   .flex {
+   .profile {
+      font-size: 1rem;
+      width: clamp(14rem, 24vw, 16rem);
+   }
+   .flex-front {
       display: flex;
       width: 100%;
       flex-direction: row;
@@ -69,28 +267,60 @@ const pageDetails = {
          }
       }
       &-item2 {
-         @extend .flex-item;
+         @extend .flex-front-item;
          align-items: center;
       }
    }
-   .video {
-      width: 90%;
-      margin-top: 1.5em;
-      margin-bottom: 1.5em;
-      @media (max-width: $breakpoint-widescreen) {
-         max-width: calc(#{$breakpoint-widescreen} / 2);
+   .contact {
+      display: flex;
+      width: 100%;
+      justify-content: space-evenly;
+      align-items: center;
+      flex-wrap: wrap;
+      &-item {
+         width: 2em;
+         height: 2em;
+         fill: #aaa;
+         transition:
+            filter 0.2s ease,
+            transform 0.5s ease;
+         &:hover {
+            filter: brightness(1.5);
+            transform: scale(1.5, 1.5);
+         }
       }
    }
+
+   .video {
+      width: 100%;
+      margin-top: 1.25em;
+      margin-bottom: 1.25em;
+      @media (max-width: $breakpoint-widescreen) {
+         padding: 0.75em 2em;
+      }
+   }
+
    h1 {
       margin-top: 0rem;
       margin-bottom: 0.25rem;
       text-align: center;
    }
-   p {
+
+   .container-stuff {
+      text-align: justify;
+      margin-top: 1em;
+      margin-bottom: 1em;
+      line-height: 1.375;
+
       position: relative;
-      font-size: 1.375rem;
+      font-size: 1.25rem;
       padding: 0.75em 1.5em;
       background-color: $background-translucent;
+
+      p {
+         padding-left: 1em;
+         width: 100%;
+      }
       &::before,
       &::after {
          content: '';
@@ -113,8 +343,13 @@ const pageDetails = {
       @media (max-width: $breakpoint-widescreen) {
          text-align: center;
       }
-      @media (max-width: $breakpoint-mobile) {
-         font-size: 1.25rem;
-      }
    }
 </style>
+
+<script>
+   const c = new Date();
+   const t = c.getFullYear() - new Date('1999-06-10').getFullYear();
+   document.getElementById('age')!.innerText = (
+      c.getMonth() >= 5 && !(c.getMonth() <= 5 && c.getDate() < 10) ? t : t - 1
+   ).toString();
+</script>
