@@ -4,7 +4,7 @@ import { formatDate } from '../utils/date';
 import image from '../assets/img/avatar/kival_evan.jpg';
 import { getImage } from 'astro:assets';
 
-const updatedDate = formatDate('24 June 2025');
+const updatedDate = formatDate('09 August 2025');
 const pageDetails = {
    title: 'Resume',
    description: 'CV',
@@ -16,7 +16,7 @@ const interests = ['Virtual Reality', 'Game Development', '3D Modelling', 'Low-l
 const technologies: SkillTier = {
    tier: {
       0: 'Beginner',
-      25: 'Novice',
+      25: 'Novice',  
       50: 'Intermediate',
       75: 'Advanced',
       95: 'Master',
@@ -51,12 +51,14 @@ const skills: SkillTier = {
       TypeScript: 80,
       HTML: 70,
       CSS: 60,
+      Sass: 60,
       Python: 20,
       'C#': 50,
       'C++': 25,
       C: 40,
       Go: 25,
       Lua: 25,
+      Bash: 25,
    },
 };
 const languages: SkillTier = {
@@ -80,19 +82,19 @@ interface Project {
    description: string;
 }
 const projects: Project[] = [
-//    {
-//       name: 'Beat Saber JS Map',
-//       link: 'https://github.com/KivalEvan/BeatSaber-JSMap',
-//       type: 'Personal Project',
-//       stack: [
-//          { name: 'TypeScript', link: 'https://www.typescriptlang.org/' },
-//          { name: 'Deno', link: 'https://deno.com/' },
-//       ],
-//       description: `A library for Beat Saber scripting used to manipulate the
-// beatmap data. It is designed to be lightweight, yet flexible that
-// allows customisability and ensures integrity of the beatmap for it to
-// be usable in Beat Saber.`,
-//    },
+   //    {
+   //       name: 'Beat Saber JS Map',
+   //       link: 'https://github.com/KivalEvan/BeatSaber-JSMap',
+   //       type: 'Personal Project',
+   //       stack: [
+   //          { name: 'TypeScript', link: 'https://www.typescriptlang.org/' },
+   //          { name: 'Deno', link: 'https://deno.com/' },
+   //       ],
+   //       description: `A library for Beat Saber scripting used to manipulate the
+   // beatmap data. It is designed to be lightweight, yet flexible that
+   // allows customisability and ensures integrity of the beatmap for it to
+   // be usable in Beat Saber.`,
+   //    },
    {
       name: 'Beat Saber Map Check',
       link: 'https://github.com/KivalEvan/BeatSaber-MapCheck',
@@ -130,6 +132,51 @@ beatmap model, user control behaviour and various other bug fixes.`,
    },
 ];
 
+interface WorkExperience {
+   title: string;
+   company: string;
+   position: string;
+   start: Date;
+   end: Date;
+   points: string[];
+   stack: { name: string; link: string }[];
+}
+const works: WorkExperience[] = [
+   {
+      title: 'Data Engineer',
+      company: 'InfinitiLab',
+      position: 'Contract',
+      start: new Date('2024-08-15'),
+      end: new Date('2025-02-15'),
+      points: [
+         'Worked with client from PETRONAS on project to standardise data fromvarious sources.',
+         'Written pipelines to ingest data from database and API across multiple sources.',
+         'Standardised the ingested data following set of standards and data mapping to master reference.',
+      ],
+      stack: [
+         { name: 'Python', link: 'https://www.python.org/' },
+         { name: 'MSSQL', link: 'https://www.microsoft.com/en-us/sql-server' },
+      ],
+   },
+   {
+      title: 'Web Developer',
+      company: 'Azeus Convene',
+      position: 'Internship',
+      start: new Date('2022-05-15'),
+      end: new Date('2022-08-15'),
+      points: [
+         'Created a complex reactive form from numerous of data.',
+         'Collaborated in the back-end design on data processing.',
+         'Assisted in bash script for (local) deployment.',
+      ],
+      stack: [
+         { name: 'JavaScript', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript' },
+         { name: 'MongoDB', link: 'https://www.mongodb.com/' },
+         { name: 'Bash', link: 'https://en.wikipedia.org/wiki/Bash_(Unix_shell)' },
+      ],
+   },
+];
+
 function getTier(data: SkillTier, perc: number): string {
    return data.tier[
       parseInt(
@@ -162,11 +209,11 @@ const { src } = await getImage({
                   <h1>Nabawi Azizul</h1>
                   <h2>Software Engineer</h2>
                   <p>
-                     A fresh graduate with an excellent problem-solving skills and focused
-                     on developing high-performance, efficient, and reliable software. Seeking to
+                     Performance focused individual with an excellent problem-solving skills in
+                     developing high-performance, efficient, and reliable software. Seeking to
                      utilise earned knowledges and further improve my skills in the industry.
                   </p>
-                  <br>
+                  <br />
                </div>
             </div>
             <div>
@@ -257,61 +304,6 @@ const { src } = await getImage({
          </div>
          <div class="main flex">
             <div class="flex-col-large">
-               <!-- <section class="timeline">
-                  <h4>
-                     <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        class="bi bi-tree"
-                        viewBox="0 0 16 16"
-                     >
-                        <path
-                           d="M8.416.223a.5.5 0 0 0-.832 0l-3 4.5A.5.5 0 0 0 5 5.5h.098L3.076 8.735A.5.5 0 0 0 3.5 9.5h.191l-1.638 3.276a.5.5 0 0 0 .447.724H7V16h2v-2.5h4.5a.5.5 0 0 0 .447-.724L12.31 9.5h.191a.5.5 0 0 0 .424-.765L10.902 5.5H11a.5.5 0 0 0 .416-.777l-3-4.5zM6.437 4.758A.5.5 0 0 0 6 4.5h-.066L8 1.401 10.066 4.5H10a.5.5 0 0 0-.424.765L11.598 8.5H11.5a.5.5 0 0 0-.447.724L12.69 12.5H3.309l1.638-3.276A.5.5 0 0 0 4.5 8.5h-.098l2.022-3.235a.5.5 0 0 0 .013-.507z"
-                        ></path>
-                     </svg>
-                      EXTRACURRICULAR ACTIVITIES
-                  </h4>
-                  <div>
-                     <h5>MMU Esports Club | 2018 - 2021</h5>
-                     <h6>2020 - 2021 | Marketing Committee</h6><br />
-                     <h6>2018 - 2020 | Logistic Committee</h6>
-                     <ul class="list-arrow">
-                        <li>Setting up the venue before and after the event.</li>
-                        <li>Handling and ensuring the equipment is in good condition.</li>
-                     </ul>
-                  </div>
-               </section>
-               <section class="timeline">
-                  <h4>
-                     <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        class="bi bi-briefcase"
-                        viewBox="0 0 16 16"
-                     >
-                        <path
-                           d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5zm1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0zM1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5z"
-                        ></path>
-                     </svg>
-                      VOLUNTEER EXPERIENCE
-                  </h4>
-                  <div>
-                     <h5>Technical Team</h5>
-                     <h6>MMU Cyberplay 2018</h6><br />
-                     <span>06/2018 - 12/2018</span>
-                     <ul class="list-arrow">
-                        <li>Planned and strategise the event setup.</li>
-                        <li>
-                           Setup the venue and multiple tournament such as Dota 2, FIFA18, etc.
-                        </li>
-                        <li>Handling and ensuring the equipment and venue is running smoothly.</li>
-                     </ul>
-                  </div>
-               </section> -->
                <section class="timeline">
                   <h4>
                      <svg
@@ -328,26 +320,41 @@ const { src } = await getImage({
                      </svg>
                      WORK EXPERIENCES
                   </h4>
-                  <div class="section-container">
-                     <h5>Data Engineer</h5>
-                     <h6>InfinitiLab</h6> - Contract<br />
-                     <span>08/2024 - 02/2025</span>
-                     <ul class="list-arrow">
-                        <li>Worked with client from PETRONAS on project to standardise data from various sources.</li>
-                        <li>Written pipelines to ingest data from database and API across multiple sources.</li>
-                        <li>Standardised the ingested data following set of standards and data mapping to master reference.</li>
-                     </ul>
-                  </div>
-                  <div class="section-container">
-                     <h5>Web Developer</h5>
-                     <h6>Azeus Convene</h6> - Internship<br />
-                     <span>05/2022 - 08/2022</span>
-                     <ul class="list-arrow">
-                        <li>Created a complex reactive form from numerous of data.</li>
-                        <li>Collaborated in the back-end design on data processing.</li>
-                        <li>Assisted in bash script for (local) deployment.</li>
-                     </ul>
-                  </div>
+                  {
+                     works.map((work) => (
+                        <div class="section-container">
+                           <h5>{work.title}</h5>
+                           <h6>{work.company}</h6> | {work.position}
+                           <br />
+                           <span class="work-date-start">
+                              {(work.start.getMonth() + 1).toString().padStart(2, '0') +
+                                 '/' +
+                                 work.start.getFullYear()}{' '}
+                           </span>
+                           <span> - </span>
+                           <span class="work-date-end">
+                              {(work.end.getMonth() + 1).toString().padStart(2, '0') +
+                                 '/' +
+                                 work.end.getFullYear()}
+                           </span>
+                           <span class="work-stack">
+                              (
+                              {work.stack
+                                 .flatMap((stack) => [
+                                    <a href={stack.link}>{stack.name}</a>,
+                                    <span>, </span>,
+                                 ])
+                                 .slice(0, -1)}
+                              )
+                           </span>
+                           <ul class="list-arrow">
+                              {work.points.map((point) => (
+                                 <li>{point}</li>
+                              ))}
+                           </ul>
+                        </div>
+                     ))
+                  }
                </section>
                <section class="timeline">
                   <h4>
@@ -369,7 +376,7 @@ const { src } = await getImage({
                   </h4>
                   <div class="section-container">
                      <h5>Final Year Project - Runner-up Best Project Award Session 2022/2023</h5>
-                     <span>August 2023</span>
+                     <span>08/2023</span>
                      <span
                         >(
                         <a href="https://tauri.app/">Tauri Apps</a>, <a
@@ -426,10 +433,12 @@ const { src } = await getImage({
                            <h6>{project.type}</h6>
                            <span>
                               (
-                              {project.stack.flatMap((stack) => [
-                                 <a href={stack.link}>{stack.name}</a>,
-                                 <span>, </span>,
-                              ]).slice(0, -1)}
+                              {project.stack
+                                 .flatMap((stack) => [
+                                    <a href={stack.link}>{stack.name}</a>,
+                                    <span>, </span>,
+                                 ])
+                                 .slice(0, -1)}
                               )
                            </span>
                            <p>{project.description}</p>
@@ -458,12 +467,12 @@ const { src } = await getImage({
                   <div class="section-container">
                      <h5>Bachelor of Computer Science (Software Engineering)</h5>
                      <h6>Multimedia University, Cyberjaya</h6>
-                     07/2018 - 07/2024, CGPA 3.39/4.00
+                     07/2018 - 07/2024 | CGPA 3.39/4.00
                   </div>
                   <div class="section-container">
                      <h5>Foundation in Information Technology</h5>
                      <h6>Multimedia University, Cyberjaya</h6>
-                     07/2017 - 06/2018, CGPA 3.16/4.00
+                     07/2017 - 06/2018 | CGPA 3.16/4.00
                   </div>
                </section>
                <section>
@@ -485,40 +494,14 @@ const { src } = await getImage({
                   <div>
                      <h5>Programmings</h5>
                      <ul class="list-tag">
-                        {
-                           // Object.keys(skills.type).map((s) => (
-                           //    <li>
-                           //       <span class="skill-progress">
-                           //          <span style={`width:${skills.type[s]}%`} />
-                           //       </span>
-                           //       <>
-                           //          <span class="skill-name">{s}</span>
-                           //          <span class="skill-tier">{tier(skills, skills.type[s])}</span>
-                           //       </>
-                           //    </li>
-                           // ))
-                           Object.keys(skills.values).map((i) => <li>{i}</li>)
-                        }
+                        {Object.keys(skills.values).map((i) => <li>{i}</li>)}
                      </ul>
                   </div>
                   <br />
                   <div>
                      <h5>Technologies</h5>
                      <ul class="list-tag">
-                        {
-                           // Object.keys(skills.type).map((s) => (
-                           //    <li>
-                           //       <span class="skill-progress">
-                           //          <span style={`width:${skills.type[s]}%`} />
-                           //       </span>
-                           //       <>
-                           //          <span class="skill-name">{s}</span>
-                           //          <span class="skill-tier">{tier(skills, skills.type[s])}</span>
-                           //       </>
-                           //    </li>
-                           // ))
-                           Object.keys(technologies.values).map((i) => <li>{i}</li>)
-                        }
+                        {Object.keys(technologies.values).map((i) => <li>{i}</li>)}
                      </ul>
                   </div>
                   <br />
@@ -528,11 +511,11 @@ const { src } = await getImage({
                         {
                            Object.keys(languages.values).map((s) => (
                               <li>
+                                 <span class="skill-name">{s}</span>
                                  <span class="skill-progress">
                                     <span style={`width:${languages.values[s]}%`} />
                                  </span>
-                                 <br>
-                                 <span class="skill-name">{s}</span>
+                                 <br />
                                  <span class="skill-tier">
                                     {getTier(languages, languages.values[s])}
                                  </span>
@@ -643,6 +626,23 @@ const { src } = await getImage({
                               ></path>
                            </svg>
                            KivalEvan
+                        </a>
+                     </li>
+                     <li>
+                        <a href="mailto:kivalevan@gmail.com">
+                           <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              class="bi bi-envelope"
+                              viewBox="0 0 16 16"
+                           >
+                              <path
+                                 d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"
+                              ></path>
+                           </svg>
+                           kivalevan@gmail.com
                         </a>
                      </li>
                   </ul>
@@ -805,10 +805,10 @@ const { src } = await getImage({
       .skill {
          width: 100%;
          &-name {
-            width: 40%;
+            width: 30%;
          }
          &-progress {
-            width: 25%;
+            width: 40%;
             border-left: 1px solid #111;
             border-right: 1px solid #111;
             span {
@@ -820,7 +820,7 @@ const { src } = await getImage({
          }
          &-tier {
             padding-left: 0.5em;
-            width: 35%;
+            width: 30%;
          }
       }
       ul {

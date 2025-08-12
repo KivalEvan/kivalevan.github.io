@@ -25,12 +25,6 @@
 </script>
 
 <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-<button
-   class="next-button fake-link text-shadow"
-   on:click={changeVideo}
-   on:keypress={changeVideo}
-   tabindex="0">Next featured video</button
->
 <div class="video-container">
    <iframe
       class="video-iframe"
@@ -40,18 +34,27 @@
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen
       loading="lazy"
-   />
+   ></iframe>
 </div>
 <div class="text-container">
    <span class="title text-shadow">{title}</span><br />
    <span class="subtitle text-shadow">{subtitle}</span><br />
    <p class="description text-shadow">{description}</p>
+   <button
+      class="next-button fake-link text-shadow"
+      on:click={changeVideo}
+      on:keypress={changeVideo}
+      tabindex="0">Next</button
+   >
 </div>
 
 <style lang="scss">
    @use '../styles/_var' as *;
    .next-button {
-      background: $background-translucent;
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: none;
       border: 0;
       border-top-right-radius: 5px;
       border-top-left-radius: 5px;
@@ -71,6 +74,7 @@
       color: white;
    }
    .text-container {
+      position:relative;
       background: $background-translucent;
       padding: 0.125em 0.5em;
       border-bottom-right-radius: 0.25em;
