@@ -7,6 +7,7 @@ import FeaturedVideo from '../components/FeaturedVideo.svelte';
 import Avatar from '../components/Avatar.astro';
 import contact from '../data/contact.js';
 import BackToTopButton from '../components/BackToTopButton.astro';
+import { fade } from 'astro:transitions';
 
 const pageDetails = {
    title: 'Kival Evan',
@@ -42,7 +43,7 @@ const topics = [
    <div class="full-page">
       <BackgroundImage src={'../assets/img/bg/background.jpg'} mask={true} />
       <Header pageDetails={pageDetails} />
-      <main transition:name="main" transition:animate="fade" class="text-shadow">
+      <main class="text-shadow">
          <div class="flex-front">
             <div class="flex-front-item wrapper">
                <section class="container-stuff flex flex-col">

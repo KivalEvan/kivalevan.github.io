@@ -7,13 +7,14 @@ interface Props {
 }
 
 import image from '../assets/img/bg/background.jpg';
+import { fade } from 'astro:transitions';
 
 const { mask } = Astro.props;
 
 const { src } = await getImage({ src: image, alt: '', format: 'webp' });
 ---
 
-<div class="background" transition:name="main" transition:animate="fade">
+<div>
    <img src={src} alt="background image by Amibazh" class={mask ? 'mask' : ''} loading="lazy" />
 </div>
 
@@ -24,7 +25,7 @@ const { src } = await getImage({ src: image, alt: '', format: 'webp' });
       left: 0;
       width: 100%;
       height: max(100vh, 36em);
-      z-index: -10;
+      z-index: -100;
       overflow: hidden;
    }
    img {

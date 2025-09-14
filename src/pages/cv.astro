@@ -79,7 +79,8 @@ const projects: Project[] = [
       type: 'Open Source Project Contribution',
       points: [
          'Paved the way in upgrading to Unity 6 from Unity 2021 and general clean-up, allowing for more features, better development experience and bug fixes.',
-         'Developed new system that allows user to switch between mode improving quality of life experience.',
+         'Improved lighting system, significantly improving performance and allow user to better preview lighting.',
+         'Developed new system that allows user to switch between mode improving quality of life experience and improving performance of the application.',
          'Optimised underlying system in C# to significantly improve performance and memory usage of the editor allowing for better support to lower end user.',
          'Contributed in handling new beatmap model, bringing feature parity with Beat Saber offering.',
       ],
@@ -208,6 +209,7 @@ const { src } = await getImage({
                         Petaling Jaya, Selangor, Malaysia
                      </span>
                      <br />
+                     <span>
                      <a href="https://www.linkedin.com/in/kivalevan/">
                         <svg
                            xmlns="http://www.w3.org/2000/svg"
@@ -222,7 +224,8 @@ const { src } = await getImage({
                            ></path>
                         </svg>
                         Upon Request
-                     </a>|
+                     </a>
+                     <span> | </span>
                      <a href="mailto:kivalevan@gmail.com">
                         <svg
                            xmlns="http://www.w3.org/2000/svg"
@@ -238,6 +241,7 @@ const { src } = await getImage({
                         </svg>
                         kivalevan@gmail.com
                      </a>
+                     </span>
                   </div>
                   <div class="flex flex-sb connect">
                      <a href="https://www.linkedin.com/in/kivalevan/">
@@ -336,7 +340,7 @@ const { src } = await getImage({
                <section class="timeline">
                   <h4>
                      <svg
-                        fill="#fff"
+                        fill="#eee"
                         viewBox="0 0 32 32"
                         version="1.1"
                         xmlns="http://www.w3.org/2000/svg"
@@ -513,6 +517,9 @@ const { src } = await getImage({
    <style lang="scss">
       $background-color: #c55;
       $main-color: #d55;
+      body {
+         background-color: whitesmoke;
+      }
       p {
          margin: 0.375em 0 0;
       }
@@ -561,7 +568,7 @@ const { src } = await getImage({
             width: 1.5em;
             height: 1.5em;
             background-color: $main-color;
-            color: white;
+            color: whitesmoke;
          }
       }
       h6 {
@@ -580,8 +587,8 @@ const { src } = await getImage({
          position: relative;
          font-family: sans-serif;
          color: #111;
-         background-color: #eee;
-         box-shadow: 0 0 1em #0008;
+         background-color: whitesmoke;
+         // box-shadow: 0 0 1em #0008;
          &::before,
          &::after {
             content: '';
@@ -592,8 +599,8 @@ const { src } = await getImage({
          &::before {
             top: 0.75em;
             left: 0.75em;
-            border-top: 1px solid white;
-            border-left: 1px solid white;
+            border-top: 1px solid whitesmoke;
+            border-left: 1px solid whitesmoke;
          }
          &::after {
             bottom: 0.75em;
@@ -670,7 +677,7 @@ const { src } = await getImage({
                left: -0.5625em;
                top: 0;
                display: block;
-               background-color: white;
+               background-color: #eee;
                border: 2px solid $main-color;
                width: 1em;
                height: 1em;
