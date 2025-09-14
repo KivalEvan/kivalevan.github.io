@@ -13,9 +13,9 @@
       "beatmap": "deno run -A src/utils/beatmap.ts"
    },
    "dependencies": {
-      "@astrojs/svelte": "^7.1.0",
-      "astro": "^5.13.5",
-      "svelte": "^5.38.7",
+      "@astrojs/svelte": "^7.1.1",
+      "astro": "^5.13.7",
+      "svelte": "^5.38.10",
       "typescript": "^5.9.2"
    },
    "devDependencies": {
