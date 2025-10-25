@@ -1,6 +1,7 @@
 ---
 import Main from '../layouts/Main.astro';
 import Avatar from '../components/Avatar.astro';
+import info from '../data/info.js';
 
 const pageDetails = {
    title: 'About',
@@ -8,30 +9,6 @@ const pageDetails = {
    description: 'A personal website of mine.',
    overrideTitle: false,
 };
-
-const languages = ['JavaScript', 'TypeScript', 'C#', 'C++', 'C', 'Python', 'Go', 'Lua', 'Bash'];
-const techs = [
-   'Node.js',
-   'Deno',
-   'Astro',
-   'SolidJS',
-   'Svelte',
-   'Qt',
-   'Git',
-   'MySQL',
-   'Linux',
-   'Blender',
-   'Unity',
-   'GitHub Actions',
-];
-const topics = [
-   'Virtual Reality',
-   'Game Development',
-   '3D Modelling',
-   'Machine Learning',
-   'Electronic Engineering',
-   'Low-level Programming',
-];
 ---
 
 <Main pageDetails={pageDetails}>
@@ -60,12 +37,12 @@ const topics = [
       <div class="wrapper readable">
          <h4>Languages & Technologies:</h4>
          <ul class="list-tag">
-            {[...languages, ...techs].map((e) => <li>{e}</li>)}
+            {[...info.languages, ...info.techs].map((e) => <li>{e}</li>)}
          </ul>
          <br />
          <h4>Topics:</h4>
          <ul class="list-tag">
-            {topics.map((e) => <li>{e}</li>)}
+            {info.topics.map((e) => <li>{e}</li>)}
          </ul>
          <p>
             List shown here does not say about my proficiency, just something I'm familiar with as
