@@ -1,11 +1,8 @@
 import * as bsmap from 'bsmap';
-import * as bstypes from 'bsmap/types';
 import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { Image } from 'imagescript';
 import { mediainfo } from './mediainfo.ts';
-
-bsmap.logger.setLevel(0);
 
 const INPUT_PATH =
    '/mnt/programs/SteamLibrary/steamapps/common/Beat Saber/Beat Saber_Data/Kival Map/';
@@ -53,7 +50,19 @@ const showcase = [
    '5487',
 ];
 
-const request = ['1edda', '200cb', '21660', '2295d', '45504', '45509', '4550b', '45ff6', '45ff7'];
+const request = [
+   '1edda',
+   '200cb',
+   '21660',
+   '2295d',
+   '45504',
+   '45509',
+   '4550b',
+   '45ff6',
+   '45ff7',
+   '4de13',
+   '4f953',
+];
 
 export interface BeatmapDetails {
    id: string;
@@ -138,8 +147,8 @@ for (const folder of readdirSync(INPUT_PATH, { withFileTypes: true })) {
          mapDetails.beatsPerMinute.base = info.audio.bpm;
          mapDetails.beatsPerMinute.min = info.audio.bpm;
          mapDetails.beatsPerMinute.max = info.audio.bpm;
-         mapDetails.environment = info.environmentName;
-         mapDetails.environment360 = info.allDirectionsEnvironmentName || null;
+         mapDetails.environment = info.environmentBase.normal || 'DefaultEnvironment';
+         mapDetails.environment360 = info.environmentBase.allDirections || null;
 
          mapDetails.coverImage = beatsaverID + '.jpg';
          const img = await Image.decode(readFileSync(resolve(path, info.coverImageFilename)));
@@ -164,11 +173,14 @@ for (const folder of readdirSync(INPUT_PATH, { withFileTypes: true })) {
          if (request.includes(beatsaverID)) {
             mapDetails.tag.push('request');
          }
-         mapDetails.difficulties = info.difficulties.reduce((p, v) => {
-            p[v.characteristic] ||= [];
-            p[v.characteristic].push(v.difficulty);
-            return p;
-         }, {});
+         mapDetails.difficulties = info.difficulties.reduce(
+            (p, v) => {
+               p[v.characteristic] ||= [];
+               p[v.characteristic].push(v.difficulty);
+               return p;
+            },
+            {} as { [key: string]: string[] },
+         );
 
          const diffList = bsmap.readFromInfoSync(info, {
             directory: path,
@@ -181,8 +193,8 @@ for (const folder of readdirSync(INPUT_PATH, { withFileTypes: true })) {
 }
 
 function updateData(
-   info: bstypes.wrapper.IWrapInfo,
-   diff: bstypes.wrapper.IWrapBeatmap,
+   info: bsmap.wrapper.IWrapInfo,
+   diff: bsmap.wrapper.IWrapBeatmap,
    mapDetails: BeatmapDetails,
 ) {
    let curMinBPM = info.audio.bpm,

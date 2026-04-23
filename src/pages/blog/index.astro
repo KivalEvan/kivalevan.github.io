@@ -17,10 +17,9 @@ const pageDetails = {
    overrideTitle: false,
 };
 
-let allPosts = await Astro.glob<Frontmatter>('./post/*.md');
+let allPosts = Object.values(import.meta.glob<Frontmatter>('./post/*.md', { eager: true }));
 allPosts = allPosts.sort(
-   (a, b) =>
-      new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf(),
+   (a, b) => new Date(b.publishDate).valueOf() - new Date(a.publishDate).valueOf(),
 );
 ---
 

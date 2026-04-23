@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { formatDate } from '../utils/date';
-import avatar from '../assets/img/avatar/kival_evan.jpg';
+import avatar from '../assets/img/avatar/prof.jpg';
 import bsee from '../assets/img/cv/bsee.png';
 import bsmc from '../assets/img/cv/bsmc.png';
 import chromapper from '../assets/img/cv/chromapper.png';
@@ -41,13 +41,14 @@ const projects: Project[] = [
       link: 'https://github.com/Caeden117/ChroMapper',
       type: 'Open Source Project Contribution',
       points: [
-         'Paved the way in upgrading to Unity 6 from Unity 2021 and general clean-up, allowing for more features, better development experience and Unity bug fixes.',
+         'Paved the way in upgrading to Unity 6.3 from Unity 2021 and general clean-up, allowing for more features, better development experience and Unity bug fixes.',
          'Refactored underlying system in C# to significantly improve performance and lower memory usage allowing for better support to lower end user.',
-         'Implemented various new features and bug fixes improving overall user experience.',
-         'Revamped lighting system, allowing user to better preview lighting in the editor accurate to the game.',
-         'Written and handled shader code in HLSL to improve performance of the editor and bring it closer to the game rendering.',
-         'Created 3D assets in Blender for use in asset and environment building.',
-         'Contributed in handling new beatmap model, bringing feature parity with Beat Saber offering.',
+         'Introduced new features such as global light system, custom assets support, and various other quality of life improving user experiences.',
+         'Revamped lighting system allowing user to better preview lighting in the editor accurate to the game.',
+         'Written and improved shader code in HLSL to improve performance of the editor and bring it closer to the game rendering.',
+         'Created 3D assets using Blender and GIMP for use in object asset and environment building.',
+         'Contributed in handling beatmap model allowing more format support for Beat Saber.',
+         'Handled and fixed various bugs and issues in the editor.',
       ],
       image: await getImage({
          src: chromapper,
@@ -137,11 +138,11 @@ const { src } = await getImage({
       <div class="container">
          <div class="profile">
             <div class="flex">
-               <!-- <div class="profile-avatar flex-col-tiny">
+               <div class="profile-avatar">
                   <img src={src} />
-               </div> -->
+               </div>
                <!-- <div class="flex-col-huge"> -->
-               <div>
+               <div class="flex-col-giga">
                   <h1>Nabawi Azizul</h1>
                   <h2>Software Engineer</h2>
                   <p>
@@ -607,6 +608,10 @@ const { src } = await getImage({
             padding: 0 0.5em;
          }
          &-col {
+            &-giga {
+               width: 80%;
+               padding: 0 0.5em;
+            }
             &-huge {
                width: 70%;
                padding: 0 0.5em;

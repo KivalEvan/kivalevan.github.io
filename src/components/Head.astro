@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 import '../styles/global.scss';
 
 export interface Props {
@@ -41,5 +41,5 @@ const {
    <meta property="twitter:description" content={description} />
    <meta property="twitter:image" content="/assets/favicon/favicon.png" />
 
-   <ViewTransitions />
+   <ClientRouter />
 </head>
