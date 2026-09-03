@@ -1,0 +1,51 @@
+---
+import MainLayout from './MainLayout.astro';
+import { formatDate, formatISODate } from '../utils/date';
+import '../styles/blog-print.css';
+
+export interface Props {
+   content: any;
+}
+
+export interface PageDetails {
+   title: string;
+   section: string;
+   subtitle?: string;
+   description: string;
+   overrideTitle: boolean;
+}
+
+const { content } = Astro.props as Props;
+const { title, description, publishDate } = content;
+
+const pageDetails: PageDetails = {
+   section: 'Blog',
+   title: title,
+   description: description,
+   overrideTitle: false,
+};
+
+const dateString = formatDate(publishDate);
+const publishDateTime = formatISODate(publishDate);
+---
+
+<MainLayout pageDetails={pageDetails}>
+   <article
+      class="blog-post flex w-full max-w-[72ch] flex-col px-3 pb-8 pt-5 sm:px-6 md:px-8 md:pt-8"
+   >
+      <header class="blog-post-header">
+         <h2 class="blog-post-title mt-2 text-4xl font-extrabold leading-none md:text-5xl">
+            {pageDetails.title}
+         </h2>
+         <div class="blog-post-meta mt-4">
+            <time datetime={publishDateTime}>{dateString}</time>
+         </div>
+      </header>
+      <section class="blog-post-content site-prose mt-8 w-full text-left">
+         <slot />
+      </section>
+      <nav class="blog-post-navigation" aria-label="Article navigation">
+         <a class="print-action" href="/blog">Back to blog <span aria-hidden="true">→</span></a>
+      </nav>
+   </article>
+</MainLayout>

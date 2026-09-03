@@ -1,338 +1,308 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import BackgroundImage from '../components/BackgroundImage.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import MainLayout from '../layouts/MainLayout.astro';
+import '../styles/home-background.css';
+import '../styles/home-motion.css';
+import '../styles/home-material.css';
+import '../styles/home-ambient.css';
+import '../styles/home-socials.css';
 import FeaturedVideo from '../components/FeaturedVideo.svelte';
-import Avatar from '../components/Avatar.astro';
-import contact from '../data/contact.js';
-import BackToTopButton from '../components/BackToTopButton.astro';
+import InkPortrait from '../components/visual/InkPortrait.astro';
+import ChromaticTitle from '../components/visual/ChromaticTitle.astro';
+import SectionHeading from '../components/visual/SectionHeading.astro';
+import contacts from '../data/contacts';
 import info from '../data/info.js';
+import { Icon } from 'astro-icon/components';
+import heavyMassRaw from '../assets/ink/heavy-ink-mass-1.svg?raw';
+import organicDrag1Raw from '../assets/ink/organic-drag-1.svg?raw';
+import organicDrag2Raw from '../assets/ink/organic-drag-2.svg?raw';
+import pigmentRedRaw from '../assets/ink/pigment-pool-red.svg?raw';
+import pigmentBlueRaw from '../assets/ink/pigment-pool-blue.svg?raw';
+import tangleRedRaw from '../assets/ink/ink-tangle-red.svg?raw';
+import tangleBlueRaw from '../assets/ink/ink-tangle-blue.svg?raw';
+import scratchesRaw from '../assets/ink/scratch-field-1.svg?raw';
+import tornMassRaw from '../assets/ink/torn-mass-1.svg?raw';
+import impactRaw from '../assets/ink/impact-cluster-2.svg?raw';
+import splatter1Raw from '../assets/ink/splatter-cluster-1.svg?raw';
+import splatter2Raw from '../assets/ink/splatter-cluster-2.svg?raw';
+import splatter3Raw from '../assets/ink/splatter-cluster-3.svg?raw';
+import sprayRaw from '../assets/ink/spray-fine-1.svg?raw';
+import spray2Raw from '../assets/ink/spray-fine-2.svg?raw';
+import frameMountRaw from '../assets/ink/frame-mount-1.svg?raw';
 
 const pageDetails = {
    title: 'Kival Evan',
-   description: 'A personal website of mine.',
+   description:
+      "Kival Evan's personal site for software projects, Beat Saber mapping, writing, and everyday interests.",
    overrideTitle: true,
 };
+
+const today = new Date();
+const birthYear = 1999;
+const birthMonth = 5;
+const birthDay = 10;
+const birthDate = `${birthYear}-${String(birthMonth + 1).padStart(2, '0')}-${String(birthDay).padStart(2, '0')}`;
+let age = today.getUTCFullYear() - birthYear;
+if (
+   today.getUTCMonth() < birthMonth ||
+   (today.getUTCMonth() === birthMonth && today.getUTCDate() < birthDay)
+) {
+   age -= 1;
+}
 ---
 
-<BaseLayout pageDetails={pageDetails}>
-   <div class="full-page">
-      <BackgroundImage src={'../assets/img/bg/background.jpg'} mask={true} />
-      <Header pageDetails={pageDetails} />
-      <main class="text-shadow">
-         <div class="flex-front">
-            <div class="flex-front-item wrapper">
-               <section class="container-stuff flex flex-col">
-                  <div class="flex">
-                     <figure class="profile">
-                        <Avatar filePath="kival_evan.jpg" />
-                        <figcaption>
-                           <b>Age</b> :: <span id="age">26</span> (June 10)<br />
-                           PFP by <a href="https://www.pixiv.net/en/users/1020785">まひる</a>
-                        </figcaption>
-                     </figure>
-                     <p>
-                        I am a software developer and a lil VR enthusiast, learning as I find and
-                        develop more new things. I am also a Beat Saber player, mapper, and
-                        contributor for developing third-party tools, scripts and OSS for mapping.<br
-                        />
-                        <br />
-                        Currently exploring different fields to find comfort in my capability.
-                     </p>
-                  </div>
-                  <hr />
-                  <div class="contact flex-se">
-                     {
-                        contact.map((c) =>
-                           c.url ? (
-                              <a class="contact-item svg" href={c.url} title={c.place}>
-                                 {c.img ? <Fragment set:html={c.img} /> : c.place}
-                              </a>
-                           ) : (
-                              <span
-                                 class={
-                                    c.place === 'Discord'
-                                       ? 'contact-item discord-popup fake-link'
-                                       : 'fake-link link-padding'
-                                 }
-                                 id={`${c.place}-link`}
-                                 title={c.name}
-                                 tabindex="0"
-                              >
-                                 {c.img ? <Fragment class="svg" set:html={c.img} /> : c.place}
-                              </span>
-                           )
-                        )
-                     }
-                  </div>
-               </section>
+<MainLayout pageDetails={pageDetails}>
+   <section aria-labelledby="hero-title" data-page-stagger-item class="mixed-hero">
+      <script is:inline>
+         (() => {
+            const hero = document.currentScript.parentElement;
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            // Prepare before artwork paints; a failed module must never leave it hidden.
+            hero.dataset.homeMotionBoot = 'pending';
+            window.setTimeout(() => {
+               if (hero.dataset.homeMotionBoot === 'pending') {
+                  hero.dataset.homeMotionBoot = 'expired';
+               }
+            }, 1500);
+         })();
+      </script>
+      <div class="mixed-hero__art mixed-hero__art--back" aria-hidden="true">
+         <div class="mixed-hero__art-field">
+            <div class="mixed-hero__paper"><Fragment set:html={heavyMassRaw} /></div>
+            <div class="mixed-hero__paper-impact"><Fragment set:html={tornMassRaw} /></div>
+            <div class="mixed-hero__paper-burst"><Fragment set:html={splatter1Raw} /></div>
+            <div class="mixed-hero__paper-spray"><Fragment set:html={sprayRaw} /></div>
+            <div class="mixed-hero__red-spray"><Fragment set:html={spray2Raw} /></div>
+            <div class="mixed-hero__blue-spray"><Fragment set:html={splatter2Raw} /></div>
+            <div class="mixed-hero__paper-toner"><Fragment set:html={pigmentBlueRaw} /></div>
+            <div class="mixed-hero__navy-pool"><Fragment set:html={pigmentBlueRaw} /></div>
+            <div class="mixed-hero__red-pool"><Fragment set:html={pigmentRedRaw} /></div>
+            <div class="mixed-hero__black-drag"><Fragment set:html={organicDrag1Raw} /></div>
+            <div class="mixed-hero__red-tangle"><Fragment set:html={tangleRedRaw} /></div>
+            <div class="mixed-hero__blue-tangle"><Fragment set:html={tangleBlueRaw} /></div>
+            <div class="mixed-hero__decay"><Fragment set:html={scratchesRaw} /></div>
+         </div>
+      </div>
+
+      <div class="site-shell mixed-hero__stage">
+         <div class="mixed-hero__portrait"><InkPortrait /></div>
+
+         <div class="mixed-hero__midground" aria-hidden="true">
+            <div class="mixed-hero__navy-ribbon"><Fragment set:html={organicDrag2Raw} /></div>
+            <div class="mixed-hero__paper-drag"><Fragment set:html={organicDrag1Raw} /></div>
+            <div class="mixed-hero__paper-shock"><Fragment set:html={impactRaw} /></div>
+            <div class="mixed-hero__red-vein"><Fragment set:html={tangleRedRaw} /></div>
+         </div>
+
+         <div class="mixed-hero__title">
+            <ChromaticTitle id="hero-title" lines={['KIVAL', 'EVAN']} as="h1" />
+         </div>
+
+         <div class="mixed-hero__foreground" aria-hidden="true">
+            <div class="mixed-hero__black-vein"><Fragment set:html={organicDrag2Raw} /></div>
+            <div class="mixed-hero__paper-scratches"><Fragment set:html={scratchesRaw} /></div>
+            <div class="mixed-hero__paper-splatter"><Fragment set:html={splatter3Raw} /></div>
+            <div class="mixed-hero__red-deposit"><Fragment set:html={pigmentRedRaw} /></div>
+         </div>
+
+         <div class="mixed-hero__bio">
+            <p class="mixed-hero__bio-lead">I build software, tools, and things for VR.</p>
+            <p class="mixed-hero__bio-copy">
+               I also play and map <em>Beat Saber</em>, and contribute to third-party mapping tools
+               and scripts. I learn by building web applications, tools, and systems.
+            </p>
+         </div>
+
+         <div class="mixed-hero__actions">
+            <ul aria-label="Find me online" class="mixed-hero__socials">
+               {
+                  contacts.map((contact) => {
+                     const label = contact.place === 'X (Twitter)' ? 'X' : contact.place;
+                     return contact.url ? (
+                        <li>
+                           <a href={contact.url} aria-label={contact.place}>
+                              <Icon name={contact.icon} aria-hidden="true" />
+                              <span>{label}</span>
+                           </a>
+                        </li>
+                     ) : (
+                        <li>
+                           <button
+                              type="button"
+                              title={contact.name}
+                              aria-label={contact.place}
+                              data-discord-popup={contact.place === 'Discord' ? true : undefined}
+                           >
+                              <Icon name={contact.icon} aria-hidden="true" />
+                              <span>{label}</span>
+                           </button>
+                        </li>
+                     );
+                  })
+               }
+            </ul>
+         </div>
+
+         <p class="mixed-hero__meta">
+            <b>Age</b>
+            <span id="age" data-age data-birth-date={birthDate}>{age}</span> · June 10<br />
+            Avatar art by <a href="https://www.pixiv.net/en/users/1020785">まひる</a>
+         </p>
+      </div>
+   </section>
+
+   <section
+      data-page-stagger-item
+      aria-labelledby="featured-heading"
+      class="home-section home-section--featured w-full px-3 sm:px-6 md:px-8"
+   >
+      <div class="site-shell">
+         <SectionHeading
+            id="featured-heading"
+            title="Featured video"
+            density="medium"
+            variant="featured"
+         />
+         <div class="punk-video">
+            <div class="punk-video__mount" aria-hidden="true">
+               <Fragment set:html={frameMountRaw} />
             </div>
-            <div class="flex-front-item2">
-               <div class="video">
-                  <FeaturedVideo client:load />
-               </div>
+            <div class="punk-video__navy" aria-hidden="true">
+               <Fragment set:html={organicDrag2Raw} />
+            </div>
+            <div class="punk-video__red" aria-hidden="true">
+               <Fragment set:html={pigmentRedRaw} />
+            </div>
+            <div class="punk-video__frame">
+               <FeaturedVideo client:visible />
             </div>
          </div>
-         <section class="wrapper full-size">
-            <h3>Skills & Interests</h3>
-            <hr />
-            <div class="wrapper readable">
-               <h4>Languages & Technologies:</h4>
-               <ul class="list-tag">
+      </div>
+   </section>
+
+   <section
+      data-page-stagger-item
+      aria-labelledby="skills-heading"
+      id="skills"
+      class="home-section home-section--skills w-full scroll-mt-6 px-3 sm:px-6 md:px-8"
+   >
+      <div class="site-shell">
+         <SectionHeading
+            id="skills-heading"
+            title="Skills & Interests"
+            density="low"
+            variant="skills"
+         />
+         <div class="skills-field site-reading-width text-lg">
+            <div class="skills-group skills-group--tools">
+               <h3 class="punk-h3">Languages &amp; Technologies</h3>
+               <ul class="punk-tags">
                   {[...info.languages, ...info.techs].map((e) => <li>{e}</li>)}
                </ul>
-               <br />
-               <h4>Topics:</h4>
-               <ul class="list-tag">
+            </div>
+            <div class="skills-group skills-group--topics">
+               <h3 class="punk-h3">Topics</h3>
+               <ul class="punk-tags">
                   {info.topics.map((e) => <li>{e}</li>)}
                </ul>
-               <p>
-                  List shown here does not say about my proficiency, just something I'm familiar
-                  with as I've used them or did something related for certain purpose.
-               </p>
             </div>
-         </section>
-         <br />
-         <section class="wrapper full-size">
-            <h3>Projects</h3>
-            <hr />
-            <div class="wrapper readable">
-               <div class="panel-inner">
-                  <div class="panel-column">
-                     <div class="panel-border">
-                        <h4>BSMap</h4>
-                        <hr />
-                        <p>
-                           General-purpose scripting library for Beat Saber map using TypeScript and
-                           compatible with various platforms.
-                        </p>
-                     </div>
-                     <br />
-                     <div class="panel-border">
-                        <h4>Beat Saber Map Check</h4>
-                        <hr />
-                        <p>
-                           Web application to read Beat Saber map for various stats and error
-                           checking.
-                        </p>
-                     </div>
-                  </div>
-                  <br />
-                  <div class="panel-column">
-                     <div class="panel-border">
-                        <h4>Beat Saber Editor Enhanced</h4>
-                        <hr />
-                        <p>
-                           Game modification to improve QOL experience and feature addition in
-                           official game editor.
-                        </p>
-                     </div>
-                     <br />
-                     <div class="panel-border">
-                        <h4>Beat Saber Custom Maps</h4>
-                        <hr />
-                        <p>
-                           Various beatmaps for Beat Saber, check out the <a
-                              href="https://beatsaver.com/profile/4285062">portfolio</a
-                           >.
-                        </p>
-                     </div>
-                  </div>
-               </div>
-               <p>
-                  For more project and information, check out <a href="/project">project</a> page.
-               </p>
+            <p class="punk-note">
+               These are tools and topics I have used. This list does not show my level of
+               proficiency.
+            </p>
+         </div>
+      </div>
+   </section>
+
+   <section
+      data-page-stagger-item
+      aria-labelledby="hardware-heading"
+      class="home-section home-section--hardware w-full px-3 sm:px-6 md:px-8"
+   >
+      <div class="site-shell">
+         <SectionHeading
+            id="hardware-heading"
+            title="Current hardware"
+            density="low"
+            variant="hardware"
+         />
+         <div class="punk-hardware">
+            <div>
+               <h3>PC Setup</h3>
+               <ul>
+                  <li>Intel Core i9-12900K</li>
+                  <li>Sapphire PURE AMD Radeon RX 7800 XT</li>
+                  <li>Kingston FURY Beast 2x16GB 5600MHz CL36 DDR5</li>
+                  <li>ASRock B760M PG SONIC WiFi</li>
+                  <li>Arch Linux + Windows 10 Dual Boot</li>
+               </ul>
             </div>
-         </section>
-         <br />
-         <section class="wrapper">
-            <h3>Stuff I'm using</h3>
-            <hr />
-            <div class="wrapper readable">
-               <div class="panel-inner">
-                  <div class="panel-column">
-                     <div class="panel-border">
-                        <h4>PC Setup</h4>
-                        <hr />
-                        <ul class="list-arrow">
-                           <li>Intel Core i9-12900K</li>
-                           <li>AMD Radeon RX 6800 XT</li>
-                           <li>Kingston FURY Beast 2x16GB 5600MHz CL36 DDR5</li>
-                           <li>ASRock B760M PG SONIC WiFi</li>
-                           <li>Arch Linux + Windows 10 Dual Boot</li>
-                        </ul>
-                     </div>
-                     <br />
-                     <div class="panel-border">
-                        <h4>VR Setup</h4>
-                        <hr />
-                        <ul class="list-arrow">
-                           <li>PlayStation VR2</li>
-                           <li>PlayStation VR2 Sense Controller Charging Station</li>
-                           <li>Aolion For PSVR2 PC Adapter</li>
-                           <li>Project Babble DIY</li>
-                           <li>SlimeVR DIY BMI160 (8+3)</li>
-                        </ul>
-                     </div>
-                  </div>
-                  <br />
-                  <div class="panel-column">
-                     <div class="panel-border">
-                        <h4>Peripherals</h4>
-                        <hr />
-                        <ul class="list-arrow">
-                           <li>AOC 24" Gaming 24G2SP</li>
-                           <li>LG 29" UltraWide FHD 29WQ600-W</li>
-                           <li>Dell 24" UltraSharp U2412M</li>
-                           <li>Audio-Technica ATH-M40x</li>
-                           <li>Ducky One 2 Tuxedo Full Size</li>
-                           <li>Logitech G502 Hero</li>
-                           <li>HyperX FURY S PRO Speed Edition XL</li>
-                           <li>Logitech C922 Pro Stream</li>
-                           <li>Keychron K3 V2</li>
-                        </ul>
-                     </div>
-                     <br />
-                     <div class="panel-border">
-                        <h4>Others</h4>
-                        <hr />
-                        <ul class="list-arrow">
-                           <li>Samsung Galaxy S22+</li>
-                           <li>Artillery Sidewinder X2</li>
-                           <li>2x Tesco Banquet Table</li>
-                        </ul>
-                     </div>
-                  </div>
-               </div>
-               <p>Will get updated over time as I get new toys and stuff.</p>
+            <div>
+               <h3>VR Setup</h3>
+               <ul>
+                  <li>PlayStation VR2</li>
+                  <li>PlayStation VR2 Sense Controller Charging Station</li>
+                  <li>Aolion For PSVR2 PC Adapter</li>
+                  <li>Project Babble DIY</li>
+                  <li>SlimeVR DIY BMI160 (8+3)</li>
+               </ul>
             </div>
-         </section>
-      </main>
-      <BackToTopButton />
-      <Footer />
-   </div>
-</BaseLayout>
-
-<style lang="scss">
-   @use '../styles/_var' as *;
-
-   main {
-      width: 100%;
-      max-width: 100em;
-      padding-left: 4em;
-      padding-right: 4em;
-      margin-left: auto;
-      margin-right: auto;
-      margin-bottom: auto;
-      @media (max-width: $breakpoint-widescreen) {
-         padding-left: 0;
-         padding-right: 0;
-      }
-   }
-   .profile {
-      font-size: 1rem;
-      width: clamp(14rem, 24vw, 16rem);
-   }
-   .flex-front {
-      display: flex;
-      width: 100%;
-      flex-direction: row;
-      @media (max-width: $breakpoint-widescreen) {
-         flex-direction: column;
-      }
-      &-item {
-         display: flex;
-         flex-direction: column;
-         width: 50%;
-         @media (max-width: $breakpoint-widescreen) {
-            width: 100%;
-         }
-      }
-      &-item2 {
-         @extend .flex-front-item;
-         align-items: center;
-      }
-   }
-   .contact {
-      display: flex;
-      width: 100%;
-      justify-content: space-evenly;
-      align-items: center;
-      flex-wrap: wrap;
-      &-item {
-         width: 2em;
-         height: 2em;
-         fill: #aaa;
-         transition:
-            filter 0.2s ease,
-            transform 0.5s ease;
-         &:hover {
-            filter: brightness(1.5);
-            transform: scale(1.5, 1.5);
-         }
-      }
-   }
-
-   .video {
-      width: 100%;
-      margin-top: 1.25em;
-      margin-bottom: 1.25em;
-      @media (max-width: $breakpoint-widescreen) {
-         padding: 0.75em 2em;
-      }
-   }
-
-   h1 {
-      margin-top: 0rem;
-      margin-bottom: 0.25rem;
-      text-align: center;
-   }
-
-   .container-stuff {
-      text-align: justify;
-      margin-top: 1em;
-      margin-bottom: 1em;
-      line-height: 1.375;
-
-      position: relative;
-      font-size: 1.25rem;
-      padding: 0.75em 1.5em;
-      background-color: $background-translucent;
-
-      p {
-         padding-left: 1em;
-         width: 100%;
-      }
-      &::before,
-      &::after {
-         content: '';
-         position: absolute;
-         height: 1em;
-         width: 1em;
-      }
-      &::before {
-         top: 0.375em;
-         left: 0.375em;
-         border-left: 0.0625em solid #ccc;
-         border-top: 0.0625em solid #ccc;
-      }
-      &::after {
-         bottom: 0.375em;
-         right: 0.375em;
-         border-right: 0.0625em solid #ccc;
-         border-bottom: 0.0625em solid #ccc;
-      }
-      @media (max-width: $breakpoint-widescreen) {
-         text-align: center;
-      }
-   }
-</style>
+            <div>
+               <h3>Peripherals</h3>
+               <ul>
+                  <li>AOC 24&quot; Gaming 24G2SP</li>
+                  <li>LG 29&quot; UltraWide FHD 29WQ600-W</li>
+                  <li>Dell 24&quot; UltraSharp U2412M</li>
+                  <li>Audio-Technica ATH-M40x</li>
+                  <li>Boya BY-M1000</li>
+                  <li>Ducky One 2 Tuxedo Full Size</li>
+                  <li>Logitech G502 Hero</li>
+                  <li>HyperX FURY S PRO Speed Edition XL</li>
+                  <li>Logitech C922 Pro Stream</li>
+                  <li>Keychron K3 V2</li>
+               </ul>
+            </div>
+            <div>
+               <h3>Others</h3>
+               <ul>
+                  <li>Samsung Galaxy S22+</li>
+                  <li>Artillery Sidewinder X2</li>
+                  <li>Tesco Banquet Table</li>
+                  <li>IKEA MICKE desk</li>
+                  <li>Steelcase V2 Think Office Chair</li>
+               </ul>
+            </div>
+         </div>
+         <p class="punk-note">I update this list when my setup changes.</p>
+      </div>
+   </section>
+</MainLayout>
 
 <script>
-   const c = new Date();
-   const t = c.getFullYear() - new Date('1999-06-10').getFullYear();
-   document.getElementById('age')!.innerText = (
-      c.getMonth() >= 5 && !(c.getMonth() <= 5 && c.getDate() < 10) ? t : t - 1
-   ).toString();
+   import '../scripts/home-motion';
+   import '../scripts/home-ambient';
+
+   const updateAge = () => {
+      const ageElement = document.querySelector('[data-age]');
+      if (!(ageElement instanceof HTMLElement) || !ageElement.dataset.birthDate) {
+         return;
+      }
+
+      const birthDate = new Date(`${ageElement.dataset.birthDate}T00:00:00Z`);
+      const today = new Date();
+      let age = today.getUTCFullYear() - birthDate.getUTCFullYear();
+      if (
+         today.getUTCMonth() < birthDate.getUTCMonth() ||
+         (today.getUTCMonth() === birthDate.getUTCMonth() &&
+            today.getUTCDate() < birthDate.getUTCDate())
+      ) {
+         age -= 1;
+      }
+      ageElement.textContent = age.toString();
+   };
+
+   updateAge();
+   if (!document.documentElement.dataset.ageUpdaterBound) {
+      document.addEventListener('astro:page-load', updateAge);
+      document.documentElement.dataset.ageUpdaterBound = 'true';
+   }
 </script>

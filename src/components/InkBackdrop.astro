@@ -1,0 +1,84 @@
+---
+// InkBackdrop: restrained full-page print texture only (no hero collage).
+// Deep black + faint blue glow + photocopy grain + sparse speckles.
+// Hero carries its own dense collage that scrolls away. Decorative only.
+import grainUrl from '../assets/ink/grain-speckle-1.svg?url';
+---
+
+<div class="punk-grain" aria-hidden="true">
+   <div class="punk-grain__wash"></div>
+   <div class="punk-grain__speckle" style={`background-image: url('${grainUrl}')`}></div>
+   <div class="punk-grain__damage"></div>
+</div>
+
+<style>
+   .punk-grain {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+      background: var(--color-ink);
+      contain: strict;
+   }
+
+   .punk-grain__wash {
+      position: absolute;
+      inset: 0;
+      background:
+         radial-gradient(
+            110% 80% at 70% 6%,
+            color-mix(in srgb, var(--color-deep-blue) 55%, transparent),
+            transparent 62%
+         ),
+         radial-gradient(80% 60% at 12% 90%, rgb(237 23 56 / 7%), transparent 55%),
+         linear-gradient(180deg, #030305 0%, #060609 50%, #030305 100%);
+   }
+
+   .punk-grain__speckle {
+      position: absolute;
+      inset: 0;
+      background-repeat: repeat;
+      background-size: 256px 256px;
+      opacity: 0.1;
+      mix-blend-mode: screen;
+   }
+
+   /* Three isolated toner skips replace the former full-page scanline field. */
+   .punk-grain__damage {
+      position: absolute;
+      inset: 0;
+      background:
+         linear-gradient(
+            to bottom,
+            transparent 18%,
+            rgb(236 235 230 / 2%) 18.1%,
+            transparent 18.25%
+         ),
+         linear-gradient(
+            to bottom,
+            transparent 61%,
+            rgb(236 235 230 / 1.4%) 61.1%,
+            transparent 61.3%
+         ),
+         linear-gradient(
+            to bottom,
+            transparent 84%,
+            rgb(236 235 230 / 1.2%) 84.15%,
+            transparent 84.25%
+         );
+      opacity: 0.45;
+   }
+
+   @supports not (mix-blend-mode: screen) {
+      .punk-grain__speckle {
+         opacity: 0.07;
+      }
+   }
+
+   @media (prefers-reduced-motion: reduce) {
+      .punk-grain__wash {
+         animation: none;
+      }
+   }
+</style>

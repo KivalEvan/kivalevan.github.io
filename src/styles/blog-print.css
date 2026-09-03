@@ -1,0 +1,354 @@
+/* Blog pages use a single paper opening, then quiet ink-led reading surfaces. */
+.blog-index,
+.blog-post {
+   color: var(--color-paper);
+}
+
+.blog-opening {
+   position: relative;
+   isolation: isolate;
+   width: 100%;
+   padding: clamp(1.5rem, 4vw, 3.5rem) clamp(1rem, 4vw, 4rem) clamp(2rem, 5vw, 4rem);
+}
+
+.blog-opening::before,
+.blog-post-header::before {
+   position: absolute;
+   z-index: -1;
+   content: '';
+   pointer-events: none;
+   background: var(--color-paper);
+   mask: url('../assets/ink/project-paper.svg') center / 100% 100% no-repeat;
+}
+
+.blog-opening::before {
+   inset: 0 -4% -0.75rem;
+}
+
+.blog-opening::after {
+   position: absolute;
+   top: 12%;
+   right: -3%;
+   z-index: -1;
+   width: min(28rem, 46%);
+   height: 12rem;
+   content: '';
+   background: #29466b;
+   mask: url('../assets/ink/ink-tangle-blue.svg') center / 100% 100% no-repeat;
+   opacity: 0.82;
+   pointer-events: none;
+   transform: rotate(4deg);
+}
+
+.blog-opening__header,
+.blog-opening__latest {
+   position: relative;
+   z-index: 1;
+   color: var(--color-ink);
+}
+
+.blog-opening__header {
+   max-width: 44rem;
+}
+
+.blog-opening__header::after {
+   position: absolute;
+   top: -1.45rem;
+   left: -1.5rem;
+   z-index: -1;
+   width: min(13rem, 42%);
+   height: 5rem;
+   content: '';
+   background: #ed1738;
+   mask-image:
+      url('../assets/ink/impact-cluster-3.svg'), url('../assets/ink/print-fiber-field.svg');
+   mask-size:
+      100% 100%,
+      76% 84%;
+   mask-position:
+      center,
+      56% 50%;
+   mask-repeat: no-repeat;
+   mask-composite: intersect;
+   opacity: 0.78;
+   pointer-events: none;
+   transform: rotate(-3deg);
+}
+
+.blog-opening__latest-label,
+.blog-count,
+.blog-preview-meta,
+.blog-post-meta {
+   font-family: 'Space Mono', ui-monospace, monospace;
+   font-size: 0.75rem;
+   line-height: 1.55;
+   letter-spacing: 0.04em;
+}
+
+.blog-opening__latest-label {
+   color: #29466b;
+   font-weight: 700;
+   text-transform: uppercase;
+}
+
+.blog-opening__title,
+.blog-preview-title,
+.blog-post-title,
+.blog-post-content :is(h2, h3, h4) {
+   font-family: var(--font-display);
+   font-weight: 800;
+   letter-spacing: -0.02em;
+}
+
+.blog-opening__title {
+   margin: 0.2rem 0 0;
+   color: #0b1429;
+   font-size: clamp(3.8rem, 9vw, 7rem);
+   line-height: 0.85;
+}
+
+.blog-opening #notebook-heading {
+   color: #0b1429;
+}
+
+.blog-count,
+.blog-post-meta {
+   color: #29466b;
+}
+
+.blog-opening__latest {
+   max-width: 56rem;
+   margin-top: clamp(2rem, 5vw, 4rem);
+}
+
+.blog-opening__latest::before {
+   position: absolute;
+   right: -1rem;
+   bottom: -2rem;
+   z-index: -1;
+   width: 8rem;
+   height: 6rem;
+   content: '';
+   background: #6883ad;
+   mask: url('../assets/ink/spray-fine-2.svg') center / contain no-repeat;
+   opacity: 0.7;
+   pointer-events: none;
+}
+
+.blog-opening__latest-label {
+   margin-bottom: 0.75rem;
+}
+
+.blog-preview-title-link {
+   display: inline-flex;
+   min-height: 2.75rem;
+   align-items: center;
+   color: inherit;
+   text-decoration: none;
+}
+
+.blog-preview--featured {
+   max-width: 48rem;
+}
+
+.blog-preview--featured .blog-preview-title,
+.blog-preview--featured .blog-preview-meta {
+   color: #0b1429;
+}
+
+.blog-preview-meta {
+   color: #6883ad;
+}
+
+.blog-preview-title-link:hover {
+   color: var(--color-paper);
+   text-decoration: underline;
+   text-decoration-thickness: 1px;
+   text-underline-offset: 0.12em;
+}
+
+.blog-opening .blog-preview-title-link:hover {
+   color: #29466b;
+}
+
+.blog-preview-title-link:focus-visible,
+.blog-preview-action:focus-visible,
+.blog-post-content a:focus-visible {
+   outline: 2px solid var(--color-paper);
+   outline-offset: 3px;
+}
+
+.blog-opening :is(.blog-preview-action, .blog-preview-title-link):focus-visible {
+   outline-color: #0b1429;
+}
+
+.blog-opening .blog-preview-action {
+   color: var(--color-paper);
+}
+
+.blog-opening .blog-preview-action::before {
+   background: var(--color-ink);
+}
+
+.blog-opening .blog-preview-action:is(:hover, :focus-visible)::before {
+   background: #29466b;
+}
+
+.blog-archive {
+   width: 100%;
+}
+
+.blog-archive .print-heading__title {
+   text-shadow: none;
+}
+
+.blog-list {
+   border-block: 1px solid rgb(104 131 173 / 0.8);
+}
+
+.blog-list > li {
+   border-color: rgb(236 235 230 / 0.24);
+}
+
+.blog-post-header {
+   position: relative;
+   isolation: isolate;
+   padding: clamp(1.5rem, 4vw, 3rem);
+   color: #0b1429;
+}
+
+.blog-post-header::before {
+   inset: -0.5rem -7% -1rem;
+}
+
+.blog-post-header::after {
+   position: absolute;
+   top: -0.75rem;
+   right: -4%;
+   z-index: -1;
+   width: min(19rem, 45%);
+   height: 7rem;
+   content: '';
+   background: #6883ad;
+   mask: url('../assets/ink/pigment-pool-blue.svg') center / 100% 100% no-repeat;
+   opacity: 0.8;
+   pointer-events: none;
+   transform: rotate(5deg);
+}
+
+.blog-post-title {
+   color: #0b1429;
+}
+
+.blog-post-meta {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 0.15rem 1rem;
+}
+
+.blog-post-meta p,
+.blog-post-meta time {
+   margin: 0;
+}
+
+.blog-post-content :is(p, li) {
+   max-width: 72ch;
+   color: var(--color-paper);
+   line-height: 1.7;
+}
+
+.blog-post-content :is(h2, h3, h4) {
+   color: var(--color-paper);
+}
+
+.blog-post-content a {
+   color: #6883ad;
+   text-decoration: underline;
+   text-decoration-thickness: 1px;
+   text-underline-offset: 0.18em;
+}
+
+.blog-post-content a:hover {
+   color: var(--color-paper);
+}
+
+.blog-post-content :is(h2, h3) {
+   max-width: 100%;
+   text-align: left;
+   text-shadow: none;
+   -webkit-text-stroke: 0;
+   text-transform: none;
+   letter-spacing: 0;
+   line-height: 1.1;
+}
+
+.blog-post-content h2 {
+   margin: 2.5rem 0 1rem;
+   font-size: clamp(1.9rem, 4vw, 2.5rem);
+}
+
+.blog-post-content h3 {
+   margin: 1.75rem 0 0.65rem;
+   font-size: clamp(1.4rem, 3vw, 1.8rem);
+}
+
+.blog-post-navigation {
+   display: flex;
+   position: relative;
+   isolation: isolate;
+   margin-top: 3rem;
+   padding-top: 1.5rem;
+   border-top: 1px solid #29466b;
+}
+
+.blog-post-navigation::before {
+   position: absolute;
+   right: 0;
+   bottom: -1.25rem;
+   z-index: -1;
+   width: 7rem;
+   height: 4rem;
+   content: '';
+   background: #ed1738;
+   mask: url('../assets/ink/scratch-field-1.svg') center / 100% 100% no-repeat;
+   opacity: 0.62;
+   pointer-events: none;
+}
+
+.blog-post-navigation .print-action {
+   gap: 0.5rem;
+}
+
+@media (max-width: 47.99rem) {
+   .blog-opening {
+      padding-inline: 1.35rem;
+   }
+
+   .blog-opening::before {
+      inset: 0 -7% -0.5rem;
+   }
+
+   .blog-opening::after {
+      top: 20%;
+      right: -8%;
+      width: 55%;
+      height: 8rem;
+   }
+
+   .blog-opening__header::after {
+      top: -1rem;
+      left: -0.9rem;
+      width: 46%;
+      height: 3.5rem;
+   }
+
+   .blog-post-header {
+      padding: 1.5rem 1.35rem 2rem;
+   }
+
+   .blog-post-header::after {
+      right: -8%;
+      width: 48%;
+      height: 5rem;
+   }
+}

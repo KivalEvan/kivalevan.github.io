@@ -1,0 +1,38 @@
+/* Inline SVG strips preserve the authored paint order without swapping CSS mask resources. */
+body:has(.mixed-hero) .home-ambient-strips-active.punk-video::after,
+body:has(.mixed-hero) .home-ambient-strips-active.skills-group--tools::before {
+   display: none;
+}
+
+body:has(.mixed-hero) .home-ambient-strips {
+   position: absolute;
+   display: block;
+   overflow: visible;
+   pointer-events: none;
+}
+
+body:has(.mixed-hero) .home-ambient-strips polygon {
+   fill: currentColor;
+}
+
+body:has(.mixed-hero) .punk-video > .home-ambient-strips {
+   z-index: -1;
+   right: -11%;
+   bottom: -16%;
+   width: 48%;
+   height: 28%;
+   color: var(--color-paper);
+   opacity: 0.78;
+   transform: rotate(5deg);
+}
+
+body:has(.mixed-hero) .skills-group--tools > .home-ambient-strips {
+   z-index: -1;
+   left: -3%;
+   top: 0.15rem;
+   width: min(58%, 32rem);
+   height: 2.6rem;
+   color: var(--color-ink-petrol);
+   opacity: 0.64;
+   transform: rotate(-1.5deg);
+}

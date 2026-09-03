@@ -1,16 +1,6 @@
 <script lang="ts">
    import type { BeatmapDetails } from '../../utils/beatmap';
    import { round } from '../../utils/misc';
-   const CharacteristicRename: { readonly [key: string]: string } = {
-      Standard: 'Standard',
-      NoArrows: 'No Arrows',
-      OneSaber: 'One Saber',
-      Legacy: 'Legacy',
-      '360Degree': '360 Degree',
-      '90Degree': '90 Degree',
-      Lightshow: 'Lightshow',
-      Lawless: 'Lawless',
-   } as const;
 
    function toMMSS(seconds: number): string {
       if (!seconds) {
@@ -25,123 +15,53 @@
       return `${min}:${sec}`;
    }
 
-   function joinString(ary: string[]) {
-      return ary.reduce(
-         (p, v, i) =>
-            p + (ary.length - 1 === i ? (i ? ' & ' : '') : i ? ', ' : '') + CharacteristicRename[v],
-         '',
-      );
+   function linkLabel(link: string, fallback: string): string {
+      if (link === 'BeatSaver') return 'View on BeatSaver';
+      if (link === 'WebViewer') return 'Open web viewer';
+      return fallback;
    }
 
-   export let beatmap: BeatmapDetails;
+   let { beatmap }: { beatmap: BeatmapDetails } = $props();
 </script>
 
-<div class="song-card">
-   <a class="cover" href={beatmap.link['BeatSaver'].url}>
+<article class="beatmap-card flex w-full items-start gap-1 border-t border-[#29466b] pt-3 tabular-nums sm:gap-2">
+   <a
+      class="m-1 block size-[6rem] shrink-0 overflow-hidden border border-[#6883ad] shadow-[-0.1875em_0.1875em_0.375em_#0008] transition duration-200 ease-out hover:scale-105 hover:border-[#ed1738] hover:shadow-[-0.125em_0.125em_0.5em_#000f] focus-visible:scale-105 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#6883ad] sm:m-2 sm:size-[8em] md:size-[9em]"
+      href={beatmap.link['BeatSaver'].url}
+      aria-label={`View ${beatmap.songName} on BeatSaver`}
+   >
       <img
-         alt={beatmap.songName}
+         class="size-full object-cover"
+         alt={`${beatmap.songName} cover art`}
          src={`/assets/img/cover/${beatmap.coverImage}`}
          width={256}
          height={256}
+         loading="lazy"
+         decoding="async"
       />
    </a>
-   <div class="metadata">
-      {#each Object.keys(beatmap.link) as link, index}
-         <a class="map-link" href={beatmap.link[link].url}> {beatmap.link[link].name}</a>
-         {#if index !== Object.keys(beatmap.link).length - 1}
-            <span>
-               |
-            </span>
-            <span>
-               
-            </span>
+   <div class="m-1 min-w-0 flex-1 self-stretch break-words text-sm sm:m-2 sm:text-base">
+      {#each Object.entries(beatmap.link) as [link, destination], index}
+         <a
+            class="mr-1 inline-flex min-h-[44px] items-center px-0.5 font-['Big_Shoulders_Display'] text-lg font-extrabold uppercase tracking-wide text-[#ecebe6] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#6883ad]"
+            href={destination.url}>{linkLabel(link, destination.name)}</a
+         >
+         {#if index !== Object.entries(beatmap.link).length - 1}
+            <span aria-hidden="true">|</span>
          {/if}
       {/each}
-      <br>
-      <span class="song-name">{beatmap.songName}</span>
-      <span class="song-subname">{beatmap.songSubName}</span><br />
-      <span class="song-artist">{beatmap.songAuthorName}</span><br />
-      <span class="song-bpm">
+      <br />
+      <h4 class="m-0 font-['Big_Shoulders_Display'] text-3xl font-extrabold uppercase leading-[.9] tracking-tight sm:text-4xl">
+         {beatmap.songName} <span class="font-normal">{beatmap.songSubName}</span>
+      </h4>
+      <span class="text-sm sm:text-base md:text-lg">{beatmap.songAuthorName}</span><br />
+      <span>
+         <strong>BPM:</strong> {beatmap.beatsPerMinute.base}
          {#if beatmap.beatsPerMinute.base !== beatmap.beatsPerMinute.min || beatmap.beatsPerMinute.base !== beatmap.beatsPerMinute.max}
-            ({round(beatmap.beatsPerMinute.min, 2)}-{round(beatmap.beatsPerMinute.max, 2)})
+            (range {round(beatmap.beatsPerMinute.min, 2)}–{round(beatmap.beatsPerMinute.max, 2)})
          {/if}
-         {beatmap.beatsPerMinute.base}BPM</span
-      ><br />
-      <span class="song-duration">{toMMSS(beatmap.songDuration)}</span><br />
+      </span><br />
+      <span><strong>Length:</strong> {toMMSS(beatmap.songDuration)}</span><br />
       <br />
    </div>
-   <!-- <div>
-      <ul class="list-tag">
-         {#each Object.entries(beatmap.difficulties) as [mode, diffs]}
-            <li>
-               {CharacteristicRename[mode]} [{diffs.length}]
-            </li>
-         {/each}
-      </ul>
-   </div> -->
-</div>
-
-<style lang="scss">
-   @use '../../styles/_var' as *;
-
-   .cover {
-      display: inline-block;
-      width: 9em;
-      height: 9em;
-      margin: 0.5em;
-      box-shadow: -0.1875em 0.1875em 0.375em #0008;
-      transition:
-         transform ease 0.25s,
-         box-shadow ease 0.25s;
-
-      @media (max-width: $breakpoint-mobile) {
-         width: 8em;
-         height: 8em;
-      }
-
-      img {
-         width: 9em;
-         height: 9em;
-
-         @media (max-width: $breakpoint-mobile) {
-            width: 8em;
-            height: 8em;
-         }
-      }
-
-      &:hover {
-         box-shadow: -0.125em 0.125em 0.5em #000f;
-         transform: scale(1.1);
-      }
-   }
-
-   .metadata {
-      display: inline-block;
-      position: relative;
-      width: calc(100% - 11.375em);
-      height: 9em;
-      margin: 0.5em;
-      vertical-align: top;
-
-      @media (max-width: $breakpoint-mobile) {
-         width: calc(100% - 10.375em);
-         height: 8em;
-      }
-   }
-
-   .song-name {
-      font-size: 1.5rem;
-
-      @media (max-width: $breakpoint-mobile) {
-         font-size: 1.25rem;
-      }
-   }
-
-   .song-artist {
-      font-size: 1.1875rem;
-
-      @media (max-width: $breakpoint-mobile) {
-         font-size: 1rem;
-      }
-   }
-</style>
+</article>

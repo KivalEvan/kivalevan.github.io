@@ -1,39 +1,74 @@
 ---
-import Main from '../../layouts/Main.astro';
+import MainLayout from '../../layouts/MainLayout.astro';
 import BlogPostPreview from '../../components/blog/BlogPostPreview.astro';
-
-interface Frontmatter {
-   title: string;
-   description: string;
-   author: string;
-   publishDate: string;
-   updatedDate: string;
-   layout: string;
-}
+import SectionHeading from '../../components/visual/SectionHeading.astro';
+import InkCollision from '../../components/visual/InkCollision.astro';
+import '../../styles/blog-print.css';
+import type { Frontmatter } from '@data/frontmatter';
+import type { MarkdownInstance } from 'astro';
 
 const pageDetails = {
    title: 'Blog',
-   description: 'A personal website of mine.',
+   description:
+      'Blog posts by Kival Evan about software development, Beat Saber, and this website.',
    overrideTitle: false,
 };
 
-let allPosts = Object.values(import.meta.glob<Frontmatter>('./post/*.md', { eager: true }));
-allPosts = allPosts.sort(
-   (a, b) => new Date(b.publishDate).valueOf() - new Date(a.publishDate).valueOf(),
+const allPosts = Object.values(
+   import.meta.glob<MarkdownInstance<Frontmatter>>('./post/*.md', { eager: true }),
+).sort(
+   (a, b) =>
+      new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf(),
 );
+const latestPost = allPosts[0];
+const earlierPosts = allPosts.slice(1);
 ---
 
-<Main pageDetails={pageDetails}>
-   <section class="wrapper readable">
-      {
-         allPosts.map((p) => (
-            <>
-               <br />
-               <div class="panel-border">
-                  <BlogPostPreview post={p} />
+<MainLayout pageDetails={pageDetails}>
+   <div class="blog-index site-shell flex flex-col gap-12 px-3 py-8 sm:px-6 md:px-8 md:py-12">
+      <section aria-labelledby="notebook-heading" class="blog-opening">
+         <div class="blog-opening__collision"><InkCollision /></div>
+         <header class="blog-opening__header">
+            <h2 id="notebook-heading" class="blog-opening__title">Blog</h2>
+            <p class="blog-count mt-3 text-sm">
+               {allPosts.length}{' '}
+               {allPosts.length === 1 ? 'post' : 'posts'} · newest first
+            </p>
+         </header>
+
+         {
+            latestPost && (
+               <div class="blog-opening__latest" aria-labelledby="latest-note">
+                  <h2 id="latest-note" class="blog-opening__latest-label">
+                     Latest post
+                  </h2>
+                  <BlogPostPreview post={latestPost} featured />
                </div>
-            </>
-         ))
+            )
+         }
+      </section>
+
+      {
+         !latestPost && (
+            <p class="border-y border-white/50 py-6 text-center" role="status">
+               No posts are published yet.
+            </p>
+         )
       }
-   </section>
-</Main>
+
+      {
+         earlierPosts.length > 0 && (
+            <section aria-labelledby="earlier-notes" class="blog-archive">
+               <SectionHeading id="earlier-notes" title="Earlier posts" level="h2" density="low" />
+               <ol class="blog-list mt-5">
+                  {earlierPosts.map((post) => (
+                     <li class="py-5 first:pt-4 last:pb-4">
+                        <BlogPostPreview post={post} />
+                     </li>
+                  ))}
+               </ol>
+            </section>
+         )
+      }
+   </div>
+</MainLayout>

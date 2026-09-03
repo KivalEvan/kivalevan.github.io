@@ -1,55 +1,192 @@
 ---
-import Main from '../../layouts/Main.astro';
+import MainLayout from '../../layouts/MainLayout.astro';
+import { Image } from 'astro:assets';
+import SectionHeading from '../../components/visual/SectionHeading.astro';
+import InkCollision from '../../components/visual/InkCollision.astro';
+import { selectedProjects, supportingProject, mappingLinks } from '../../data/projects';
+import '../../styles/project-print.css';
+import '../../styles/project-showcase.css';
 
 const pageDetails = {
-   title: 'Project',
-   description: 'A personal website of mine.',
+   title: 'Projects',
+   description: 'Software I build and contribute to, Beat Saber maps, and mapping tools.',
    overrideTitle: false,
 };
+
+const [leadProject, ...otherProjects] = selectedProjects;
+const archive = [
+   {
+      title: 'Advent of Code',
+      href: 'https://github.com/KivalEvan/AdventOfCode',
+      description:
+         'Solutions across years using TypeScript, C, Java, and other languages, with a preference for built-in or self-written libraries.',
+   },
+   {
+      title: 'Code Dump',
+      href: 'https://github.com/KivalEvan/CodeDump',
+      description:
+         'Loose code collected from LeetCode problems, quick-fix scripts, and other small experiments.',
+   },
+   {
+      title: 'Homework & Assignment',
+      href: 'https://github.com/KivalEvan/Homework-Assignment',
+      description:
+         'Work made during education. It may contain copyrighted content. My private, copyrighted final-year project is not included.',
+   },
+];
 ---
 
-<Main pageDetails={pageDetails}>
-   <br />
-   <div class="wrapper readable">
-      <div class="panel-border">
-         <h3><a href="/project/beat_saber">Beat Saber</a></h3>
-         <hr />
-         <p>
-            Script module, web applications, map projects, and various related works for Beat Saber.
-         </p>
-      </div>
-      <br />
-      <div class="panel-border">
-         <h3><a href="https://github.com/KivalEvan/AdventOfCode">Advent of Code</a></h3>
-         <hr />
-         <p>
-            My solution for <a href="https://adventofcode.com/">Advent of Code</a> event throughout years
-            using various of programming languages (TypeScript, C, Java, etc.). Challenged self to only
-            use built-in or own library.
-         </p>
-      </div>
-      <br />
-      <div class="panel-border">
-         <h3><a href="https://github.com/KivalEvan/CodeDump">Code Dump</a></h3>
-         <hr />
-         <p>
-            Random code stuff I've written for anything that I felt needed to but no place for it.
-            This can be LeetCode problems, quick fix script, and other stuff.
-         </p>
-      </div>
-      <br />
-      <div class="panel-border">
-         <h3>
-            <a href="https://github.com/KivalEvan/Homework-Assignment">Homework & Assignment</a>
-         </h3>
-         <hr />
-         <p>
-            Things I've written/made while under education. It may contain copyrighted content, but
-            I'm lazy to check so it may get removed out of necessity in the future. FYP is not
-            included as it is copyrighted and private under institution.
-         </p>
-      </div>
-   </div>
-</Main>
+<MainLayout pageDetails={pageDetails}>
+   <div class="project-page project-showcase site-shell px-3 py-8 sm:px-6 md:px-8 md:py-12">
+      <section aria-labelledby="selected-work">
+         <div class="project-opening showcase-opening">
+            <div class="showcase-opening__collision"><InkCollision /></div>
+            <header>
+               <SectionHeading id="selected-work" title="Projects" density="medium" />
+               <p class="mt-3 leading-relaxed">
+                  Software I build and contribute to, from map-checking tools to editors and
+                  libraries.
+               </p>
+            </header>
 
-<style lang="scss"></style>
+            <article class="showcase-lead" aria-labelledby={leadProject.id}>
+               <div class="showcase-lead__copy">
+                  <h3 id={leadProject.id}>{leadProject.title}</h3>
+                  <p class="showcase-role">{leadProject.role}</p>
+                  <p class="showcase-summary">{leadProject.summary}</p>
+                  <ul class="showcase-stack" aria-label={`${leadProject.title} technologies`}>
+                     {leadProject.stack.map((technology) => <li>{technology}</li>)}
+                  </ul>
+                  <nav class="showcase-actions" aria-label={`${leadProject.title} links`}>
+                     {
+                        leadProject.links.map((link) => (
+                           <a class="print-action" href={link.href}>
+                              {link.label} <span aria-hidden="true">↗</span>
+                           </a>
+                        ))
+                     }
+                  </nav>
+               </div>
+               <figure class="showcase-image showcase-lead__image">
+                  <Image
+                     src={leadProject.image}
+                     alt={leadProject.imageAlt}
+                     class="aspect-video w-full object-contain"
+                     loading="eager"
+                  />
+               </figure>
+            </article>
+         </div>
+
+         <div class="showcase-projects">
+            {
+               otherProjects.map((project, index) => (
+                  <article
+                     class:list={[
+                        'showcase-project',
+                        { 'showcase-project--reverse': index % 2 === 0 },
+                     ]}
+                     aria-labelledby={project.id}
+                  >
+                     <div class="showcase-project__copy">
+                        <h3 id={project.id}>{project.title}</h3>
+                        <p class="showcase-role">{project.role}</p>
+                        <p class="showcase-summary">{project.summary}</p>
+                        <ul class="showcase-stack" aria-label={`${project.title} technologies`}>
+                           {project.stack.map((technology) => (
+                              <li>{technology}</li>
+                           ))}
+                        </ul>
+                        <nav class="showcase-actions" aria-label={`${project.title} links`}>
+                           {project.links.map((link) => (
+                              <a class="print-action" href={link.href}>
+                                 {link.label} <span aria-hidden="true">↗</span>
+                              </a>
+                           ))}
+                        </nav>
+                     </div>
+                     <figure class="showcase-image">
+                        <Image
+                           src={project.image}
+                           alt={project.imageAlt}
+                           class="aspect-video w-full object-contain"
+                           loading="lazy"
+                           decoding="async"
+                        />
+                     </figure>
+                  </article>
+               ))
+            }
+         </div>
+
+         <article class="showcase-library" aria-labelledby="bsmap">
+            <h3 id="bsmap">{supportingProject.title}</h3>
+            <p>{supportingProject.summary}</p>
+            <a class="print-action" href={supportingProject.href}
+               >View library <span aria-hidden="true">↗</span></a
+            >
+         </article>
+         <p class="showcase-detail-link">
+            <a class="project-inline-link" href="/project/beat_saber#software-tools"
+               >More about the Beat Saber software projects →</a
+            >
+         </p>
+      </section>
+
+      <section class="showcase-mapping" aria-labelledby="mapping-heading">
+         <SectionHeading
+            id="mapping-heading"
+            title="Maps & mapping tools"
+            density="low"
+            variant="skills"
+         />
+         <p class="showcase-section-intro">
+            Published maps and utilities for building Beat Saber maps.
+         </p>
+         <ul class="showcase-link-list">
+            {
+               mappingLinks.map((project) => (
+                  <li>
+                     <h3>
+                        <a class="project-title-link" href={project.href}>
+                           {project.title} <span aria-hidden="true">↗</span>
+                        </a>
+                     </h3>
+                     <p>{project.summary}</p>
+                  </li>
+               ))
+            }
+         </ul>
+         <nav class="showcase-actions" aria-label="Beat Saber mapping links">
+            <a class="print-action" href="/project/beat_saber#mapping-workshop"
+               >Mapping work & permissions →</a
+            >
+            <a class="print-action" href="/commission/beat_saber/">Commission a map →</a>
+         </nav>
+      </section>
+
+      <section class="showcase-archive" aria-labelledby="archive-heading">
+         <SectionHeading id="archive-heading" title="Archive" density="low" variant="hardware" />
+         <p class="showcase-section-intro">Older experiments, practice, and reference code.</p>
+         <ul class="showcase-link-list">
+            {
+               archive.map((project) => (
+                  <li>
+                     <h3>
+                        <a class="project-title-link" href={project.href}>
+                           {project.title} <span aria-hidden="true">↗</span>
+                        </a>
+                     </h3>
+                     <p>{project.description}</p>
+                  </li>
+               ))
+            }
+         </ul>
+         <p class="showcase-detail-link">
+            About the <a class="project-inline-link" href="https://adventofcode.com/"
+               >Advent of Code event ↗</a
+            >.
+         </p>
+      </section>
+   </div>
+</MainLayout>

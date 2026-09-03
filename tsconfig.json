@@ -1,3 +1,16 @@
 {
-   "compilerOptions": { "checkJs": false, "module": "nodenext", "allowImportingTsExtensions": true }
+   "extends": "astro/tsconfigs/strict",
+   "include": [".astro/types.d.ts", "**/*"],
+   "exclude": ["dist", "src/utils/beatmap.ts", "src/utils/mediainfo.ts"],
+   "compilerOptions": {
+      "checkJs": false,
+      "allowImportingTsExtensions": true,
+      "paths": {
+         "@components/*": ["./src/components/*"],
+         "@data/*": ["./src/data/*"],
+         "@layouts/*": ["./src/layouts/*"],
+         "@styles/*": ["./src/styles/*"],
+         "@utils/*": ["./src/utils/*"]
+      }
+   }
 }

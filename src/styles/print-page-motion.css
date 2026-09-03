@@ -1,0 +1,335 @@
+/* Short registration snaps for interior print pages; homepage and CV are deliberately excluded. */
+body.print-page [data-print-motion-prepared='pending'] {
+   clip-path: polygon(
+      -10% -10%,
+      -10% -10%,
+      -10% 8%,
+      -10% 22%,
+      -10% 37%,
+      -10% 46%,
+      -10% 63%,
+      -10% 71%,
+      -10% 88%,
+      -10% 110%,
+      -10% 110%
+   );
+   will-change: clip-path;
+}
+
+body.print-page [data-print-motion-entrance] {
+   will-change: clip-path;
+}
+
+/* Deconstruct the old print, then cut once to the prepared new plate. There is no snapshot blend. */
+html[data-print-transition]::view-transition-group(page-content) {
+   animation-duration: 420ms;
+   animation-timing-function: steps(1, end);
+}
+
+html[data-print-transition]::view-transition-old(page-content) {
+   /* Astro's static `none` directive hides the old plate; this transition needs it visible. */
+   opacity: 1;
+   animation: print-page-snapshot-deconstruct 420ms steps(1, end) both;
+   mix-blend-mode: normal;
+}
+
+html[data-print-transition]::view-transition-new(page-content) {
+   animation: print-page-snapshot-cut-in 420ms steps(1, end) both;
+   mix-blend-mode: normal;
+}
+
+@keyframes print-page-snapshot-deconstruct {
+   from {
+      clip-path: polygon(
+         110% -10%,
+         -10% -10%,
+         -10% 8%,
+         -10% 22%,
+         -10% 37%,
+         -10% 46%,
+         -10% 63%,
+         -10% 71%,
+         -10% 88%,
+         -10% 110%,
+         110% 110%
+      );
+   }
+   10% {
+      clip-path: polygon(
+         110% -10%,
+         -3% -10%,
+         2% 8%,
+         -4% 22%,
+         4% 37%,
+         -1% 46%,
+         6% 63%,
+         1% 71%,
+         9% 88%,
+         3% 110%,
+         110% 110%
+      );
+   }
+   20% {
+      /* Mirrored contours erase from left to right while the page stays anchored. */
+      clip-path: polygon(
+         110% -10%,
+         6% -10%,
+         11% 8%,
+         4% 22%,
+         16% 37%,
+         9% 46%,
+         21% 63%,
+         13% 71%,
+         27% 88%,
+         20% 110%,
+         110% 110%
+      );
+   }
+   32% {
+      clip-path: polygon(
+         110% -10%,
+         12% -10%,
+         19% 8%,
+         11% 22%,
+         22% 37%,
+         16% 46%,
+         28% 63%,
+         21% 71%,
+         31% 88%,
+         25% 110%,
+         110% 110%
+      );
+   }
+   44% {
+      clip-path: polygon(
+         110% -10%,
+         23% -10%,
+         28% 8%,
+         21% 22%,
+         35% 37%,
+         27% 46%,
+         39% 63%,
+         34% 71%,
+         42% 88%,
+         38% 110%,
+         110% 110%
+      );
+   }
+   56% {
+      clip-path: polygon(
+         110% -10%,
+         38% -10%,
+         44% 8%,
+         32% 22%,
+         41% 37%,
+         40% 46%,
+         46% 63%,
+         56% 71%,
+         50% 88%,
+         55% 110%,
+         110% 110%
+      );
+   }
+   68% {
+      clip-path: polygon(
+         110% -10%,
+         57% -10%,
+         52% 8%,
+         63% 22%,
+         48% 37%,
+         56% 46%,
+         53% 63%,
+         71% 71%,
+         61% 88%,
+         69% 110%,
+         110% 110%
+      );
+   }
+   80% {
+      clip-path: polygon(
+         110% -10%,
+         75% -10%,
+         66% 8%,
+         81% 22%,
+         58% 37%,
+         77% 46%,
+         69% 63%,
+         85% 71%,
+         72% 88%,
+         81% 110%,
+         110% 110%
+      );
+   }
+   90% {
+      clip-path: polygon(
+         110% -10%,
+         91% -10%,
+         82% 8%,
+         96% 22%,
+         78% 37%,
+         92% 46%,
+         83% 63%,
+         98% 71%,
+         88% 88%,
+         95% 110%,
+         110% 110%
+      );
+   }
+   to {
+      clip-path: polygon(
+         110% -10%,
+         110% -10%,
+         110% 8%,
+         110% 22%,
+         110% 37%,
+         110% 46%,
+         110% 63%,
+         110% 71%,
+         110% 88%,
+         110% 110%,
+         110% 110%
+      );
+   }
+}
+
+@keyframes print-page-snapshot-cut-in {
+   from {
+      clip-path: inset(0 0 100% 0);
+   }
+   to {
+      clip-path: inset(0);
+   }
+}
+
+body.print-page [data-print-motion-passive] {
+   --print-registration-x: 0px;
+   --print-registration-y: 0px;
+   --print-registration-rotate: 0deg;
+   translate: var(--print-registration-x) var(--print-registration-y);
+   rotate: var(--print-registration-rotate);
+   transition:
+      translate 90ms steps(1, end),
+      rotate 90ms steps(1, end);
+}
+
+body.print-page [data-print-motion-decor]::before,
+body.print-page [data-print-motion-decor]::after {
+   translate: var(--print-ink-x, 0px) var(--print-ink-y, 0px);
+   transition: translate 90ms steps(1, end);
+}
+
+body.print-page .print-heading[data-print-motion-passive]::after {
+   translate: calc(var(--print-registration-x) * -1) calc(var(--print-registration-y) * -1);
+}
+
+/* Keep the navigation steady while its separate wordmark plate swaps in place. */
+::view-transition-group(header-wordmark) {
+   animation: none;
+}
+
+::view-transition-old(header-wordmark) {
+   animation: none;
+   opacity: 0;
+   mix-blend-mode: normal;
+}
+
+::view-transition-new(header-wordmark) {
+   animation: none;
+   opacity: 1;
+   mix-blend-mode: normal;
+}
+
+/* A sole snapshot means the name is entering or leaving, not already on both pages. */
+html[data-print-transition]::view-transition-old(header-wordmark):only-child {
+   opacity: 1;
+   mix-blend-mode: normal;
+   animation: print-wordmark-assemble 420ms steps(1, end) reverse both;
+}
+
+html[data-print-transition]::view-transition-new(header-wordmark):only-child {
+   opacity: 1;
+   mix-blend-mode: normal;
+   animation: print-wordmark-assemble 420ms steps(1, end) both;
+}
+
+@keyframes print-wordmark-assemble {
+   0%,
+   50% {
+      clip-path: polygon(0 0, 0 0, 0 30%, 0 55%, 0 80%, 0 100%, 0 100%);
+   }
+   62% {
+      /* Separate ink impressions connect only along the zero-area top edge. */
+      clip-path: polygon(
+         12% 0,
+         25% 0,
+         22% 100%,
+         14% 100%,
+         12% 0,
+         51% 0,
+         63% 0,
+         59% 100%,
+         53% 100%,
+         51% 0,
+         85% 0,
+         96% 0,
+         92% 100%,
+         87% 100%,
+         85% 0
+      );
+   }
+   76% {
+      clip-path: polygon(
+         0 0,
+         32% 0,
+         29% 100%,
+         0 100%,
+         0 0,
+         42% 0,
+         67% 0,
+         65% 100%,
+         44% 100%,
+         42% 0,
+         76% 0,
+         100% 0,
+         100% 100%,
+         74% 100%,
+         76% 0
+      );
+   }
+   90%,
+   100% {
+      clip-path: polygon(0 0, 100% 0, 100% 30%, 100% 55%, 100% 80%, 100% 100%, 0 100%);
+   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+   html[data-print-transition]::view-transition-old(header-wordmark):only-child,
+   html[data-print-transition]::view-transition-new(header-wordmark):only-child {
+      animation: none;
+   }
+
+   html[data-print-transition]::view-transition-old(header-wordmark):only-child {
+      visibility: hidden;
+   }
+
+   html[data-print-transition]::view-transition-old(page-content),
+   html[data-print-transition]::view-transition-new(page-content) {
+      animation: none;
+   }
+
+   body.print-page [data-print-motion-entrance] {
+      will-change: auto;
+   }
+
+   body.print-page [data-print-motion-prepared='pending'] {
+      clip-path: none;
+      translate: 0;
+      will-change: auto;
+   }
+
+   body.print-page [data-print-motion-passive] {
+      translate: 0;
+      rotate: 0deg;
+      transition: none;
+   }
+}

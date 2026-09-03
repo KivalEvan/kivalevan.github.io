@@ -1,61 +1,317 @@
 ---
-import Nav from './Nav.astro';
+interface Props {
+   pageDetails: {
+      title: string;
+      section?: string;
+   };
+}
 
-const { pageDetails } = Astro.props;
+const navigations: { text: string; link: string; active?: boolean }[] = [
+   { text: 'Projects', link: '/project' },
+   { text: 'Blog', link: '/blog' },
+   { text: 'Commissions', link: '/commission' },
+];
+const currentPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const isHome = currentPath === '/';
+const HomeTag = isHome ? 'span' : 'a';
+
+navigations.forEach((page) => {
+   const pagePath = page.link.replace(/\/+$/, '') || '/';
+   if (currentPath === pagePath || (pagePath !== '/' && currentPath.startsWith(`${pagePath}/`))) {
+      page.active = true;
+   }
+});
 ---
 
-<header>
-   {
-      pageDetails.title === 'Kival Evan' ? (
-         <h1 class="text-shadow">Kival Evan</h1>
-      ) : (
-         <h1 class="text-shadow">
-            <a href="/">Kival Evan</a>
-         </h1>
-      )
-   }
-   <div class="container">
-      <Nav currentPage={pageDetails.section || pageDetails.title} />
+<header
+   transition:name="site-header"
+   transition:animate="none"
+   class="site-header punk-head relative z-10 w-full"
+>
+   <div class="site-shell punk-head__inner">
+      <nav aria-label="Primary navigation" class="punk-nav">
+         <ul class="site-nav-list">
+            {
+               navigations.map((page) => (
+                  <li>
+                     <a
+                        href={page.link}
+                        aria-current={page.active ? 'page' : undefined}
+                        class="punk-nav__link"
+                     >
+                        {page.text}
+                     </a>
+                  </li>
+               ))
+            }
+         </ul>
+      </nav>
+      <HomeTag
+         class={isHome ? 'punk-head__home-slot' : 'punk-head__home-link'}
+         href={isHome ? undefined : '/'}
+         aria-label={isHome ? undefined : 'Kival Evan'}
+         aria-hidden={isHome ? 'true' : undefined}
+      >
+         <span class="punk-head__wordmark" aria-hidden="true">
+            {
+               ['KIVAL', 'EVAN'].map((word) => (
+                  <span class="punk-head__word">
+                     {word.split('').map((letter) => (
+                        <span class="punk-head__glyph" data-letter={letter}>
+                           {letter}
+                        </span>
+                     ))}
+                  </span>
+               ))
+            }
+         </span>
+      </HomeTag>
    </div>
 </header>
 
-<style lang="scss">
-   @use '../styles/_var' as *;
-
-   .container {
-      width: 100%;
-      background-image: linear-gradient(
-         to left,
-         rgba(0, 0, 0, 0),
-         rgba(0, 0, 0, 0.375) 10%,
-         rgba(0, 0, 0, 0.375) 90%,
-         rgba(0, 0, 0, 0)
-      );
+<style>
+   .punk-head {
+      --color-signal-cyan: #6883ad;
+      min-height: 4.5rem;
    }
 
-   header {
-      // background-image: url("/assets/img/bg/header.webp");
-      /* me when unable to credit in alt, Inadiary/平PING */
-      background-position: center;
-      background-size: cover;
-      // background-color: #ede0dc;
-      // background-color: #222226;
-      /* background-color: #406080; */
-      // box-shadow: 0 0 0.25em black;
+   .punk-head__inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      min-height: 4.5rem;
+      padding: 0.5rem 0.75rem;
    }
 
-   h1 {
-      text-align: center;
-      margin-top: 0rem;
-      margin-bottom: 0.25rem;
+   .punk-nav {
+      min-width: 0;
+   }
 
-      a,
-      a:hover {
-         color: white;
+   .site-nav-list {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+   }
+
+   .punk-nav__link {
+      position: relative;
+      display: inline-flex;
+      min-width: 4.8rem;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      isolation: isolate;
+      padding: 0.55rem 0.8rem 0.7rem;
+      color: var(--color-paper);
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      line-height: 1;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: transform 160ms ease-out;
+   }
+
+   .punk-nav__link:visited,
+   .punk-head__home-link:visited {
+      color: var(--color-paper);
+   }
+
+   .punk-nav__link::before {
+      content: '';
+      position: absolute;
+      inset: 0.2rem 0;
+      z-index: -1;
+      pointer-events: none;
+      background: transparent;
+      clip-path: var(--print-interaction-cut, polygon(1% 6%, 96% 0, 100% 82%, 94% 100%, 0 94%));
+   }
+
+   .punk-nav__link::after {
+      position: absolute;
+      right: 0.45rem;
+      bottom: 0.28rem;
+      left: 0.45rem;
+      height: 3px;
+      content: '';
+      background: #6883ad;
+      mask: url('../assets/ink/organic-drag-1.svg') center / 100% 100% no-repeat;
+      opacity: 0.5;
+      pointer-events: none;
+   }
+
+   .punk-nav__link:is(:hover, :focus-visible)::after,
+   .punk-nav__link[aria-current='page']::after {
+      opacity: 0.9;
+      background: var(--color-signal-red);
+   }
+
+   .punk-nav__link:is(:hover, :focus-visible) {
+      color: var(--color-paper);
+      text-shadow: none;
+      transform: scale(1.05);
+   }
+
+   .punk-nav__link[aria-current='page'] {
+      color: var(--color-ink);
+   }
+
+   .punk-nav__link:is(:hover, :focus-visible)::before {
+      background: #29466b;
+   }
+
+   .punk-nav__link[aria-current='page']::before {
+      background: var(--color-paper);
+   }
+
+   .punk-nav__link:focus-visible,
+   .punk-head__home-link:focus-visible {
+      outline: 2px solid #6883ad;
+      outline-offset: 3px;
+   }
+
+   .punk-nav__link[aria-current='page']:visited {
+      color: var(--color-ink);
+   }
+
+   .punk-head__home-link,
+   .punk-head__home-slot {
+      display: inline-flex;
+      min-width: 6.1rem;
+      min-height: 44px;
+      align-items: center;
+      justify-content: flex-end;
+      color: var(--color-paper);
+      font-family: 'League Gothic', 'Arial Narrow', sans-serif;
+      font-size: clamp(2rem, 4vw, 4rem);
+      font-weight: 400;
+      letter-spacing: -0.015em;
+      line-height: 0.8;
+      text-decoration: none;
+      text-transform: uppercase;
+   }
+
+   .punk-head__wordmark {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.14em;
+   }
+
+   .punk-head__home-link {
+      view-transition-name: header-wordmark;
+   }
+
+   .punk-head__word {
+      display: inline-flex;
+      align-items: baseline;
+   }
+
+   .punk-head__glyph {
+      --letter-ink: var(--color-paper);
+      --letter-fill: inset(0);
+      position: relative;
+      display: inline-block;
+      color: transparent;
+      -webkit-text-stroke: 0.7px var(--letter-ink);
+      transform-origin: center bottom;
+   }
+
+   /* A few open letterforms echo the poster without carrying its full distress. */
+   .punk-head__glyph::before {
+      content: attr(data-letter);
+      position: absolute;
+      inset: 0;
+      color: var(--letter-ink);
+      clip-path: var(--letter-fill);
+      pointer-events: none;
+   }
+
+   .punk-head__glyph:nth-child(2) {
+      translate: 0 -0.015em;
+   }
+
+   .punk-head__glyph:nth-child(3) {
+      rotate: -0.5deg;
+   }
+
+   .punk-head__glyph:is(
+      [data-letter='A'],
+      [data-letter='E'],
+      [data-letter='I'],
+      [data-letter='O'],
+      [data-letter='U']
+   ) {
+      --letter-fill: inset(100% 0 0 0);
+   }
+
+   .punk-head__glyph:nth-child(5) {
+      translate: 0 0.01em;
+   }
+
+   .punk-head__glyph[data-letter='V'] {
+      --letter-ink: var(--color-signal-red);
+      --letter-fill: inset(0);
+      -webkit-text-stroke-width: 1px;
+   }
+
+   .punk-head__home-slot {
+      visibility: hidden;
+   }
+
+   .punk-head__home-link:is(:hover, :focus-visible) {
+      color: var(--color-paper);
+   }
+
+   @media (max-width: 37.99rem) {
+      .punk-head,
+      .punk-head__inner {
+         min-height: 7rem;
       }
 
-      @media (max-width: $breakpoint-mobile) {
-         font-size: 4rem;
+      .punk-head__inner {
+         row-gap: 0.25rem;
+         padding-block: 0.35rem;
+      }
+
+      .punk-nav {
+         grid-column: 1 / -1;
+         grid-row: 1;
+      }
+
+      .site-nav-list {
+         display: grid;
+         grid-template-columns: repeat(3, max-content);
+         justify-content: space-between;
+         width: 100%;
+      }
+
+      .punk-nav__link {
+         font-size: 1.05rem;
+         padding-inline: 0.6rem;
+         letter-spacing: 0.02em;
+      }
+
+      .punk-head__home-link,
+      .punk-head__home-slot {
+         grid-column: 2;
+         grid-row: 2;
+      }
+   }
+
+   @media (prefers-reduced-motion: reduce) {
+      .punk-nav__link,
+      .punk-nav__link::after,
+      .punk-head__home-link {
+         transition: none;
+      }
+
+      .punk-nav__link:is(:hover, :focus-visible),
+      .punk-head__home-link:is(:hover, :focus-visible) {
+         transform: none;
       }
    }
 </style>

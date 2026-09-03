@@ -1,0 +1,142 @@
+---
+// Decorative print collision for interior openings; callers own its size and placement.
+import heavyInkMassRaw from '../../assets/ink/heavy-ink-mass-1.svg?raw';
+import impactClusterRaw from '../../assets/ink/impact-cluster-2.svg?raw';
+import offsetImpactClusterRaw from '../../assets/ink/impact-cluster-3.svg?raw';
+import organicDragRaw from '../../assets/ink/organic-drag-2.svg?raw';
+import scratchFieldRaw from '../../assets/ink/scratch-field-1.svg?raw';
+import filamentRedRaw from '../../assets/ink/filament-red-1.svg?raw';
+import filamentBlueRaw from '../../assets/ink/filament-blue-1.svg?raw';
+
+interface Props {
+   /** Additional placement or scale classes supplied by the containing composition. */
+   class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={['ink-collision', className]} aria-hidden="true">
+   <div class="ink-collision__layer ink-collision__mass">
+      <Fragment set:html={heavyInkMassRaw} />
+   </div>
+   <div class="ink-collision__layer ink-collision__navy">
+      <Fragment set:html={organicDragRaw} />
+   </div>
+   <div class="ink-collision__layer ink-collision__crimson">
+      <Fragment set:html={impactClusterRaw} />
+   </div>
+   <div class="ink-collision__layer ink-collision__blue">
+      <Fragment set:html={offsetImpactClusterRaw} />
+   </div>
+   <div class="ink-collision__layer ink-collision__paper-loss"></div>
+   <div class="ink-collision__layer ink-collision__scratches">
+      <Fragment set:html={scratchFieldRaw} />
+   </div>
+   <div class="ink-collision__layer ink-collision__red-filament">
+      <Fragment set:html={filamentRedRaw} />
+   </div>
+   <div class="ink-collision__layer ink-collision__blue-filament">
+      <Fragment set:html={filamentBlueRaw} />
+   </div>
+</div>
+
+<style>
+   .ink-collision {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      /* Bound oversized plates with an ink edge, never the rectangular layer box. */
+      mask: url('../../assets/ink/collision-edge.svg') center / 100% 100% no-repeat;
+      isolation: isolate;
+      pointer-events: none;
+   }
+
+   .ink-collision__layer {
+      position: absolute;
+      pointer-events: none;
+   }
+
+   .ink-collision__layer :global(svg) {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+   }
+
+   .ink-collision__mass {
+      inset: -20% 20% -17% -30%;
+      z-index: 1;
+      color: #08090d;
+      opacity: 0.98;
+      transform: rotate(-13deg) scale(1.22);
+   }
+
+   .ink-collision__navy {
+      inset: 20% -23% -22% 10%;
+      z-index: 2;
+      color: #0b1429;
+      opacity: 0.95;
+      transform: rotate(17deg) scale(1.32);
+      mix-blend-mode: multiply;
+   }
+
+   .ink-collision__crimson {
+      inset: -22% 31% 22% -23%;
+      z-index: 3;
+      color: #ed1738;
+      opacity: 1;
+      transform: rotate(-22deg) scale(1.17);
+      mask: url('../../assets/ink/print-fiber-field.svg') center / 100% 100% no-repeat;
+   }
+
+   .ink-collision__blue {
+      inset: 17% -18% -18% 32%;
+      z-index: 4;
+      color: #6883ad;
+      opacity: 0.95;
+      transform: rotate(31deg) scaleX(1.28);
+      mask: url('../../assets/ink/print-fiber-field.svg') center / 100% 100% no-repeat;
+   }
+
+   .ink-collision__paper-loss {
+      inset: -4% 9% 7% 40%;
+      z-index: 5;
+      background: #ecebe6;
+      mask-image: url('../../assets/ink/print-fiber-field.svg');
+      mask-position: center;
+      mask-repeat: no-repeat;
+      mask-size: 100% 100%;
+      opacity: 0.65;
+      transform: rotate(-16deg);
+   }
+
+   .ink-collision__scratches {
+      inset: -6% -4% -8% 7%;
+      z-index: 6;
+      color: #ecebe6;
+      opacity: 0.58;
+      transform: rotate(-9deg) scale(1.13);
+      mix-blend-mode: screen;
+   }
+
+   .ink-collision__red-filament {
+      inset: 11% 9% 5% -18%;
+      z-index: 7;
+      color: #ed1738;
+      opacity: 0.7;
+      transform: rotate(9deg) scale(1.18);
+      mix-blend-mode: screen;
+   }
+
+   .ink-collision__blue-filament {
+      inset: -12% -14% 10% 24%;
+      z-index: 8;
+      color: #29466b;
+      opacity: 0.88;
+      transform: rotate(-25deg) scale(1.24);
+      mix-blend-mode: screen;
+   }
+</style>

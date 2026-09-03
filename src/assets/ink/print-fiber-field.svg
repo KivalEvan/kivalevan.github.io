@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 440" width="640" height="440" preserveAspectRatio="none">
+  <defs>
+    <filter id="dry-ink" x="-4%" y="-6%" width="108%" height="112%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency=".32 .22" numOctaves="3" seed="29" result="fiber"/>
+      <feDisplacementMap in="SourceGraphic" in2="fiber" scale="7" xChannelSelector="R" yChannelSelector="G" result="edge"/>
+      <feColorMatrix in="fiber" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  4.8 0 0 0 -1.75" result="loss"/>
+      <feComposite in="edge" in2="loss" operator="in"/>
+    </filter>
+  </defs>
+  <!-- Unequal, intersecting brush loads; static filtering breaks coverage into dry fibres. -->
+  <g fill="white" filter="url(#dry-ink)">
+    <path d="M26 294C94 267 105 203 169 182L222 155 188 194C148 220 138 264 75 288L39 323Z"/>
+    <path d="M74 333C152 290 218 241 278 177L312 149 289 196C248 250 184 295 121 329L92 347Z"/>
+    <path d="M128 226C160 175 171 110 221 63L247 42 227 92C212 125 211 168 188 195L158 236Z"/>
+    <path d="M195 294C251 252 276 232 322 219L405 160 383 197C354 238 307 246 272 274L232 316Z"/>
+    <path d="M253 163C291 123 309 110 343 104L412 55 388 91C353 125 329 131 305 169L277 190Z"/>
+    <path d="M283 335C347 308 365 270 407 240L475 215 446 246C399 266 399 302 350 332L306 355Z"/>
+    <path d="M363 162C411 146 445 115 487 97L562 89 525 112C485 115 464 153 420 161L382 183Z"/>
+    <path d="M396 369C436 315 479 302 489 264L520 240 511 287C496 330 453 341 426 381Z"/>
+    <path d="M465 198C511 178 522 146 580 141L608 149 567 165C541 176 543 196 504 208L480 231Z"/>
+    <path d="M53 187C73 161 105 158 123 127L136 115 132 143C110 176 86 183 62 207Z"/>
+    <path d="M177 387C212 352 247 351 274 324L294 315 278 345C252 366 211 371 199 396Z"/>
+    <path d="M507 349C539 323 553 289 601 276L620 275 595 294C564 304 556 341 522 367Z"/>
+    <path d="M121 112C172 131 207 162 252 167L304 184 275 190C221 183 202 167 163 153L134 137Z"/>
+    <path d="M208 229C248 216 301 233 342 243L383 269 349 260C292 261 266 237 235 247L216 241Z"/>
+    <path d="M371 99C413 126 447 128 482 147L511 169 479 159C443 151 430 149 398 128L377 121Z"/>
+    <path d="M315 302C354 307 388 329 433 324L459 337 418 346C377 339 355 325 326 328Z"/>
+    <g fill="none" stroke="white" stroke-linecap="butt">
+      <path d="M19 349C85 314 117 300 146 260S233 202 268 169" stroke-width="5"/>
+      <path d="M31 369C91 331 144 342 186 283S281 232 318 178" stroke-width="2"/>
+      <path d="M113 403C179 335 230 319 275 293S382 226 419 179" stroke-width="8"/>
+      <path d="M169 420C240 371 267 360 313 301S409 258 448 218" stroke-width="3"/>
+      <path d="M225 367C278 321 325 344 369 287S480 228 541 189" stroke-width="6"/>
+      <path d="M325 387C360 352 416 350 446 314S515 280 573 229" stroke-width="4"/>
+      <path d="M347 411C405 362 440 373 477 325S554 293 614 259" stroke-width="1.5"/>
+      <path d="M160 266C200 218 227 145 299 111S409 94 467 40" stroke-width="3"/>
+      <path d="M216 231C251 172 301 159 340 136S439 113 490 65" stroke-width="7"/>
+      <path d="M270 212C310 180 338 173 386 145S497 141 590 80" stroke-width="2"/>
+      <path d="M418 207C458 190 496 220 544 185S599 176 628 148" stroke-width="5"/>
+      <path d="M73 281C105 239 133 254 151 218S192 182 210 151" stroke-width="2"/>
+    </g>
+    <path d="M81 229l11-8 5 6-9 12ZM102 359l16-7-3 10-12 7ZM148 139l7-15 5 2-5 14ZM238 96l11-5-3 9-10 5ZM303 240l12-9 3 7-11 8ZM338 77l8-11 6 1-4 11ZM378 348l13-4-5 12-11 3ZM452 267l9-11 5 4-7 12ZM532 128l12-5-3 8-11 5ZM574 334l10-12 4 7-9 10Z"/>
+  </g>
+</svg>

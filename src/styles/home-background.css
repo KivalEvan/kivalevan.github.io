@@ -1,0 +1,198 @@
+/* Homepage-only lower-page print field. The hero owns its existing composition. */
+body:has(.mixed-hero) {
+   --color-signal-cyan: #6883ad;
+   --color-ink-cobalt: #6883ad;
+   --color-ink-petrol: #29466b;
+   --color-deep-blue: #0b1429;
+   --color-ink-deep: #0b1429;
+}
+
+body:has(.mixed-hero) main:has(.home-section) {
+   background:
+      radial-gradient(ellipse 72% 13% at 14% 34%, rgb(236 235 230 / 3%), transparent 72%),
+      radial-gradient(ellipse 62% 18% at 88% 51%, rgb(91 19 35 / 11%), transparent 74%),
+      radial-gradient(ellipse 74% 24% at 58% 77%, rgb(41 70 107 / 16%), transparent 74%);
+}
+
+.home-section > .site-shell {
+   isolation: isolate;
+}
+
+.home-section > .site-shell::before,
+.home-section > .site-shell::after {
+   content: '';
+   position: absolute;
+   z-index: -1;
+   pointer-events: none;
+   background-repeat: no-repeat;
+}
+
+/* A faint, scuffed field lets the video mount dissolve into the next section. */
+.home-section--featured > .site-shell::before {
+   inset: 5.4rem -3% 1.25rem;
+   border: 1px solid rgb(236 235 230 / 7%);
+   background:
+      linear-gradient(101deg, transparent 7%, rgb(236 235 230 / 3%) 42%, transparent 76%),
+      linear-gradient(
+         90deg,
+         transparent 0 12%,
+         rgb(236 235 230 / 5%) 12.1% 12.25%,
+         transparent 12.35% 86%,
+         rgb(41 70 107 / 8%) 86.1% 86.25%,
+         transparent 86.35%
+      );
+   mask-image: url('../assets/ink/scratch-field-1.svg');
+   mask-repeat: no-repeat;
+   mask-size: 118% 106%;
+   opacity: 0.54;
+   transform: rotate(-0.35deg);
+}
+
+.home-section--featured > .site-shell::after {
+   right: 5%;
+   bottom: 0.75rem;
+   width: min(30vw, 25rem);
+   height: 3.25rem;
+   background: linear-gradient(94deg, transparent, rgb(236 235 230 / 18%), transparent 88%);
+   mask-image: url('../assets/ink/organic-drag-1.svg');
+   mask-size: 100% 100%;
+   opacity: 0.3;
+   transform: rotate(1.5deg);
+}
+
+/* A muted blue underpainting sits behind the skills heading, with dry residue only. */
+.home-section--skills > .site-shell::before {
+   left: -5%;
+   top: 1.55rem;
+   width: min(84%, 55rem);
+   height: clamp(3.2rem, 7vw, 5rem);
+   background: linear-gradient(
+      92deg,
+      transparent 1%,
+      rgb(41 70 107 / 26%) 13% 72%,
+      rgb(15 29 51 / 18%) 87%,
+      transparent
+   );
+   mask-image: url('../assets/ink/organic-drag-2.svg');
+   mask-size: 100% 100%;
+   opacity: 0.62;
+   transform: rotate(-1.15deg);
+}
+
+.home-section--skills > .site-shell::after {
+   right: 4%;
+   top: 5.3rem;
+   width: min(23vw, 16rem);
+   height: 4.25rem;
+   background: linear-gradient(
+      105deg,
+      rgb(236 235 230 / 18%),
+      rgb(41 70 107 / 13%),
+      transparent 82%
+   );
+   mask-image: url('../assets/ink/spray-fine-1.svg');
+   mask-size: 100% 100%;
+   opacity: 0.32;
+   transform: rotate(7deg);
+}
+
+/* Blue-black atmosphere and broken drafting marks, deliberately not a regular grid. */
+.home-section--hardware > .site-shell::before {
+   inset: 1rem -4% 1.5rem;
+   background:
+      radial-gradient(ellipse 58% 52% at 16% 36%, rgb(41 70 107 / 17%), transparent 75%),
+      radial-gradient(ellipse 42% 66% at 82% 68%, rgb(10 20 38 / 32%), transparent 78%),
+      linear-gradient(112deg, transparent 12%, rgb(41 70 107 / 8%) 54%, transparent 91%);
+   opacity: 0.72;
+   /* Feather the atmospheric wash on both axes, not the content or drafting rules. */
+   mask-image:
+      linear-gradient(to right, transparent, black 10% 90%, transparent),
+      linear-gradient(to bottom, transparent, black 12% 88%, transparent);
+   mask-composite: intersect;
+   transform: rotate(0.4deg);
+}
+
+.home-section--hardware > .site-shell::after {
+   right: 2%;
+   bottom: 3.5rem;
+   width: min(37vw, 29rem);
+   height: 10rem;
+   background-image:
+      linear-gradient(
+         112deg,
+         transparent 0 34%,
+         rgb(159 170 190 / 18%) 34.2% 34.5%,
+         transparent 34.7% 74%,
+         rgb(159 170 190 / 13%) 74.2% 74.45%,
+         transparent 74.65%
+      ),
+      linear-gradient(
+         0deg,
+         transparent 0 22%,
+         rgb(159 170 190 / 14%) 22.2% 22.45%,
+         transparent 22.65% 61%,
+         rgb(159 170 190 / 10%) 61.2% 61.45%,
+         transparent 61.65%
+      ),
+      radial-gradient(circle at 15% 23%, rgb(236 235 230 / 22%) 0 1px, transparent 1.5px),
+      radial-gradient(circle at 75% 61%, rgb(236 235 230 / 17%) 0 1px, transparent 1.5px);
+   mask-image: url('../assets/ink/scratch-field-1.svg');
+   mask-size: 135% 120%;
+   opacity: 0.55;
+   transform: rotate(-2.5deg);
+}
+
+/* Print routes share the closing ink field; links and ghost title stay above it. */
+:is(body:has(.mixed-hero), body.print-page) .site-footer {
+   isolation: isolate;
+   background:
+      radial-gradient(ellipse 72% 80% at 8% 100%, rgb(41 70 107 / 22%), transparent 79%),
+      radial-gradient(ellipse 55% 65% at 87% 100%, rgb(91 19 35 / 12%), transparent 78%);
+}
+
+:is(body:has(.mixed-hero), body.print-page) .site-footer::before,
+:is(body:has(.mixed-hero), body.print-page) .site-footer::after {
+   content: '';
+   position: absolute;
+   z-index: -1;
+   pointer-events: none;
+}
+
+:is(body:has(.mixed-hero), body.print-page) .site-footer::before {
+   inset: 0;
+   background: linear-gradient(96deg, transparent 4%, rgb(236 235 230 / 8%) 38%, transparent 74%);
+   mask-image: url('../assets/ink/organic-drag-1.svg');
+   mask-repeat: no-repeat;
+   mask-size: 86% 100%;
+   opacity: 0.42;
+   transform: rotate(-0.7deg) scale(1.08);
+}
+
+:is(body:has(.mixed-hero), body.print-page) .site-footer::after {
+   right: 8%;
+   bottom: 0;
+   width: min(34vw, 30rem);
+   height: 4.5rem;
+   background: rgb(236 235 230 / 12%);
+   mask-image: url('../assets/ink/scratch-field-1.svg');
+   mask-repeat: no-repeat;
+   mask-size: 100% 100%;
+   opacity: 0.28;
+   transform: rotate(1deg);
+}
+
+@media (max-width: 47.99rem) {
+   .home-section--featured > .site-shell::before {
+      inset-inline: -1%;
+   }
+
+   .home-section--skills > .site-shell::before {
+      left: -2%;
+      width: 94%;
+   }
+
+   .home-section--hardware > .site-shell::after {
+      width: 52vw;
+      opacity: 0.38;
+   }
+}

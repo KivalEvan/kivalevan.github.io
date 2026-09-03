@@ -1,24 +1,21 @@
 ---
-import { getImage } from 'astro:assets';
+import image from '../assets/img/avatar/kival_evan.jpg';
+import { Image } from 'astro:assets';
 
 interface Props {
-   filePath: string;
+   /** Alternative text. Use an empty value for duplicate decorative print plates. */
+   alt?: string;
+   class?: string;
 }
 
-import image from '../assets/img/avatar/kival_evan.jpg';
-import Image from 'astro/components/Image.astro';
-
-const { filePath } = Astro.props;
-
+const { alt = 'Kival Evan avatar', class: className = '' } = Astro.props;
 ---
 
-<Image alt="avatar" src={image} class="avatar" width=256 height=256 />
-
-<style lang="scss">
-   .avatar {
-      width: 100%;
-      height: auto;
-      box-shadow: -0.125rem 0.125rem 0.25rem #0008;
-      border-radius: 50%;
-   }
-</style>
+<Image
+   inferSize
+   loading="eager"
+   fetchpriority="high"
+   alt={alt}
+   src={image}
+   class={`aspect-square h-auto w-full object-cover ${className}`}
+/>

@@ -1,6 +1,6 @@
 ---
 import type { MarkdownInstance } from 'astro';
-import { formatDate } from '../../utils/date';
+import { formatDate, formatISODate } from '../../utils/date';
 
 interface Frontmatter {
    title: string;
@@ -13,27 +13,43 @@ interface Frontmatter {
 
 export interface Props {
    post: MarkdownInstance<Frontmatter>;
+   featured?: boolean;
 }
 
-const { post } = Astro.props as Props;
-const date = new Date(post.frontmatter.publishDate);
-const formattedDate = formatDate(date);
+const { post, featured = false } = Astro.props as Props;
+const { title, description, author, publishDate, updatedDate } = post.frontmatter;
+const formattedDate = formatDate(publishDate);
+const publishDateTime = formatISODate(publishDate);
+const formattedUpdatedDate = updatedDate ? formatDate(updatedDate) : undefined;
+const updatedDateTime = updatedDate ? formatISODate(updatedDate) : undefined;
 ---
 
-<article class="post-preview">
-   <header>
-      <a href={post.url}><h3>{post.frontmatter.title}</h3></a>
-      <time datetime={date.toISOString()}>{formattedDate}</time>
+<article class={featured ? 'blog-preview blog-preview--featured' : 'blog-preview'}>
+   <header class="flex max-w-[65ch] flex-col gap-3">
+      <div class="min-w-0">
+         <h3
+            class={featured
+               ? 'blog-preview-title text-3xl font-extrabold leading-none md:text-4xl'
+               : 'blog-preview-title text-2xl font-extrabold leading-none md:text-3xl'}
+         >
+            <a class="blog-preview-title-link" href={post.url}>{title}</a>
+         </h3>
+      </div>
+      <div class="blog-preview-meta text-sm text-site-muted">
+         <p>By {author}</p>
+         <time datetime={publishDateTime} class="block">Published {formattedDate}</time>
+         {
+            updatedDateTime && (
+               <time datetime={updatedDateTime} class="block">
+                  Updated {formattedUpdatedDate}
+               </time>
+            )
+         }
+      </div>
    </header>
-   <hr />
-   <main>
-      <p>{post.frontmatter.description}</p>
-      <a href={post.url}>Read more</a>
-   </main>
-</article>
 
-<style lang="scss">
-   article:not(:last-child) {
-      margin-bottom: 2em;
-   }
-</style>
+   <p class="mt-4 max-w-[65ch] leading-relaxed">{description}</p>
+   <a class="blog-preview-action print-action mt-3 gap-2" href={post.url}
+      >Read post <span aria-hidden="true">→</span></a
+   >
+</article>

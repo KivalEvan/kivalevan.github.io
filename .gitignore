@@ -7,6 +7,12 @@ dist/
 # dependencies
 node_modules/
 
+# local tooling
+.impeccable/
+.codegraph/
+.playwright-mcp/
+.playwright-cli/
+
 # logs
 npm-debug.log*
 yarn-debug.log*

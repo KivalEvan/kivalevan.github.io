@@ -1,0 +1,12 @@
+.print-title-resolve__word {
+   display: inline-flex;
+   align-items: baseline;
+   vertical-align: baseline;
+   white-space: nowrap;
+}
+
+.print-title-resolve__letter {
+   display: inline-block;
+   flex: none;
+   text-align: start;
+}

@@ -1,0 +1,186 @@
+---
+// InkPortrait keeps the face clear while the offset plates and pigment frame its edges.
+import Avatar from '../Avatar.astro';
+import organicDrag1Raw from '../../assets/ink/organic-drag-1.svg?raw';
+import organicDrag2Raw from '../../assets/ink/organic-drag-2.svg?raw';
+import pigmentRedRaw from '../../assets/ink/pigment-pool-red.svg?raw';
+import pigmentBlueRaw from '../../assets/ink/pigment-pool-blue.svg?raw';
+import blueTangleRaw from '../../assets/ink/ink-tangle-blue.svg?raw';
+import edgeSplatterRaw from '../../assets/ink/splatter-cluster-3.svg?raw';
+---
+
+<figure class="media-portrait">
+   <div class="media-portrait__plate media-portrait__plate--cyan" aria-hidden="true">
+      <Avatar alt="" />
+   </div>
+   <div class="media-portrait__plate media-portrait__plate--red" aria-hidden="true">
+      <Avatar alt="" />
+   </div>
+   <div class="media-portrait__plate media-portrait__plate--core"><Avatar /></div>
+   <div class="media-portrait__navy-pigment" aria-hidden="true">
+      <Fragment set:html={pigmentBlueRaw} />
+   </div>
+   <div class="media-portrait__red-pigment" aria-hidden="true">
+      <Fragment set:html={pigmentRedRaw} />
+   </div>
+   <div class="media-portrait__paper-drag" aria-hidden="true">
+      <Fragment set:html={organicDrag1Raw} />
+   </div>
+   <div class="media-portrait__black-brush" aria-hidden="true">
+      <Fragment set:html={organicDrag2Raw} />
+   </div>
+   <div class="media-portrait__blue-vein" aria-hidden="true">
+      <Fragment set:html={blueTangleRaw} />
+   </div>
+   <div class="media-portrait__edge-splatter" aria-hidden="true">
+      <Fragment set:html={edgeSplatterRaw} />
+   </div>
+</figure>
+
+<style>
+   .media-portrait {
+      position: relative;
+      margin: 0;
+      width: 100%;
+      aspect-ratio: 0.86;
+      isolation: isolate;
+   }
+
+   .media-portrait__plate {
+      position: absolute;
+      inset: 2% 6% 1% 4%;
+      overflow: hidden;
+   }
+
+   .media-portrait__plate :global(img) {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 36%;
+   }
+
+   .media-portrait__plate--core :global(img),
+   .media-portrait__plate--red :global(img),
+   .media-portrait__plate--cyan :global(img) {
+      object-fit: contain;
+   }
+
+   .media-portrait__plate--core {
+      z-index: 6;
+      mask-image: url('../../assets/ink/torn-mass-1.svg');
+      mask-size: 99% 98%;
+      mask-position: center;
+      mask-repeat: no-repeat;
+      filter: brightness(1.1) contrast(1.14) saturate(0.96);
+   }
+
+   .media-portrait__plate--red,
+   .media-portrait__plate--cyan {
+      z-index: 1;
+      mix-blend-mode: color-burn;
+      opacity: 0.28;
+      mask-image: url('../../assets/ink/pigment-pool-red.svg');
+      mask-size: 128% 118%;
+      mask-position: center;
+      mask-repeat: no-repeat;
+   }
+
+   .media-portrait__plate--red {
+      transform: translate(4px, 2px) rotate(0.45deg);
+      filter: grayscale(1) contrast(1.8) sepia(1) saturate(7) hue-rotate(316deg);
+   }
+
+   .media-portrait__plate--cyan {
+      opacity: 0.2;
+      mask-image: url('../../assets/ink/pigment-pool-blue.svg');
+      transform: translate(-3px, -1px) rotate(-0.35deg);
+      filter: grayscale(1) contrast(1.85) sepia(1) saturate(3) hue-rotate(175deg);
+   }
+
+   .media-portrait__navy-pigment,
+   .media-portrait__red-pigment,
+   .media-portrait__paper-drag,
+   .media-portrait__black-brush,
+   .media-portrait__blue-vein,
+   .media-portrait__edge-splatter {
+      position: absolute;
+      pointer-events: none;
+   }
+
+   .media-portrait__navy-pigment {
+      z-index: 2;
+      inset: 39% -9% 3% 53%;
+      color: var(--color-ink-petrol);
+      opacity: 0.42;
+      transform: rotate(-7deg);
+      mix-blend-mode: multiply;
+   }
+
+   .media-portrait__red-pigment {
+      z-index: 3;
+      inset: 5% 52% 35% -10%;
+      color: color-mix(in srgb, var(--color-signal-red) 72%, var(--color-ink));
+      opacity: 0.2;
+      transform: rotate(7deg);
+      mix-blend-mode: multiply;
+   }
+
+   .media-portrait__paper-drag {
+      z-index: 4;
+      left: -12%;
+      right: 9%;
+      top: 80%;
+      height: 13%;
+      color: var(--color-paper);
+      transform: rotate(-12deg);
+      opacity: 0.36;
+   }
+
+   .media-portrait__black-brush {
+      z-index: 5;
+      left: 1%;
+      right: -20%;
+      top: 84%;
+      height: 11%;
+      color: var(--color-ink);
+      transform: rotate(7deg);
+      opacity: 0.42;
+   }
+
+   .media-portrait__blue-vein {
+      z-index: 4;
+      inset: 62% -12% 0 52%;
+      color: var(--color-deep-blue);
+      transform: rotate(-4deg);
+      opacity: 0.3;
+      mix-blend-mode: multiply;
+   }
+
+   .media-portrait__edge-splatter {
+      z-index: 5;
+      inset: 10% -5% 0 -6%;
+      color: var(--color-ink);
+      opacity: 0.42;
+      transform: rotate(-3deg);
+   }
+
+   .media-portrait__navy-pigment svg,
+   .media-portrait__red-pigment svg,
+   .media-portrait__paper-drag svg,
+   .media-portrait__black-brush svg,
+   .media-portrait__blue-vein svg,
+   .media-portrait__edge-splatter svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+   }
+
+   @supports not (mask-image: url('x.svg')) {
+      .media-portrait__plate--core,
+      .media-portrait__plate--red,
+      .media-portrait__plate--cyan {
+         clip-path: inset(3% 8% 4% 6%);
+         mask-image: none;
+      }
+   }
+</style>

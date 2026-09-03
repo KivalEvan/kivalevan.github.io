@@ -1,0 +1,493 @@
+---
+// ChromaticTitle renders one accessible name with a decorative poster-print treatment.
+interface Props {
+   id?: string;
+   lines?: string[];
+   as?: 'h1' | 'h2';
+   class?: string;
+}
+
+const { id, lines = ['KIVAL', 'EVAN'], as = 'h1', class: klass = '' } = Astro.props;
+const Tag = as;
+const accessibleLabel = lines
+   .map((line) => `${line.charAt(0).toUpperCase()}${line.slice(1).toLowerCase()}`)
+   .join(' ');
+---
+
+<div class={`punk-title ${klass}`}>
+   <div class="punk-title__field" aria-hidden="true">
+      <span class="punk-title__field-blue"></span>
+      <span class="punk-title__field-red"></span>
+      <span class="punk-title__field-paper"></span>
+   </div>
+
+   <Tag id={id} class="punk-title__text display-title" aria-label={accessibleLabel}>
+      {
+         lines.map((line, wordIndex) => (
+            <>
+               <span
+                  class="punk-title__word"
+                  data-word={wordIndex}
+                  data-text={line}
+                  aria-hidden="true"
+               >
+                  {line.split('').map((letter, letterIndex) => (
+                     <span
+                        class={`poster-glyph poster-glyph--${wordIndex}-${letterIndex}`}
+                        data-letter={letter}
+                        aria-hidden="true"
+                     >
+                        {letter}
+                     </span>
+                  ))}
+               </span>
+               {wordIndex < lines.length - 1 && (
+                  <span class="punk-title__space" aria-hidden="true">
+                     {' '}
+                  </span>
+               )}
+            </>
+         ))
+      }
+   </Tag>
+
+   <div class="punk-title__cuts" aria-hidden="true">
+      <span class="punk-title__scrape-black punk-title__scrape-black--a"></span>
+      <span class="punk-title__scrape-black punk-title__scrape-black--b"></span>
+      <span class="punk-title__scrape-black punk-title__scrape-black--c"></span>
+      <span class="punk-title__scratch-paper"></span>
+      <span class="punk-title__pigment-red"></span>
+   </div>
+</div>
+
+<style>
+   .punk-title {
+      --title-blue: #365b7d;
+      --title-blue-dark: #1f3c58;
+      --title-size: clamp(5.4rem, 17.5vw, 14rem);
+      position: relative;
+      width: max-content;
+      isolation: isolate;
+   }
+
+   .punk-title__text {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      width: max-content;
+      align-items: baseline;
+      margin: 0;
+      color: transparent;
+      font-family: 'League Gothic', var(--font-display);
+      font-size: var(--title-size);
+      font-weight: 400;
+      line-height: 0.78;
+      letter-spacing: 0.012em;
+      text-shadow: none;
+      white-space: nowrap;
+   }
+
+   .punk-title__word {
+      position: relative;
+      display: inline-flex;
+      height: 0.78em;
+      align-items: flex-end;
+      isolation: isolate;
+      white-space: nowrap;
+   }
+
+   .punk-title__word:last-of-type {
+      transform: translate(-0.022em, -0.018em);
+   }
+
+   .punk-title__word::before {
+      content: none;
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      color: transparent;
+      font: inherit;
+      letter-spacing: inherit;
+      line-height: inherit;
+      -webkit-text-stroke: 0.014em var(--title-blue);
+   }
+
+   .punk-title__word:last-of-type::before {
+      content: attr(data-text);
+      mask-image: linear-gradient(90deg, transparent 0 24%, #000 24% 52%, transparent 52% 100%);
+      opacity: 0.64;
+      transform: translate(0.028em, -0.01em);
+   }
+
+   .punk-title__space {
+      width: 0.15em;
+      flex: 0 0 0.15em;
+   }
+
+   .poster-glyph {
+      --glyph-shift: 0em;
+      --glyph-rotate: 0deg;
+      --glyph-scale-x: 1;
+      --glyph-overlap-start: 0em;
+      --glyph-overlap-end: 0em;
+      --fill-color: var(--color-paper);
+      --fill-opacity: 0;
+      --fill-shape: inset(0);
+      position: relative;
+      display: inline-flex;
+      height: 0.78em;
+      align-items: flex-end;
+      justify-content: center;
+      margin-inline-start: var(--glyph-overlap-start);
+      margin-inline-end: var(--glyph-overlap-end);
+      color: transparent;
+      font: inherit;
+      line-height: inherit;
+      -webkit-text-stroke: 0.012em var(--color-paper);
+      paint-order: stroke fill;
+      transform: translateY(var(--glyph-shift)) rotate(var(--glyph-rotate))
+         scaleX(var(--glyph-scale-x));
+      transform-origin: center bottom;
+   }
+
+   .poster-glyph::before,
+   .poster-glyph::after {
+      content: attr(data-letter);
+      position: absolute;
+      inset: 0;
+      font: inherit;
+      line-height: inherit;
+      pointer-events: none;
+   }
+
+   .poster-glyph::before {
+      z-index: -1;
+      color: var(--fill-color);
+      clip-path: var(--fill-shape);
+      opacity: var(--fill-opacity);
+   }
+
+   .poster-glyph::after {
+      z-index: 1;
+      color: transparent;
+      opacity: 0;
+   }
+
+   /* KIVAL has denser paper coverage while retaining the same skeletal system. */
+   .poster-glyph--0-0 {
+      --fill-opacity: 0.32;
+      --fill-shape: polygon(0 0, 22% 0, 37% 49%, 22% 100%, 0 100%);
+      --glyph-overlap-end: -0.01em;
+      --glyph-rotate: -0.35deg;
+      --glyph-scale-x: 1.015;
+   }
+
+   .poster-glyph--0-0::after {
+      -webkit-text-stroke: 0.012em var(--title-blue);
+      opacity: 0.74;
+      transform: translate(-0.045em, 0.015em);
+   }
+
+   .poster-glyph--0-1 {
+      --glyph-shift: -0.024em;
+      --glyph-overlap-start: -0.028em;
+      --glyph-overlap-end: -0.02em;
+      --glyph-scale-x: 0.96;
+      clip-path: polygon(0 7%, 100% 7%, 100% 72%, 72% 79%, 100% 84%, 100% 100%, 0 100%);
+   }
+
+   .poster-glyph--0-2 {
+      --fill-color: var(--color-signal-red);
+      --fill-opacity: 0.82;
+      --fill-shape: polygon(0 0, 100% 0, 84% 66%, 18% 78%);
+      --glyph-shift: 0em;
+      --glyph-overlap-start: -0.035em;
+      --glyph-overlap-end: 0.008em;
+      --glyph-rotate: 0.4deg;
+      --glyph-scale-x: 1.025;
+      -webkit-text-stroke: 0.016em var(--color-signal-red);
+      mask-image: linear-gradient(96deg, #000 0 44%, transparent 44% 48%, #000 48% 100%);
+   }
+
+   .poster-glyph--0-2::after {
+      color: var(--color-ink);
+      clip-path: inset(20% 0 22% 0);
+      mask-image: url('../../assets/ink/scratch-field-1.svg');
+      mask-position: 40% 48%;
+      mask-repeat: no-repeat;
+      mask-size: 138% 118%;
+      opacity: 0.74;
+   }
+
+   .poster-glyph--0-3 {
+      --fill-opacity: 0.34;
+      --fill-shape: polygon(0 42%, 56% 29%, 76% 100%, 0 100%);
+      --glyph-overlap-start: -0.008em;
+      --glyph-overlap-end: -0.03em;
+      --glyph-rotate: -0.3deg;
+      --glyph-scale-x: 0.98;
+      --glyph-shift: -0.028em;
+   }
+
+   .poster-glyph--0-3::after {
+      color: var(--color-ink);
+      clip-path: inset(42% 0 8% 0);
+      mask-image: url('../../assets/ink/scratch-field-1.svg');
+      mask-position: 55% 60%;
+      mask-repeat: no-repeat;
+      mask-size: 142% 122%;
+      opacity: 0.68;
+   }
+
+   .poster-glyph--0-4 {
+      --fill-opacity: 0.3;
+      --fill-shape: polygon(0 68%, 24% 62%, 24% 88%, 100% 88%, 100% 100%, 0 100%);
+      --glyph-shift: 0.015em;
+      --glyph-overlap-start: -0.014em;
+      --glyph-scale-x: 1.01;
+   }
+
+   .poster-glyph--0-4::after {
+      color: var(--color-ink);
+      mask-image: url('../../assets/ink/scratch-field-1.svg');
+      mask-position: 24% 55%;
+      mask-repeat: no-repeat;
+      mask-size: 148% 120%;
+      opacity: 0.74;
+   }
+
+   /* EVAN is more skeletal, with selective paper, red, and blue plates. */
+   .poster-glyph--1-0 {
+      --fill-opacity: 0.38;
+      --glyph-shift: -0.022em;
+      --glyph-overlap-end: -0.016em;
+      --glyph-rotate: 0.25deg;
+      --glyph-scale-x: 0.97;
+   }
+
+   .poster-glyph--1-0::before {
+      mask-image: url('../../assets/ink/organic-drag-2.svg');
+      mask-size: 100% 100%;
+      mask-repeat: no-repeat;
+   }
+
+   .poster-glyph--1-0::after {
+      -webkit-text-stroke: 0.014em var(--title-blue);
+      clip-path: inset(8% 0 9% 0);
+      opacity: 0.82;
+      transform: translate(0.05em, -0.012em);
+   }
+
+   .poster-glyph--1-1 {
+      --fill-color: color-mix(in srgb, var(--color-signal-red) 82%, var(--color-ink));
+      --fill-opacity: 0.54;
+      --fill-shape: polygon(14% 0, 100% 0, 86% 31%, 69% 34%, 76% 44%, 23% 59%);
+      --glyph-shift: 0.018em;
+      --glyph-overlap-start: -0.024em;
+      --glyph-overlap-end: -0.026em;
+      --glyph-scale-x: 1.02;
+      -webkit-text-stroke: 0.017em var(--color-signal-red);
+      mask-image: linear-gradient(104deg, #000 0 63%, transparent 63% 65%, #000 65% 100%);
+   }
+
+   .poster-glyph--1-1::after {
+      color: var(--color-ink);
+      clip-path: inset(13% 0 16% 0);
+      mask-image: url('../../assets/ink/scratch-field-1.svg');
+      mask-position: 62% 42%;
+      mask-repeat: no-repeat;
+      mask-size: 152% 126%;
+      opacity: 0.86;
+   }
+
+   .poster-glyph--1-2 {
+      --fill-opacity: 0.28;
+      --fill-shape: polygon(0 0, 38% 0, 62% 62%, 100% 74%, 100% 100%, 44% 100%);
+      --glyph-overlap-start: -0.038em;
+      --glyph-overlap-end: 0.006em;
+      --glyph-rotate: -0.35deg;
+      --glyph-scale-x: 0.985;
+   }
+
+   .poster-glyph--1-2::after {
+      content: none;
+   }
+
+   .poster-glyph--1-3 {
+      --fill-opacity: 0.42;
+      --fill-shape: polygon(46% 0, 100% 0, 100% 100%, 70% 100%, 38% 49%);
+      --glyph-shift: 0em;
+      --glyph-overlap-start: -0.012em;
+      --glyph-scale-x: 1.015;
+      mask-image: linear-gradient(101deg, #000 0 73%, transparent 73% 77%, #000 77% 100%);
+   }
+
+   .poster-glyph--1-3::after {
+      color: var(--color-ink);
+      clip-path: inset(0 0 0 42%);
+      mask-image: url('../../assets/ink/scratch-field-1.svg');
+      mask-position: right center;
+      mask-repeat: no-repeat;
+      mask-size: 135% 115%;
+      opacity: 0.76;
+   }
+
+   .punk-title__field,
+   .punk-title__cuts {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+   }
+
+   .punk-title__field {
+      z-index: 0;
+   }
+
+   .punk-title__cuts {
+      z-index: 3;
+      font-size: var(--title-size);
+   }
+
+   .punk-title__field > span,
+   .punk-title__cuts > span {
+      position: absolute;
+      display: block;
+      mask-repeat: no-repeat;
+      mask-size: 100% 100%;
+   }
+
+   .punk-title__field-blue {
+      left: -8%;
+      top: 22%;
+      width: 112%;
+      height: 64%;
+      background: var(--title-blue-dark);
+      mask-image: url('../../assets/ink/organic-drag-2.svg');
+      opacity: 0.72;
+      transform: rotate(1.2deg);
+   }
+
+   .punk-title__field-red {
+      left: 12%;
+      top: 1%;
+      width: 58%;
+      height: 87%;
+      background: color-mix(in srgb, var(--color-signal-red) 70%, var(--color-ink));
+      mask-image: url('../../assets/ink/pigment-pool-red.svg');
+      opacity: 0.5;
+      transform: rotate(-4deg);
+   }
+
+   .punk-title__field-paper {
+      left: 0;
+      top: 16%;
+      width: 68%;
+      height: 69%;
+      background: var(--color-paper);
+      mask-image: url('../../assets/ink/scratch-field-1.svg');
+      opacity: 0.36;
+      transform: rotate(-1deg);
+   }
+
+   .punk-title__scrape-black {
+      background: var(--color-ink);
+      mask-image: url('../../assets/ink/organic-drag-1.svg');
+      opacity: 0.9;
+   }
+
+   .punk-title__scrape-black--a {
+      left: 5%;
+      top: 64%;
+      width: 9%;
+      height: 0.024em;
+      mask-image: url('../../assets/ink/scratch-field-1.svg');
+      transform: rotate(-13deg);
+   }
+
+   .punk-title__scrape-black--b {
+      left: 39%;
+      top: 78%;
+      width: 8%;
+      height: 0.035em;
+      mask-image: url('../../assets/ink/scratch-field-1.svg');
+      transform: rotate(9deg);
+   }
+
+   .punk-title__scrape-black--c {
+      left: 57%;
+      top: 43%;
+      width: 7%;
+      height: 0.021em;
+      mask-image: url('../../assets/ink/organic-drag-2.svg');
+      transform: rotate(-48deg);
+   }
+
+   .punk-title__scratch-paper {
+      left: 69%;
+      top: 39%;
+      width: 12%;
+      height: 0.012em;
+      background: var(--color-paper);
+      mask-image: url('../../assets/ink/organic-drag-1.svg');
+      opacity: 0.84;
+      transform: rotate(4.2deg);
+   }
+
+   .punk-title__pigment-red {
+      left: 44%;
+      top: 72%;
+      width: 9%;
+      height: 0.075em;
+      background: var(--color-signal-red);
+      mask-image: url('../../assets/ink/organic-drag-2.svg');
+      opacity: 0.55;
+      transform: rotate(-11deg);
+   }
+
+   @media (prefers-reduced-motion: no-preference) {
+      .punk-title__text {
+         animation: poster-title-reveal 0.56s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+      }
+   }
+
+   @keyframes poster-title-reveal {
+      from {
+         opacity: 0;
+         clip-path: inset(0 100% 0 0);
+         transform: translateX(0.025em);
+      }
+      to {
+         opacity: 1;
+         clip-path: inset(0);
+         transform: none;
+      }
+   }
+
+   @media (min-width: 64rem) and (max-height: 48rem) {
+      .punk-title {
+         --title-size: clamp(8rem, 14vw, 11rem);
+      }
+   }
+
+   @media (max-width: 48rem) {
+      .punk-title {
+         --title-size: clamp(4.5rem, 24vw, 7rem);
+      }
+
+      .punk-title__space {
+         width: 0.11em;
+         flex-basis: 0.11em;
+      }
+
+      .punk-title__field-blue {
+         left: -4%;
+         top: 39%;
+         width: 104%;
+         height: 44%;
+      }
+
+      .punk-title__field-paper {
+         opacity: 0.18;
+      }
+   }
+</style>

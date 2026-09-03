@@ -1,0 +1,81 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import BackToTopButton from '../components/BackToTopButton.astro';
+import InkBackdrop from '../components/InkBackdrop.astro';
+import '../styles/print-pages.css';
+import '../styles/interior-collage.css';
+import '../styles/home-background.css';
+
+interface PageDetails {
+   title: string;
+   section?: string;
+   subtitle?: string;
+   browserTitle?: string;
+   description: string;
+   overrideTitle?: boolean;
+}
+
+interface Props {
+   pageDetails: PageDetails;
+}
+
+const { pageDetails } = Astro.props;
+---
+
+<BaseLayout
+   pageDetails={pageDetails}
+   bodyClass={Astro.url.pathname === '/' ? undefined : 'print-page'}
+>
+   <a class="skip-link" href="#main-content"> Skip to main content </a>
+   <InkBackdrop />
+   <Header pageDetails={pageDetails} />
+   <main
+      id="main-content"
+      tabindex="-1"
+      data-page-stagger-root
+      class="relative z-10 flex min-h-0 w-full flex-1 flex-col items-center pb-8"
+      transition:name="page-content"
+      transition:animate="none"
+   >
+      {Astro.url.pathname !== '/' && <h1 class="sr-only">{pageDetails.title}</h1>}
+      <slot />
+   </main>
+   <BackToTopButton />
+   <Footer />
+</BaseLayout>
+
+<script>
+   const focusNavigationTarget = () => {
+      const hash = decodeURIComponent(window.location.hash.slice(1));
+      const target = hash ? document.getElementById(hash) : document.getElementById('main-content');
+      if (!(target instanceof HTMLElement)) return;
+
+      if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+      requestAnimationFrame(() => target.focus({ preventScroll: true }));
+   };
+
+   if (!document.documentElement.dataset.navigationFocusBound) {
+      let pendingNavigation = false;
+
+      document.addEventListener('astro:before-preparation', () => {
+         pendingNavigation = true;
+      });
+      document.addEventListener('astro:page-load', () => {
+         if (!pendingNavigation) return;
+         pendingNavigation = false;
+         focusNavigationTarget();
+      });
+      document.addEventListener('click', (event) => {
+         const source = event.target;
+         if (!(source instanceof Element)) return;
+
+         const anchor = source.closest('a[href^="#"]');
+         if (!(anchor instanceof HTMLAnchorElement)) return;
+         requestAnimationFrame(() => requestAnimationFrame(focusNavigationTarget));
+      });
+      window.addEventListener('hashchange', focusNavigationTarget);
+      document.documentElement.dataset.navigationFocusBound = 'true';
+   }
+</script>

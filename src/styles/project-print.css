@@ -1,0 +1,324 @@
+.project-page,
+.beat-saber-page {
+   color: #ecebe6;
+}
+
+.project-intro__pocket,
+.tool-lead__pocket {
+   isolation: isolate;
+}
+
+.project-intro__pocket::before,
+.tool-lead__pocket::before {
+   content: '';
+   position: absolute;
+   inset: -4% -3%;
+   z-index: -1;
+   background: #0b1429;
+   mask: url('../assets/ink/heavy-ink-mass-1.svg') center / 100% 100% no-repeat;
+   pointer-events: none;
+}
+
+.project-page :is(.tool-lead, .workshop-feature),
+.beat-saber-page :is(.tool-lead, .workshop-feature) {
+   position: relative;
+   isolation: isolate;
+}
+
+.project-page :is(.tool-lead, .workshop-feature)::before,
+.beat-saber-page :is(.tool-lead, .workshop-feature)::before {
+   position: absolute;
+   z-index: -1;
+   content: '';
+   width: 13rem;
+   height: 8rem;
+   background: #29466b;
+   mask: url('../assets/ink/organic-drag-1.svg') center / 100% 100% no-repeat;
+   opacity: 0.7;
+   pointer-events: none;
+}
+
+.project-page :is(.tool-lead, .workshop-feature)::after,
+.beat-saber-page :is(.tool-lead, .workshop-feature)::after {
+   position: absolute;
+   z-index: -1;
+   content: '';
+   width: 8rem;
+   height: 6rem;
+   background: #ed1738;
+   mask: url('../assets/ink/splatter-cluster-2.svg') center / 100% 100% no-repeat;
+   opacity: 0.62;
+   pointer-events: none;
+}
+
+.project-page .print-heading,
+.beat-saber-page .print-heading {
+   margin-bottom: 0.8rem;
+}
+
+.project-page .print-heading__title,
+.beat-saber-page .print-heading__title,
+.project-page .project-title,
+.beat-saber-page .project-title {
+   color: #ecebe6;
+   font-family: var(--font-display);
+   letter-spacing: -0.025em;
+   text-shadow: none;
+}
+
+.project-page .project-meta,
+.beat-saber-page .project-meta {
+   color: #6883ad;
+   letter-spacing: 0.08em;
+}
+
+.project-page .project-title-link,
+.beat-saber-page .project-title-link {
+   display: inline-flex;
+   min-height: 2.75rem;
+   align-items: center;
+   color: #ecebe6;
+   text-decoration: none;
+}
+
+.project-page .project-inline-link,
+.beat-saber-page .project-inline-link {
+   color: #6883ad;
+   text-decoration: underline;
+   text-decoration-color: rgb(104 131 173 / 0.6);
+   text-underline-offset: 0.18em;
+}
+
+.project-page .project-title-link:hover,
+.project-page .project-inline-link:hover,
+.beat-saber-page .project-title-link:hover,
+.beat-saber-page .project-inline-link:hover {
+   color: #fff;
+}
+
+.project-page .project-title-link:focus-visible,
+.project-page .project-action:focus-visible,
+.project-page .project-inline-link:focus-visible,
+.beat-saber-page .project-title-link:focus-visible,
+.beat-saber-page .project-action:focus-visible,
+.beat-saber-page .project-inline-link:focus-visible {
+   outline: 2px solid #ecebe6;
+   outline-offset: 3px;
+}
+
+.project-page .project-archive,
+.beat-saber-page .project-archive {
+   border-color: rgb(104 131 173 / 0.8);
+}
+
+.project-page .project-archive li,
+.beat-saber-page .project-archive li {
+   border-color: rgb(236 235 230 / 0.24);
+}
+
+@media (max-width: 47.99rem) {
+   .project-page :is(.tool-lead, .workshop-feature)::before,
+   .beat-saber-page :is(.tool-lead, .workshop-feature)::before {
+      width: 9rem;
+      height: 6rem;
+   }
+}
+
+/* The opening is one paper-and-ink composition, not a row of framed cards. */
+.project-opening {
+   position: relative;
+   isolation: isolate;
+   padding: clamp(1rem, 3vw, 3rem) 0 2rem;
+}
+
+.project-opening::before {
+   content: '';
+   position: absolute;
+   inset: -1.5rem -5% 5% -6%;
+   z-index: -2;
+   background: var(--color-paper);
+   /* The homepage contour stretches here to cover both tall mobile and wide desktop openings. */
+   mask: url('../assets/ink/project-paper.svg') center / 100% 100% no-repeat;
+   transform: rotate(-2deg);
+   pointer-events: none;
+}
+
+.project-opening::after {
+   content: '';
+   position: absolute;
+   inset: -0.5rem -5% 2rem 24%;
+   z-index: -1;
+   background: #29466b;
+   mask: url('../assets/ink/pigment-pool-blue.svg') center / 100% 100% no-repeat;
+   opacity: 0.78;
+   pointer-events: none;
+}
+
+.project-opening > header {
+   position: relative;
+   z-index: 2;
+   padding-inline: clamp(0.75rem, 2vw, 2rem);
+}
+
+/* An abraded impact sits at the title edge, leaving its letterforms on clean paper. */
+.project-opening > header::before {
+   position: absolute;
+   top: -1.5rem;
+   left: -1.75rem;
+   z-index: -1;
+   width: min(15rem, 38%);
+   height: 5rem;
+   content: '';
+   background: #ed1738;
+   mask-image:
+      url('../assets/ink/impact-cluster-2.svg'), url('../assets/ink/print-fiber-field.svg');
+   mask-size:
+      100% 100%,
+      72% 82%;
+   mask-position:
+      center,
+      62% 48%;
+   mask-repeat: no-repeat;
+   mask-composite: intersect;
+   opacity: 0.78;
+   pointer-events: none;
+   transform: rotate(-3deg);
+}
+
+.project-opening > header::after {
+   position: absolute;
+   inset: auto -1rem -1.5rem 34%;
+   z-index: -1;
+   width: min(28rem, 66%);
+   height: 3.5rem;
+   content: '';
+   background: #6883ad;
+   mask: url('../assets/ink/scratch-field-1.svg') center / 100% 100% no-repeat;
+   opacity: 0.8;
+   pointer-events: none;
+   transform: rotate(2deg);
+}
+
+.project-opening > header .print-heading__title {
+   color: var(--color-ink);
+   font-size: clamp(3.4rem, 7.5vw, 6.5rem);
+   line-height: 0.88;
+   text-shadow: none;
+}
+
+.project-opening > header .print-heading__rule {
+   background: var(--color-signal-red);
+   width: 7rem;
+}
+
+.project-opening > header > p {
+   max-width: 36ch;
+   color: var(--color-ink);
+   text-shadow: none;
+}
+
+.project-opening :is(.project-intro__pocket, .tool-lead__pocket) {
+   align-self: start;
+   margin-top: 1rem;
+   padding: clamp(1.8rem, 3vw, 3rem);
+}
+
+.project-opening :is(.project-intro__pocket, .tool-lead__pocket)::before {
+   inset: 0 -2% -2%;
+   background: var(--color-ink);
+   mask-image: url('../assets/ink/project-paper.svg');
+}
+
+.project-opening :is(.project-intro__pocket, .tool-lead__pocket)::after {
+   position: absolute;
+   right: -1.5rem;
+   bottom: -1.25rem;
+   z-index: -2;
+   width: 9rem;
+   height: 6rem;
+   content: '';
+   background: #ed1738;
+   mask: url('../assets/ink/impact-cluster-2.svg') center / contain no-repeat;
+   opacity: 0.62;
+   pointer-events: none;
+}
+
+.project-opening :is(.project-feature, .tool-lead) {
+   gap: 1.25rem;
+   align-items: start;
+}
+
+.project-opening :is(.project-intro__collage, .tool-lead__image) {
+   position: relative;
+   z-index: 11;
+   margin-top: 1.5rem;
+}
+
+.project-opening .project-intro__main-image {
+   transform: rotate(-2deg);
+}
+
+.project-opening .project-intro__small-image--one {
+   transform: translate(0.2rem, -0.7rem) rotate(2deg);
+}
+
+.project-opening .project-intro__small-image--two {
+   transform: translate(-0.2rem, 0.5rem) rotate(-3deg);
+}
+
+.tool-opening {
+   margin-bottom: clamp(2rem, 5vw, 5rem);
+}
+
+@media (min-width: 64rem) {
+   .project-opening > header {
+      max-width: 65%;
+   }
+
+   .project-opening :is(.project-intro__collage, .tool-lead__image) {
+      margin-top: -2rem;
+   }
+
+   .project-opening .project-intro__pocket {
+      margin-top: 2rem;
+   }
+}
+
+@media (max-width: 47.99rem) {
+   .project-opening > header .print-heading__title {
+      font-size: clamp(2.8rem, 13vw, 4.5rem);
+   }
+
+   .project-opening::before {
+      inset: -0.5rem -6% 1rem -6%;
+      transform: rotate(-1deg);
+   }
+
+   .project-opening > header::before {
+      top: -1rem;
+      left: -0.9rem;
+      width: 42%;
+      height: 4rem;
+   }
+
+   .project-opening > header::after {
+      right: -0.5rem;
+      bottom: -1rem;
+      left: 20%;
+      width: 75%;
+   }
+
+   .project-opening :is(.project-intro__pocket, .tool-lead__pocket) {
+      margin: 0;
+      padding: 1.6rem 1.35rem 2rem;
+   }
+
+   .project-opening :is(.project-intro__collage, .tool-lead__image) {
+      margin-top: -1rem;
+      margin-inline: 0.5rem;
+   }
+
+   .project-opening :is(.project-feature, .tool-lead) {
+      gap: 0;
+   }
+}

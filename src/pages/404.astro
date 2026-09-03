@@ -1,5 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import InkBackdrop from '../components/InkBackdrop.astro';
+import { Image } from 'astro:assets';
+import errorImage from '../assets/img/404.webp';
+import '../styles/print-pages.css';
 
 const pageDetails = {
    title: '404',
@@ -8,58 +12,111 @@ const pageDetails = {
 };
 ---
 
-<BaseLayout pageDetails={pageDetails}>
-   <div class="full-page">
-      <div class="center">
-         <span class="floatup">Error 404 - Page not found</span><br />
-         <a href="/">
-            <img class="sketchmove" src="/assets/img/404.webp" alt="cirno 404" /><br />
-            <span>take me home</span>
-         </a>
+<BaseLayout pageDetails={pageDetails} bodyClass="print-page">
+   <InkBackdrop />
+   <main
+      data-page-stagger-root
+      class="relative z-10 flex min-h-screen items-center justify-center p-4 text-center"
+      transition:name="page-content"
+      transition:animate="none"
+   >
+      <div class="error-print flex w-full max-w-[32rem] flex-col items-center gap-4 px-6 py-8">
+         <div class="error-print__impressions" aria-hidden="true"><span></span><span></span></div>
+         <h1 class="m-0">Error 404</h1>
+         <p class="m-0">Lost signal</p>
+         <Image
+            class="h-[clamp(8rem,40vh,16rem)] w-auto max-w-full object-contain"
+            src={errorImage}
+            alt="Cirno points to the 404 error"
+            loading="eager"
+         />
+         <p class="m-0 max-w-[45ch]">The requested page is not available. Choose another path.</p>
+         <p class="m-0"><a class="print-action" href="/">Return home</a></p>
       </div>
-   </div>
+   </main>
 </BaseLayout>
 
-<style lang="scss">
-   .floatup {
-      display: block;
-      animation-name: floatup;
-      animation-duration: 3s;
-      animation-timing-function: ease-out;
-      @keyframes floatup {
-         from {
-            transform: translateY(1.25em);
-         }
-         to {
-            transform: none;
-         }
-      }
+<script>
+   import '../scripts/print-interactions';
+</script>
+
+<style>
+   .error-print {
+      position: relative;
+      isolation: isolate;
+      color: var(--color-ink);
+      text-shadow: none;
+      padding: clamp(1.5rem, 4vw, 3rem);
    }
-   .sketchmove {
-      animation-name: sketchmove;
-      animation-duration: 1s;
-      animation-timing-function: step-start;
-      animation-iteration-count: infinite;
-      @keyframes sketchmove {
-         0% {
-            transform: rotate(1deg) translate(2px, -2px);
-         }
-         33% {
-            transform: rotate(-2deg) translate(-3px, 0px);
-         }
-         66% {
-            transform: rotate(1.5deg) translate(2px, -3px);
-         }
-         100% {
-            transform: none;
-         }
-      }
+
+   .error-print::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: var(--color-paper);
+      /* Keep a solid backing under the copy while the perimeter breaks into ink. */
+      mask:
+         linear-gradient(#000 0 0) center / 88% 94% no-repeat,
+         url('../assets/ink/project-paper.svg') center / 100% 100% no-repeat;
+      pointer-events: none;
    }
-   .center {
-      margin: auto;
-      text-align: center;
+
+   .error-print::after {
+      content: '';
+      position: absolute;
+      inset: -8% -22% -10% -12%;
+      z-index: -2;
+      background: #29466b;
+      mask: url('../assets/ink/impact-cluster-2.svg') center / 100% 100% no-repeat;
+      pointer-events: none;
    }
-   img {
-      height: clamp(128px, 75vh, 318px);
+
+   .error-print__impressions {
+      position: absolute;
+      inset: -4% -15%;
+      z-index: -2;
+      pointer-events: none;
+   }
+
+   .error-print__impressions span {
+      position: absolute;
+      inset: -10% 4% 12% -8%;
+      background: var(--color-signal-red);
+      mask: url('../assets/ink/organic-drag-2.svg') center / 100% 100% no-repeat;
+      rotate: -18deg;
+   }
+
+   .error-print__impressions span + span {
+      inset: 48% -8% -12% 25%;
+      background: var(--color-paper);
+      mask: url('../assets/ink/spray-fine-2.svg') center / 100% 100% no-repeat;
+      rotate: 12deg;
+   }
+
+   .error-print h1 {
+      color: var(--color-ink);
+      font-family: 'League Gothic', 'Arial Narrow', sans-serif;
+      font-size: clamp(4rem, 15vw, 7rem);
+      font-weight: 400;
+      letter-spacing: -0.025em;
+      line-height: 0.9;
+      text-transform: uppercase;
+   }
+
+   .error-print .print-action {
+      color: var(--color-paper);
+   }
+
+   .error-print .print-action::before {
+      background: var(--color-ink);
+   }
+
+   .error-print .print-action:is(:hover, :focus-visible)::before {
+      background: #29466b;
+   }
+
+   .error-print .print-action:focus-visible {
+      outline-color: var(--color-ink);
    }
 </style>

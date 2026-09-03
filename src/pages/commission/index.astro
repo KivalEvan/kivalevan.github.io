@@ -1,46 +1,45 @@
 ---
-import Main from '../../layouts/Main.astro';
+import MainLayout from '../../layouts/MainLayout.astro';
+import InkCollision from '../../components/visual/InkCollision.astro';
+import '../../styles/commission-print.css';
 
 const pageDetails = {
    title: 'Commission',
-   description: 'A personal website of mine.',
+   description: 'Review Beat Saber custom map commission prices, proof, and order details.',
    overrideTitle: false,
 };
 ---
 
-<Main pageDetails={pageDetails}>
-   <br />
-   <div class="wrapper readable">
-      <div class="panel-border banner">
-         <div class="banner-content text-shadow">
-            <h3><a href="/commission/beat_saber">Beat Saber Custom Map</a></h3>
-            <hr />
-            <p>
-               From the mapper with 6+ years mapping experience as top 100 <a
-                  href="https://beatsaver.com/profile/4285062">BeatSaver</a
-               > mapper, <a href="https://scoresaber.com/u/76561198002258649"
-                  >1st place | Building Block 2025</a>, <a href="https://scoresaber.com/u/76561198002258649"> 3rd place | Building Block 2020</a
-               > and <a href="https://bsaber.com/2022-beasties-winners-so-many-awards/"
-                  >Beasties nominee & runner-up</a
-               >, you can request me to map your favourite song starting at 10USD up to 20USD per
-               minute (per difficulty)!
-            </p>
+<MainLayout pageDetails={pageDetails}>
+   <div class="commission-index site-shell">
+      <article class="commission-index__sheet" aria-labelledby="commission-heading">
+         <div class="commission-index__collision"><InkCollision /></div>
+         <div class="commission-index__copy">
+            <header>
+               <h2 id="commission-heading">Commission service</h2>
+               <p>
+                  I currently accept Beat Saber custom map commissions. Review the service or
+                  calculate a price estimate below.
+               </p>
+            </header>
+            <section class="commission-index__service" aria-labelledby="beat-saber-service">
+               <p class="commission-index__status">Accepting custom map commissions</p>
+               <h3 id="beat-saber-service">Beat Saber Custom Map</h3>
+               <p>
+                  Request a map for your favourite song from a mapper with more than six years of
+                  experience. Rates are $10–$20 per minute per difficulty. Easy-only maps use a
+                  separate $8 rate.
+               </p>
+               <nav aria-label="Beat Saber commission actions">
+                  <a class="print-action" href="/commission/beat_saber"
+                     >View service details <span aria-hidden="true">→</span></a
+                  >
+                  <a class="print-action" href="/commission/beat_saber/cost_estimator"
+                     >Open cost estimator <span aria-hidden="true">→</span></a
+                  >
+               </nav>
+            </section>
          </div>
-      </div>
+      </article>
    </div>
-</Main>
-
-<style lang="scss">
-   .banner {
-      padding: 0;
-      background-image: url('/assets/img/commission-beat-saber.jpg');
-      background-position: center;
-      background-size: cover;
-      background-color: #181820;
-      .banner-content {
-         padding: 0.5em 1em;
-         border-radius: 0.5em;
-         backdrop-filter: brightness(0.75) blur(8px);
-      }
-   }
-</style>
+</MainLayout>

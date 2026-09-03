@@ -1,0 +1,200 @@
+/* Fine print detail is confined to the existing deposits, never the portrait or type. */
+.mixed-hero__red-pool {
+   opacity: 0.68;
+}
+
+.mixed-hero__red-spray {
+   opacity: 0.56;
+}
+
+.mixed-hero__blue-spray {
+   color: var(--color-ink-cobalt);
+   opacity: 0.68;
+}
+
+/* Localized impact fallout gives each existing plate a rough, printed perimeter. */
+.mixed-hero__red-spray::after,
+.mixed-hero__blue-spray::after,
+.mixed-hero__red-pool::after,
+.mixed-hero__navy-pool::after,
+.mixed-hero__paper-impact::before {
+   content: '';
+   position: absolute;
+   pointer-events: none;
+   background: currentColor;
+   mask-repeat: no-repeat;
+}
+
+/* The crimson plate breaks outward in a short, uneven arc rather than a uniform field. */
+.mixed-hero__red-spray::after {
+   inset: -17% -12% -20% -9%;
+   mask-image: url('../assets/ink/impact-cluster-3.svg');
+   mask-position: 18% 61%;
+   mask-size: 78% 84%;
+   opacity: 0.58;
+   transform: rotate(-17deg);
+}
+
+/* Cobalt stray marks follow the blue plate's lower edge, away from the biography pocket. */
+.mixed-hero__blue-spray::after {
+   inset: -12% -8% -21% -16%;
+   mask-image: url('../assets/ink/spray-fine-2.svg');
+   mask-position: 8% 73%;
+   mask-size: 88% 74%;
+   opacity: 0.7;
+   transform: rotate(13deg);
+}
+
+/* Dense edge islands, dry throws, and a few detached marks stay tied to their source pools. */
+.mixed-hero__red-pool::after {
+   inset: 7% -14% -16% -12%;
+   background: var(--color-signal-red);
+   mask-image: url('../assets/ink/impact-cluster-2.svg');
+   mask-position: 18% 57%;
+   mask-size: 74% 86%;
+   opacity: 0.36;
+   transform: rotate(-11deg);
+}
+
+.mixed-hero__navy-pool::after {
+   inset: -13% -10% -17% -15%;
+   background: var(--color-ink-petrol);
+   mask-image: url('../assets/ink/impact-cluster-1.svg');
+   mask-position: 29% 54%;
+   mask-size: 76% 82%;
+   opacity: 0.38;
+   transform: rotate(9deg);
+}
+
+/* Preserve the off-white mass while giving its already-present impact a torn, wet fringe. */
+.mixed-hero__paper-impact::before {
+   inset: -13% -10% -14% -16%;
+   background: var(--color-paper);
+   mask-image: url('../assets/ink/impact-cluster-3.svg');
+   mask-position: 23% 58%;
+   mask-size: 76% 82%;
+   opacity: 0.58;
+   transform: rotate(12deg);
+}
+
+.mixed-hero__red-tangle,
+.mixed-hero__blue-tangle {
+   mix-blend-mode: normal;
+}
+
+.mixed-hero__red-pool::before,
+.mixed-hero__navy-pool::before {
+   content: '';
+   position: absolute;
+   inset: 0;
+   pointer-events: none;
+   mask-repeat: no-repeat;
+   mask-position:
+      center,
+      37% 23%;
+   mask-composite: intersect;
+   mix-blend-mode: screen;
+   transform: none;
+}
+
+/* Broken blue overprint, rather than another smooth colour wash over the crimson. */
+.mixed-hero__red-pool::before {
+   background: linear-gradient(
+      118deg,
+      var(--color-ink-cobalt),
+      var(--color-paper) 48%,
+      var(--color-ink-petrol) 76%
+   );
+   mask-image:
+      url('../assets/ink/pigment-pool-red.svg'), url('../assets/ink/print-fiber-field.svg');
+   mask-size:
+      100% 100%,
+      100% 100%;
+   opacity: 0.82;
+}
+
+/* Smaller paper scratches expose the grain of the blue underpainting. */
+.mixed-hero__navy-pool::before {
+   background: var(--color-paper);
+   mask-image:
+      url('../assets/ink/pigment-pool-blue.svg'), url('../assets/ink/print-fiber-field.svg');
+   mask-size:
+      100% 100%,
+      120% 130%;
+   mask-position:
+      center,
+      65% 70%;
+   opacity: 0.68;
+}
+
+/* Replace the broad, clean scrape with finer wear while retaining the white silhouette. */
+.mixed-hero__paper::after {
+   inset: 0;
+   background: var(--color-ink-deep);
+   mask-image:
+      url('../assets/ink/heavy-ink-mass-1.svg'), url('../assets/ink/print-fiber-field.svg');
+   mask-size:
+      100% 100%,
+      75% 80%;
+   mask-position:
+      center,
+      31% 47%;
+   mask-repeat: no-repeat;
+   mask-composite: intersect;
+   opacity: 0.18;
+   mix-blend-mode: multiply;
+   transform: none;
+}
+
+/* One quiet toner pass stays on the paper, never across the clear face or reading area. */
+.mixed-hero__paper-impact::after {
+   content: '';
+   position: absolute;
+   inset: 0;
+   pointer-events: none;
+   background: url('../assets/ink/grain-speckle-1.svg') 19% 37% / 9rem 9rem repeat;
+   mask: url('../assets/ink/torn-mass-1.svg') center / 100% 100% no-repeat;
+   opacity: 0.18;
+   mix-blend-mode: multiply;
+}
+
+@media (max-width: 47.99rem) {
+   .mixed-hero__red-pool {
+      opacity: 0.56;
+   }
+
+   .mixed-hero__red-spray {
+      opacity: 0.46;
+   }
+
+   .mixed-hero__red-spray::after {
+      inset: -11% -10% -15% -6%;
+      mask-size: 70% 76%;
+      opacity: 0.44;
+   }
+
+   .mixed-hero__blue-spray::after {
+      inset: -9% -5% -14% -11%;
+      mask-size: 78% 66%;
+      opacity: 0.5;
+   }
+
+   .mixed-hero__red-pool::after,
+   .mixed-hero__navy-pool::after {
+      opacity: 0.28;
+   }
+
+   .mixed-hero__paper-impact::before {
+      inset: -8% -6% -9% -11%;
+      opacity: 0.46;
+   }
+
+   .mixed-hero__red-pool::before,
+   .mixed-hero__navy-pool::before {
+      opacity: 0.56;
+   }
+
+   .mixed-hero__paper::after {
+      opacity: 0.14;
+   }
+}

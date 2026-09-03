@@ -1,0 +1,672 @@
+/* Commission routes are a connected paper-and-ink composition, not a card catalogue. */
+.commission-index,
+.commission-page {
+   --commission-paper: #ecebe6;
+   --commission-ink: #0b1429;
+   --commission-blue: #6883ad;
+   --commission-petrol: #29466b;
+   --commission-crimson: #ed1738;
+   width: 100%;
+   color: var(--commission-paper);
+}
+
+.commission-index {
+   display: grid;
+   place-items: center;
+   padding: clamp(2rem, 6vw, 5rem) 0.75rem;
+}
+
+.commission-index__sheet {
+   position: relative;
+   isolation: isolate;
+   display: grid;
+   width: min(100%, 72rem);
+   color: var(--commission-ink);
+}
+
+/* Registration plates meet at the opening; the reading sheet stays a single calm field. */
+.commission-index__sheet::after {
+   content: '';
+   position: absolute;
+   z-index: -2;
+   top: clamp(5rem, 14vw, 10rem);
+   right: clamp(-5rem, -9vw, -2rem);
+   width: clamp(15rem, 34vw, 30rem);
+   height: clamp(12rem, 29vw, 24rem);
+   background: var(--commission-crimson);
+   mask: url('../assets/ink/impact-cluster-3.svg') center / contain no-repeat;
+   opacity: 0.9;
+   pointer-events: none;
+   transform: rotate(-13deg);
+}
+
+.commission-index__sheet::before,
+.commission-hero__paper::before,
+.commission-enquiry::before {
+   content: '';
+   position: absolute;
+   inset: 0;
+   z-index: -1;
+   background: var(--commission-paper);
+   mask: url('../assets/ink/project-paper.svg') center / 100% 100% no-repeat;
+   pointer-events: none;
+}
+
+.commission-index__copy {
+   position: relative;
+   isolation: isolate;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   gap: 2.5rem;
+   padding: clamp(1.5rem, 4vw, 4.5rem);
+}
+
+.commission-index__copy::before {
+   content: '';
+   position: absolute;
+   z-index: -1;
+   top: clamp(0.75rem, 3vw, 2.25rem);
+   left: clamp(-1rem, -3vw, -0.25rem);
+   width: clamp(7rem, 16vw, 13rem);
+   height: clamp(4rem, 10vw, 8rem);
+   background: var(--commission-blue);
+   mask: url('../assets/ink/splatter-cluster-3.svg') center / contain no-repeat;
+   opacity: 0.7;
+   pointer-events: none;
+   transform: rotate(18deg);
+}
+
+/* Dense damaged registration occupies the unused paper edge, never the copy column. */
+.commission-index__copy::after {
+   content: '';
+   position: absolute;
+   z-index: -1;
+   top: 39%;
+   right: clamp(1rem, 5vw, 4.75rem);
+   width: clamp(11rem, 27vw, 23rem);
+   height: clamp(13rem, 34vw, 28rem);
+   background: linear-gradient(
+      108deg,
+      var(--commission-crimson) 0 42%,
+      var(--commission-ink) 42% 68%,
+      var(--commission-petrol) 68%
+   );
+   mask-image:
+      url('../assets/ink/impact-cluster-2.svg'), url('../assets/ink/print-fiber-field.svg');
+   mask-position:
+      center,
+      58% 46%;
+   mask-repeat: no-repeat;
+   mask-size:
+      100% 100%,
+      92% 92%;
+   opacity: 0.94;
+   pointer-events: none;
+   transform: rotate(8deg);
+}
+
+.commission-index h2,
+.commission-index h3,
+.commission-page h2,
+.commission-page h3 {
+   font-family: var(--font-display);
+   font-weight: 800;
+   letter-spacing: 0.01em;
+   line-height: 0.9;
+   text-transform: uppercase;
+}
+
+.commission-index h2 {
+   max-width: 10ch;
+   margin: 0;
+   font-size: clamp(3.6rem, 8vw, 7rem);
+   text-shadow: 0.045em 0 var(--commission-crimson);
+}
+
+.commission-index header > p {
+   max-width: 58ch;
+   margin: 1rem 0 0;
+   line-height: 1.6;
+}
+
+.commission-index__service {
+   max-width: 42rem;
+   padding-top: 1.5rem;
+   border-top: 0.2rem solid var(--commission-ink);
+}
+
+.commission-index__status {
+   margin: 0;
+   color: var(--commission-petrol);
+   font-family: var(--font-mono);
+   font-size: 0.78rem;
+   font-weight: 700;
+   letter-spacing: 0.04em;
+   text-transform: uppercase;
+}
+
+.commission-index h3 {
+   margin: 0.45rem 0 0;
+   font-size: clamp(2.35rem, 5vw, 4.5rem);
+}
+
+.commission-index__service > p:not(.commission-index__status) {
+   max-width: 62ch;
+   margin: 0.9rem 0 0;
+   line-height: 1.6;
+}
+
+.commission-index nav,
+.commission-enquiry__actions {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 0.75rem;
+   margin: 1.5rem 0 0;
+   padding: 0;
+   list-style: none;
+}
+
+.print-page .commission-index .print-action,
+.commission-page .commission-enquiry .print-action {
+   color: var(--commission-paper);
+}
+
+.print-page .commission-index .print-action::before,
+.commission-page .commission-enquiry .print-action::before {
+   background: var(--commission-ink);
+}
+
+.print-page .commission-index .print-action:is(:hover, :focus-visible)::before,
+.commission-page .commission-enquiry .print-action:is(:hover, :focus-visible)::before {
+   background: var(--commission-petrol);
+}
+
+.commission-index .print-action:focus-visible,
+.commission-enquiry :is(a, button):focus-visible,
+.commission-terms a:focus-visible {
+   outline-color: var(--commission-ink);
+}
+
+.commission-hero {
+   position: relative;
+   width: min(100%, 80rem);
+   margin-inline: auto;
+   padding-top: clamp(1.5rem, 3vw, 3.5rem);
+}
+
+.commission-hero__photo {
+   position: relative;
+   isolation: isolate;
+   width: 100%;
+   aspect-ratio: 40 / 9;
+   min-height: 12rem;
+}
+
+.commission-hero__image {
+   position: absolute;
+   inset: 0;
+   background:
+      linear-gradient(0deg, rgb(11 20 41 / 28%), rgb(11 20 41 / 8%)),
+      url('/assets/img/commission-beat-saber.jpg') center / cover;
+   filter: saturate(0.68) contrast(1.08);
+   mask: url('../assets/ink/commission-photo-edge.svg') center / 100% 100% no-repeat;
+}
+
+/* The image owns one uninterrupted masked field; ink only collides at its outside edges. */
+.commission-hero__photo > .commission-hero__image {
+   z-index: 0;
+}
+
+.commission-hero__photo::before,
+.commission-hero__photo::after {
+   content: '';
+   position: absolute;
+   width: clamp(8rem, 21vw, 19rem);
+   z-index: 1;
+   height: clamp(7rem, 16vw, 14rem);
+   pointer-events: none;
+   mask: url('../assets/ink/splatter-cluster-3.svg') center / contain no-repeat;
+}
+
+.commission-hero__photo::before {
+   left: -2%;
+   bottom: -12%;
+   background: var(--commission-petrol);
+   transform: rotate(-18deg);
+}
+
+.commission-hero__photo::after {
+   right: -2%;
+   top: -12%;
+   background: var(--commission-crimson);
+   transform: rotate(14deg);
+   opacity: 0.7;
+}
+
+.commission-hero__paper {
+   position: relative;
+   isolation: isolate;
+   width: min(43rem, calc(100% - 1.5rem));
+   margin: clamp(-6.5rem, -8vw, -3.5rem) 0 0 0.75rem;
+   padding: clamp(1.5rem, 3.5vw, 3rem);
+   color: var(--commission-ink);
+}
+
+.commission-hero__paper::after {
+   content: '';
+   position: absolute;
+   z-index: -2;
+   right: -5rem;
+   bottom: -4.25rem;
+   width: 15rem;
+   height: 10rem;
+   background: var(--commission-crimson);
+   mask: url('../assets/ink/splatter-cluster-3.svg') center / contain no-repeat;
+   opacity: 0.28;
+   transform: rotate(11deg);
+   pointer-events: none;
+}
+
+/* Keep the paper continuous under copy; edge loss belongs outside its safe inset. */
+.commission-hero__paper::before {
+   mask-image: linear-gradient(#000, #000), url('../assets/ink/project-paper.svg');
+   mask-size:
+      calc(100% - 2rem) calc(100% - 2rem),
+      100% 100%;
+   mask-position: center;
+   mask-repeat: no-repeat;
+}
+
+.commission-banner {
+   max-width: 14ch;
+   margin: 0;
+   font-size: clamp(2.75rem, 6vw, 4.8rem);
+}
+
+.commission-section {
+   /* The shell already centers this section; viewport-based padding collapses its content. */
+   max-width: calc(80rem + 1.5rem);
+   width: 100%;
+   margin-inline: auto;
+   padding: clamp(3.5rem, 7vw, 7rem) 0.75rem;
+}
+
+.commission-section__heading h2,
+.commission-terms__heading {
+   max-width: 12ch;
+   margin: 0;
+   font-size: clamp(2.8rem, 6vw, 5rem);
+}
+
+.commission-section__heading h2 {
+   text-shadow: 0.04em 0 var(--commission-crimson);
+}
+
+.commission-section__heading p {
+   max-width: 65ch;
+   margin: 1rem 0 0;
+   line-height: 1.65;
+}
+
+.commission-opening {
+   position: relative;
+   isolation: isolate;
+   margin-top: clamp(1.25rem, 3vw, 2.25rem);
+}
+
+.commission-opening::before {
+   content: '';
+   position: absolute;
+   z-index: -1;
+   top: -1.25rem;
+   right: min(7vw, 5rem);
+   width: clamp(8rem, 20vw, 17rem);
+   height: clamp(4rem, 10vw, 8rem);
+   background: var(--commission-blue);
+   mask: url('../assets/ink/organic-drag-1.svg') center / contain no-repeat;
+   opacity: 0.42;
+   pointer-events: none;
+   transform: rotate(7deg);
+}
+
+.commission-hero__paper .print-heading__title {
+   color: var(--commission-ink);
+   font-size: clamp(2.35rem, 5vw, 3.75rem);
+   text-shadow: 2px 0 0 rgb(237 23 56 / 32%);
+}
+
+.commission-hero__paper .print-heading__rule {
+   background: linear-gradient(
+      90deg,
+      var(--commission-ink) 0 58%,
+      var(--commission-petrol) 58% 78%,
+      transparent 78%
+   );
+}
+
+.commission-hero__paper .commission-section__heading p {
+   margin-bottom: 0;
+}
+
+.commission-proof__intro {
+   max-width: 52ch;
+   margin-left: clamp(0rem, 10vw, 11rem);
+   line-height: 1.65;
+}
+
+.commission-proof-list {
+   display: grid;
+   grid-template-columns: repeat(2, minmax(0, 1fr));
+   gap: 0;
+   width: min(100%, 72rem);
+   margin: 2.25rem 0 0 auto;
+   padding: 0;
+   border-top: 1px solid rgb(236 235 230 / 0.65);
+   list-style: none;
+}
+
+.commission-proof-list li {
+   padding: 1rem 1.25rem;
+   border-bottom: 1px solid rgb(236 235 230 / 0.45);
+   font-family: var(--font-display);
+   font-size: clamp(1.25rem, 2.2vw, 1.8rem);
+   font-weight: 800;
+   line-height: 1;
+}
+
+.commission-proof-list li:nth-child(odd) {
+   border-right: 1px solid rgb(236 235 230 / 0.45);
+}
+
+.commission-proof-list li:first-child {
+   color: var(--commission-blue);
+}
+
+.commission-proof-links {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 0.5rem 1.25rem;
+   width: min(100%, 72rem);
+   margin: 1rem 0 0 auto;
+   font-size: 0.875rem;
+   font-weight: 700;
+}
+
+.commission-proof-links a {
+   display: inline-flex;
+   align-items: center;
+   min-height: 2.75rem;
+}
+
+.commission-page :is(#service-summary, #proof, #delivery, #pricing, #map-showcase, #tnc) {
+   scroll-margin-top: 5rem;
+}
+
+/* Pager controls are actions on the ink field, not low-contrast utility buttons. */
+.commission-page .beatmap-pager {
+   min-width: 5.25rem;
+   color: var(--commission-ink);
+   font-size: 1.5rem;
+   letter-spacing: 0.01em;
+}
+
+.commission-page .beatmap-pager:is(:hover, :focus-visible) {
+   color: var(--commission-paper);
+}
+
+.commission-page .beatmap-pager::before {
+   background: var(--commission-paper);
+}
+
+.commission-page .beatmap-pager:is(:hover, :focus-visible)::before {
+   background: var(--commission-petrol);
+}
+
+.commission-page .beatmap-pager:focus-visible {
+   outline-color: var(--commission-paper);
+}
+
+.commission-enquiry {
+   position: relative;
+   isolation: isolate;
+   align-self: start;
+   margin-top: 1.25rem;
+   padding: clamp(1.5rem, 3vw, 2.5rem);
+   color: var(--commission-ink);
+   line-height: 1.65;
+}
+
+/* The torn perimeter never removes the paper beneath enquiry copy or its actions. */
+.commission-enquiry::before {
+   mask-image: linear-gradient(#000, #000), url('../assets/ink/project-paper.svg');
+   mask-position: center;
+   mask-repeat: no-repeat;
+   mask-size:
+      calc(100% - 2rem) calc(100% - 2rem),
+      100% 100%;
+}
+
+.commission-enquiry a:not(.print-action),
+.commission-pricing-notes a:not(.print-action),
+.commission-terms a {
+   color: inherit;
+   text-decoration-line: underline;
+   text-decoration-thickness: 0.1em;
+   text-underline-offset: 0.18em;
+}
+
+.commission-rates {
+   width: min(100%, 78rem);
+   margin: 2.5rem auto 0;
+   border-top: 0.2rem solid var(--commission-blue);
+   border-bottom: 1px solid rgb(236 235 230 / 0.55);
+   background: #030305;
+}
+
+.commission-rates__grid {
+   display: grid;
+   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.commission-rate-panel {
+   padding: 2rem clamp(1.25rem, 2.5vw, 2.5rem);
+   border-right: 1px solid rgb(236 235 230 / 0.45);
+}
+
+.commission-rate-panel:last-child {
+   border-right: 0;
+}
+
+.commission-rate-panel h3 {
+   margin: 0;
+   font-size: clamp(1.7rem, 3vw, 2.45rem);
+}
+
+.commission-rate-panel dl {
+   margin-bottom: 0;
+}
+
+.commission-rate-panel dt {
+   color: var(--commission-blue);
+}
+
+.commission-pricing-notes {
+   display: grid;
+   max-width: 65rem;
+   grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+   gap: 2rem 4rem;
+   padding: 2.5rem 0 0;
+   line-height: 1.65;
+}
+
+.commission-pricing-notes h3 {
+   margin: 0 0 0.6rem;
+   font-size: 1.7rem;
+}
+
+.commission-pricing-notes > p {
+   margin: 0;
+}
+
+.commission-pricing-notes > div > p {
+   margin: 0 0 1.5rem;
+}
+
+.commission-section--delivery {
+   display: grid;
+   grid-template-columns: minmax(0, 1.25fr) minmax(18rem, 0.75fr);
+   column-gap: clamp(2rem, 7vw, 7rem);
+   align-items: start;
+}
+
+.commission-section--delivery .commission-section__heading {
+   padding-top: 1.5rem;
+}
+
+.commission-section--pricing .commission-section__heading,
+.commission-section--showcase .commission-section__heading {
+   max-width: 54rem;
+}
+
+.commission-section--showcase {
+   position: relative;
+   isolation: isolate;
+}
+
+.commission-section--showcase::before {
+   content: '';
+   position: absolute;
+   z-index: -1;
+   top: 3rem;
+   right: 0;
+   width: min(42%, 34rem);
+   height: 25rem;
+   background: var(--commission-petrol);
+   mask: url('../assets/ink/organic-drag-1.svg') center / contain no-repeat;
+   opacity: 0.34;
+}
+
+.commission-rule {
+   width: min(100%, 72rem);
+   margin: 0 auto;
+   border-color: rgb(236 235 230 / 0.55);
+}
+
+.commission-terms {
+   position: relative;
+   isolation: isolate;
+   max-width: 72ch;
+   margin-top: 1.5rem;
+   padding: clamp(1.5rem, 3vw, 3rem);
+   background: var(--commission-paper);
+   color: var(--commission-ink);
+   line-height: 1.65;
+}
+
+.commission-terms::before {
+   content: '';
+   position: absolute;
+   z-index: -1;
+   top: -2.25rem;
+   left: -1.5rem;
+   width: 9rem;
+   height: 5rem;
+   background: var(--commission-blue);
+   mask: url('../assets/ink/organic-drag-1.svg') center / contain no-repeat;
+   opacity: 0.3;
+}
+
+.commission-terms .list-arrow {
+   padding-left: 1.25rem;
+}
+
+@media (max-width: 63.99rem) {
+   .commission-section--delivery {
+      grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.8fr);
+      column-gap: 2rem;
+   }
+
+   .commission-rates__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+   }
+
+   .commission-rate-panel:nth-child(2) {
+      border-right: 0;
+   }
+
+   .commission-rate-panel:last-child {
+      grid-column: span 2;
+      border-top: 1px solid rgb(236 235 230 / 0.45);
+   }
+}
+
+@media (max-width: 47.99rem) {
+   .commission-index__sheet {
+      display: block;
+   }
+
+   .commission-index__sheet::after {
+      top: auto;
+      right: -2.5rem;
+      bottom: -3rem;
+      opacity: 0.68;
+   }
+
+   .commission-index__copy::after {
+      top: auto;
+      right: -1.5rem;
+      bottom: 1rem;
+      width: 12rem;
+      height: 15rem;
+      opacity: 0.72;
+   }
+
+   .commission-hero__paper {
+      margin-top: -2.5rem;
+      padding-inline: 1.25rem;
+   }
+
+   .commission-hero__paper::after {
+      right: -2rem;
+      bottom: -3rem;
+      width: 9rem;
+   }
+
+   .commission-proof__intro {
+      margin-left: 0;
+   }
+
+   .commission-section--delivery {
+      display: block;
+   }
+
+   .commission-section--delivery .commission-section__heading {
+      padding-top: 0;
+   }
+
+   .commission-proof-list,
+   .commission-rates__grid,
+   .commission-pricing-notes {
+      grid-template-columns: 1fr;
+   }
+
+   .commission-proof-list li:nth-child(odd),
+   .commission-rate-panel {
+      border-right: 0;
+   }
+
+   .commission-rate-panel + .commission-rate-panel,
+   .commission-rate-panel:last-child {
+      grid-column: auto;
+      border-top: 1px solid rgb(236 235 230 / 0.45);
+   }
+
+   .commission-section {
+      padding-inline: 0.75rem;
+   }
+
+   .commission-opening::before {
+      right: -1rem;
+   }
+}

@@ -1,0 +1,85 @@
+/* Shared interior-page materials. The homepage and standalone CV keep their own canvases. */
+body.print-page {
+   --color-signal-cyan: #6883ad;
+   --color-deep-blue: #0b1429;
+   --color-ink-petrol: #29466b;
+   --color-ink-cobalt: #6883ad;
+   --color-ink-deep: #0b1429;
+   --color-site-panel: #080b12;
+}
+
+.print-page main {
+   isolation: isolate;
+   /* Artwork may cross content columns, but never create a viewport scrollbar. */
+   overflow-x: clip;
+}
+
+.print-page main:not(:has(.project-page, .beat-saber-page)) :is(p, li) {
+   text-shadow: none;
+}
+
+.print-page :is(h1, h2, h3, h4) {
+   text-wrap: balance;
+}
+
+.print-page :is(.corner-panel, .fragment-panel) {
+   box-shadow: none;
+}
+
+.print-page :is(input, select, textarea) {
+   accent-color: var(--color-signal-red);
+   caret-color: var(--color-paper);
+}
+
+.print-page :is(a, button, input, select, textarea, summary):focus-visible {
+   outline: 2px solid var(--color-paper);
+   outline-offset: 4px;
+}
+
+.print-page .print-action {
+   position: relative;
+   isolation: isolate;
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   min-height: 44px;
+   padding: 0.5rem 0.9rem;
+   color: var(--color-ink);
+   background: transparent;
+   font-family: var(--font-display);
+   font-weight: 800;
+   text-decoration: none;
+   text-shadow: none;
+   scale: 1;
+   transition: scale 160ms ease-out;
+}
+
+.print-page .print-action::before {
+   content: '';
+   position: absolute;
+   inset: 0;
+   z-index: -1;
+   pointer-events: none;
+   background: var(--color-paper);
+   clip-path: var(
+      --print-interaction-cut,
+      var(--print-ambient-cut, polygon(1% 3%, 98% 0, 100% 93%, 64% 100%, 0 96%))
+   );
+}
+
+.print-page .print-action:is(:hover, :focus-visible) {
+   color: var(--color-paper);
+   text-shadow: none;
+   scale: 1.05;
+}
+
+.print-page .print-action:is(:hover, :focus-visible)::before {
+   background: #29466b;
+}
+
+@media (prefers-reduced-motion: reduce) {
+   .print-page .print-action:is(:hover, :focus-visible) {
+      scale: 1;
+      transition: none;
+   }
+}

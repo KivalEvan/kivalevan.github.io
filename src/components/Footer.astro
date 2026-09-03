@@ -1,5 +1,6 @@
 ---
-import contact from '../data/contact.js';
+import contact from '../data/contacts';
+import { Icon } from 'astro-icon/components';
 
 const date = new Date();
 const monthName = [
@@ -16,131 +17,468 @@ const monthName = [
    'November',
    'December',
 ];
-const lastUpdated = `${date.getUTCDate()} ${monthName[date.getMonth()]} ${date.getFullYear()}`;
+const lastUpdated = `${date.getUTCDate()} ${monthName[date.getUTCMonth()]} ${date.getUTCFullYear()}`;
 ---
 
-<footer>
-   <div class="wrapper readable container flex">
-      <div class="flex-item">
+<footer
+   transition:name="site-footer"
+   transition:animate="none"
+   class="site-footer relative z-10 w-full bg-ink text-site-muted"
+>
+   <div class="site-shell site-footer-content">
+      <ul class="site-footer-links">
          {
-            contact.map((c) =>
-               c.url ? (
-                  <a class="link-padding svg" href={c.url} title={c.place}>
-                     {c.img ? <Fragment set:html={c.img} /> : c.place}
-                  </a>
-               ) : (
-                  <span
-                     class={
-                        c.place === 'Discord'
-                           ? 'discord-popup fake-link link-padding'
-                           : 'fake-link link-padding'
-                     }
-                     id={`${c.place}-link`}
-                     title={c.name}
-                     tabindex="0"
-                  >
-                     {c.img ? <Fragment class="svg" set:html={c.img} /> : c.place}
-                  </span>
-               )
-            )
+            contact.map((c) => (
+               <li>
+                  {c.url ? (
+                     <a class="group" href={c.url} aria-label={c.place}>
+                        <Icon name={c.icon} class="site-footer-icon" aria-hidden="true" />
+                        <span>{c.place === 'X (Twitter)' ? 'X' : c.place}</span>
+                     </a>
+                  ) : (
+                     <button
+                        type="button"
+                        class="group"
+                        title={c.place === 'Discord' ? `Copy Discord username ${c.name}` : c.name}
+                        aria-label={
+                           c.place === 'Discord' ? `Copy Discord username ${c.name}` : c.place
+                        }
+                        data-discord-popup={c.place === 'Discord' ? true : undefined}
+                     >
+                        <Icon name={c.icon} class="site-footer-icon" aria-hidden="true" />
+                        <span>{c.place}</span>
+                     </button>
+                  )}
+               </li>
+            ))
          }
-      </div>
-      <div class="flex-item2">
-         <a class="ko-fi" href="https://ko-fi.com/I3I620UNJ" rel="noopener" target="_blank">
-            <img
-               loading="lazy"
-               src="https://cdn.ko-fi.com/cdn/kofi3.png?v=2"
-               alt="Buy Me a Coffee at ko-fi.com"
+      </ul>
+      <div class="site-footer-support">
+         <a
+            class="group"
+            href="https://ko-fi.com/I3I620UNJ"
+            rel="noopener"
+            target="_blank"
+            aria-label="Support me on Ko-fi"
+         >
+            <Icon
+               name="simple-icons:kofi"
+               class="size-5 shrink-0 fill-current"
+               aria-hidden="true"
             />
+            <span>Support me on Ko-fi</span>
          </a>
       </div>
+      <p
+         class="chipped-corners fixed left-1/2 z-[60] m-0 w-[min(90vw,32rem)] -translate-x-1/2 border border-white/70 bg-site px-4 py-3 text-center text-sm text-white shadow-[0_0.25rem_1rem_#000a]"
+         data-discord-status
+         aria-live="polite"
+         hidden
+      >
+      </p>
+      <time class="site-footer-time" datetime={date.toISOString()}
+         >Site generated: {lastUpdated}</time
+      >
    </div>
-   <time datetime={date.toISOString()}>Last Updated: {lastUpdated}</time>
+   <div class="site-footer-proof" aria-hidden="true">KIVAL EVAN</div>
 </footer>
 
 <script>
-   document.querySelectorAll('.discord-popup').forEach((el) => {
-      el.addEventListener('click', () => {
-         alert(
-            'DM on Discord: @kivalevan\nPlease be on Beat Saber Modding Group server so I know where you are coming from, I ignore request with no mutual server.'
-         );
+   import '../scripts/print-interactions';
+   import '../scripts/ambient-controls';
+
+   const discordUsername = '@kivalevan';
+   let discordStatusTimer: number | undefined;
+
+   if (!document.documentElement.dataset.discordCopyBound) {
+      document.addEventListener('click', async (event) => {
+         const target = event.target;
+         if (target instanceof Element && target.closest('[data-discord-popup]')) {
+            const status = document.querySelector('[data-discord-status]');
+            if (!(status instanceof HTMLElement)) return;
+
+            let message = `Discord: ${discordUsername}. Join the Beat Saber Modding Group server before messaging me.`;
+            try {
+               await navigator.clipboard.writeText(discordUsername);
+               message = `Copied ${discordUsername}. Join the Beat Saber Modding Group server before messaging me.`;
+            } catch {
+               // The visible fallback keeps the username available when clipboard access is blocked.
+            }
+            status.textContent = message;
+            status.hidden = false;
+            window.clearTimeout(discordStatusTimer);
+            discordStatusTimer = window.setTimeout(() => {
+               status.hidden = true;
+            }, 6000);
+         }
       });
-   });
+      document.documentElement.dataset.discordCopyBound = 'true';
+   }
 </script>
 
-<style lang="scss">
-   footer {
-      position: relative;
-      background-color: #0008;
+<style>
+   .site-footer {
+      isolation: isolate;
+      min-height: clamp(19rem, 31vw, 27rem);
+      background: #0b1429;
    }
 
-   a,
-   span {
-      width: 2em;
-      height: 2em;
-      fill: #aaa;
-      transition:
-         filter 0.2s ease,
-         transform 0.5s ease;
-      &:hover {
-         filter: brightness(1.5);
-         transform: scale(1.5, 1.5);
-      }
-   }
-
-   .container {
-      font-size: 1.25em;
-      padding-top: 1em;
-      padding-bottom: 1.5em;
-      overflow: hidden;
-   }
-
-   .flex {
-      display: flex;
-      flex-direction: row;
-
-      &-item {
-         display: flex;
-         width: calc(100% / 1.5);
-         justify-content: space-evenly;
-         align-items: center;
-         flex-wrap: wrap;
-      }
-
-      &-item2 {
-         display: flex;
-         width: calc(100% / 3);
-      }
-   }
-
-   time {
+   /* One restrained registration stroke: the mask keeps its broken, drying edge. */
+   .site-footer::before {
       position: absolute;
-      bottom: 0.5em;
-      right: 0.5em;
-      font-size: 0.75rem;
+      top: 0.25rem;
+      left: 6%;
+      width: 88%;
+      height: 0.75rem;
+      background: linear-gradient(
+         90deg,
+         transparent,
+         rgb(104 131 173 / 28%) 7%,
+         #29466b 20%,
+         var(--color-signal-red) 58%,
+         rgb(237 23 56 / 20%) 93%,
+         transparent
+      );
+      content: '';
+      opacity: 0.78;
+      pointer-events: none;
+      -webkit-mask-image: url('../assets/ink/stroke-long-1.svg');
+      -webkit-mask-position: center;
+      -webkit-mask-repeat: no-repeat;
+      -webkit-mask-size: 100% 300%;
+      mask-image: url('../assets/ink/stroke-long-1.svg');
+      mask-position: center;
+      mask-repeat: no-repeat;
+      mask-size: 100% 300%;
+      transform: rotate(-0.35deg);
    }
 
-   .link-padding {
-      padding-left: 0.125em;
-      padding-right: 0.125em;
+   .site-footer::after {
+      position: absolute;
+      z-index: 0;
+      right: 5%;
+      bottom: 1.1rem;
+      width: min(30vw, 24rem);
+      height: 3.2rem;
+      background: linear-gradient(94deg, transparent, #29466b 24%, #6883ad 68%, transparent);
+      content: '';
+      opacity: 0.36;
+      pointer-events: none;
+      mask-image: url('../assets/ink/organic-drag-2.svg');
+      mask-position: center;
+      mask-repeat: no-repeat;
+      mask-size: 100% 100%;
+      transform: rotate(2deg);
    }
 
-   .ko-fi {
-      width: min(100%, 160px);
-      margin: auto;
-      line-height: 0;
+   .site-footer-content {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
+      gap: 1.2rem clamp(1.5rem, 5vw, 5rem);
+      padding-inline: clamp(0.75rem, 3vw, 2rem);
+      padding-top: clamp(2.6rem, 5vw, 4.2rem);
+      padding-bottom: clamp(9rem, 15vw, 13rem);
+   }
 
-      img {
-         width: 100%;
-         transition:
-            filter 0.2s ease,
-            transform 0.5s ease;
-         margin: auto;
+   .site-footer-links {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(6.6rem, 1fr));
+      gap: 0.2rem clamp(0.55rem, 2vw, 1.5rem);
+      width: min(100%, 38rem);
+      margin: 0;
+      padding: 0.6rem 0.8rem;
+      list-style: none;
+      color: var(--color-paper);
+      isolation: isolate;
+   }
+
+   .site-footer-links::before,
+   .site-footer-links::after {
+      position: absolute;
+      z-index: -1;
+      content: '';
+      pointer-events: none;
+      mask-image: url('../assets/ink/organic-drag-1.svg');
+      mask-position: center;
+      mask-repeat: no-repeat;
+      mask-size: 100% 100%;
+   }
+
+   .site-footer-links::before {
+      inset: -0.5rem 0;
+      background: #29466b;
+      opacity: 0.42;
+      transform: rotate(-1deg);
+   }
+
+   .site-footer-links::after {
+      left: 8%;
+      right: 0;
+      bottom: -0.35rem;
+      height: 0.24rem;
+      background: linear-gradient(90deg, #6883ad, var(--color-signal-red), transparent);
+      opacity: 0.62;
+   }
+
+   .site-footer-links li {
+      min-width: 0;
+   }
+
+   .site-footer-links a,
+   .site-footer-links button {
+      position: relative;
+      display: inline-flex;
+      min-height: 44px;
+      width: 100%;
+      cursor: pointer;
+      align-items: center;
+      gap: 0.5rem;
+      border: 0;
+      padding: 0.45rem 0.3rem;
+      color: var(--color-paper);
+      background: transparent;
+      font-family: var(--font-display);
+      font-size: clamp(0.95rem, 1.3vw, 1.12rem);
+      font-weight: 800;
+      letter-spacing: 0.015em;
+      line-height: 1;
+      text-decoration: none;
+      text-transform: uppercase;
+      isolation: isolate;
+      transition: none;
+   }
+
+   .site-footer-links :is(a, button)::before {
+      position: absolute;
+      z-index: -1;
+      content: '';
+      pointer-events: none;
+   }
+
+   .site-footer-links a::before,
+   .site-footer-links button::before {
+      inset: 0.48rem auto 0.48rem 0;
+      width: 2rem;
+      background: var(--color-paper);
+      clip-path: var(
+         --print-interaction-cut,
+         polygon(5% 6%, 94% 0, 100% 90%, 89% 100%, 0 94%, 3% 44%)
+      );
+      transform: rotate(-3deg);
+   }
+
+   .site-footer-links li:nth-child(even) :is(a, button)::before {
+      transform: rotate(3deg);
+      clip-path: var(--print-interaction-cut, polygon(0 3%, 91% 7%, 100% 0, 97% 97%, 6% 100%));
+   }
+
+   .site-footer-icon {
+      width: 1.1rem;
+      height: 1.1rem;
+      flex: 0 0 auto;
+      color: var(--color-ink);
+      fill: currentColor;
+   }
+
+   .site-footer-links :is(a, button):is(:hover, :focus-visible) {
+      color: var(--color-ink);
+   }
+
+   .site-footer-links :is(a, button):is(:hover, :focus-visible)::before {
+      inset: 0.16rem auto 0.16rem 0;
+      width: 100%;
+      transform: none;
+   }
+
+   .site-footer-links :is(a, button):focus-visible {
+      outline: 2px solid var(--color-paper);
+      outline-offset: 3px;
+   }
+
+   .site-footer-support {
+      display: flex;
+      justify-content: flex-end;
+      font-family: var(--font-mono);
+      letter-spacing: 0.015em;
+   }
+
+   .site-footer-support a {
+      position: relative;
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.6rem 0.8rem;
+      color: var(--color-ink);
+      background: transparent;
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 0.015em;
+      line-height: 1;
+      text-decoration: none;
+      isolation: isolate;
+      transition: none;
+   }
+
+   .site-footer-support a::before {
+      position: absolute;
+      z-index: -1;
+      content: '';
+      pointer-events: none;
+   }
+
+   .site-footer-support a::before {
+      inset: 0.18rem 0;
+      background: var(--color-paper);
+      clip-path: var(--print-interaction-cut, polygon(1% 4%, 97% 0, 100% 84%, 94% 100%, 0 94%));
+   }
+
+   .site-footer-support a:is(:hover, :focus-visible) {
+      color: var(--color-paper);
+   }
+
+   .site-footer-support a:is(:hover, :focus-visible)::before {
+      background: #29466b;
+   }
+
+   .site-footer-support a:is(:hover, :focus-visible) svg {
+      color: var(--color-paper);
+   }
+
+   .site-footer-support a:focus-visible {
+      outline: 2px solid var(--color-paper);
+      outline-offset: 3px;
+   }
+
+   .site-footer-time {
+      position: relative;
+      z-index: 3;
+      display: block;
+      grid-column: 1 / -1;
+      width: fit-content;
+      max-width: 100%;
+      margin: 0 0 0 auto;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      line-height: 1.5;
+      letter-spacing: 0.04em;
+      text-align: right;
+      text-transform: uppercase;
+      overflow-wrap: anywhere;
+      color: rgb(165 165 162 / 84%);
+   }
+
+   .site-footer-proof {
+      position: absolute;
+      z-index: 1;
+      left: clamp(0.5rem, 2vw, 1.5rem);
+      bottom: 0.5rem;
+      width: calc(100% - clamp(1rem, 4vw, 3rem));
+      color: rgb(104 131 173 / 33%);
+      font-family: var(--font-display);
+      font-size: clamp(4.5rem, 10vw, 9rem);
+      font-weight: 800;
+      line-height: 0.88;
+      letter-spacing: -0.025em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      pointer-events: none;
+      text-shadow: 0 0.18rem 0.6rem rgb(0 0 0 / 35%);
+   }
+
+   .site-footer-proof::before {
+      content: '';
+      position: absolute;
+      left: 18%;
+      right: 4%;
+      top: 41%;
+      height: 0.09em;
+      background: var(--color-signal-red);
+      mask-image: url('../assets/ink/stroke-long-1.svg');
+      mask-position: center;
+      mask-repeat: no-repeat;
+      mask-size: 100% 260%;
+      opacity: 0.34;
+      transform: translateX(0.018em) rotate(0.8deg);
+   }
+
+   [data-discord-status] {
+      bottom: max(1rem, env(safe-area-inset-bottom));
+      background: var(--color-ink);
+      color: var(--color-paper);
+      font-family: var(--font-mono);
+      line-height: 1.45;
+   }
+
+   @media (prefers-reduced-motion: reduce) {
+      .site-footer-links :is(a, button):is(:hover, :focus-visible),
+      .site-footer-support a:is(:hover, :focus-visible) {
+         scale: 1;
       }
 
-      &:hover img {
-         filter: brightness(0.8) contrast(150%);
-         transform: scale(0.8, 0.8);
+      .site-footer :is(a, button),
+      .site-footer :is(a, button)::before,
+      .site-footer :is(a, button)::after,
+      .site-footer-support a svg {
+         transition: none;
+      }
+   }
+
+   @media (prefers-reduced-motion: no-preference) {
+      .site-footer-links :is(a, button),
+      .site-footer-support a {
+         scale: 1;
+         transition: scale 160ms ease-out;
+      }
+
+      .site-footer-links :is(a, button):is(:hover, :focus-visible),
+      .site-footer-support a:is(:hover, :focus-visible) {
+         scale: 1.05;
+      }
+   }
+
+   @media (min-width: 96rem) {
+      .site-footer-proof {
+         left: 50%;
+         width: var(--content-max);
+         transform: translateX(-50%);
+      }
+   }
+
+   @media (max-width: 40rem) {
+      .site-footer {
+         min-height: 21rem;
+      }
+
+      .site-footer-content {
+         grid-template-columns: 1fr;
+         gap: 1rem;
+         padding-bottom: 8rem;
+      }
+
+      .site-footer-links {
+         grid-template-columns: repeat(2, minmax(6rem, 1fr));
+         width: min(100%, 24rem);
+      }
+
+      .site-footer-support {
+         justify-content: flex-start;
+      }
+
+      .site-footer-time {
+         grid-column: 1;
+      }
+
+      .site-footer-proof {
+         left: 0.5rem;
+         bottom: 0.5rem;
+         width: calc(100% - 1rem);
+         font-size: clamp(4rem, 20vw, 5.5rem);
       }
    }
 </style>

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+  <defs>
+    <filter id="paper-fibres" x="-10%" y="-20%" width="120%" height="140%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.27 0.16" numOctaves="3" seed="47" result="fibres"/>
+      <feDisplacementMap in="SourceGraphic" in2="fibres" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <mask id="paper-loss" maskUnits="userSpaceOnUse" x="0" y="0" width="1000" height="1000">
+      <path fill="white" d="M0 0h1000v1000H0z"/>
+      <!-- Perimeter wear leaves the interior quiet. -->
+      <g filter="url(#paper-fibres)">
+        <path fill="#999" d="M120 0h35l-14 9-1 7-13 10 3-12-12 6 9-15z"/>
+        <path fill="#222" d="m126 0 12 0-9 13-5 8 2-13-7 3z"/>
+        <path fill="#aaa" d="m322 0 72 0-21 5-11 8-9-4-25 6 12-10z"/>
+        <path fill="#555" d="m391 0 31 0-10 8-9-3-8 10-1-9-10 2z"/>
+        <path fill="#ccc" d="M558 29q22-5 46-9-3 10-7 14l-4 8q-4-4-1-10-13 4-21 4l-8 4q9-8 14-10-11 1-19-1z"/>
+        <path fill="#222" d="m595 22 13-3-6 13-4 14-4-5 3-11-9 4z"/>
+        <path fill="#999" d="M603 77q-2 12-6 17l-2 9q-4 5-5 4l3-13q6-5 10-17z"/>
+        <path fill="#bbb" d="M605 147q-3 13-7 16l-4 12-3-1q3-13 7-16l2-8z"/>
+      </g>
+      <!-- One diagonal scrape exposes progressively weaker print. -->
+      <g filter="url(#paper-fibres)">
+        <path fill="#c8c8c8" d="m332 78 18-24 9 4 15-21 8 5 21-21-11 21 7-3-24 31-13 1-15 17 2-12z"/>
+        <path fill="#999" d="m349 72 12-18 8 2 18-23-10 22-10 4-8 14-5-2-9 11z"/>
+        <path fill="#777" d="M358 64q5-10 9-8l12-16q-7 14-10 18l-5 3-4 8z"/>
+        <path fill="#777" d="m337 88 8-10 2 1-5 10-7 4z"/>
+        <path fill="#b5b5b5" d="m365 84 19-23 2 4-10 11 1 5-15 15z"/>
+      </g>
+      <g fill="none" filter="url(#paper-fibres)" stroke-linecap="round">
+        <path stroke="#b8b8b8" stroke-width="5" d="M492 56q23-7 67-5" stroke-dasharray="14 3 24 6 9"/>
+        <path stroke="#888" stroke-width="1.8" d="M507 60q28-7 61-6" stroke-dasharray="7 4 19 8 5"/>
+        <path stroke="#ccc" stroke-width="3" d="M516 65q27-6 54-5" stroke-dasharray="22 7 4 3"/>
+        <path stroke="#555" stroke-width="1" d="M524 51q17-3 34-2" stroke-dasharray="4 5 12"/>
+        <path stroke="#aaa" stroke-width="1.2" d="M583 59q-5 12-3 24" stroke-dasharray="5 3 9"/>
+      </g>
+      <!-- Toner pinholes cluster beside the edge and scrape rather than forming a tile. -->
+      <g fill="#777">
+        <path d="m151 18 2-1 1 2-3 1zM159 24l1-2 2 1-1 2zM146 29l2-1v2h-2zM166 19l2 1-1 2-2-1zM154 35l1-2 1 2-1 1zM173 28l2-1v1l-2 1zM147 41l2-1 1 1-3 1zM164 39l1-1 1 2-2 1z"/>
+        <path d="m343 64 2-2 1 2-2 1zM353 47l1-2 1 1-1 2zM381 29l2-1v2h-2zM373 76l2-2v2l-2 1zM345 91l1-1 1 2h-2zM389 50l2-1-1 2h-1z"/>
+      </g>
+      <g fill="white">
+        <path d="m130 7 2-3v3l-2 2zM599 27l2-3-1 5-2 1zM594 99l2-4v3l-2 3z"/>
+      </g>
+    </mask>
+  </defs>
+  <path fill="white" mask="url(#paper-loss)" d="M0 0h1000v1000H0z"/>
+</svg>

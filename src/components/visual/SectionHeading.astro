@@ -1,0 +1,145 @@
+---
+/** Reusable print heading for sections below the homepage hero. */
+interface Props {
+   id: string;
+   title: string;
+   level?: 'h2' | 'h3';
+   density?: 'medium' | 'low';
+   variant?: 'featured' | 'skills' | 'hardware';
+}
+
+const { id, title, level = 'h2', density = 'low', variant = 'featured' } = Astro.props;
+const Tag = level;
+---
+
+<header class={`print-heading print-heading--${density} print-heading--${variant}`}>
+   <Tag id={id} class="print-heading__title">{title}</Tag>
+   <span class="print-heading__rule" aria-hidden="true"></span>
+</header>
+
+<style>
+   .print-heading {
+      position: relative;
+      width: min(100%, 54rem);
+      isolation: isolate;
+   }
+
+   .print-heading::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: min(52%, 22rem);
+      bottom: -0.8rem;
+      width: 4.5rem;
+      height: 2.8rem;
+      background: var(--color-paper);
+      mask-image: url('../../assets/ink/organic-drag-1.svg');
+      mask-size: 100% 100%;
+      mask-repeat: no-repeat;
+      opacity: 0.12;
+      transform: rotate(-7deg);
+      pointer-events: none;
+   }
+
+   .print-heading--low::after {
+      width: 5rem;
+      height: 3.8rem;
+      opacity: 0.12;
+   }
+
+   .print-heading__title {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      width: fit-content;
+      max-width: 100%;
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4.8rem);
+      font-weight: 800;
+      line-height: 0.9;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+      color: var(--color-paper);
+      text-wrap: balance;
+      text-shadow: 2px 0 0 rgb(237 23 56 / 42%);
+   }
+
+   .print-heading--low .print-heading__title {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      text-shadow: none;
+   }
+
+   .print-heading__rule {
+      position: relative;
+      display: block;
+      width: min(78%, 23rem);
+      height: 0.18rem;
+      margin-top: 0.55rem;
+      background: linear-gradient(
+         90deg,
+         var(--color-paper) 0 58%,
+         var(--color-ink-petrol) 58% 78%,
+         transparent 78%
+      );
+      opacity: 0.78;
+   }
+
+   .print-heading__rule::after {
+      content: '';
+      position: absolute;
+      left: 62%;
+      top: -0.15rem;
+      width: 1.7rem;
+      height: 0.1rem;
+      background: var(--color-signal-cyan);
+      opacity: 0.42;
+      transform: translateX(-1px);
+   }
+
+   .print-heading--low .print-heading__rule {
+      width: min(72%, 20rem);
+      height: 0.15rem;
+      opacity: 0.62;
+   }
+
+   .print-heading--skills {
+      margin-left: 0;
+   }
+
+   .print-heading--skills .print-heading__rule {
+      width: min(68%, 19rem);
+      margin-top: 0.55rem;
+      margin-left: 0;
+   }
+
+   .print-heading--hardware::after {
+      opacity: 0.06;
+   }
+
+   .print-heading--hardware .print-heading__rule {
+      width: min(64%, 18rem);
+      height: 0.12rem;
+      opacity: 0.5;
+   }
+
+   .print-heading--hardware .print-heading__rule::after {
+      display: none;
+   }
+
+   @media (max-width: 40rem) {
+      .print-heading__title {
+         font-size: clamp(2.25rem, 12vw, 3.4rem);
+      }
+
+      .print-heading--low .print-heading__title {
+         font-size: clamp(2rem, 10vw, 3rem);
+      }
+
+      .print-heading::after {
+         left: 62%;
+         width: 4.8rem;
+         height: 3.5rem;
+         opacity: 0.18;
+      }
+   }
+</style>

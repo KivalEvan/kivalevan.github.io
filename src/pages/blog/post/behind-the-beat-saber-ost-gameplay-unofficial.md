@@ -1,10 +1,10 @@
 ---
-title: 'Behind the Beat Saber OST Gameplay (not official)'
-description: 'All the Beat Saber OST maps footage available on my channel.'
+title: 'Behind My Unofficial Beat Saber OST Gameplay'
+description: 'A look at my unofficial Beat Saber OST gameplay videos and how I make them.'
 author: 'Kival Evan'
 publishDate: 'November 11, 2023 20:30:00'
 updatedDate: ''
-layout: '../../../layouts/BlogPost.astro'
+layout: '../../../layouts/BlogPostLayout.astro'
 ---
 
 Hello, you may know me behind couple of [Beat Saber OST gameplay](https://www.youtube.com/@KivalEvan/playlists?view=50&shelf_id=3) I posted over on my YouTube channel.

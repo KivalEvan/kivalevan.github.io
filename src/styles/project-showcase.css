@@ -1,0 +1,341 @@
+.project-showcase p,
+.project-showcase li {
+   text-shadow: none;
+}
+
+.project-showcase > section + section {
+   margin-top: clamp(3.5rem, 7vw, 7rem);
+}
+
+.project-showcase h3 {
+   font-family: var(--font-display);
+   font-size: clamp(2.3rem, 4.5vw, 4rem);
+   font-weight: 800;
+   line-height: 0.95;
+   letter-spacing: 0;
+   text-transform: uppercase;
+   text-shadow: none;
+}
+
+.showcase-opening::before {
+   bottom: 3%;
+}
+
+.showcase-opening::after {
+   inset: 15% -5% auto 53%;
+   z-index: -1;
+   width: min(34rem, 52%);
+   height: 15rem;
+   content: '';
+   background: #0b1429;
+   mask-image: url('../assets/ink/ink-mass-1.svg'), url('../assets/ink/xerox-mask-1.svg');
+   mask-size:
+      100% 100%,
+      74% 88%;
+   mask-position:
+      center,
+      58% 44%;
+   mask-repeat: no-repeat;
+   mask-composite: intersect;
+   opacity: 0.9;
+   pointer-events: none;
+   transform: rotate(5deg);
+}
+
+/* Edge loss stays beside the screenshot, outside the heading and copy area. */
+@supports (mask-composite: subtract) {
+   .showcase-opening::before {
+      mask-image: url('../assets/ink/project-paper.svg'), url('../assets/ink/scratch-field-1.svg');
+      mask-size:
+         100% 100%,
+         clamp(4rem, 18vw, 16rem) clamp(4rem, 12vw, 10rem);
+      mask-position:
+         center,
+         right 2% bottom 4%;
+      mask-repeat: no-repeat;
+      mask-composite: subtract;
+   }
+}
+
+.showcase-lead,
+.showcase-project {
+   display: grid;
+   grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+   align-items: center;
+   gap: clamp(1.5rem, 4vw, 4rem);
+}
+
+.showcase-lead {
+   position: relative;
+   isolation: isolate;
+   padding: 1.5rem clamp(0.75rem, 2vw, 2rem) 2rem;
+   color: var(--color-ink);
+}
+
+.showcase-lead::before {
+   position: absolute;
+   top: -1rem;
+   right: 7%;
+   z-index: -1;
+   width: min(25rem, 48%);
+   height: 7rem;
+   content: '';
+   background: #6883ad;
+   mask: url('../assets/ink/organic-drag-2.svg') center / 100% 100% no-repeat;
+   opacity: 0.72;
+   pointer-events: none;
+   transform: rotate(-4deg);
+}
+
+.showcase-lead::after {
+   position: absolute;
+   bottom: -1.25rem;
+   left: 1%;
+   z-index: -1;
+   width: 10rem;
+   height: 7rem;
+   content: '';
+   background: var(--color-signal-red);
+   mask: url('../assets/ink/splatter-cluster-3.svg') center / contain no-repeat;
+   opacity: 0.68;
+   pointer-events: none;
+}
+
+.project-showcase .showcase-lead h3 {
+   color: var(--color-ink);
+}
+
+.showcase-role {
+   margin-top: 0.75rem;
+   color: #6883ad;
+   font-weight: 600;
+}
+
+.showcase-lead .showcase-role {
+   color: #29466b;
+}
+
+.showcase-summary {
+   max-width: 52ch;
+   margin-top: 1.25rem;
+   line-height: 1.65;
+}
+
+.showcase-stack {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 0.35rem 1rem;
+   margin: 1.25rem 0 0;
+   padding: 0;
+   list-style: none;
+   font-family: var(--font-mono);
+   font-size: 0.8rem;
+   color: #6883ad;
+}
+
+.showcase-lead .showcase-stack {
+   color: #29466b;
+}
+
+.showcase-actions {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 0.65rem;
+   margin-top: 1.5rem;
+}
+
+.showcase-actions .print-action {
+   gap: 0.4rem;
+}
+
+.showcase-opening .print-action {
+   color: var(--color-paper);
+}
+
+.showcase-opening .print-action::before {
+   background: var(--color-ink);
+}
+
+.showcase-opening .print-action:is(:hover, :focus-visible)::before {
+   background: #29466b;
+}
+
+.showcase-opening .print-action:focus-visible {
+   outline-color: var(--color-ink);
+}
+
+.showcase-image {
+   position: relative;
+   isolation: isolate;
+   min-width: 0;
+   margin: 0;
+}
+
+.showcase-image::before {
+   content: '';
+   position: absolute;
+   inset: -12% -5%;
+   z-index: -1;
+   background: #29466b;
+   mask: url('../assets/ink/organic-drag-1.svg') center / 100% 100% no-repeat;
+   pointer-events: none;
+}
+
+.showcase-lead__image::before {
+   background: var(--color-signal-red);
+   opacity: 0.7;
+   transform: rotate(-7deg);
+}
+
+.showcase-lead__image::after {
+   content: '';
+   position: absolute;
+   inset: -10% -5% -12% -8%;
+   z-index: -1;
+   background: #29466b;
+   mask: url('../assets/ink/pigment-pool-blue.svg') center / 100% 100% no-repeat;
+   opacity: 0.65;
+   pointer-events: none;
+}
+
+.showcase-project:nth-child(odd) .showcase-image::before {
+   background: #6883ad;
+   mask-image: url('../assets/ink/pigment-pool-blue.svg');
+   opacity: 0.76;
+   transform: rotate(4deg);
+}
+
+.showcase-project:nth-child(even) .showcase-image::before {
+   background: #0b1429;
+   mask-image: url('../assets/ink/organic-drag-2.svg');
+   opacity: 0.95;
+   transform: rotate(-3deg);
+}
+
+.showcase-image img {
+   display: block;
+   background: var(--color-ink);
+}
+
+.showcase-projects {
+   display: grid;
+   gap: clamp(3rem, 6vw, 6rem);
+   margin-top: clamp(3rem, 6vw, 6rem);
+}
+
+.showcase-project--reverse {
+   grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+}
+
+.showcase-project--reverse .showcase-project__copy {
+   grid-column: 2;
+}
+
+.showcase-project--reverse .showcase-image {
+   grid-column: 1;
+   grid-row: 1;
+}
+
+.showcase-library {
+   display: grid;
+   grid-template-columns: minmax(8rem, 0.4fr) minmax(0, 1fr) auto;
+   gap: 1rem 2rem;
+   align-items: center;
+   margin-top: clamp(3rem, 6vw, 6rem);
+   padding-block: 1.5rem;
+   position: relative;
+   isolation: isolate;
+   border-block: 1px solid #29466b;
+}
+
+.showcase-library::before {
+   position: absolute;
+   top: -2rem;
+   left: -2rem;
+   z-index: -1;
+   width: 11rem;
+   height: 5rem;
+   content: '';
+   background: #ed1738;
+   mask: url('../assets/ink/scrape-diagonal-1.svg') center / 100% 100% no-repeat;
+   opacity: 0.6;
+   pointer-events: none;
+}
+
+.showcase-library p {
+   max-width: 60ch;
+}
+
+.showcase-detail-link {
+   margin-top: 1rem;
+   font-size: 0.9rem;
+}
+
+.showcase-section-intro {
+   max-width: 60ch;
+   margin-top: 1rem;
+}
+
+.showcase-link-list {
+   margin: 1.5rem 0 0;
+   padding: 0;
+   list-style: none;
+   border-top: 1px solid #29466b;
+}
+
+.showcase-link-list li {
+   display: grid;
+   grid-template-columns: minmax(0, 0.65fr) minmax(0, 1fr);
+   gap: 0.5rem 2rem;
+   align-items: center;
+   padding-block: 1rem;
+   border-bottom: 1px solid rgb(236 235 230 / 24%);
+}
+
+.project-showcase .showcase-link-list h3 {
+   font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.showcase-link-list .project-title-link {
+   gap: 0.4rem;
+}
+
+@media (max-width: 47.99rem) {
+   .showcase-lead,
+   .showcase-project,
+   .showcase-project--reverse,
+   .showcase-library,
+   .showcase-link-list li {
+      grid-template-columns: minmax(0, 1fr);
+   }
+
+   .showcase-project--reverse .showcase-project__copy,
+   .showcase-project--reverse .showcase-image {
+      grid-column: auto;
+      grid-row: auto;
+   }
+
+   .showcase-lead {
+      padding-inline: 1rem;
+      gap: 2rem;
+   }
+
+   .showcase-opening::after {
+      top: 11%;
+      right: -8%;
+      width: 62%;
+      height: 10rem;
+   }
+
+   .showcase-lead::before {
+      top: auto;
+      right: -5%;
+      bottom: 11%;
+      width: 52%;
+      height: 5rem;
+   }
+
+   .showcase-library .print-action {
+      justify-self: start;
+   }
+}

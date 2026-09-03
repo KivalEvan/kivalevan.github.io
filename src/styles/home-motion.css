@@ -1,0 +1,749 @@
+/* Homepage print assembly. Content stays complete until home-motion.ts opts in. */
+:root {
+   --home-motion-ease: cubic-bezier(0.16, 1, 0.3, 1);
+   --home-motion-print-ease: steps(5, end);
+   --home-motion-impact-ease: steps(3, end);
+   --home-motion-fast: 160ms;
+   --home-motion-category-duration: 250ms;
+   --home-motion-medium: 420ms;
+   --home-motion-large: 620ms;
+   --home-motion-step: 45ms;
+   --home-motion-reveal-duration: 620ms;
+   --home-motion-stamp-duration: 190ms;
+   --home-motion-registration-x: 2px;
+   --home-motion-registration-y: -1px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+   /* Armed while offscreen, not after the visitor has already seen the content. */
+   .home-motion--pending {
+      opacity: 0;
+   }
+
+   .mixed-hero[data-home-motion-boot='pending'] {
+      visibility: hidden;
+   }
+}
+
+/* Reusable motion materials for homepage print fragments. */
+@keyframes home-print-reveal {
+   from {
+      clip-path: polygon(
+         -10% -10%,
+         -10% -10%,
+         -10% 8%,
+         -10% 22%,
+         -10% 37%,
+         -10% 46%,
+         -10% 63%,
+         -10% 71%,
+         -10% 88%,
+         -10% 110%,
+         -10% 110%
+      );
+   }
+   65% {
+      clip-path: polygon(
+         -10% -10%,
+         87% -10%,
+         76% 8%,
+         83% 22%,
+         68% 37%,
+         75% 46%,
+         62% 63%,
+         70% 71%,
+         54% 88%,
+         63% 110%,
+         -10% 110%
+      );
+   }
+   to {
+      clip-path: polygon(
+         -10% -10%,
+         110% -10%,
+         110% 8%,
+         110% 22%,
+         110% 37%,
+         110% 46%,
+         110% 63%,
+         110% 71%,
+         110% 88%,
+         110% 110%,
+         -10% 110%
+      );
+   }
+}
+
+@keyframes home-paper-wipe {
+   from {
+      clip-path: polygon(
+         -10% -10%,
+         -10% -10%,
+         -10% 7%,
+         -10% 19%,
+         -10% 34%,
+         -10% 43%,
+         -10% 59%,
+         -10% 74%,
+         -10% 91%,
+         -10% 110%,
+         -10% 110%
+      );
+   }
+   38% {
+      clip-path: polygon(
+         -10% -10%,
+         77% -10%,
+         68% 7%,
+         73% 19%,
+         54% 34%,
+         64% 43%,
+         40% 59%,
+         48% 74%,
+         29% 91%,
+         34% 110%,
+         -10% 110%
+      );
+   }
+   to {
+      clip-path: polygon(
+         -10% -10%,
+         110% -10%,
+         110% 7%,
+         110% 19%,
+         110% 34%,
+         110% 43%,
+         110% 59%,
+         110% 74%,
+         110% 91%,
+         110% 110%,
+         -10% 110%
+      );
+   }
+}
+
+@keyframes home-ink-reveal {
+   from {
+      clip-path: polygon(
+         110% -10%,
+         110% -10%,
+         110% 12%,
+         110% 27%,
+         110% 35%,
+         110% 51%,
+         110% 68%,
+         110% 77%,
+         110% 93%,
+         110% 110%,
+         110% 110%
+      );
+   }
+   45% {
+      clip-path: polygon(
+         110% -10%,
+         52% -10%,
+         61% 12%,
+         39% 27%,
+         48% 35%,
+         26% 51%,
+         35% 68%,
+         12% 77%,
+         22% 93%,
+         7% 110%,
+         110% 110%
+      );
+   }
+   to {
+      clip-path: polygon(
+         110% -10%,
+         -10% -10%,
+         -10% 12%,
+         -10% 27%,
+         -10% 35%,
+         -10% 51%,
+         -10% 68%,
+         -10% 77%,
+         -10% 93%,
+         -10% 110%,
+         110% 110%
+      );
+   }
+}
+
+@keyframes home-stamp-in {
+   0%,
+   23% {
+      opacity: 0;
+   }
+   24% {
+      opacity: 0.65;
+   }
+   to {
+      opacity: 1;
+   }
+}
+
+/* Social marks print in from different, deliberately uneven edges. */
+@keyframes home-social-print-right {
+   from {
+      clip-path: polygon(110% -10%, 110% -10%, 110% 110%, 110% 110%);
+   }
+
+   58% {
+      clip-path: polygon(110% -10%, 36% -10%, 49% 31%, 24% 68%, 43% 110%, 110% 110%);
+   }
+
+   to {
+      clip-path: polygon(-10% -10%, 110% -10%, 110% 110%, -10% 110%);
+   }
+}
+
+@keyframes home-social-print-left {
+   from {
+      clip-path: polygon(-10% -10%, -10% -10%, -10% 110%, -10% 110%);
+   }
+
+   52% {
+      clip-path: polygon(-10% -10%, 58% -10%, 42% 26%, 70% 61%, 51% 110%, -10% 110%);
+   }
+
+   to {
+      clip-path: polygon(-10% -10%, 110% -10%, 110% 110%, -10% 110%);
+   }
+}
+
+@keyframes home-social-print-top {
+   from {
+      clip-path: polygon(-10% -10%, 110% -10%, 110% -10%, -10% -10%);
+   }
+
+   61% {
+      clip-path: polygon(-10% -10%, 110% -10%, 82% 54%, 57% 39%, 31% 66%, -10% 48%);
+   }
+
+   to {
+      clip-path: polygon(-10% -10%, 110% -10%, 110% 110%, -10% 110%);
+   }
+}
+
+@keyframes home-social-print-bottom {
+   from {
+      clip-path: polygon(-10% 110%, 110% 110%, 110% 110%, -10% 110%);
+   }
+
+   55% {
+      clip-path: polygon(-10% 110%, 110% 110%, 110% 43%, 76% 62%, 48% 32%, 19% 54%, -10% 37%);
+   }
+
+   to {
+      clip-path: polygon(-10% -10%, 110% -10%, 110% 110%, -10% 110%);
+   }
+}
+
+@keyframes home-social-print-down-right {
+   from {
+      clip-path: polygon(110% -10%, 110% -10%, 110% -10%, 110% -10%);
+   }
+
+   57% {
+      clip-path: polygon(110% -10%, 45% -10%, 66% 25%, 34% 48%, 52% 74%, 16% 110%, 110% 110%);
+   }
+
+   to {
+      clip-path: polygon(-10% -10%, 110% -10%, 110% 110%, -10% 110%);
+   }
+}
+
+@keyframes home-social-print-up-left {
+   from {
+      clip-path: polygon(-10% 110%, -10% 110%, -10% 110%, -10% 110%);
+   }
+
+   54% {
+      clip-path: polygon(-10% 110%, 49% 110%, 31% 76%, 63% 52%, 45% 29%, 82% -10%, -10% -10%);
+   }
+
+   to {
+      clip-path: polygon(-10% -10%, 110% -10%, 110% 110%, -10% 110%);
+   }
+}
+
+/* Open the existing portrait boundary without moving or fading the face. */
+@keyframes home-portrait-open {
+   from {
+      clip-path: polygon(
+         45% 35%,
+         45% 35%,
+         45% 35%,
+         45% 35%,
+         45% 35%,
+         45% 35%,
+         45% 35%,
+         45% 35%,
+         45% 35%,
+         45% 35%,
+         45% 35%,
+         45% 35%
+      );
+   }
+   38% {
+      clip-path: polygon(
+         15% 2%,
+         48% 6%,
+         80% 0,
+         89% 28%,
+         83% 55%,
+         92% 82%,
+         70% 92%,
+         45% 85%,
+         17% 95%,
+         8% 66%,
+         15% 42%,
+         6% 18%
+      );
+   }
+   to {
+      clip-path: polygon(
+         -10% -10%,
+         45% -10%,
+         110% -10%,
+         110% 28%,
+         110% 55%,
+         110% 110%,
+         70% 110%,
+         45% 110%,
+         -10% 110%,
+         -10% 66%,
+         -10% 42%,
+         -10% 18%
+      );
+   }
+}
+
+@keyframes home-registration-snap {
+   from {
+      opacity: 0;
+      translate: calc(var(--home-motion-registration-x) * -1) var(--home-motion-registration-y);
+   }
+
+   65% {
+      opacity: var(--home-motion-final-opacity, 1);
+      translate: var(--home-motion-registration-x) var(--home-motion-registration-y);
+   }
+
+   to {
+      opacity: var(--home-motion-final-opacity, 1);
+      translate: 0 0;
+   }
+}
+
+@keyframes home-fine-debris {
+   from {
+      visibility: hidden;
+   }
+
+   to {
+      visibility: visible;
+   }
+}
+
+/* ChromaticTitle's self-starting reveal would otherwise race this sequence. */
+.mixed-hero .punk-title__text {
+   animation: none !important;
+}
+
+/* Script-owned overlays keep the authored glyph boxes and accessible H1 intact. */
+.mixed-hero.home-title-resolving .punk-title__word::before {
+   visibility: hidden;
+}
+
+.mixed-hero .poster-glyph.home-title-resolve__pending {
+   visibility: hidden;
+   /* Damage belongs to the resolved letter, not to the temporary substitute. */
+   mask-image: none !important;
+   clip-path: none !important;
+}
+
+.mixed-hero .home-title-resolve__glyph {
+   position: absolute;
+   inset: 0;
+   display: flex;
+   align-items: flex-end;
+   justify-content: flex-start;
+   visibility: visible;
+   color: transparent;
+   font: inherit;
+   line-height: inherit;
+   -webkit-text-stroke: 0.012em var(--color-paper);
+   pointer-events: none;
+}
+
+.mixed-hero .home-title-resolve__glyph[data-tone='crimson'] {
+   -webkit-text-stroke-color: var(--color-signal-red);
+}
+
+/* Full ink coverage with worn edges and missing toner, not a digital block glyph. */
+.mixed-hero .home-title-resolve__glyph[data-block] {
+   --resolve-ink: var(--color-paper);
+   inset: 6% 4% 2%;
+   background: linear-gradient(
+      174deg,
+      var(--resolve-ink) 0 29%,
+      transparent 29% 30%,
+      var(--resolve-ink) 30% 67%,
+      transparent 67% 69%,
+      var(--resolve-ink) 69% 100%
+   );
+   clip-path: polygon(
+      3% 3%,
+      39% 0,
+      43% 3%,
+      94% 1%,
+      100% 8%,
+      96% 31%,
+      100% 34%,
+      97% 72%,
+      93% 75%,
+      96% 96%,
+      67% 100%,
+      64% 97%,
+      9% 99%,
+      3% 93%,
+      5% 67%,
+      0 63%,
+      4% 29%,
+      1% 25%
+   );
+   -webkit-text-stroke: 0;
+}
+
+.mixed-hero .home-title-resolve__glyph[data-block][data-tone='crimson'] {
+   --resolve-ink: var(--color-signal-red);
+}
+
+/* No rule below applies until the observer starts this one-time assembly. */
+.mixed-hero.home-motion--playing .mixed-hero__paper {
+   animation: home-paper-wipe 720ms var(--home-motion-print-ease) backwards;
+}
+
+.mixed-hero.home-motion--playing
+   :is(
+      .mixed-hero__paper-impact,
+      .mixed-hero__paper-burst,
+      .mixed-hero__paper-spray,
+      .mixed-hero__paper-drag,
+      .mixed-hero__paper-shock,
+      .mixed-hero__paper-splatter,
+      .mixed-hero__paper-scratches
+   ) {
+   animation: home-paper-wipe 520ms var(--home-motion-print-ease) 80ms backwards;
+}
+
+.mixed-hero.home-motion--playing
+   :is(
+      .mixed-hero__red-spray,
+      .mixed-hero__red-pool,
+      .mixed-hero__red-tangle,
+      .mixed-hero__red-vein,
+      .mixed-hero__red-deposit
+   ) {
+   animation: home-print-reveal 300ms var(--home-motion-impact-ease) 180ms backwards;
+}
+
+.mixed-hero.home-motion--playing
+   :is(
+      .mixed-hero__blue-spray,
+      .mixed-hero__navy-pool,
+      .mixed-hero__blue-tangle,
+      .mixed-hero__navy-ribbon,
+      .mixed-hero__black-drag,
+      .mixed-hero__black-vein
+   ) {
+   animation: home-ink-reveal 500ms var(--home-motion-print-ease) 230ms backwards;
+}
+
+.mixed-hero.home-motion--playing .mixed-hero__portrait {
+   animation: home-portrait-open 480ms var(--home-motion-ease) 220ms backwards;
+}
+
+/* Keep the black reading pocket in place; scrape only its text into view. */
+.mixed-hero.home-motion--playing .mixed-hero__bio-lead {
+   animation: home-print-reveal 330ms var(--home-motion-print-ease) 560ms backwards;
+}
+
+.mixed-hero.home-motion--playing .mixed-hero__bio-copy {
+   animation: home-stamp-in var(--home-motion-stamp-duration) var(--home-motion-impact-ease) 680ms
+      backwards;
+}
+
+.mixed-hero.home-motion--playing .mixed-hero__socials li {
+   animation: home-social-print-right 150ms steps(4, end) backwards;
+}
+
+.mixed-hero.home-motion--playing .mixed-hero__socials li:nth-child(1) {
+   animation-delay: 720ms;
+}
+
+.mixed-hero.home-motion--playing .mixed-hero__socials li:nth-child(2) {
+   animation-name: home-social-print-left;
+   animation-delay: 755ms;
+}
+
+.mixed-hero.home-motion--playing .mixed-hero__socials li:nth-child(3) {
+   animation-name: home-social-print-top;
+   animation-delay: 790ms;
+}
+
+.mixed-hero.home-motion--playing .mixed-hero__socials li:nth-child(4) {
+   animation-name: home-social-print-bottom;
+   animation-delay: 820ms;
+}
+
+.mixed-hero.home-motion--playing .mixed-hero__socials li:nth-child(5) {
+   animation-name: home-social-print-down-right;
+   animation-delay: 855ms;
+}
+
+.mixed-hero.home-motion--playing .mixed-hero__socials li:last-child {
+   animation: home-social-print-up-left 150ms steps(4, end) 885ms backwards;
+}
+
+@media (min-width: 48rem) {
+   .mixed-hero.home-motion--playing .mixed-hero__paper-spray {
+      animation: home-fine-debris var(--home-motion-fast) steps(1, end) 420ms backwards;
+   }
+
+   .mixed-hero.home-motion--playing .mixed-hero__paper-splatter {
+      animation: home-fine-debris var(--home-motion-fast) steps(1, end) 560ms backwards;
+   }
+}
+
+/* Phone composition removes portrait jitter and debris. */
+@media (max-width: 47.99rem) {
+   .mixed-hero.home-motion--playing .mixed-hero__paper {
+      animation-duration: 540ms;
+   }
+
+   .mixed-hero.home-motion--playing .mixed-hero__portrait {
+      animation-duration: 440ms;
+      animation-delay: 200ms;
+   }
+
+   .mixed-hero.home-motion--playing .mixed-hero__bio-lead {
+      animation-delay: 460ms;
+   }
+
+   .mixed-hero.home-motion--playing .mixed-hero__bio-copy {
+      animation-delay: 550ms;
+   }
+
+   .mixed-hero.home-motion--playing .mixed-hero__socials li:nth-child(1) {
+      animation-delay: 610ms;
+   }
+
+   .mixed-hero.home-motion--playing .mixed-hero__socials li:nth-child(2) {
+      animation-delay: 645ms;
+   }
+
+   .mixed-hero.home-motion--playing .mixed-hero__socials li:nth-child(3) {
+      animation-delay: 680ms;
+   }
+
+   .mixed-hero.home-motion--playing .mixed-hero__socials li:nth-child(4) {
+      animation-delay: 710ms;
+   }
+
+   .mixed-hero.home-motion--playing .mixed-hero__socials li:nth-child(5) {
+      animation-delay: 745ms;
+   }
+
+   .mixed-hero.home-motion--playing .mixed-hero__socials li:last-child {
+      animation: home-social-print-up-left 150ms steps(4, end) 775ms backwards;
+   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+   .mixed-hero.home-motion--playing *,
+   .mixed-hero.home-motion--playing *::before,
+   .mixed-hero.home-motion--playing *::after {
+      animation: none !important;
+   }
+}
+
+/* Pause at the first print state, not at the already-complete static composition. */
+.mixed-hero.home-motion--holding *,
+.mixed-hero.home-motion--holding *::before,
+.mixed-hero.home-motion--holding *::after {
+   animation-play-state: paused !important;
+}
+
+/* ===== Lower homepage sections: each root is observed independently. ===== */
+.print-heading.home-motion--playing .print-heading__title {
+   animation: home-print-reveal var(--home-motion-medium) var(--home-motion-print-ease) backwards;
+}
+
+.print-heading.home-motion--playing .print-heading__rule {
+   animation: home-paper-wipe var(--home-motion-fast) var(--home-motion-impact-ease)
+      calc(var(--home-motion-step) * 2) backwards;
+}
+
+.print-heading.home-motion--playing .print-heading__rule::after {
+   --home-motion-final-opacity: 0.42;
+   animation: home-registration-snap var(--home-motion-fast) var(--home-motion-ease)
+      calc(var(--home-motion-step) * 3) backwards;
+}
+
+.punk-video.home-motion--playing .punk-video__mount {
+   animation:
+      home-paper-wipe var(--home-motion-medium) var(--home-motion-print-ease) backwards,
+      home-mount-settle var(--home-motion-fast) var(--home-motion-impact-ease) backwards;
+}
+
+.punk-video.home-motion--playing .punk-video__red {
+   animation: home-print-reveal var(--home-motion-fast) var(--home-motion-impact-ease)
+      var(--home-motion-fast) backwards;
+}
+
+.punk-video.home-motion--playing .punk-video__navy {
+   animation: home-ink-reveal var(--home-motion-medium) var(--home-motion-print-ease)
+      calc(var(--home-motion-step) * 3) backwards;
+}
+
+.punk-video.home-motion--playing .featured-video__media {
+   animation: home-stamp-in var(--home-motion-stamp-duration) var(--home-motion-impact-ease)
+      var(--home-motion-medium) backwards;
+}
+
+.punk-video.home-motion--playing .featured-video__caption {
+   animation: home-stamp-in var(--home-motion-fast) var(--home-motion-impact-ease)
+      var(--home-motion-large) backwards;
+}
+
+.skills-group.home-motion--playing .punk-h3 {
+   animation: home-print-reveal var(--home-motion-fast) var(--home-motion-impact-ease) backwards;
+}
+
+.skills-group.home-motion--playing .punk-tags li {
+   animation: home-stamp-in var(--home-motion-fast) var(--home-motion-impact-ease) backwards;
+}
+
+.skills-group.home-motion--playing .punk-tags li:nth-child(3n + 1) {
+   animation-delay: calc(var(--home-motion-step) * 2);
+}
+
+.skills-group.home-motion--playing .punk-tags li:nth-child(3n + 2) {
+   animation-delay: calc(var(--home-motion-step) * 3);
+}
+
+.skills-group.home-motion--playing .punk-tags li:nth-child(3n) {
+   animation-delay: calc(var(--home-motion-step) * 4);
+}
+
+.punk-hardware.home-motion--playing::after {
+   animation: home-paper-wipe var(--home-motion-medium) var(--home-motion-print-ease)
+      var(--home-motion-fast) backwards;
+}
+
+.punk-hardware > div.home-motion--playing {
+   animation: home-stamp-in var(--home-motion-category-duration) var(--home-motion-impact-ease)
+      backwards;
+}
+
+.site-footer.home-motion--playing::before {
+   animation: home-ink-reveal var(--home-motion-medium) var(--home-motion-print-ease)
+      var(--home-motion-step) backwards;
+}
+
+.site-footer.home-motion--playing::after {
+   animation: home-ink-reveal var(--home-motion-medium) var(--home-motion-print-ease)
+      calc(var(--home-motion-step) * 3) backwards;
+}
+
+.site-footer.home-motion--playing .site-footer-proof {
+   animation: home-ink-reveal var(--home-motion-large) linear backwards;
+}
+
+.site-footer.home-motion--playing .site-footer-links li {
+   animation: home-social-print-right 150ms steps(4, end) backwards;
+}
+
+.site-footer.home-motion--playing .site-footer-links li:nth-child(even) {
+   animation-name: home-social-print-left;
+}
+
+.site-footer.home-motion--playing .site-footer-links li:nth-child(1),
+.site-footer.home-motion--playing .site-footer-links li:nth-child(2) {
+   animation-delay: var(--home-motion-step);
+}
+
+.site-footer.home-motion--playing .site-footer-links li:nth-child(3),
+.site-footer.home-motion--playing .site-footer-links li:nth-child(4) {
+   animation-delay: calc(var(--home-motion-step) * 2);
+}
+
+.site-footer.home-motion--playing .site-footer-links li:nth-child(5),
+.site-footer.home-motion--playing .site-footer-links li:nth-child(6) {
+   animation-delay: calc(var(--home-motion-step) * 3);
+}
+
+.site-footer.home-motion--playing .site-footer-support {
+   animation: home-social-print-bottom 150ms steps(4, end) calc(var(--home-motion-step) * 2)
+      backwards;
+}
+
+/* Interaction uses independent translate so incumbent transforms and palettes remain intact. */
+@keyframes home-mount-settle {
+   from {
+      translate: -4px 3px;
+   }
+
+   to {
+      translate: 0 0;
+   }
+}
+
+@keyframes home-quiet-registration {
+   from {
+      translate: 1px calc(var(--home-hover-baseline, 0px) - 1px);
+   }
+
+   to {
+      translate: 0 var(--home-hover-baseline, 0px);
+   }
+}
+
+body:has(.mixed-hero) .mixed-hero__socials :is(a, button):is(:hover, :focus-visible) span {
+   animation: home-quiet-registration var(--home-motion-fast) var(--home-motion-ease);
+}
+
+@media (max-width: 47.99rem) {
+   .skills-group.home-motion--playing .punk-tags li:nth-child(3n + 1) {
+      animation-delay: var(--home-motion-step);
+   }
+
+   .skills-group.home-motion--playing .punk-tags li:nth-child(3n + 2) {
+      animation-delay: calc(var(--home-motion-step) * 2);
+   }
+
+   .skills-group.home-motion--playing .punk-tags li:nth-child(3n) {
+      animation-delay: calc(var(--home-motion-step) * 3);
+   }
+
+   .punk-video.home-motion--playing .punk-video__navy {
+      animation-delay: var(--home-motion-step);
+   }
+
+   .site-footer.home-motion--playing .site-footer-links li {
+      animation-delay: var(--home-motion-step);
+   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+   .home-motion--playing,
+   .home-motion--playing *,
+   .home-motion--playing *::before,
+   .home-motion--playing *::after,
+   body:has(.mixed-hero) .mixed-hero__socials :is(a, button):is(:hover, :focus-visible) span {
+      animation: none !important;
+   }
+}

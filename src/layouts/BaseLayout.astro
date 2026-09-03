@@ -1,5 +1,11 @@
 ---
 import Head from '../components/Head.astro';
+import '../styles/tailwind.css';
+import '../styles/print-page-motion.css';
+import {
+   PRINT_MOTION_BOOT_TIMEOUT,
+   PRINT_MOTION_ENTRANCE_SELECTOR,
+} from '../scripts/print-motion-targets';
 
 export interface PageDetails {
    title: string;
@@ -11,19 +17,358 @@ export interface PageDetails {
 
 export interface Props {
    pageDetails: PageDetails;
+   bodyClass?: string;
 }
 
-const { pageDetails } = Astro.props as Props;
+const { pageDetails, bodyClass } = Astro.props as Props;
 const { title, description, browserTitle, overrideTitle } = pageDetails;
 const headTitle = overrideTitle
    ? title
    : 'Kival Evan' + (title ? ` | ${browserTitle ? browserTitle : title}` : '');
+const canonicalURL = new URL(Astro.url);
+canonicalURL.search = '';
+canonicalURL.hash = '';
+if (canonicalURL.pathname !== '/') {
+   canonicalURL.pathname = canonicalURL.pathname.replace(/\/+$/, '');
+}
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-   <Head title={headTitle} description={description} />
-   <body id="top-of-page">
+<!doctype html>
+<html transition:name="root" transition:animate="none" lang="en">
+   <Head title={headTitle} description={description} permalink={canonicalURL.href} />
+   <body id="top-of-page" class={bodyClass}>
       <slot />
+      <script
+         is:inline
+         define:vars={{
+            printMotionBootTimeout: PRINT_MOTION_BOOT_TIMEOUT,
+            printMotionEntranceSelector: PRINT_MOTION_ENTRANCE_SELECTOR,
+         }}
+      >
+         (() => {
+            const root = document.documentElement;
+            if (
+               !document.body.classList.contains('print-page') ||
+               window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+               root.dataset.printMotionBoot === 'expired' ||
+               root.dataset.printMotionBoot === 'ready'
+            ) {
+               return;
+            }
+            const bootId = root.dataset.printMotionBootId ?? String(Date.now());
+            root.dataset.printMotionBootId = bootId;
+            root.dataset.printMotionBoot = 'pending';
+            const targets = Array.from(
+               document.querySelectorAll(printMotionEntranceSelector),
+            ).filter(
+               (target) =>
+                  !Array.from(document.querySelectorAll(printMotionEntranceSelector)).some(
+                     (parent) => parent !== target && parent.contains(target),
+                  ),
+            );
+            targets.forEach((target) =>
+               target.setAttribute('data-print-motion-prepared', 'pending'),
+            );
+            const revealFor = (target) => {
+               const plate = targets.find((candidate) => candidate.contains(target));
+               plate?.removeAttribute('data-print-motion-prepared');
+            };
+            const onFocus = (event) => {
+               if (event.target instanceof Element) revealFor(event.target);
+            };
+            document.addEventListener('focusin', onFocus);
+            try {
+               const hashTarget = document.getElementById(
+                  decodeURIComponent(location.hash.slice(1)),
+               );
+               if (hashTarget) revealFor(hashTarget);
+            } catch {
+               // An invalid percent-encoded hash must not stop the fail-open bootstrap.
+            }
+            window.setTimeout(() => {
+               document.removeEventListener('focusin', onFocus);
+               if (
+                  root.dataset.printMotionBoot !== 'pending' ||
+                  root.dataset.printMotionBootId !== bootId
+               ) {
+                  return;
+               }
+               root.dataset.printMotionBoot = 'expired';
+               targets.forEach((target) => target.removeAttribute('data-print-motion-prepared'));
+            }, printMotionBootTimeout);
+         })();
+      </script>
    </body>
 </html>
+
+<script>
+   import type {
+      TransitionBeforePreparationEvent,
+      TransitionBeforeSwapEvent,
+   } from 'astro:transitions/client';
+   import {
+      getPrintMotionTargets,
+      PRINT_MOTION_BOOT_TIMEOUT,
+   } from '../scripts/print-motion-targets';
+
+   if (!document.documentElement.dataset.pageStaggerBound) {
+      let pendingPageTransition = false;
+      let pendingPrintTransition = false;
+      let printTransitionGeneration = 0;
+      let printBootGeneration = 0;
+      let activeAnimations: Animation[] = [];
+      let pageVisibilityObserver: IntersectionObserver | undefined;
+      let printBootTimer: number | undefined;
+
+      const exposePreparedPrint = (bootId: string) => {
+         window.clearTimeout(printBootTimer);
+         printBootTimer = undefined;
+         if (document.documentElement.dataset.printMotionBootId !== bootId) return;
+         if (document.documentElement.dataset.printMotionBoot !== 'pending') return;
+         document.documentElement.dataset.printMotionBoot = 'expired';
+         getPrintMotionTargets(document).forEach((target) =>
+            target.removeAttribute('data-print-motion-prepared'),
+         );
+      };
+
+      const armPreparedMotion = () => {
+         window.clearTimeout(printBootTimer);
+         const hero = document.querySelector<HTMLElement>('.mixed-hero');
+         if (hero?.dataset.homeMotionBoot === 'pending') {
+            printBootTimer = window.setTimeout(() => {
+               if (hero.isConnected && hero.dataset.homeMotionBoot === 'pending') {
+                  hero.dataset.homeMotionBoot = 'expired';
+               }
+            }, PRINT_MOTION_BOOT_TIMEOUT);
+            return;
+         }
+         if (
+            !document.body.classList.contains('print-page') ||
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+            document.documentElement.dataset.printMotionBoot !== 'pending'
+         ) {
+            return;
+         }
+         const bootId = document.documentElement.dataset.printMotionBootId;
+         if (!bootId) return;
+         printBootTimer = window.setTimeout(
+            () => exposePreparedPrint(bootId),
+            PRINT_MOTION_BOOT_TIMEOUT,
+         );
+      };
+
+      const prepareIncomingMotion = (nextDocument: Document) => {
+         const hero = nextDocument.querySelector<HTMLElement>('.mixed-hero');
+         if (hero && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            // Astro can reuse the homepage script on return. Prepare the new hero
+            // before its snapshot instead of relying on the inline bootstrap to rerun.
+            hero.dataset.homeMotionBoot = 'pending';
+         }
+         if (
+            !nextDocument.body.classList.contains('print-page') ||
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches
+         ) {
+            return;
+         }
+         nextDocument.documentElement.dataset.printMotionBootId = String(++printBootGeneration);
+         nextDocument.documentElement.dataset.printMotionBoot = 'pending';
+         getPrintMotionTargets(nextDocument).forEach((target) =>
+            target.setAttribute('data-print-motion-prepared', 'pending'),
+         );
+      };
+
+      const clearPageAnimations = () => {
+         pageVisibilityObserver?.disconnect();
+         pageVisibilityObserver = undefined;
+         activeAnimations.forEach((animation) => animation.cancel());
+         activeAnimations = [];
+      };
+
+      const getStaggerItems = () => {
+         const root = document.querySelector('[data-page-stagger-root]');
+         if (!(root instanceof HTMLElement)) return [];
+
+         const explicitItems = Array.from(
+            root.querySelectorAll<HTMLElement>('[data-page-stagger-item]'),
+         ).filter((item) => !item.matches('[hidden], [aria-hidden="true"]'));
+         if (explicitItems.length) return explicitItems;
+
+         const getChildren = (element: Element) =>
+            Array.from(element.children).filter(
+               (child): child is HTMLElement =>
+                  child instanceof HTMLElement &&
+                  !child.matches('script, style, [hidden], [aria-hidden="true"]'),
+            );
+
+         let items = getChildren(root);
+         for (let depth = 0; depth < 4 && items.length === 1; depth += 1) {
+            const nestedItems = getChildren(items[0]);
+            if (!nestedItems.length) break;
+            items = nestedItems;
+         }
+         return items;
+      };
+
+      const animatePageElements = () => {
+         clearPageAnimations();
+         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+         const root = document.querySelector('[data-page-stagger-root]');
+         if (!(root instanceof HTMLElement)) return;
+         // The homepage owns its print assembly; do not stack the shared fade-up over it.
+         if (root.querySelector('.mixed-hero')) return;
+         // Interior routes use their own short print registration assembly.
+         if (document.body.classList.contains('print-page')) return;
+         const items = getStaggerItems();
+         if (!items.length || !('IntersectionObserver' in window)) return;
+
+         const animations = new Map<HTMLElement, Animation>();
+         const startedAnimations = new Set<Animation>();
+         activeAnimations = items.map((item) => {
+            const animation = item.animate(
+               [
+                  {
+                     opacity: 0,
+                     transform: 'translate3d(0, 1.5rem, 0)',
+                  },
+                  {
+                     opacity: 1,
+                     transform: 'translate3d(0, 0, 0)',
+                  },
+               ],
+               {
+                  duration: 650,
+                  easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+                  fill: 'backwards',
+               },
+            );
+            animation.pause();
+            animation.currentTime = 0;
+            animations.set(item, animation);
+            return animation;
+         });
+
+         const observer = new IntersectionObserver(
+            (entries) => {
+               const visibleEntries = entries
+                  .filter((entry) => entry.isIntersecting)
+                  .sort(
+                     (first, second) =>
+                        items.indexOf(first.target as HTMLElement) -
+                        items.indexOf(second.target as HTMLElement),
+                  );
+
+               entries.forEach((entry) => {
+                  const item = entry.target;
+                  if (!(item instanceof HTMLElement)) return;
+                  const animation = animations.get(item);
+                  if (!animation) return;
+
+                  if (!entry.isIntersecting) {
+                     if (startedAnimations.has(animation)) animation.pause();
+                     return;
+                  }
+
+                  if (!startedAnimations.has(animation)) {
+                     const visibleIndex = visibleEntries.indexOf(entry);
+                     animation.effect?.updateTiming({ delay: Math.min(visibleIndex, 7) * 90 });
+                     startedAnimations.add(animation);
+                     animation.finished.then(() => observer.unobserve(item)).catch(() => undefined);
+                  }
+                  animation.play();
+               });
+            },
+            { threshold: 0.01 },
+         );
+         pageVisibilityObserver = observer;
+         items.forEach((item) => observer.observe(item));
+      };
+
+      document.addEventListener('astro:before-preparation', (event) => {
+         pendingPageTransition = true;
+         clearPageAnimations();
+         const transitionEvent = event as TransitionBeforePreparationEvent;
+         ++printTransitionGeneration;
+         const targetPath = transitionEvent.to.pathname.replace(/\/+$/, '') || '/';
+         pendingPrintTransition =
+            (document.body.classList.contains('print-page') ||
+               !!document.querySelector('.mixed-hero')) &&
+            targetPath !== '/cv';
+         if (
+            pendingPrintTransition &&
+            !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+         ) {
+            document.documentElement.dataset.printTransition = 'true';
+            document.documentElement.dataset.printMotionWait = 'true';
+         } else {
+            document.documentElement.removeAttribute('data-print-transition');
+            document.documentElement.removeAttribute('data-print-motion-wait');
+         }
+         const originalLoader = transitionEvent.loader;
+         transitionEvent.loader = async () => {
+            const root = document.querySelector('[data-page-stagger-root]');
+            if (
+               !(root instanceof HTMLElement) ||
+               root.querySelector('.mixed-hero') ||
+               document.body.classList.contains('print-page') ||
+               window.matchMedia('(prefers-reduced-motion: reduce)').matches
+            ) {
+               await originalLoader();
+               return;
+            }
+
+            const depthFade = root.animate([{ opacity: 1 }, { opacity: 0 }], {
+               duration: 180,
+               easing: 'cubic-bezier(0.4, 0, 1, 1)',
+               fill: 'forwards',
+            });
+            activeAnimations.push(depthFade);
+            await Promise.all([originalLoader(), depthFade.finished.catch(() => undefined)]);
+         };
+      });
+      document.addEventListener('astro:before-swap', (event) => {
+         const transitionEvent = event as TransitionBeforeSwapEvent;
+         prepareIncomingMotion(transitionEvent.newDocument);
+         const transitionGeneration = printTransitionGeneration;
+         const printTransition =
+            pendingPrintTransition &&
+            (transitionEvent.newDocument.body.classList.contains('print-page') ||
+               !!transitionEvent.newDocument.querySelector('.mixed-hero')) &&
+            !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+         pendingPrintTransition = false;
+         if (!printTransition) {
+            document.documentElement.removeAttribute('data-print-transition');
+            document.documentElement.removeAttribute('data-print-motion-wait');
+            return;
+         }
+         transitionEvent.newDocument.documentElement.dataset.printTransition = 'true';
+         transitionEvent.newDocument.documentElement.dataset.printMotionWait = 'true';
+         const finishPrintTransition = () => {
+            if (transitionGeneration !== printTransitionGeneration) return;
+            document.documentElement.removeAttribute('data-print-transition');
+            document.documentElement.removeAttribute('data-print-motion-wait');
+            document.dispatchEvent(new Event('print-page-motion-ready'));
+         };
+         transitionEvent.viewTransition.finished.then(finishPrintTransition, finishPrintTransition);
+      });
+      document.addEventListener('astro:page-load', () => {
+         if (!pendingPageTransition) return;
+         pendingPageTransition = false;
+         animatePageElements();
+      });
+      document.addEventListener('astro:after-swap', armPreparedMotion);
+      armPreparedMotion();
+      document.documentElement.dataset.pageStaggerBound = 'true';
+      window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', () => {
+         if (document.body.classList.contains('print-page')) clearPageAnimations();
+      });
+      document.addEventListener('visibilitychange', () => {
+         if (document.hidden && document.body.classList.contains('print-page'))
+            clearPageAnimations();
+      });
+   }
+</script>
+
+<script>
+   import '../scripts/print-page-motion';
+</script>

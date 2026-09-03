@@ -1,105 +1,368 @@
 ---
-import Main from '../../../layouts/Main.astro';
+import MainLayout from '../../../layouts/MainLayout.astro';
+import { Image } from 'astro:assets';
+import chromapper from '../../../assets/img/cv/chromapper.png';
+import mapCheck from '../../../assets/img/cv/bsmc.png';
+import editorEnhanced from '../../../assets/img/cv/bsee.png';
+import SectionHeading from '../../../components/visual/SectionHeading.astro';
+import '../../../styles/project-print.css';
+import pigmentBlueRaw from '../../../assets/ink/pigment-pool-blue.svg?raw';
+import splatterRaw from '../../../assets/ink/splatter-cluster-3.svg?raw';
 
 const pageDetails = {
-   title: 'Project',
+   title: 'Projects',
    subtitle: 'Beat Saber',
-   description: 'A personal website of mine.',
+   browserTitle: 'Beat Saber Projects',
+   description:
+      'Beat Saber tools for making and reviewing maps, published maps, and open-source work by Kival Evan.',
    overrideTitle: false,
 };
 ---
 
-<Main pageDetails={pageDetails}>
-   <div class="wrapper full-size">
-      <hr />
-      <br />
-      <div class="wrapper readable">
-         <div class="panel-border">
-            <h3><a href="https://beatsaver.com/profile/4285062">Map Project</a></h3>
-            <hr />
-            <p>
-               Published maps I've made for Beat Saber under BeatSaver. You may also <a
-                  href="/commission/beat_saber/">commission me</a
-               > to map your favourite song in Beat Saber.
-            </p>
+<MainLayout pageDetails={pageDetails}>
+   <div class="beat-saber-page site-shell flex flex-col gap-12 px-3 py-8 sm:px-6 md:px-8 md:py-12">
+      <section id="software-tools" aria-labelledby="software-tools-heading" class="scroll-mt-4">
+         <div class="project-opening tool-opening">
+            <header class="mb-5 max-w-[50rem]">
+               <SectionHeading
+                  id="software-tools-heading"
+                  title="Software and Tools"
+                  density="medium"
+               />
+               <p class="mt-2 leading-relaxed">
+                  Tools for making, editing, and checking Beat Saber maps.
+               </p>
+            </header>
+            <article
+               class="tool-lead grid gap-7 lg:grid-cols-[minmax(0,.85fr)_minmax(22rem,1.15fr)] lg:items-center lg:gap-12"
+            >
+               <div class="tool-lead__pocket relative z-10 px-5 py-7 md:px-8 md:py-10">
+                  <h3 class="project-title text-4xl font-extrabold leading-none md:text-5xl">
+                     <a
+                        class="project-title-link"
+                        href="https://kivalevan.github.io/BeatSaber-MapCheck/">Map Check</a
+                     >
+                  </h3>
+                  <p class="project-meta mt-3 text-sm font-semibold uppercase text-site-muted">
+                     Personal project · TypeScript · SolidJS
+                  </p>
+                  <p class="mt-5 max-w-[65ch] !text-left leading-relaxed">
+                     A browser-based map checker used by more than 500 mappers to inspect Beat Saber
+                     map details, statistics, and possible errors before release. The reusable BSMap
+                     library contains its map-reading and error-checking code.
+                  </p>
+                  <nav
+                     class="mt-5 flex flex-wrap gap-x-3 gap-y-2 text-sm font-semibold lg:mt-auto lg:pt-8"
+                     aria-label="Map Check actions"
+                  >
+                     <a
+                        class="project-action print-action"
+                        href="https://kivalevan.github.io/BeatSaber-MapCheck/"
+                        >Open Map Check <span aria-hidden="true">↗</span></a
+                     >
+                     <a
+                        class="project-action print-action"
+                        href="https://github.com/KivalEvan/BeatSaber-MapCheck"
+                        >View source <span aria-hidden="true">↗</span></a
+                     >
+                  </nav>
+               </div>
+               <figure class="tool-lead__image relative">
+                  <div class="tool-lead__pigment" aria-hidden="true">
+                     <Fragment set:html={pigmentBlueRaw} />
+                  </div>
+                  <div class="tool-lead__splatter" aria-hidden="true">
+                     <Fragment set:html={splatterRaw} />
+                  </div>
+                  <Image
+                     src={mapCheck}
+                     alt="Beat Saber Map Check interface"
+                     class="aspect-[16/9] h-full w-full bg-black object-contain"
+                     loading="eager"
+                  />
+               </figure>
+            </article>
          </div>
-         <br />
-         <div class="panel-border">
-            <h3>
-               <a href="https://github.com/Caeden117/ChroMapper"
-                  >ChroMapper
-               </a>
-            </h3>
-            <hr />
-            <p>Third-party open source beatmap editing software for Beat Saber made in Unity.</p>
-         </div>
-         <br />
-         <div class="panel-border">
-            <h3><a href="https://github.com/KivalEvan/BeatSaber-EditorEnhanced">Editor Enhanced</a></h3>
-            <hr />
-            <p>Beat Saber mod to improve QoL experience in official editor.</p>
-         </div>
-         <br />
-         <div class="panel-border">
-            <h3><a href="https://github.com/KivalEvan/BeatSaber-Deno">BSMap</a></h3>
-            <hr />
-            <p>Beat Saber general-purpose mapping library using TypeScript.</p>
-         </div>
-         <br />
-         <div class="panel-border">
-            <h3><a href="https://kivalevan.github.io/BeatSaber-MapCheck/">Map Check</a></h3>
-            <hr />
-            <p>
-               Client web application for extensive overview and checking of beatmap to help catch
-               numerous kind of errors in beatmap. Powered by Vanilla JS and BSMap module.
-            </p>
-         </div>
-         <br />
-         <div class="panel-border">
-            <h3>
-               <a href="https://kivalevan.github.io/BeatSaber-MappingUtility/">Mapping Utility</a>
-            </h3>
-            <hr />
-            <p>Simple web with plenty of useful utilities for use in mapping.</p>
-         </div>
-         <br />
-         <div class="panel-border">
-            <h3>
-               <a href="https://github.com/KivalEvan/BeatSaber-MappingScript">Mapping Script</a>
-            </h3>
-            <hr />
-            <p>Collection of my mapping scripts using TypeScript and BSMap.</p>
-         </div>
-         <br />
-         <div class="panel-border">
-            <h3>
-               <a href="https://github.com/KivalEvan/ChroMapper-Selector"
-                  >ChroMapper Selector Plugin
-               </a>
-            </h3>
-            <hr />
-            <p>Simple selection plugin for ChroMapper.</p>
-         </div>
-      </div>
-      <br />
-      <h3>Use & Permission</h3>
-      <hr />
-      <div class="wrapper readable">
-         <h4>Beatmap</h4>
-         <p>
-            As long as my map has already been published under BeatSaver, you may freely use them
-            for video promotion, or any other purpose. My light are free to use in your map as long
-            as credit is given. You may also use the map itself for any purpose including machine
-            learning, but preferably if you ask first beforehand. Any other thing such as 3D model,
-            map script, etc. is allowed if and only when any of my map that uses them is publicly
-            released on BeatSaver.
-         </p>
-         <h4>Code</h4>
-         <p>
-            Go ahead, just abide to licensing rule.
-         </p>
-      </div>
-   </div>
-</Main>
+         <div class="tool-ledger flex flex-col gap-12">
+            <article
+               class="tool-entry tool-entry--chromapper grid gap-5 md:grid-cols-[minmax(13rem,.9fr)_minmax(0,1.1fr)] md:items-center md:gap-8"
+            >
+               <figure class="tool-entry__image bg-[#29466b] p-2">
+                  <Image
+                     src={chromapper}
+                     alt="ChroMapper editor preview"
+                     class="aspect-[16/9] w-full bg-black object-contain"
+                     loading="lazy"
+                     decoding="async"
+                  />
+               </figure>
+               <div class="tool-entry__copy">
+                  <h3 class="project-title mt-1 text-3xl font-extrabold leading-none">
+                     <a class="project-title-link" href="https://github.com/Caeden117/ChroMapper"
+                        >ChroMapper</a
+                     >
+                  </h3>
+                  <p class="project-meta mt-2 text-sm font-semibold uppercase text-site-muted">
+                     Open-source contributor · Unity · C# · HLSL
+                  </p>
+                  <p class="mt-3 !text-left leading-relaxed">
+                     Contributed to the move from Unity 2021 to Unity 6.3 and refactored C# systems
+                     and HLSL shaders. This improved runtime performance, memory use, and how
+                     closely the lighting preview matches the game.
+                  </p>
+                  <nav class="mt-4 text-sm font-semibold" aria-label="ChroMapper actions">
+                     <a
+                        class="project-action print-action"
+                        href="https://github.com/Caeden117/ChroMapper"
+                        >View repository <span aria-hidden="true">↗</span></a
+                     >
+                  </nav>
+               </div>
+            </article>
 
-<style lang="scss"></style>
+            <article
+               class="tool-entry tool-entry--enhanced grid gap-5 md:grid-cols-[minmax(0,1.1fr)_minmax(13rem,.9fr)] md:items-center md:gap-8"
+            >
+               <div class="tool-entry__copy md:order-1">
+                  <h3 class="project-title mt-1 text-3xl font-extrabold leading-none">
+                     <a
+                        class="project-title-link"
+                        href="https://github.com/KivalEvan/BeatSaber-EditorEnhanced"
+                        >Editor Enhanced</a
+                     >
+                  </h3>
+                  <p class="project-meta mt-2 text-sm font-semibold uppercase text-site-muted">
+                     Personal project · Unity · C# · HLSL
+                  </p>
+                  <p class="mt-3 !text-left leading-relaxed">
+                     A C# modification for the official Beat Saber editor that improves lighting and
+                     event-box editing. It adds interactive v3 controls for lighting and event
+                     boxes.
+                  </p>
+                  <nav class="mt-4 text-sm font-semibold" aria-label="Editor Enhanced actions">
+                     <a
+                        class="project-action print-action"
+                        href="https://github.com/KivalEvan/BeatSaber-EditorEnhanced"
+                        >View repository <span aria-hidden="true">↗</span></a
+                     >
+                  </nav>
+               </div>
+               <figure class="tool-entry__image bg-[#ecebe6] p-2 md:order-2">
+                  <Image
+                     src={editorEnhanced}
+                     alt="Beat Saber Editor Enhanced preview"
+                     class="aspect-[16/9] w-full bg-black object-contain"
+                     loading="lazy"
+                     decoding="async"
+                  />
+               </figure>
+            </article>
+
+            <article
+               class="tool-entry tool-entry--library grid gap-3 border-y border-[#6883ad]/70 py-6 md:grid-cols-[minmax(10rem,.35fr)_minmax(0,1fr)_auto] md:items-center md:gap-6"
+            >
+               <div>
+                  <h3 class="project-title mt-1 text-3xl font-extrabold leading-none">
+                     <a
+                        class="project-title-link"
+                        href="https://github.com/KivalEvan/BeatSaber-Deno">BSMap</a
+                     >
+                  </h3>
+                  <p class="project-meta mt-2 text-sm font-semibold uppercase text-site-muted">
+                     Library · TypeScript
+                  </p>
+               </div>
+               <p class="mt-3 !text-left leading-relaxed md:mt-0">
+                  A TypeScript library for Beat Saber mapping. It provides the reusable code that
+                  reads maps and applies the rules used by Map Check.
+               </p>
+               <nav class="mt-4 text-sm font-semibold md:mt-0" aria-label="BSMap actions">
+                  <a
+                     class="project-action print-action"
+                     href="https://github.com/KivalEvan/BeatSaber-Deno"
+                     >View library <span aria-hidden="true">↗</span></a
+                  >
+               </nav>
+            </article>
+         </div>
+      </section>
+
+      <section id="mapping-workshop" aria-labelledby="mapping-workshop-heading" class="scroll-mt-4">
+         <header class="mb-5 max-w-[50rem]">
+            <SectionHeading
+               id="mapping-workshop-heading"
+               title="Mapping Workshop"
+               density="medium"
+            />
+            <p class="mt-2 leading-relaxed">
+               Published maps plus the utilities, scripts, and plugins I use for mapping.
+            </p>
+            <nav class="mt-4 text-sm font-semibold" aria-label="Mapping Workshop actions">
+               <a class="project-action print-action" href="/commission/beat_saber/"
+                  >Commission a custom map <span aria-hidden="true">→</span></a
+               >
+            </nav>
+         </header>
+
+         <article class="workshop-feature bg-[#0b1429] px-5 py-7 md:px-8 md:py-10">
+            <h3 class="project-title mt-1 text-4xl font-extrabold leading-none md:text-5xl">
+               <a class="project-title-link" href="https://beatsaver.com/profile/4285062"
+                  >Published Beat Saber maps</a
+               >
+            </h3>
+            <p class="project-meta mt-3 text-sm font-semibold uppercase text-site-muted">
+               Published maps
+            </p>
+            <p class="mt-3 leading-relaxed">
+               Browse my public map portfolio on BeatSaver. You can also <a
+                  class="project-inline-link"
+                  href="/commission/beat_saber/">commission me</a
+               > to create a map for your favourite song.
+            </p>
+            <nav class="mt-4 text-sm font-semibold" aria-label="Map project actions">
+               <a class="project-action print-action" href="https://beatsaver.com/profile/4285062"
+                  >Browse published maps <span aria-hidden="true">↗</span></a
+               >
+            </nav>
+         </article>
+
+         <ul class="project-archive mt-6 divide-y divide-white/30 border-y border-white/50">
+            <li class="grid gap-2 py-4 sm:grid-cols-[minmax(12rem,0.45fr)_minmax(0,1fr)] sm:gap-6">
+               <h3 class="project-title text-2xl font-extrabold leading-none">
+                  <a
+                     class="project-title-link"
+                     href="https://kivalevan.github.io/BeatSaber-MappingUtility/">Mapping Utility</a
+                  >
+               </h3>
+               <p class="leading-relaxed">A collection of web tools for Beat Saber mapping.</p>
+            </li>
+            <li class="grid gap-2 py-4 sm:grid-cols-[minmax(12rem,0.45fr)_minmax(0,1fr)] sm:gap-6">
+               <h3 class="project-title text-2xl font-extrabold leading-none">
+                  <a
+                     class="project-title-link"
+                     href="https://github.com/KivalEvan/BeatSaber-MappingScript">Mapping Script</a
+                  >
+               </h3>
+               <p class="leading-relaxed">
+                  TypeScript scripts for making Beat Saber maps with BSMap.
+               </p>
+            </li>
+            <li class="grid gap-2 py-4 sm:grid-cols-[minmax(12rem,0.45fr)_minmax(0,1fr)] sm:gap-6">
+               <h3 class="project-title text-2xl font-extrabold leading-none">
+                  <a
+                     class="project-title-link"
+                     href="https://github.com/KivalEvan/ChroMapper-Selector"
+                     >ChroMapper Selector Plugin</a
+                  >
+               </h3>
+               <p class="leading-relaxed">A ChroMapper plugin for selecting map objects.</p>
+            </li>
+         </ul>
+      </section>
+
+      <section
+         class="site-prose permission-print w-full max-w-[72ch]"
+         aria-labelledby="use-permission"
+      >
+         <SectionHeading
+            id="use-permission"
+            title="Use & Permission"
+            density="low"
+            variant="hardware"
+         />
+         <div>
+            <h3>Beatmap</h3>
+            <p>
+               As long as my map has already been published under BeatSaver, you may freely use them
+               for video promotion, or any other purpose. My light are free to use in your map as
+               long as credit is given. You may also use the map itself for any purpose including
+               machine learning, but preferably if you ask first beforehand. Any other thing such as
+               3D model, map script, etc. is allowed if and only when any of my map that uses them
+               is publicly released on BeatSaver.
+            </p>
+            <h3>Code</h3>
+            <p>Go ahead, just abide to licensing rule.</p>
+         </div>
+      </section>
+   </div>
+</MainLayout>
+
+<style>
+   .tool-lead::before {
+      right: -2%;
+      top: 2rem;
+      transform: rotate(11deg);
+   }
+   .tool-lead::after {
+      left: 47%;
+      bottom: -1rem;
+      transform: rotate(-15deg);
+   }
+   .tool-lead__image {
+      transform: translateY(1.25rem);
+   }
+   .tool-lead__pigment {
+      position: absolute;
+      z-index: -1;
+      width: 67%;
+      right: -11%;
+      top: -16%;
+      color: #6883ad;
+      opacity: 0.78;
+      transform: rotate(12deg);
+   }
+   .tool-lead__splatter {
+      position: absolute;
+      z-index: -1;
+      width: 42%;
+      left: -13%;
+      bottom: -13%;
+      color: #ed1738;
+      opacity: 0.68;
+      transform: rotate(-20deg);
+   }
+   .tool-entry {
+      position: relative;
+   }
+   .tool-entry--chromapper {
+      padding-right: 7%;
+   }
+   .tool-entry--enhanced {
+      padding-left: 5%;
+   }
+   .tool-entry__image {
+      box-shadow: 0 0.9rem 1.8rem rgb(3 3 5 / 0.3);
+   }
+   .tool-entry--library {
+      margin-top: 0.5rem;
+   }
+   .workshop-feature::before {
+      right: 4%;
+      top: -2rem;
+      transform: rotate(-13deg);
+   }
+   .workshop-feature::after {
+      left: -2rem;
+      bottom: -2rem;
+      transform: rotate(19deg);
+   }
+   .permission-print :global(.print-heading) {
+      margin-bottom: 1.4rem;
+   }
+   .permission-print h3 {
+      color: #ecebe6;
+      font-family: var(--font-display);
+      font-size: 2rem;
+      line-height: 1;
+      letter-spacing: -0.02em;
+   }
+   @media (max-width: 47.99rem) {
+      .tool-entry--chromapper,
+      .tool-entry--enhanced {
+         padding: 0;
+      }
+      .tool-lead__image {
+         transform: none;
+      }
+   }
+</style>

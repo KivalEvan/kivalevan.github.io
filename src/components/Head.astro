@@ -1,6 +1,5 @@
 ---
 import { ClientRouter } from 'astro:transitions';
-import '../styles/global.scss';
 
 export interface Props {
    title: string;
@@ -10,36 +9,32 @@ export interface Props {
 
 const {
    title,
-   description = 'A personal website of mine.',
-   permalink = 'https://kivalevan.me/',
+   description = "Kival Evan's personal site for software projects, Beat Saber mapping, writing, and commissions.",
+   permalink = Astro.url.href,
 } = Astro.props;
+const image = new URL('/assets/favicon/favicon.png', Astro.site ?? Astro.url).href;
 ---
 
 <head>
    <meta charset="utf-8" />
-   <meta name="viewport" content="width=device-width" />
-   <meta name="theme-color" content="#ee0000" />
-   <link rel="shortcut icon" type="image/jpg" href="/assets/favicon/favicon.png" />
-   <meta name="generator" content={Astro.generator} />
-
-   <!-- Primary Meta Tags -->
-   <title>{title}</title>
-   <meta name="title" content={title} />
+   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
    <meta name="description" content={description} />
-
-   <!-- Open Graph / Facebook -->
+   <meta name="theme-color" content="#ee0000" />
+   <meta name="generator" content={Astro.generator} />
+   <title>{title}</title>
+   <link rel="canonical" href={permalink} />
+   <link rel="icon" href="/assets/favicon/favicon.png" />
+   <link rel="shortcut icon" href="/assets/favicon/favicon.png" />
+   <link rel="sitemap" href="/sitemap-index.xml" />
    <meta property="og:type" content="website" />
-   <meta property="og:url" content={permalink} />
    <meta property="og:title" content={title} />
    <meta property="og:description" content={description} />
-   <meta property="og:image" content="/assets/favicon/favicon.png" />
-
-   <!-- Twitter -->
-   <meta property="twitter:card" content="summary" />
-   <meta property="twitter:url" content={permalink} />
-   <meta property="twitter:title" content={title} />
-   <meta property="twitter:description" content={description} />
-   <meta property="twitter:image" content="/assets/favicon/favicon.png" />
-
+   <meta property="og:url" content={permalink} />
+   <meta property="og:image" content={image} />
+   <meta name="twitter:card" content="summary" />
+   <meta name="twitter:title" content={title} />
+   <meta name="twitter:description" content={description} />
+   <meta name="twitter:creator" content="@Kival_Evan" />
+   <meta name="twitter:image" content={image} />
    <ClientRouter />
 </head>
