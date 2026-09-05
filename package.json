@@ -24,7 +24,7 @@
       "astro-icon": "^1.2.0",
       "svelte": "^5.57.0",
       "tailwindcss": "^4.3.3",
-      "typescript": "^7.0.2"
+      "typescript": "^6.0.3"
    },
    "devDependencies": {
       "bsmap": "^2.3.6",
