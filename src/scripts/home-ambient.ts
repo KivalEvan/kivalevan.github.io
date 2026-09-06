@@ -139,7 +139,14 @@ const scheduleDecor = (registration: AmbientRoot) => {
          return;
       }
       const compact = window.matchMedia(MOBILE_QUERY).matches;
-      const candidates = compact ? registration.targets.slice(0, 1) : registration.targets;
+      let candidates = registration.targets;
+      if (compact) {
+         // The source wrappers retain shared SVG definitions, not mobile paint.
+         const bakedBack = registration.root.querySelector<HTMLElement>(
+            '[data-mobile-hero-plane="back"]',
+         );
+         candidates = bakedBack ? [bakedBack] : candidates.slice(0, 1);
+      }
       const target = candidates[Math.floor(Math.random() * candidates.length)];
       const distance = compact ? 1 : 2;
       const x = Math.random() < 0.5 ? -distance : distance;

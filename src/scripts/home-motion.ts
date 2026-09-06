@@ -1,3 +1,5 @@
+import { prepareHeroInk } from './mobile-hero-ink-readiness';
+
 /**
  * One-time homepage print assembly.
  *
@@ -122,9 +124,12 @@ interface RegisteredMotion {
    safetyTimeout: number;
    safetyTimer?: number;
    entranceTimer?: number;
+   entranceFrame?: number;
    titleStartTimer?: number;
    titleResolve?: TitleResolve;
    onAnimationEnd?: (event: AnimationEvent) => void;
+   readiness?: AbortController;
+   cancelReadiness?: () => void;
 }
 
 const registrations = new Map<HTMLElement, RegisteredMotion>();
@@ -134,10 +139,16 @@ let motionQuery: MediaQueryList | undefined;
 const motionAllowed = () => !motionQuery?.matches;
 
 const showFinal = (registration: RegisteredMotion) => {
+   registration.cancelReadiness?.();
+   registration.cancelReadiness = undefined;
+   registration.readiness?.abort();
+   registration.readiness = undefined;
    registration.root.classList.remove('home-motion--pending');
    registration.root.removeAttribute('data-home-motion-boot');
    window.clearTimeout(registration.safetyTimer);
    window.clearTimeout(registration.entranceTimer);
+   if (registration.entranceFrame !== undefined) cancelAnimationFrame(registration.entranceFrame);
+   registration.entranceFrame = undefined;
    window.clearTimeout(registration.titleStartTimer);
    registration.titleResolve?.showFinal();
    registration.titleResolve = undefined;
@@ -160,6 +171,47 @@ const unregister = (registration: RegisteredMotion) => {
 };
 
 const start = (registration: RegisteredMotion) => {
+   if (!registration.root.matches(HERO_SELECTOR)) {
+      play(registration);
+      return;
+   }
+   if (registration.readiness) return;
+   if (
+      registration.root.dataset.homeMotionBoot !== 'pending' ||
+      !motionAllowed() ||
+      document.hidden
+   ) {
+      registration.root.dataset.homeMotionPlayed = 'true';
+      showFinal(registration);
+      return;
+   }
+   const controller = new AbortController();
+   registration.readiness = controller;
+   const cancel = () => {
+      registration.root.dataset.homeMotionPlayed = 'true';
+      showFinal(registration);
+   };
+   const onVisibility = () => {
+      if (document.hidden) cancel();
+   };
+   window.addEventListener('resize', cancel, { once: true });
+   document.addEventListener('visibilitychange', onVisibility);
+   registration.cancelReadiness = () => {
+      window.removeEventListener('resize', cancel);
+      document.removeEventListener('visibilitychange', onVisibility);
+   };
+   void prepareHeroInk(registration.root, controller.signal).then((ready) => {
+      if (controller.signal.aborted) return;
+      if (!ready) {
+         cancel();
+         return;
+      }
+      registration.root.dataset.heroInkReady = 'true';
+      play(registration);
+   });
+};
+
+const play = (registration: RegisteredMotion) => {
    // A late script must not hide artwork that the fail-open timer already exposed.
    if (registration.root.dataset.homeMotionBoot === 'expired') {
       registration.root.dataset.homeMotionPlayed = 'true';
@@ -187,13 +239,20 @@ const start = (registration: RegisteredMotion) => {
       registration.titleResolve = new TitleResolve(registration.root);
       // Hold the first print state briefly so the initial assembly is perceptible.
       registration.root.classList.add('home-motion--holding');
-      registration.entranceTimer = window.setTimeout(() => {
-         registration.root.classList.remove('home-motion--holding');
-      }, HERO_READING_PAUSE);
-      registration.titleStartTimer = window.setTimeout(
-         () => registration.titleResolve?.start(),
-         HERO_READING_PAUSE + TITLE_ENTRANCE_DELAY,
-      );
+      // Give the decoded first pose a paint opportunity before starting its clock.
+      // A cold style/layout pass can otherwise consume the entire reading pause.
+      registration.entranceFrame = requestAnimationFrame(() => {
+         registration.entranceFrame = requestAnimationFrame(() => {
+            registration.entranceFrame = undefined;
+            registration.entranceTimer = window.setTimeout(() => {
+               registration.root.classList.remove('home-motion--holding');
+            }, HERO_READING_PAUSE);
+            registration.titleStartTimer = window.setTimeout(
+               () => registration.titleResolve?.start(),
+               HERO_READING_PAUSE + TITLE_ENTRANCE_DELAY,
+            );
+         });
+      });
       registration.root.removeAttribute('data-home-motion-boot');
    }
    registration.safetyTimer = window.setTimeout(
@@ -391,6 +450,8 @@ const bindHomeMotion = () => {
    });
 
    document.addEventListener('astro:before-swap', clearPageMotion);
+   // Reused route modules can warm the selected ink while the native snapshot runs.
+   document.addEventListener('astro:after-swap', registerCurrentHomeMotion);
    document.addEventListener('astro:page-load', registerCurrentHomeMotion);
 
    registerCurrentHomeMotion();

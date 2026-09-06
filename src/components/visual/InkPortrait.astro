@@ -1,22 +1,54 @@
 ---
 // InkPortrait keeps the face clear while the offset plates and pigment frame its edges.
 import Avatar from '../Avatar.astro';
+import mobileCore from '../../assets/img/mobile-portrait/core.webp';
+import mobileDecoration from '../../assets/img/mobile-portrait/decoration.webp';
+import decorationMetadata from '../../assets/img/mobile-portrait/decoration.json';
 import organicDrag1Raw from '../../assets/ink/organic-drag-1.svg?raw';
 import organicDrag2Raw from '../../assets/ink/organic-drag-2.svg?raw';
 import pigmentRedRaw from '../../assets/ink/pigment-pool-red.svg?raw';
 import pigmentBlueRaw from '../../assets/ink/pigment-pool-blue.svg?raw';
 import blueTangleRaw from '../../assets/ink/ink-tangle-blue.svg?raw';
 import edgeSplatterRaw from '../../assets/ink/splatter-cluster-3.svg?raw';
+const transparentPixel =
+   'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+const registration = decorationMetadata.registration;
 ---
 
-<figure class="media-portrait">
+<figure class="media-portrait" data-mobile-portrait>
+   <!-- All eight authored decorations have z-index 1–5, below the core at 6.
+        Their isolated blends are baked together; no core pixels enter this plane. -->
+   <picture data-mobile-decoration aria-hidden="true">
+      <source media="(max-width: 47.99rem)" srcset={mobileDecoration.src} type="image/webp" />
+      <img
+         src={transparentPixel}
+         alt=""
+         width={mobileDecoration.width}
+         height={mobileDecoration.height}
+         loading="eager"
+         decoding="async"
+         fetchpriority="low"
+         style={`left:${registration.left * 100}%;top:${registration.top * 100}%;width:${registration.width * 100}%;height:${registration.height * 100}%`}
+      />
+   </picture>
    <div class="media-portrait__plate media-portrait__plate--cyan" aria-hidden="true">
-      <Avatar alt="" />
+      <picture>
+         <source media="(max-width: 47.99rem)" srcset={transparentPixel} type="image/gif" />
+         <Avatar alt="" />
+      </picture>
    </div>
    <div class="media-portrait__plate media-portrait__plate--red" aria-hidden="true">
-      <Avatar alt="" />
+      <picture>
+         <source media="(max-width: 47.99rem)" srcset={transparentPixel} type="image/gif" />
+         <Avatar alt="" />
+      </picture>
    </div>
-   <div class="media-portrait__plate media-portrait__plate--core"><Avatar /></div>
+   <div class="media-portrait__plate media-portrait__plate--core" data-mobile-core>
+      <picture>
+         <source media="(max-width: 47.99rem)" srcset={mobileCore.src} type="image/webp" />
+         <Avatar />
+      </picture>
+   </div>
    <div class="media-portrait__navy-pigment" aria-hidden="true">
       <Fragment set:html={pigmentBlueRaw} />
    </div>
@@ -50,6 +82,14 @@ import edgeSplatterRaw from '../../assets/ink/splatter-cluster-3.svg?raw';
       position: absolute;
       inset: 2% 6% 1% 4%;
       overflow: hidden;
+   }
+
+   .media-portrait__plate picture {
+      display: contents;
+   }
+
+   [data-mobile-decoration] {
+      display: none;
    }
 
    .media-portrait__plate :global(img) {
@@ -181,6 +221,49 @@ import edgeSplatterRaw from '../../assets/ink/splatter-cluster-3.svg?raw';
       .media-portrait__plate--cyan {
          clip-path: inset(3% 8% 4% 6%);
          mask-image: none;
+      }
+   }
+   @media (max-width: 47.99rem) {
+      .media-portrait[data-mobile-portrait]
+         > .media-portrait__plate:not(.media-portrait__plate--core) {
+         display: none;
+      }
+
+      .media-portrait[data-mobile-portrait] > div:not(.media-portrait__plate) {
+         mix-blend-mode: normal;
+         opacity: 1;
+      }
+
+      /* Other live impressions reference these shared IDs. Keep their definition
+         viewports intact, but suppress every painted child of the original SVGs. */
+      .media-portrait[data-mobile-portrait]
+         > div:not(.media-portrait__plate)
+         :global(svg > :not(defs)) {
+         display: none;
+      }
+
+      .media-portrait[data-mobile-portrait] > [data-mobile-decoration] {
+         display: contents;
+      }
+
+      [data-mobile-decoration] img {
+         position: absolute;
+         z-index: 1;
+         max-width: none;
+         pointer-events: none;
+      }
+
+      /* This source contains the complete plate's crop, color, and torn alpha.
+         Keep the original box; contain or live effects would apply the crop twice.
+         The generator removes this marker before capturing the original source. */
+      .media-portrait__plate--core[data-mobile-core] {
+         mask-image: none;
+         filter: none;
+         clip-path: none;
+      }
+
+      .media-portrait__plate--core[data-mobile-core] :global(img) {
+         object-fit: fill;
       }
    }
 </style>

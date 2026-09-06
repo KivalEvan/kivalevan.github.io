@@ -159,6 +159,26 @@
 }
 
 @media (max-width: 47.99rem) {
+   /* Shared fragment IDs need their original SVG viewport, even when another
+      plane uses the definition. Keep that context, not the source's paint. */
+   .mixed-hero [data-hero-plane-source] svg > :not(defs),
+   .mixed-hero [data-hero-plane-source]::before,
+   .mixed-hero [data-hero-plane-source]::after,
+   .mixed-hero [data-hero-plane-source] *::before,
+   .mixed-hero [data-hero-plane-source] *::after {
+      display: none !important;
+   }
+
+   .mixed-hero [data-hero-plane-source],
+   .mixed-hero [data-hero-plane-source] :is(div, svg) {
+      mask: none !important;
+      filter: none !important;
+      clip-path: none !important;
+      mix-blend-mode: normal !important;
+      background: none !important;
+      animation: none !important;
+   }
+
    .mixed-hero__red-pool {
       opacity: 0.56;
    }

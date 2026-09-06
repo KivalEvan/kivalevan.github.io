@@ -7,6 +7,7 @@ import '../styles/home-ambient.css';
 import '../styles/home-socials.css';
 import FeaturedVideo from '../components/FeaturedVideo.svelte';
 import InkPortrait from '../components/visual/InkPortrait.astro';
+import MobileHeroInkPlanes from '../components/visual/MobileHeroInkPlanes.astro';
 import ChromaticTitle from '../components/visual/ChromaticTitle.astro';
 import SectionHeading from '../components/visual/SectionHeading.astro';
 import contacts from '../data/contacts';
@@ -65,45 +66,67 @@ if (
             }, 1500);
          })();
       </script>
-      <div class="mixed-hero__art mixed-hero__art--back" aria-hidden="true">
+      <div class="mixed-hero__art mixed-hero__art--back" data-hero-plane-source aria-hidden="true">
          <div class="mixed-hero__art-field">
-            <div class="mixed-hero__paper"><Fragment set:html={heavyMassRaw} /></div>
-            <div class="mixed-hero__paper-impact"><Fragment set:html={tornMassRaw} /></div>
-            <div class="mixed-hero__paper-burst"><Fragment set:html={splatter1Raw} /></div>
-            <div class="mixed-hero__paper-spray"><Fragment set:html={sprayRaw} /></div>
-            <div class="mixed-hero__red-spray"><Fragment set:html={spray2Raw} /></div>
-            <div class="mixed-hero__blue-spray"><Fragment set:html={splatter2Raw} /></div>
+            <div class="mixed-hero__paper">
+               <Fragment set:html={heavyMassRaw} />
+            </div>
+            <div class="mixed-hero__paper-impact">
+               <Fragment set:html={tornMassRaw} />
+            </div>
+            <div class="mixed-hero__paper-burst">
+               <Fragment set:html={splatter1Raw} />
+            </div>
+            <div class="mixed-hero__paper-spray">
+               <Fragment set:html={sprayRaw} />
+            </div>
+            <div class="mixed-hero__red-spray">
+               <Fragment set:html={spray2Raw} />
+            </div>
+            <div class="mixed-hero__blue-spray">
+               <Fragment set:html={splatter2Raw} />
+            </div>
             <div class="mixed-hero__paper-toner"><Fragment set:html={pigmentBlueRaw} /></div>
             <div class="mixed-hero__navy-pool"><Fragment set:html={pigmentBlueRaw} /></div>
             <div class="mixed-hero__red-pool"><Fragment set:html={pigmentRedRaw} /></div>
             <div class="mixed-hero__black-drag"><Fragment set:html={organicDrag1Raw} /></div>
-            <div class="mixed-hero__red-tangle"><Fragment set:html={tangleRedRaw} /></div>
-            <div class="mixed-hero__blue-tangle"><Fragment set:html={tangleBlueRaw} /></div>
+            <div class="mixed-hero__red-tangle">
+               <Fragment set:html={tangleRedRaw} />
+            </div>
+            <div class="mixed-hero__blue-tangle">
+               <Fragment set:html={tangleBlueRaw} />
+            </div>
             <div class="mixed-hero__decay"><Fragment set:html={scratchesRaw} /></div>
          </div>
       </div>
 
+      <MobileHeroInkPlanes plane="back" />
       <div class="site-shell mixed-hero__stage">
          <div class="mixed-hero__portrait"><InkPortrait /></div>
 
-         <div class="mixed-hero__midground" aria-hidden="true">
+         <div class="mixed-hero__midground" data-hero-plane-source aria-hidden="true">
             <div class="mixed-hero__navy-ribbon"><Fragment set:html={organicDrag2Raw} /></div>
             <div class="mixed-hero__paper-drag"><Fragment set:html={organicDrag1Raw} /></div>
             <div class="mixed-hero__paper-shock"><Fragment set:html={impactRaw} /></div>
-            <div class="mixed-hero__red-vein"><Fragment set:html={tangleRedRaw} /></div>
+            <div class="mixed-hero__red-vein">
+               <Fragment set:html={tangleRedRaw} />
+            </div>
          </div>
 
+         <MobileHeroInkPlanes plane="mid" />
          <div class="mixed-hero__title">
             <ChromaticTitle id="hero-title" lines={['KIVAL', 'EVAN']} as="h1" />
          </div>
 
-         <div class="mixed-hero__foreground" aria-hidden="true">
+         <div class="mixed-hero__foreground" data-hero-plane-source aria-hidden="true">
             <div class="mixed-hero__black-vein"><Fragment set:html={organicDrag2Raw} /></div>
             <div class="mixed-hero__paper-scratches"><Fragment set:html={scratchesRaw} /></div>
             <div class="mixed-hero__paper-splatter"><Fragment set:html={splatter3Raw} /></div>
             <div class="mixed-hero__red-deposit"><Fragment set:html={pigmentRedRaw} /></div>
          </div>
 
+         <MobileHeroInkPlanes plane="fore" />
+         <MobileHeroInkPlanes plane="front" />
          <div class="mixed-hero__bio">
             <p class="mixed-hero__bio-lead">I build software, tools, and things for VR.</p>
             <p class="mixed-hero__bio-copy">

@@ -1,0 +1,177 @@
+{
+  "file": "decoration.webp",
+  "viewport": {
+    "width": 430,
+    "height": 844
+  },
+  "scale": 2,
+  "figure": {
+    "width": 473,
+    "height": 550,
+    "mask": "none",
+    "filter": "none",
+    "clipPath": "none"
+  },
+  "coreZ": 6,
+  "children": [
+    {
+      "class": "media-portrait__plate media-portrait__plate--cyan",
+      "zIndex": "1",
+      "color": "rgb(236, 235, 230)",
+      "opacity": "0.2",
+      "blend": "color-burn",
+      "transform": "matrix(0.999981, -0.00610861, 0.00610861, 0.999981, -3, -1)",
+      "mask": "url(\"http://127.0.0.1:4359/src/assets/ink/pigment-pool-blue.svg\") 50% 50% / 128% 118% no-repeat",
+      "filter": "grayscale(1) contrast(1.85) sepia(1) saturate(3) hue-rotate(175deg)",
+      "left": "18.9062px",
+      "top": "11px",
+      "width": "425.719px",
+      "height": "533.5px"
+    },
+    {
+      "class": "media-portrait__plate media-portrait__plate--red",
+      "zIndex": "1",
+      "color": "rgb(236, 235, 230)",
+      "opacity": "0.28",
+      "blend": "color-burn",
+      "transform": "matrix(0.999969, 0.0078539, -0.0078539, 0.999969, 4, 2)",
+      "mask": "url(\"http://127.0.0.1:4359/src/assets/ink/pigment-pool-red.svg\") 50% 50% / 128% 118% no-repeat",
+      "filter": "grayscale(1) contrast(1.8) sepia(1) saturate(7) hue-rotate(316deg)",
+      "left": "18.9062px",
+      "top": "11px",
+      "width": "425.719px",
+      "height": "533.5px"
+    },
+    {
+      "class": "media-portrait__navy-pigment",
+      "zIndex": "2",
+      "color": "rgb(41, 70, 107)",
+      "opacity": "0.42",
+      "blend": "multiply",
+      "transform": "matrix(0.992546, -0.121869, 0.121869, 0.992546, 0, 0)",
+      "mask": "none",
+      "filter": "none",
+      "left": "250.688px",
+      "top": "214.5px",
+      "width": "264.875px",
+      "height": "319px"
+    },
+    {
+      "class": "media-portrait__red-pigment",
+      "zIndex": "3",
+      "color": "color(srgb 0.672471 0.0682353 0.163608)",
+      "opacity": "0.2",
+      "blend": "multiply",
+      "transform": "matrix(0.992546, 0.121869, -0.121869, 0.992546, 0, 0)",
+      "mask": "none",
+      "filter": "none",
+      "left": "-47.2969px",
+      "top": "27.5px",
+      "width": "274.344px",
+      "height": "330px"
+    },
+    {
+      "class": "media-portrait__paper-drag",
+      "zIndex": "4",
+      "color": "rgb(236, 235, 230)",
+      "opacity": "0.36",
+      "blend": "normal",
+      "transform": "matrix(0.978148, -0.207912, 0.207912, 0.978148, 0, 0)",
+      "mask": "none",
+      "filter": "none",
+      "left": "-56.75px",
+      "top": "440px",
+      "width": "487.188px",
+      "height": "71.5px"
+    },
+    {
+      "class": "media-portrait__black-brush",
+      "zIndex": "5",
+      "color": "rgb(3, 3, 5)",
+      "opacity": "0.42",
+      "blend": "normal",
+      "transform": "matrix(0.992546, 0.121869, -0.121869, 0.992546, 0, 0)",
+      "mask": "none",
+      "filter": "none",
+      "left": "4.71875px",
+      "top": "462px",
+      "width": "562.875px",
+      "height": "60.5px"
+    },
+    {
+      "class": "media-portrait__blue-vein",
+      "zIndex": "4",
+      "color": "rgb(11, 20, 41)",
+      "opacity": "0.3",
+      "blend": "multiply",
+      "transform": "matrix(0.997564, -0.0697565, 0.0697565, 0.997564, 0, 0)",
+      "mask": "none",
+      "filter": "none",
+      "left": "245.953px",
+      "top": "341px",
+      "width": "283.797px",
+      "height": "209px"
+    },
+    {
+      "class": "media-portrait__edge-splatter",
+      "zIndex": "5",
+      "color": "rgb(3, 3, 5)",
+      "opacity": "0.42",
+      "blend": "normal",
+      "transform": "matrix(0.99863, -0.052336, 0.052336, 0.99863, 0, 0)",
+      "mask": "none",
+      "filter": "none",
+      "left": "-28.375px",
+      "top": "55px",
+      "width": "525.016px",
+      "height": "495px"
+    }
+  ],
+  "pad": {
+    "x": 141.9,
+    "y": 165
+  },
+  "captureWidth": 757,
+  "captureHeight": 880,
+  "sourceHashes": {
+    "scripts/generate-mobile-portrait.mjs": "2f967d54de456555741c3ea9e99f09b9a6d5290b794deeee68cc116ec69ccdd2",
+    "src/components/visual/InkPortrait.astro": "9ab1d96e7a2244335de05f1ac6f1719a859136c49b0a0204e47577a09c093075",
+    "src/components/Avatar.astro": "ae6467d63e8b98ed57266107392dba949d15e9e67e1359f3f6836964ff46d66f",
+    "src/pages/index.astro": "c59e6bfee4f7c7820e2b1023ef940cf58b05f6bad6b4213da5fc9b3b3cd87efe",
+    "src/styles/tailwind.css": "dba3f0235564df9114264f3b82141c338f26112e81035d7a17eb0cd70a42f66d",
+    "src/assets/img/avatar/kival_evan.jpg": "8cd32f83710b5457c188a0894c9b2be84a9a6ec9c336a0b732d19bc03d100225",
+    "src/assets/ink/organic-drag-1.svg": "d9a86fc228bdbec636d167c95a4aac8a32bc46bf694aa84046baa135132ad4ae",
+    "src/assets/ink/organic-drag-2.svg": "3a05388a2e5324e441f6471c5c5b51449bcd258ebc19d9d0150b4c8e598bcf55",
+    "src/assets/ink/pigment-pool-red.svg": "fcaf021a5e18ae8bde9d5a6bc7926de47fdbf5590eec224d6d5e266371276091",
+    "src/assets/ink/pigment-pool-blue.svg": "accf9dba38cd3bcafdc04b41f007f03c502a9c038b0b64a4cc298c779e9b65a2",
+    "src/assets/ink/ink-tangle-blue.svg": "a592a49641c4642ad4438b479ffa57740262e24167e722612ee92b6757a97275",
+    "src/assets/ink/splatter-cluster-3.svg": "6ff3db4e5f06f7484c6521078f899fd4665f06bce3113d90cf2edeebd0f90f0e"
+  },
+  "image": {
+    "encoding": {
+      "format": "webp",
+      "quality": 95,
+      "alphaQuality": 100
+    },
+    "width": 1235,
+    "height": 1266,
+    "bytes": 284438,
+    "decodedBytes": 6254040,
+    "sha256": "3de4164167086d4951f96badbb26cae5e9ab7baa18a5faa17f1cb9862e9c4bd9"
+  },
+  "registration": {
+    "left": -0.12452431289640593,
+    "top": 0.04909090909090909,
+    "width": 1.3054968287526427,
+    "height": 1.1509090909090909
+  },
+  "paintOrder": "decoration (original z-index 1–5), unchanged core (z-index 6)",
+  "core": {
+    "bytes": 146036,
+    "width": 1000,
+    "height": 1253,
+    "sha256": "6d78c7205f30bb30cfecb3e8c2e0d5c007c157e7d7db44d9b47bd7433d1b7dea"
+  },
+  "totalImageBytes": 430474,
+  "totalDecodedBytes": 11266040
+}

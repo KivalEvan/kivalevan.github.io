@@ -1,0 +1,71 @@
+/* Complete transparent ink surfaces. No source material effect is reapplied here. */
+[data-mobile-hero-plane] {
+   display: none;
+}
+
+@keyframes mobile-hero-plane-hold {
+   from {
+      visibility: visible;
+   }
+   to {
+      visibility: hidden;
+   }
+}
+@keyframes mobile-hero-plane-final {
+   from,
+   to {
+      visibility: visible;
+   }
+}
+
+@media (max-width: 47.99rem) {
+   [data-mobile-hero-plane] {
+      display: block;
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+   }
+   [data-mobile-hero-plane='back'] {
+      z-index: 1;
+   }
+   [data-mobile-hero-plane='mid'] {
+      z-index: 4;
+   }
+   [data-mobile-hero-plane='fore'] {
+      z-index: 6;
+   }
+   [data-mobile-hero-plane='front'] {
+      z-index: 9;
+   }
+   [data-hero-plane-viewport] {
+      display: none;
+      position: absolute;
+      inset: 0;
+   }
+   .mobile-hero-plane-frame {
+      position: absolute;
+      display: block;
+      visibility: hidden;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+   }
+   .mobile-hero-plane-frame[data-final] {
+      visibility: visible;
+   }
+}
+
+@media (max-width: 47.99rem) and (prefers-reduced-motion: no-preference) {
+   .mixed-hero.home-motion--playing[data-hero-ink-ready] .mobile-hero-plane-frame {
+      visibility: hidden;
+      animation: mobile-hero-plane-hold var(--plane-hold) steps(1, end) var(--plane-start) forwards;
+   }
+   .mixed-hero.home-motion--playing[data-hero-ink-ready] .mobile-hero-plane-frame[data-final] {
+      animation-name: mobile-hero-plane-final;
+   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+   .mobile-hero-plane-frame:not([data-final]) {
+      display: none;
+   }
+}

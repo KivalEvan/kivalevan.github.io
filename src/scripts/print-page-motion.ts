@@ -220,7 +220,8 @@ const startEntrance = (target: HTMLElement, delay: number) => {
          ].map((frame) => ({ ...frame, easing: 'steps(1, end)' })),
          // Keep the final full plate through cleanup; backwards alone would briefly
          // restore the bootstrap mask at completion.
-         { duration: 560, delay, easing: 'linear', fill: 'both' },
+         // Match the outgoing snapshot's duration and held-pose offsets.
+         { duration: 420, delay, easing: 'linear', fill: 'both' },
       ),
    ];
    activeEntrances.set(target, animations);

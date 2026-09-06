@@ -1,0 +1,82 @@
+---
+import manifest from '../../assets/ink/mobile-hero-planes/planes.json';
+import '../../styles/mobile-hero-planes.css';
+
+interface Props {
+   /** Foreground is split at the live portrait/title stack boundary (z6 / z9). */
+   plane: 'back' | 'mid' | 'fore' | 'front';
+}
+const { plane } = Astro.props;
+const images = import.meta.glob<string>('../../assets/ink/mobile-hero-planes/*.webp', {
+   eager: true,
+   query: '?url&no-inline',
+   import: 'default',
+});
+const widths = [
+   ...new Set(Object.keys(manifest.variants).map((key) => Number(key.split('-')[0]))),
+].sort((a, b) => a - b);
+// Do not interpolate across the authored 360px stage-height breakpoint. Strict
+// range predicates also avoid rounded min/max queries selecting two alpha layers.
+const upperBounds = widths.map((width, index) => {
+   const next = widths[index + 1];
+   return next === undefined ? undefined : width <= 360 && next > 360 ? 360 : (width + next) / 2;
+});
+// Keep unselected registrations hidden even while Astro replaces route stylesheets.
+const registrationCSS =
+   `[data-mobile-hero-plane='${plane}'],[data-mobile-hero-plane='${plane}'] [data-hero-plane-viewport]{display:none}` +
+   `@media (max-width:47.99rem){[data-mobile-hero-plane='${plane}']{display:block}}` +
+   widths
+      .map((width, index) => {
+         const lower = index ? upperBounds[index - 1] : 0;
+         const upper = upperBounds[index];
+         const range =
+            upper === undefined ? `(width > ${lower}px)` : `(${lower}px < width <= ${upper}px)`;
+         const base = `[data-mobile-hero-plane='${plane}'] [data-hero-plane-viewport='${width}-844']`;
+         const tall = `[data-mobile-hero-plane='${plane}'] [data-hero-plane-viewport='${width}-1100']`;
+         const heightBoundary = width <= 360 ? 1078 : 1062;
+         return (
+            `@media (max-width:47.99rem) and ${range}{${base}{display:block}}` +
+            (plane === 'back'
+               ? `@media (max-width:47.99rem) and ${range} and (min-height:${heightBoundary}px){${base}{display:none}${tall}{display:block}}`
+               : '')
+         );
+      })
+      .join('\n');
+---
+
+<style is:inline set:html={registrationCSS}></style>
+<span data-mobile-hero-plane={plane} aria-hidden="true">
+   {
+      Object.entries(manifest.variants).map(([viewport, planes]) => {
+         if (plane !== 'back' && viewport.endsWith('-1100')) return null;
+         const frames = planes[plane];
+         return (
+            <span data-hero-plane-viewport={viewport}>
+               {frames.map((frame, index) => {
+                  if (!('file' in frame)) return null;
+                  const final = index === frames.length - 1;
+                  const duration = final ? 1 : frames[index + 1].time - frame.time;
+                  return (
+                     <span
+                        class="mobile-hero-plane-frame"
+                        data-hero-frame-src={
+                           images[`../../assets/ink/mobile-hero-planes/${frame.file}`]
+                        }
+                        data-final={final || undefined}
+                        style={[
+                           `background-image:url("${images[`../../assets/ink/mobile-hero-planes/${frame.file}`]}")`,
+                           `left:${frame.left * 100}%`,
+                           `top:${frame.top * 100}%`,
+                           `width:${frame.scaleX * 100}%`,
+                           `height:${frame.scaleY * 100}%`,
+                           `--plane-start:${frame.time}ms`,
+                           `--plane-hold:${duration}ms`,
+                        ].join(';')}
+                     />
+                  );
+               })}
+            </span>
+         );
+      })
+   }
+</span>

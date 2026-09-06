@@ -76,6 +76,14 @@ import grainUrl from '../assets/ink/grain-speckle-1.svg?url';
       }
    }
 
+   @supports (mix-blend-mode: screen) {
+      .punk-grain__speckle {
+         /* Black-only grain contributes no pixels with screen blending.
+            Revisit if the asset gains non-black pigment. */
+         display: none;
+      }
+   }
+
    @media (prefers-reduced-motion: reduce) {
       .punk-grain__wash {
          animation: none;

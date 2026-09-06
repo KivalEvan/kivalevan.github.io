@@ -17,6 +17,7 @@ const { class: className } = Astro.props;
 ---
 
 <div class:list={['ink-collision', className]} aria-hidden="true">
+   <div class="ink-collision__mobile"></div>
    <div class="ink-collision__layer ink-collision__mass">
       <Fragment set:html={heavyInkMassRaw} />
    </div>
@@ -42,6 +43,10 @@ const { class: className } = Astro.props;
 </div>
 
 <style>
+   .ink-collision__mobile {
+      display: none;
+   }
+
    .ink-collision {
       position: absolute;
       inset: 0;
@@ -138,5 +143,82 @@ const { class: className } = Astro.props;
       opacity: 0.88;
       transform: rotate(-25deg) scale(1.24);
       mix-blend-mode: screen;
+   }
+   /* Keep the live SVG fallback without size queries. Caller geometry and motion
+      remain outside this static paint replacement. No mobile URL is used on desktop. */
+   @supports (container-type: size) {
+      @media (max-width: 47.99rem) {
+         .ink-collision {
+            container: ink-collision / size;
+            mask: none;
+         }
+         .ink-collision__layer {
+            display: none;
+         }
+         .ink-collision__mobile {
+            display: block;
+            position: absolute;
+            inset: 0;
+            background: url('../../assets/ink/mobile-collision-groups/collision-1.webp') center /
+               cover no-repeat;
+         }
+         /* Containers have different responsive heights: select by their ratio,
+            not the viewport. Cover preserves proportions rather than stretching. */
+         @container ink-collision (aspect-ratio < 0.55) {
+            .ink-collision__mobile {
+               background-image: url('../../assets/ink/mobile-collision-groups/collision-0-5.webp');
+            }
+         }
+         @container ink-collision (0.55 <= aspect-ratio < 0.65) {
+            .ink-collision__mobile {
+               background-image: url('../../assets/ink/mobile-collision-groups/collision-0-6.webp');
+            }
+         }
+         @container ink-collision (0.65 <= aspect-ratio < 0.75) {
+            .ink-collision__mobile {
+               background-image: url('../../assets/ink/mobile-collision-groups/collision-0-7.webp');
+            }
+         }
+         @container ink-collision (0.75 <= aspect-ratio < 0.85) {
+            .ink-collision__mobile {
+               background-image: url('../../assets/ink/mobile-collision-groups/collision-0-8.webp');
+            }
+         }
+         @container ink-collision (0.85 <= aspect-ratio < 0.95) {
+            .ink-collision__mobile {
+               background-image: url('../../assets/ink/mobile-collision-groups/collision-0-9.webp');
+            }
+         }
+         @container ink-collision (1.0625 <= aspect-ratio < 1.1875) {
+            .ink-collision__mobile {
+               background-image: url('../../assets/ink/mobile-collision-groups/collision-1-125.webp');
+            }
+         }
+         @container ink-collision (1.1875 <= aspect-ratio < 1.375) {
+            .ink-collision__mobile {
+               background-image: url('../../assets/ink/mobile-collision-groups/collision-1-25.webp');
+            }
+         }
+         @container ink-collision (1.375 <= aspect-ratio < 1.625) {
+            .ink-collision__mobile {
+               background-image: url('../../assets/ink/mobile-collision-groups/collision-1-5.webp');
+            }
+         }
+         @container ink-collision (1.625 <= aspect-ratio < 1.875) {
+            .ink-collision__mobile {
+               background-image: url('../../assets/ink/mobile-collision-groups/collision-1-75.webp');
+            }
+         }
+         @container ink-collision (1.875 <= aspect-ratio < 2.25) {
+            .ink-collision__mobile {
+               background-image: url('../../assets/ink/mobile-collision-groups/collision-2.webp');
+            }
+         }
+         @container ink-collision (aspect-ratio >= 2.25) {
+            .ink-collision__mobile {
+               background-image: url('../../assets/ink/mobile-collision-groups/collision-2-5.webp');
+            }
+         }
+      }
    }
 </style>
