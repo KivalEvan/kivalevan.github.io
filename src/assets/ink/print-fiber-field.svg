@@ -3,7 +3,8 @@
     <filter id="dry-ink" x="-4%" y="-6%" width="108%" height="112%" color-interpolation-filters="sRGB">
       <feTurbulence type="fractalNoise" baseFrequency=".32 .22" numOctaves="3" seed="29" result="fiber"/>
       <feDisplacementMap in="SourceGraphic" in2="fiber" scale="7" xChannelSelector="R" yChannelSelector="G" result="edge"/>
-      <feColorMatrix in="fiber" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  4.8 0 0 0 -1.75" result="loss"/>
+      <!-- Keep the same coverage midpoint, but cut crisp fibres instead of translucent haze. -->
+      <feColorMatrix in="fiber" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  24 0 0 0 -11.25" result="loss"/>
       <feComposite in="edge" in2="loss" operator="in"/>
     </filter>
   </defs>

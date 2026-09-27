@@ -2,8 +2,6 @@
  * Holds subtle, independent poses on idle navigation and social controls without
  * replacing their authored transform (including hover scales).
  */
-import { requestAmbientEvent } from './ambient-rhythm';
-
 export {};
 
 const TARGET_SELECTOR = [
@@ -116,25 +114,17 @@ const applyPose = (target: HTMLElement, control: Control) => {
 
 const schedule = () => {
    if (timer !== undefined || !eligibleControls().length) return;
-   const compact = mobileQuery?.matches;
-   const delay = randomBetween(compact ? 1_800 : 1_400, compact ? 3_000 : 2_400);
-   const attempt = () => {
+   timer = window.setTimeout(() => {
       timer = undefined;
       const candidates = eligibleControls();
       if (!candidates.length) return;
-      const retryAfter = requestAmbientEvent('control');
-      if (retryAfter) {
-         timer = window.setTimeout(attempt, retryAfter);
-         return;
-      }
       const count = Math.min(candidates.length, randomBetween(1, 2));
       for (let index = 0; index < count; index++) {
          const selected = candidates.splice(randomBetween(0, candidates.length - 1), 1)[0];
          applyPose(selected[0], selected[1]);
       }
       schedule();
-   };
-   timer = window.setTimeout(attempt, delay);
+   }, 1_000);
 };
 
 const reconcile = () => {

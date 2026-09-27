@@ -1,5 +1,5 @@
 export const cvSummary =
-   'Software engineer with professional experience in web development and data engineering. Builds desktop and Unity-based tools, and maintains open-source software for Beat Saber creators. Focuses on reverse engineering, performance, and editor workflows.';
+   'Software engineer with professional experience in C#/.NET applications, web development, and data engineering. Core maintainer of ChroMapper, a Unity-based Beat Saber map editor. Applies codebase analysis and domain knowledge to improve performance, reliability, and editing workflows.';
 
 export interface CvEducation {
    qualification: string;

@@ -1,9 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import InkBackdrop from '../components/InkBackdrop.astro';
+import InkCollision from '../components/visual/InkCollision.astro';
 import { Image } from 'astro:assets';
 import errorImage from '../assets/img/404.webp';
-import '../styles/print-pages.css';
+import '../styles/print-pages.scss';
+import '../styles/interior-collage.scss';
+import '../styles/home-background.scss';
 
 const pageDetails = {
    title: '404',
@@ -16,107 +19,222 @@ const pageDetails = {
    <InkBackdrop />
    <main
       data-page-stagger-root
-      class="relative z-10 flex min-h-screen items-center justify-center p-4 text-center"
+      class="error-page"
       transition:name="page-content"
       transition:animate="none"
    >
-      <div class="error-print flex w-full max-w-[32rem] flex-col items-center gap-4 px-6 py-8">
-         <div class="error-print__impressions" aria-hidden="true"><span></span><span></span></div>
-         <h1 class="m-0">Error 404</h1>
-         <p class="m-0">Lost signal</p>
+      <div class="error-print">
+         <div class="error-print__collision">
+            <InkCollision />
+         </div>
+         <div class="error-print__impressions" aria-hidden="true">
+            <span></span>
+            <span></span>
+         </div>
          <Image
-            class="h-[clamp(8rem,40vh,16rem)] w-auto max-w-full object-contain"
+            class="error-print__image"
             src={errorImage}
             alt="Cirno points to the 404 error"
             loading="eager"
          />
-         <p class="m-0 max-w-[45ch]">The requested page is not available. Choose another path.</p>
-         <p class="m-0"><a class="print-action" href="/">Return home</a></p>
+         <p>
+            <a class="print-action" href="/">
+               take me home.
+            </a>
+         </p>
       </div>
    </main>
 </BaseLayout>
 
 <script>
    import '../scripts/print-interactions';
+
+   let cleanupImageAnimation: (() => void) | undefined;
+
+   const setupImageAnimation = () => {
+      cleanupImageAnimation?.();
+      cleanupImageAnimation = undefined;
+
+      const image = document.querySelector<HTMLImageElement>('.error-print__image');
+      if (!(image instanceof HTMLImageElement) || !('IntersectionObserver' in window)) {
+         return;
+      }
+
+      let isIntersecting = false;
+      let hasEnteredViewport = false;
+      const syncPlayback = () => {
+         if (isIntersecting) hasEnteredViewport = true;
+         if (hasEnteredViewport) image.setAttribute('data-sketchmove-ready', '');
+         image.toggleAttribute(
+            'data-sketchmove-visible',
+            hasEnteredViewport && isIntersecting && document.visibilityState === 'visible',
+         );
+      };
+
+      const observer = new IntersectionObserver(([entry]) => {
+         isIntersecting = entry.isIntersecting;
+         syncPlayback();
+      });
+      const handleVisibilityChange = () => syncPlayback();
+
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+      observer.observe(image);
+
+      cleanupImageAnimation = () => {
+         observer.disconnect();
+         document.removeEventListener('visibilitychange', handleVisibilityChange);
+         image.removeAttribute('data-sketchmove-ready');
+         image.removeAttribute('data-sketchmove-visible');
+      };
+   };
+
+   setupImageAnimation();
+   document.addEventListener('astro:before-swap', () => {
+      cleanupImageAnimation?.();
+      cleanupImageAnimation = undefined;
+   });
+   document.addEventListener('astro:page-load', setupImageAnimation);
 </script>
 
-<style>
+<style lang="scss">
+   @layer layout {
+      .error-page {
+         position: relative;
+         z-index: 10;
+         display: flex;
+         min-height: 100vh;
+         align-items: center;
+         justify-content: center;
+         padding: 1rem;
+         text-align: center;
+      }
+
+      .error-print {
+         display: flex;
+         width: 100%;
+         max-width: 32rem;
+         flex-direction: column;
+         align-items: center;
+         gap: 1rem;
+         padding: 2rem 1.5rem;
+
+         &__description {
+            max-width: 45ch;
+         }
+      }
+
+      :global(.error-print__image) {
+         height: clamp(8rem, 40vh, 16rem);
+         width: auto;
+         max-width: 100%;
+         object-fit: contain;
+      }
+   }
+
    .error-print {
       position: relative;
       isolation: isolate;
       color: var(--color-ink);
       text-shadow: none;
       padding: clamp(1.5rem, 4vw, 3rem);
+
+      &::before {
+         content: '';
+         position: absolute;
+         inset: 0;
+         z-index: -1;
+         background: var(--color-paper);
+         /* Keep a solid backing under the copy while the perimeter breaks into ink. */
+         mask:
+            linear-gradient(#000 0 0) center / 88% 94% no-repeat,
+            url('../assets/ink/project-paper.svg') center / 100% 100% no-repeat;
+         pointer-events: none;
+      }
+
+      &::after {
+         content: '';
+         position: absolute;
+         inset: -8% -22% -10% -12%;
+         z-index: -2;
+         background: var(--color-ink-petrol);
+         mask: url('../assets/ink/impact-cluster-2.svg') center / 100% 100% no-repeat;
+         pointer-events: none;
+      }
+
+      &__impressions {
+         position: absolute;
+         inset: -4% -15%;
+         z-index: -2;
+         pointer-events: none;
+
+         span {
+            position: absolute;
+            inset: -10% 4% 12% -8%;
+            background: var(--color-signal-red);
+            mask: url('../assets/ink/organic-drag-2.svg') center / 100% 100% no-repeat;
+            rotate: -18deg;
+
+            & + span {
+               inset: 48% -8% -12% 25%;
+               background: var(--color-paper);
+               mask: url('../assets/ink/spray-fine-2.svg') center / 100% 100% no-repeat;
+               rotate: 12deg;
+            }
+         }
+      }
+
+      h1 {
+         color: var(--color-ink);
+         font-family: 'League Gothic', 'Arial Narrow', sans-serif;
+         font-size: clamp(4rem, 15vw, 7rem);
+         font-weight: 400;
+         letter-spacing: -0.025em;
+         line-height: 0.9;
+         text-transform: uppercase;
+      }
    }
 
-   .error-print::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background: var(--color-paper);
-      /* Keep a solid backing under the copy while the perimeter breaks into ink. */
-      mask:
-         linear-gradient(#000 0 0) center / 88% 94% no-repeat,
-         url('../assets/ink/project-paper.svg') center / 100% 100% no-repeat;
-      pointer-events: none;
-   }
-
-   .error-print::after {
-      content: '';
-      position: absolute;
-      inset: -8% -22% -10% -12%;
-      z-index: -2;
-      background: #29466b;
-      mask: url('../assets/ink/impact-cluster-2.svg') center / 100% 100% no-repeat;
-      pointer-events: none;
-   }
-
-   .error-print__impressions {
-      position: absolute;
-      inset: -4% -15%;
-      z-index: -2;
-      pointer-events: none;
-   }
-
-   .error-print__impressions span {
-      position: absolute;
-      inset: -10% 4% 12% -8%;
-      background: var(--color-signal-red);
-      mask: url('../assets/ink/organic-drag-2.svg') center / 100% 100% no-repeat;
-      rotate: -18deg;
-   }
-
-   .error-print__impressions span + span {
-      inset: 48% -8% -12% 25%;
-      background: var(--color-paper);
-      mask: url('../assets/ink/spray-fine-2.svg') center / 100% 100% no-repeat;
-      rotate: 12deg;
-   }
-
-   .error-print h1 {
-      color: var(--color-ink);
-      font-family: 'League Gothic', 'Arial Narrow', sans-serif;
-      font-size: clamp(4rem, 15vw, 7rem);
-      font-weight: 400;
-      letter-spacing: -0.025em;
-      line-height: 0.9;
-      text-transform: uppercase;
-   }
-
-   .error-print .print-action {
+   .error-page .error-print :global(.print-action) {
       color: var(--color-paper);
+
+      &::before {
+         background: var(--color-ink);
+      }
+
+      &:is(:hover, :focus-visible)::before {
+         background: #29466b;
+      }
+
+      &:focus-visible {
+         outline-color: var(--color-ink);
+      }
    }
 
-   .error-print .print-action::before {
-      background: var(--color-ink);
-   }
+   @media (prefers-reduced-motion: no-preference) {
+      .error-print :global(.error-print__image[data-sketchmove-ready]) {
+         animation: sketchmove 2s step-start infinite paused;
+      }
 
-   .error-print .print-action:is(:hover, :focus-visible)::before {
-      background: #29466b;
-   }
+      .error-print :global(.error-print__image[data-sketchmove-visible]) {
+         animation-play-state: running;
+      }
 
-   .error-print .print-action:focus-visible {
-      outline-color: var(--color-ink);
+      @keyframes sketchmove {
+         0% {
+            transform: rotate(1deg) translate(2px, -2px);
+         }
+
+         33% {
+            transform: rotate(-2deg) translate(-3px, 0px);
+         }
+
+         66% {
+            transform: rotate(1.5deg) translate(2px, -3px);
+         }
+
+         100% {
+            transform: none;
+         }
+      }
    }
 </style>

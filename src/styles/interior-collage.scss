@@ -1,0 +1,327 @@
+/* Fractured poster fields surround opaque reading pockets, never the text itself. */
+// Shared artwork anchors.
+body.print-page main {
+   /* Keep the opening artwork out of the navigation and footer. */
+   overflow-y: clip;
+}
+
+.showcase-opening__collision,
+.tools-opening__collision,
+.blog-opening__collision,
+.commission-index__collision,
+.commission-hero__collision,
+.reading-opening__collision,
+.error-print__collision {
+   position: absolute;
+   pointer-events: none;
+}
+
+body.print-page {
+   .project-opening::before,
+   .project-opening::after,
+   .project-opening > header::after,
+   .showcase-opening::after,
+   .showcase-lead::before,
+   .showcase-lead::after,
+   .showcase-lead__image::before,
+   .showcase-lead__image::after,
+   .blog-opening::after,
+   .blog-opening__header::after,
+   .commission-index__sheet::before,
+   .commission-index__sheet::after,
+   .commission-index__copy::after,
+   .blog-post-header::after,
+   .estimator-header::after,
+   .estimator-header h2::before,
+   .commission-opening::before {
+      content: none;
+   }
+}
+
+// Opening composition and per-page collision placement.
+.showcase-opening__collision,
+.tools-opening__collision {
+   z-index: -1;
+   inset: -5rem -18% -2rem -8%;
+}
+
+body.print-page {
+   .showcase-opening > header > p {
+      max-width: 32ch;
+   }
+
+   .blog-opening {
+      &::before {
+         content: none;
+      }
+
+      &__title {
+         color: var(--color-paper);
+         font-size: clamp(4.5rem, 12vw, 10rem);
+      }
+
+      #notebook-heading {
+         color: var(--color-paper);
+      }
+   }
+
+   .blog-count {
+      color: var(--color-signal-cyan);
+   }
+
+   .blog-opening__latest {
+      max-width: 62%;
+   }
+}
+
+.blog-opening__collision {
+   z-index: -2;
+   inset: -5rem -15% -1rem -12%;
+}
+
+body.print-page .commission-index__copy {
+   width: 72%;
+}
+
+.commission-index__collision {
+   z-index: -2;
+   inset: -7rem -26% -7rem -18%;
+}
+
+body.print-page .commission-hero {
+   isolation: isolate;
+}
+
+.commission-hero__collision {
+   z-index: -1;
+   inset: -4rem -16% -6rem -12%;
+}
+
+.reading-opening__collision {
+   z-index: -2;
+   inset: -3rem -24rem -3rem -8rem;
+}
+
+.error-print__collision {
+   z-index: -3;
+   inset: -8rem -70% -7rem;
+}
+
+/* Small, solid ink pockets replace the broad uninterrupted white sheets.
+   The union mask retains a guaranteed rectangle under every reading area. */
+body.print-page {
+   :is(.showcase-lead__copy, .blog-opening__header, .blog-opening__latest) {
+      position: relative;
+      isolation: isolate;
+   }
+
+   .project-opening > header {
+      width: fit-content;
+      isolation: isolate;
+   }
+
+   :is(
+      .project-opening > header,
+      .showcase-lead__copy,
+      .blog-opening__header,
+      .blog-opening__latest,
+      .commission-index__copy
+   )::before {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      inset: -1rem -1.25rem;
+      width: auto;
+      height: auto;
+      background: var(--color-ink);
+      mask:
+         linear-gradient(#000 0 0) center / calc(100% - 1.5rem) calc(100% - 1.5rem) no-repeat,
+         url('../assets/ink/project-paper.svg') center / 100% 100% no-repeat;
+      mask-composite: add;
+      opacity: 1;
+      transform: none;
+      pointer-events: none;
+   }
+
+   .commission-index__copy::before {
+      inset: 0;
+   }
+
+   :is(
+      .project-opening > header .print-heading__title,
+      .project-opening > header > p,
+      .showcase-lead__copy,
+      .showcase-lead h3,
+      .blog-opening__latest,
+      .blog-preview--featured .blog-preview-title,
+      .commission-index__copy,
+      .commission-hero__paper,
+      .commission-hero__paper .print-heading__title
+   ) {
+      color: var(--color-paper);
+   }
+
+   :is(
+      .showcase-lead .showcase-role,
+      .showcase-lead .showcase-stack,
+      .blog-preview--featured .blog-preview-meta,
+      .blog-opening__latest-label,
+      .commission-index__status
+   ) {
+      color: var(--color-signal-cyan);
+   }
+
+   .commission-index__service {
+      border-top-color: var(--color-signal-red);
+   }
+
+   .commission-hero__paper::before {
+      background: var(--color-ink);
+   }
+
+   .blog-opening__header {
+      width: fit-content;
+   }
+
+   :is(.blog-post-header, .estimator-header) {
+      margin-block: 1.5rem 2rem;
+   }
+
+   :is(.showcase-opening, .commission-index, .blog-opening) {
+      .print-action {
+         color: var(--color-ink);
+
+         &::before {
+            background: var(--color-paper);
+         }
+
+         &:is(:hover, :focus-visible) {
+            color: var(--color-paper);
+         }
+
+         &:is(:hover, :focus-visible)::before {
+            background: var(--color-ink-petrol);
+         }
+      }
+
+      :is(a, button):focus-visible {
+         outline-color: var(--color-paper);
+      }
+   }
+
+   .blog-opening .blog-preview-title-link:hover {
+      color: var(--color-signal-cyan);
+   }
+
+   /* Carry the poster palette into quieter secondary work without recoloring screenshots. */
+   :is(.commission-index, .commission-page) {
+      --commission-paper: var(--color-paper);
+      --commission-ink: var(--color-ink);
+      --commission-blue: var(--color-signal-cyan);
+      --commission-petrol: var(--color-ink-petrol);
+      --commission-crimson: var(--color-signal-red);
+   }
+
+   .showcase-project {
+      .showcase-image::before {
+         background: var(--color-signal-cyan);
+         mask-image: url('../assets/ink/ink-tangle-blue.svg');
+         opacity: 0.75;
+      }
+
+      &:nth-child(even) .showcase-image::before {
+         background: var(--color-signal-red);
+         mask-image: url('../assets/ink/filament-red-1.svg');
+      }
+   }
+
+   :is(.tool-lead, .workshop-feature) {
+      &::before {
+         background: var(--color-signal-cyan);
+         mask-image: url('../assets/ink/ink-tangle-blue.svg');
+      }
+
+      &::after {
+         background: var(--color-signal-red);
+      }
+   }
+
+   .blog-post-header::after {
+      top: -1.5rem;
+      right: -7%;
+      z-index: -2;
+      background: var(--color-signal-cyan);
+      mask-image: url('../assets/ink/ink-tangle-blue.svg');
+      opacity: 0.9;
+   }
+
+   .blog-post-navigation::before {
+      background: var(--color-signal-red);
+   }
+
+   .commission-rate-panel h3 {
+      position: relative;
+      isolation: isolate;
+      display: inline-block;
+      padding: 0.28rem 0.65rem 0.4rem;
+      color: var(--color-ink);
+      text-shadow: none;
+
+      &::before {
+         content: '';
+         position: absolute;
+         z-index: -1;
+         inset: 0;
+         background: var(--color-paper);
+         clip-path: var(
+            --print-paper-cut,
+            polygon(1% 5%, 95% 0, 100% 11%, 98% 90%, 82% 97%, 3% 100%, 0 84%)
+         );
+         pointer-events: none;
+      }
+   }
+}
+
+// Responsive collision bounds stay separate from the reading-pocket treatments.
+@media (max-width: 63.99rem) {
+   body.print-page .commission-index__copy {
+      width: 88%;
+   }
+}
+
+@media (max-width: 47.99rem) {
+   .showcase-opening__collision,
+   .tools-opening__collision {
+      z-index: -3;
+      inset: -4rem -45% -2rem -25%;
+   }
+
+   body.print-page .blog-opening__latest {
+      max-width: 100%;
+      margin-top: 3rem;
+   }
+
+   .blog-opening__collision {
+      inset: -4rem -50% -1rem -30%;
+   }
+
+   body.print-page .commission-index__copy {
+      width: 100%;
+   }
+
+   .commission-index__collision {
+      inset: -5rem -60% -5rem -35%;
+   }
+
+   .commission-hero__collision {
+      inset: -3rem -60% -4rem -35%;
+   }
+
+   .reading-opening__collision {
+      inset: -2.5rem -10rem -2.5rem -7rem;
+   }
+
+   body.print-page .project-opening > header {
+      max-width: 100%;
+   }
+}

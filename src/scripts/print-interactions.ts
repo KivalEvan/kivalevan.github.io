@@ -1,7 +1,9 @@
 /**
- * Randomizes active interactive print backgrounds until hover and keyboard focus both end.
- * The CSS custom property is consumed exclusively by each control's background pseudo-element.
+ * Gives existing paper labels an individual resting cut. Interactive backgrounds
+ * keep their separate hover/focus poses without moving the text or hit target.
  */
+
+import type { TransitionBeforeSwapEvent } from 'astro:transitions/client';
 
 const TARGET_SELECTOR = [
    '.punk-nav__link',
@@ -11,6 +13,14 @@ const TARGET_SELECTOR = [
    '.print-page .print-action',
 ].join(', ');
 const CUT_PROPERTY = '--print-interaction-cut';
+const PAPER_CUT_PROPERTY = '--print-paper-cut';
+const PAPER_SELECTOR = [
+   TARGET_SELECTOR,
+   '.punk-hardware h3',
+   '.punk-tags li',
+   '.featured-video__caption',
+   '.print-page .commission-rate-panel h3',
+].join(', ');
 
 interface PropertyOrigin {
    value: string;
@@ -30,9 +40,17 @@ let motionQuery: MediaQueryList | undefined;
 const randomBetween = (minimum: number, maximum: number) =>
    minimum + Math.floor(Math.random() * (maximum - minimum + 1));
 
-const point = (x: number, y: number) => `${x}% ${y}%`;
+const edgeCoordinate = (value: number, depth: number) => {
+   if (value === 0 || value === 100 || (value > 10 && value < 90)) return `${value}%`;
+   const inset = value < 50 ? value : 100 - value;
+   const cut = `min(${inset}%, ${(inset * depth).toFixed(2)}rem)`;
+   return value < 50 ? cut : `calc(100% - ${cut})`;
+};
 
-// Each side stays near its edge so the x=8..92, y=20..80 text-safe core remains uncut.
+const point = (x: number, y: number) => `${edgeCoordinate(x, 0.05)} ${edgeCoordinate(y, 0.03)}`;
+
+// Bound edge damage by both percentage and type size, so long or wrapped labels
+// keep their paper under the text without measuring or changing their layout.
 const createTornCut = () => {
    const top = [
       point(0, randomBetween(1, 8)),
@@ -66,6 +84,14 @@ const createTornCut = () => {
    return `polygon(${[...top, ...right, ...bottom, ...left].join(', ')})`;
 };
 
+const preparePaperCuts = (root: ParentNode = document) => {
+   root.querySelectorAll<HTMLElement>(PAPER_SELECTOR).forEach((target) => {
+      if (target.closest('.cv-document') || target.style.getPropertyValue(PAPER_CUT_PROPERTY))
+         return;
+      target.style.setProperty(PAPER_CUT_PROPERTY, createTornCut());
+   });
+};
+
 const restore = (target: HTMLElement, interaction: Interaction) => {
    window.clearTimeout(interaction.timer);
    interaction.timer = undefined;
@@ -88,28 +114,34 @@ const cancel = (target: HTMLElement, interaction: Interaction) => {
    prune(target, interaction);
 };
 
+const canAnimateShape = (target: HTMLElement, interaction: Interaction) => {
+   if (
+      !target.isConnected ||
+      target.matches(':disabled, [hidden]') ||
+      motionQuery?.matches ||
+      document.hidden ||
+      !(interaction.hovered || interaction.focusVisible)
+   )
+      return false;
+
+   const rect = target.getBoundingClientRect();
+   return rect.bottom > 0 && rect.top < window.innerHeight;
+};
+
 const animateActiveShape = (target: HTMLElement, interaction: Interaction) => {
-   if (motionQuery?.matches || document.hidden || interaction.origin) return;
+   if (interaction.origin || !canAnimateShape(target, interaction)) return;
    interaction.origin = {
       value: target.style.getPropertyValue(CUT_PROPERTY),
       priority: target.style.getPropertyPriority(CUT_PROPERTY),
    };
    const snap = () => {
-      const rect = target.getBoundingClientRect();
-      if (
-         !target.isConnected ||
-         target.matches(':disabled, [hidden]') ||
-         motionQuery?.matches ||
-         document.hidden ||
-         rect.bottom <= 0 ||
-         rect.top >= window.innerHeight ||
-         !(interaction.hovered || interaction.focusVisible)
-      ) {
+      interaction.timer = undefined;
+      if (!canAnimateShape(target, interaction)) {
          restore(target, interaction);
          return;
       }
       target.style.setProperty(CUT_PROPERTY, createTornCut());
-      interaction.timer = window.setTimeout(snap, randomBetween(750, 1_250));
+      interaction.timer = window.setTimeout(snap, 1_000);
    };
    snap();
 };
@@ -146,7 +178,7 @@ const reconcileActive = () => {
          interactions.delete(target);
          return;
       }
-      if (motionQuery?.matches || document.hidden) restore(target, interaction);
+      if (!canAnimateShape(target, interaction)) restore(target, interaction);
       else animateActiveShape(target, interaction);
    });
 };
@@ -178,7 +210,13 @@ const bind = () => {
    });
    document.addEventListener('visibilitychange', reconcileActive);
    document.addEventListener('scroll', reconcileActive, { capture: true, passive: true });
-   document.addEventListener('astro:before-swap', clearAll);
+   document.addEventListener('astro:before-swap', (event) => {
+      clearAll();
+      // Prepare the incoming DOM before paint; keep each resting cut for its lifetime.
+      preparePaperCuts((event as TransitionBeforeSwapEvent).newDocument);
+   });
+   document.addEventListener('astro:page-load', () => preparePaperCuts());
+   preparePaperCuts();
 };
 
 if (typeof document !== 'undefined' && !document.documentElement.dataset.printInteractionsBound) {

@@ -1,5 +1,6 @@
 /**
- * Shared homepage-only budget for passive ambient changes.
+ * Homepage event budget retained for title glitches. The one-second pose
+ * schedulers bypass this budget so groups cannot delay each other's cadence.
  *
  * Each 12-second active period ends with a two-second quiet window. Outside
  * that window, passive groups are separated by at least 350 ms. Title events

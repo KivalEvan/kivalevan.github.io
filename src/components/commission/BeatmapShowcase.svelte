@@ -1,6 +1,6 @@
 <script lang="ts">
    import BeatmapCard from './BeatmapCard.svelte';
-   import type { BeatmapDetails } from '../../utils/beatmap';
+   import type { BeatmapDetails } from '../../data/beatmap';
 
    let {
       beatmaps,
@@ -8,65 +8,95 @@
    }: { beatmaps: BeatmapDetails[]; emptyMessage?: string } = $props();
 
    const count = 6;
-   const maps = beatmaps;
-   const pageCount = Math.ceil(maps.length / count);
-   let visibleMaps = $state<BeatmapDetails[]>([]);
    let index = $state(0);
-   let page = $state(1);
-
-   function showMap() {
-      visibleMaps = maps.slice(index, index + count);
-   }
+   const pageCount = $derived(Math.ceil(beatmaps.length / count));
+   const visibleMaps = $derived(beatmaps.slice(index, index + count));
+   const page = $derived(Math.floor(index / count) + 1);
 
    function nextMap() {
-      if (!maps.length) return;
+      if (!beatmaps.length) return;
       index += count;
-      if (index >= maps.length) index = 0;
-      page = Math.floor(index / count) + 1;
-      showMap();
+      if (index >= beatmaps.length) index = 0;
    }
 
    function prevMap() {
-      if (!maps.length) return;
+      if (!beatmaps.length) return;
       index -= count;
       if (index < 0) index = (pageCount - 1) * count;
-      page = Math.floor(index / count) + 1;
-      showMap();
    }
-
-   showMap();
 </script>
 
-<div class="w-full">
-   {#if maps.length > 0}
+<div class="beatmap-showcase">
+   {#if beatmaps.length > 0}
       {#if pageCount > 1}
-         <nav class="mb-3 flex items-center justify-center gap-2" aria-label="Beatmap showcase pages">
+         <nav class="beatmap-showcase__pager" aria-label="Beatmap showcase pages">
             <button
                class="beatmap-pager print-action"
                type="button"
                onclick={prevMap}
-               aria-label="Previous beatmap page"
-            >Previous</button>
-            <span class="min-w-28 text-center" aria-live="polite">Page {page} of {pageCount}</span>
+               aria-label="Previous beatmap page">Previous</button
+            >
+            <span class="beatmap-showcase__page" aria-live="polite">Page {page} of {pageCount}</span
+            >
             <button
                class="beatmap-pager print-action"
                type="button"
                onclick={nextMap}
-               aria-label="Next beatmap page"
-            >Next</button>
+               aria-label="Next beatmap page">Next</button
+            >
          </nav>
       {/if}
-      <div class="grid w-full grid-cols-1 gap-4 lg:grid-cols-2">
+      <div class="beatmap-showcase__grid">
          {#each visibleMaps as beatmap (beatmap.id)}
             <BeatmapCard {beatmap} />
          {/each}
       </div>
    {:else}
-      <p
-         class="chipped-corners border border-[#6883ad] bg-[#0b1429]/80 p-4 text-center"
-         role="status"
-      >
+      <p class="chipped-corners chipped-corners--bordered beatmap-showcase__empty" role="status">
          {emptyMessage}
       </p>
    {/if}
 </div>
+
+<style lang="scss">
+   @layer layout {
+      .beatmap-pager {
+         cursor: pointer;
+      }
+
+      .beatmap-showcase {
+         width: 100%;
+
+         &__pager {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+         }
+
+         &__page {
+            min-width: 7rem;
+            text-align: center;
+         }
+
+         &__grid {
+            display: grid;
+            width: 100%;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 1rem;
+
+            @media (min-width: 64rem) {
+               grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+         }
+
+         &__empty {
+            padding: 1rem;
+            border: 1px solid #6883ad;
+            background: rgb(11 20 41 / 80%);
+            text-align: center;
+         }
+      }
+   }
+</style>

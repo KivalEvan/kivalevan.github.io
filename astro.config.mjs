@@ -2,12 +2,13 @@ import { defineConfig } from 'astro/config';
 import svelte from '@astrojs/svelte';
 import sitemap from '@astrojs/sitemap';
 import icon from 'astro-icon';
-import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
    site: 'https://kivalevan.me',
    base: '/',
+   // Scope component styles without changing their authored specificity.
+   scopedStyleStrategy: 'where',
    integrations: [
       svelte(),
       sitemap({
@@ -25,8 +26,6 @@ export default defineConfig({
                'hammer',
                'kanban',
                'link-45deg',
-               'pause-fill',
-               'play-fill',
                'star',
                'telephone',
                'trophy',
@@ -44,7 +43,4 @@ export default defineConfig({
          },
       }),
    ],
-   vite: {
-      plugins: [tailwindcss()],
-   },
 });

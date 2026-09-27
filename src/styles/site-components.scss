@@ -1,0 +1,453 @@
+@layer components {
+   // Layout containers and editorial type.
+   .site-shell {
+      width: 100%;
+      max-width: var(--content-max);
+      margin-inline: auto;
+   }
+
+   .site-reading-width {
+      width: 100%;
+      max-width: 72ch;
+      margin-inline: auto;
+   }
+
+   /* Tall condensed uppercase display. Base stays paper-white when effects are off. */
+   .display-title {
+      font-family: var(--font-display);
+      font-stretch: condensed;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.015em;
+      line-height: 0.86;
+      -webkit-text-stroke: 0.02em var(--color-ink);
+      paint-order: stroke fill;
+   }
+
+   .chromatic-title {
+      color: var(--color-paper);
+      -webkit-text-stroke: 0.025em var(--color-ink);
+      paint-order: stroke fill;
+      text-shadow:
+         0.045em 0 0 rgb(239 35 60 / 70%),
+         -0.045em 0 0 rgb(0 183 214 / 70%),
+         0 0 0.2em rgb(0 0 0 / 85%);
+   }
+
+   a.chromatic-title,
+   .chromatic-title a {
+      color: var(--color-paper);
+   }
+
+   /* Small editorial label. */
+   .kicker {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-ash);
+
+      &::before {
+         display: inline-block;
+         width: 0.6em;
+         height: 0.6em;
+         margin-right: 0.6em;
+         background: var(--color-signal-red);
+         content: '';
+         transform: translateY(-0.05em);
+      }
+   }
+
+   // Shared panels and labels.
+   /* Calm region for text over atmosphere. */
+   .scrim {
+      background: var(--color-site-panel);
+      border: 1px solid rgb(241 240 236 / 14%);
+   }
+
+   /* Reusable fragmented panel for Projects + compatibility sections. */
+   .fragment-panel {
+      position: relative;
+      background: var(--color-site-panel);
+      border: 1px solid rgb(241 240 236 / 16%);
+      clip-path: polygon(
+         0 0,
+         calc(100% - 1rem) 0,
+         100% 1rem,
+         100% 100%,
+         1rem 100%,
+         0 calc(100% - 1rem)
+      );
+      box-shadow:
+         0.35rem 0 0 -0.22rem rgb(239 35 60 / 65%),
+         -0.35rem 0 0 -0.22rem rgb(0 183 214 / 65%),
+         0 1.25rem 2.5rem rgb(0 0 0 / 50%);
+
+      &__rule {
+         height: 2px;
+         border: 0;
+         background: linear-gradient(
+            to right,
+            var(--color-signal-red) 0 4rem,
+            rgb(241 240 236 / 35%) 4rem 8rem,
+            var(--color-signal-cyan) 8rem 10rem,
+            transparent 10rem
+         );
+      }
+   }
+
+   /* Debris-like skill tags. Semantic <ul> stays plain; <li> carries the fragment. */
+   .tag-fragment {
+      border: 1px solid rgb(241 240 236 / 28%);
+      background: rgb(5 5 7 / 82%);
+      color: var(--color-paper);
+      clip-path: polygon(0 0, calc(100% - 0.5rem) 0, 100% 0.5rem, 100% 100%, 0 100%);
+      transition: none;
+
+      &:hover {
+         transform: translate(-1px, -1px);
+         border-color: var(--color-signal-cyan);
+         background: rgb(0 183 214 / 12%);
+      }
+   }
+
+   // Site chrome and navigation controls.
+   /* Header integrated with hero: no bar, tight type, scrollable nav. */
+   .site-header {
+      background: transparent;
+      border-bottom: 0;
+   }
+
+   .site-masthead {
+      font-family: var(--font-display);
+      font-stretch: condensed;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      line-height: 0.9;
+      color: var(--color-paper);
+   }
+
+   .site-masthead-link {
+      color: var(--color-paper);
+      text-shadow:
+         0.04em 0 0 rgb(239 35 60 / 65%),
+         -0.04em 0 0 rgb(0 183 214 / 65%);
+
+      &:visited {
+         color: var(--color-paper);
+      }
+
+      &:hover,
+      &:focus-visible {
+         color: var(--color-paper);
+         text-shadow:
+            0.06em 0 0 rgb(239 35 60 / 85%),
+            -0.06em 0 0 rgb(0 183 214 / 85%);
+      }
+   }
+
+   .site-nav-list a {
+      letter-spacing: 0.09em;
+
+      &::after {
+         border-bottom-width: 2px;
+      }
+   }
+
+   .hero {
+      &__scroll {
+         font-family: var(--font-mono);
+         font-size: 0.8rem;
+         letter-spacing: 0.2em;
+         text-transform: uppercase;
+         color: var(--color-ash);
+
+         &:hover,
+         &:focus-visible {
+            color: var(--color-paper);
+         }
+      }
+   }
+
+   .skip-link {
+      position: fixed;
+      z-index: 50;
+      top: max(0.5rem, env(safe-area-inset-top));
+      left: max(0.5rem, env(safe-area-inset-left));
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid rgb(236 235 230 / 82%);
+      background: var(--color-ink);
+      color: var(--color-paper);
+      font-family: var(--font-mono);
+      font-weight: 700;
+      clip-path: none;
+      box-shadow: 0.18rem 0.18rem 0 rgb(237 23 56 / 72%);
+
+      &:not(:focus-visible) {
+         width: 1px;
+         height: 1px;
+         min-height: 0;
+         margin: -1px;
+         padding: 0;
+         overflow: hidden;
+         border: 0;
+         clip-path: inset(50%);
+         white-space: nowrap;
+         pointer-events: none;
+      }
+   }
+
+   .back-to-top {
+      right: max(1rem, env(safe-area-inset-right));
+      bottom: max(1rem, env(safe-area-inset-bottom));
+   }
+
+   .site-footer-content {
+      padding-bottom: max(1.875em, env(safe-area-inset-bottom));
+   }
+
+   .site-footer-time {
+      right: max(0.5rem, env(safe-area-inset-right));
+      bottom: max(0.5rem, env(safe-area-inset-bottom));
+   }
+
+   .commission-banner {
+      --commission-banner-spacing: 0.16em;
+
+      letter-spacing: var(--commission-banner-spacing);
+   }
+
+   @media (min-width: 40rem) {
+      .commission-banner {
+         --commission-banner-spacing: 0.24em;
+      }
+   }
+
+   @media (min-width: 48rem) {
+      .commission-banner {
+         --commission-banner-spacing: 0.3125em;
+      }
+   }
+
+   @media (max-width: 1023px), (pointer: coarse) {
+      nav a,
+      nav button {
+         display: inline-flex;
+         min-height: 44px;
+         align-items: center;
+         padding-right: 0.5rem;
+         padding-left: 0.5rem;
+      }
+   }
+
+   // Reading surfaces.
+   .site-prose {
+      font-size: 1rem;
+      line-height: 1.6;
+
+      p {
+         margin-block: 1em;
+         max-width: 68ch;
+         text-align: left;
+      }
+
+      h2 {
+         margin-block: 1em 0.5em;
+         font-family: var(--font-display);
+         font-size: 1.875rem;
+         font-weight: 800;
+         line-height: 1.05;
+         text-transform: uppercase;
+         letter-spacing: 0.03em;
+      }
+
+      h3 {
+         margin-block: 0.125em;
+         font-size: 1.5rem;
+         font-weight: 700;
+         line-height: 1.25;
+      }
+
+      h4 {
+         margin-block: 0.125em;
+         font-size: 1rem;
+         font-weight: 700;
+         line-height: 1.4;
+      }
+   }
+
+   .site-card {
+      font-size: 1rem;
+      line-height: 1.55;
+
+      p {
+         margin-block: 1em;
+         max-width: 65ch;
+         text-align: left;
+      }
+
+      h3 {
+         margin-block: 0.125em;
+         font-size: 1.5rem;
+         font-weight: 700;
+         line-height: 1.2;
+      }
+
+      h4 {
+         margin-block: 0.125em;
+         font-size: 1rem;
+         font-weight: 700;
+         line-height: 1.4;
+      }
+   }
+
+   // Reusable cutout and corner treatments.
+   .chipped-corners,
+   .chipped-corners-sm {
+      position: relative;
+      border-radius: 0;
+      clip-path: polygon(
+         0 0,
+         calc(100% - var(--chip-size)) 0,
+         100% var(--chip-size),
+         100% 100%,
+         var(--chip-size) 100%,
+         0 calc(100% - var(--chip-size))
+      );
+      &.chipped-corners--bordered {
+         border-color: transparent !important;
+
+         &::before {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background:
+               linear-gradient(var(--chip-border-color), var(--chip-border-color)) left top /
+                  calc(100% - var(--chip-size)) 1px no-repeat,
+               linear-gradient(
+                     45deg,
+                     transparent calc(50% - 0.5px),
+                     var(--chip-border-color) calc(50% - 0.5px) calc(50% + 0.5px),
+                     transparent calc(50% + 0.5px)
+                  )
+                  right top / var(--chip-size) var(--chip-size) no-repeat,
+               linear-gradient(var(--chip-border-color), var(--chip-border-color)) right top
+                  var(--chip-size) / 1px calc(100% - var(--chip-size)) no-repeat,
+               linear-gradient(var(--chip-border-color), var(--chip-border-color)) right bottom /
+                  calc(100% - var(--chip-size)) 1px no-repeat,
+               linear-gradient(
+                     45deg,
+                     transparent calc(50% - 0.5px),
+                     var(--chip-border-color) calc(50% - 0.5px) calc(50% + 0.5px),
+                     transparent calc(50% + 0.5px)
+                  )
+                  left bottom / var(--chip-size) var(--chip-size) no-repeat,
+               linear-gradient(var(--chip-border-color), var(--chip-border-color)) left bottom
+                  var(--chip-size) / 1px calc(100% - var(--chip-size)) no-repeat;
+            content: '';
+         }
+      }
+   }
+
+   .chipped-corners {
+      --chip-size: clamp(0.75rem, 1.25vw, 1rem);
+   }
+
+   .chipped-corners-sm {
+      --chip-size: clamp(0.5rem, 0.8vw, 0.625rem);
+   }
+
+   .site-prose {
+      ul:not([class]) {
+         margin-block: 1em;
+         padding-left: 2rem;
+         list-style: disc;
+      }
+
+      li + li {
+         margin-top: 0.5rem;
+      }
+   }
+
+   .corner-panel::before,
+   .corner-panel::after {
+      position: absolute;
+      width: 1rem;
+      height: 1rem;
+      content: '';
+   }
+
+   .corner-panel {
+      background: var(--color-site-panel);
+      box-shadow:
+         0.35rem 0 0 -0.2rem rgb(239 35 60 / 65%),
+         -0.35rem 0 0 -0.2rem rgb(0 183 214 / 65%),
+         0 1.5rem 3rem rgb(0 0 0 / 55%);
+
+      &::before {
+         top: 0.5rem;
+         left: 0.5rem;
+         border-top: 2px solid var(--color-site-accent);
+         border-left: 2px solid var(--color-site-accent);
+      }
+
+      &::after {
+         right: 0.5rem;
+         bottom: 0.5rem;
+         border-right: 2px solid var(--color-ink-cobalt);
+         border-bottom: 2px solid var(--color-ink-cobalt);
+      }
+   }
+
+   .list-arrow > li {
+      display: flex;
+
+      &::before {
+         margin-right: 1rem;
+         content: '\00bb';
+      }
+   }
+
+   .ink-heading,
+   main[data-page-stagger-root] h2,
+   main[data-page-stagger-root] h3 {
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      -webkit-text-stroke: 0.02em var(--color-ink);
+      paint-order: stroke fill;
+   }
+
+   /* Keep body copy legible over fixed fragments without full scrims. */
+   main[data-page-stagger-root] p,
+   main[data-page-stagger-root] li {
+      text-shadow:
+         0 0 0.4em rgb(0 0 0 / 90%),
+         0 0 0.15em rgb(0 0 0 / 90%);
+   }
+
+   .scrim p,
+   .scrim li,
+   .fragment-panel p,
+   .fragment-panel li,
+   .punk-slab p {
+      text-shadow: none;
+   }
+
+   /* Punk header: printed into the collage, stamped active markers. */
+   .punk-nav a {
+      text-shadow: none;
+
+      &:hover,
+      &:focus-visible {
+         text-shadow:
+            2px 0 0 rgb(237 23 56 / 85%),
+            -2px 0 0 color-mix(in srgb, var(--color-signal-cyan) 85%, transparent);
+      }
+   }
+}

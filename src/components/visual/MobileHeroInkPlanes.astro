@@ -1,6 +1,6 @@
 ---
 import manifest from '../../assets/ink/mobile-hero-planes/planes.json';
-import '../../styles/mobile-hero-planes.css';
+import '../../styles/mobile-hero-planes.scss';
 
 interface Props {
    /** Foreground is split at the live portrait/title stack boundary (z6 / z9). */
@@ -46,37 +46,35 @@ const registrationCSS =
 
 <style is:inline set:html={registrationCSS}></style>
 <span data-mobile-hero-plane={plane} aria-hidden="true">
-   {
-      Object.entries(manifest.variants).map(([viewport, planes]) => {
-         if (plane !== 'back' && viewport.endsWith('-1100')) return null;
-         const frames = planes[plane];
-         return (
-            <span data-hero-plane-viewport={viewport}>
-               {frames.map((frame, index) => {
-                  if (!('file' in frame)) return null;
-                  const final = index === frames.length - 1;
-                  const duration = final ? 1 : frames[index + 1].time - frame.time;
-                  return (
-                     <span
-                        class="mobile-hero-plane-frame"
-                        data-hero-frame-src={
-                           images[`../../assets/ink/mobile-hero-planes/${frame.file}`]
-                        }
-                        data-final={final || undefined}
-                        style={[
-                           `background-image:url("${images[`../../assets/ink/mobile-hero-planes/${frame.file}`]}")`,
-                           `left:${frame.left * 100}%`,
-                           `top:${frame.top * 100}%`,
-                           `width:${frame.scaleX * 100}%`,
-                           `height:${frame.scaleY * 100}%`,
-                           `--plane-start:${frame.time}ms`,
-                           `--plane-hold:${duration}ms`,
-                        ].join(';')}
-                     />
-                  );
-               })}
-            </span>
-         );
-      })
-   }
+   {Object.entries(manifest.variants).map(([viewport, planes]) => {
+      if (plane !== 'back' && viewport.endsWith('-1100')) return null;
+      const plate = planes[plane].at(-1);
+      if (!plate || !('file' in plate)) return null;
+      return (
+         <span data-hero-plane-viewport={viewport}>
+            <span
+               class="mobile-hero-plane-art"
+               data-hero-ink-src={images[`../../assets/ink/mobile-hero-planes/${plate.file}`]}
+               style={[
+                  `background-image:url("${images[`../../assets/ink/mobile-hero-planes/${plate.file}`]}")`,
+                  `left:${plate.left * 100}%`,
+                  `top:${plate.top * 100}%`,
+                  `width:${plate.scaleX * 100}%`,
+                  `height:${plate.scaleY * 100}%`,
+               ].join(';')}
+            />
+         </span>
+      );
+   })}
 </span>
+
+<style lang="scss">
+   @media (max-width: 47.99rem) {
+      .mobile-hero-plane-art {
+         position: absolute;
+         display: block;
+         background-repeat: no-repeat;
+         background-size: 100% 100%;
+      }
+   }
+</style>

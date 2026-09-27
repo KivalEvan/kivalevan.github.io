@@ -4,8 +4,8 @@ import { Image } from 'astro:assets';
 import SectionHeading from '../../components/visual/SectionHeading.astro';
 import InkCollision from '../../components/visual/InkCollision.astro';
 import { selectedProjects, supportingProject, mappingLinks } from '../../data/projects';
-import '../../styles/project-print.css';
-import '../../styles/project-showcase.css';
+import '../../styles/project-print.scss';
+import '../../styles/project-layout.scss';
 
 const pageDetails = {
    title: 'Projects',
@@ -37,13 +37,15 @@ const archive = [
 ---
 
 <MainLayout pageDetails={pageDetails}>
-   <div class="project-page project-showcase site-shell px-3 py-8 sm:px-6 md:px-8 md:py-12">
+   <div class="project-page project-showcase site-shell">
       <section aria-labelledby="selected-work">
          <div class="project-opening showcase-opening">
-            <div class="showcase-opening__collision"><InkCollision /></div>
+            <div class="showcase-opening__collision">
+               <InkCollision />
+            </div>
             <header>
                <SectionHeading id="selected-work" title="Projects" density="medium" />
-               <p class="mt-3 leading-relaxed">
+               <p class="showcase-opening__intro">
                   Software I build and contribute to, from map-checking tools to editors and
                   libraries.
                </p>
@@ -55,23 +57,25 @@ const archive = [
                   <p class="showcase-role">{leadProject.role}</p>
                   <p class="showcase-summary">{leadProject.summary}</p>
                   <ul class="showcase-stack" aria-label={`${leadProject.title} technologies`}>
-                     {leadProject.stack.map((technology) => <li>{technology}</li>)}
+                     {leadProject.stack.map((technology) => (
+                        <li>{technology}</li>
+                     ))}
                   </ul>
                   <nav class="showcase-actions" aria-label={`${leadProject.title} links`}>
-                     {
-                        leadProject.links.map((link) => (
-                           <a class="print-action" href={link.href}>
-                              {link.label} <span aria-hidden="true">↗</span>
-                           </a>
-                        ))
-                     }
+                     {leadProject.links.map((link) => (
+                        <a class="print-action" href={link.href}>
+                           {link.label} <span aria-hidden="true">↗</span>
+                        </a>
+                     ))}
                   </nav>
                </div>
                <figure class="showcase-image showcase-lead__image">
                   <Image
                      src={leadProject.image}
                      alt={leadProject.imageAlt}
-                     class="aspect-video w-full object-contain"
+                     class="showcase-image__media"
+                     widths={[384, 512, 640, 800, 1024]}
+                     sizes="(min-width: 48rem) min(60vw, 50rem), calc(100vw - 1.5rem)"
                      loading="eager"
                   />
                </figure>
@@ -79,57 +83,58 @@ const archive = [
          </div>
 
          <div class="showcase-projects">
-            {
-               otherProjects.map((project, index) => (
-                  <article
-                     class:list={[
-                        'showcase-project',
-                        { 'showcase-project--reverse': index % 2 === 0 },
-                     ]}
-                     aria-labelledby={project.id}
-                  >
-                     <div class="showcase-project__copy">
-                        <h3 id={project.id}>{project.title}</h3>
-                        <p class="showcase-role">{project.role}</p>
-                        <p class="showcase-summary">{project.summary}</p>
-                        <ul class="showcase-stack" aria-label={`${project.title} technologies`}>
-                           {project.stack.map((technology) => (
-                              <li>{technology}</li>
-                           ))}
-                        </ul>
-                        <nav class="showcase-actions" aria-label={`${project.title} links`}>
-                           {project.links.map((link) => (
-                              <a class="print-action" href={link.href}>
-                                 {link.label} <span aria-hidden="true">↗</span>
-                              </a>
-                           ))}
-                        </nav>
-                     </div>
-                     <figure class="showcase-image">
-                        <Image
-                           src={project.image}
-                           alt={project.imageAlt}
-                           class="aspect-video w-full object-contain"
-                           loading="lazy"
-                           decoding="async"
-                        />
-                     </figure>
-                  </article>
-               ))
-            }
+            {otherProjects.map((project, index) => (
+               <article
+                  class={
+                     index % 2 === 0
+                        ? 'showcase-project showcase-project--reverse'
+                        : 'showcase-project'
+                  }
+                  aria-labelledby={project.id}
+               >
+                  <div class="showcase-project__copy">
+                     <h3 id={project.id}>{project.title}</h3>
+                     <p class="showcase-role">{project.role}</p>
+                     <p class="showcase-summary">{project.summary}</p>
+                     <ul class="showcase-stack" aria-label={`${project.title} technologies`}>
+                        {project.stack.map((technology) => (
+                           <li>{technology}</li>
+                        ))}
+                     </ul>
+                     <nav class="showcase-actions" aria-label={`${project.title} links`}>
+                        {project.links.map((link) => (
+                           <a class="print-action" href={link.href}>
+                              {link.label} <span aria-hidden="true">↗</span>
+                           </a>
+                        ))}
+                     </nav>
+                  </div>
+                  <figure class="showcase-image">
+                     <Image
+                        src={project.image}
+                        alt={project.imageAlt}
+                        class="showcase-image__media"
+                        widths={[384, 512, 640, 800, 1024]}
+                        sizes="(min-width: 48rem) min(60vw, 50rem), calc(100vw - 1.5rem)"
+                        loading="lazy"
+                        decoding="async"
+                     />
+                  </figure>
+               </article>
+            ))}
          </div>
 
          <article class="showcase-library" aria-labelledby="bsmap">
             <h3 id="bsmap">{supportingProject.title}</h3>
             <p>{supportingProject.summary}</p>
-            <a class="print-action" href={supportingProject.href}
-               >View library <span aria-hidden="true">↗</span></a
-            >
+            <a class="print-action" href={supportingProject.href}>
+               View library <span aria-hidden="true">↗</span>
+            </a>
          </article>
          <p class="showcase-detail-link">
-            <a class="project-inline-link" href="/project/beat_saber#software-tools"
-               >More about the Beat Saber software projects →</a
-            >
+            <a class="project-inline-link" href="/project/beat_saber#software-tools">
+               More about the Beat Saber software projects →
+            </a>
          </p>
       </section>
 
@@ -144,24 +149,24 @@ const archive = [
             Published maps and utilities for building Beat Saber maps.
          </p>
          <ul class="showcase-link-list">
-            {
-               mappingLinks.map((project) => (
-                  <li>
-                     <h3>
-                        <a class="project-title-link" href={project.href}>
-                           {project.title} <span aria-hidden="true">↗</span>
-                        </a>
-                     </h3>
-                     <p>{project.summary}</p>
-                  </li>
-               ))
-            }
+            {mappingLinks.map((project) => (
+               <li>
+                  <h3>
+                     <a class="project-title-link" href={project.href}>
+                        {project.title} <span aria-hidden="true">↗</span>
+                     </a>
+                  </h3>
+                  <p>{project.summary}</p>
+               </li>
+            ))}
          </ul>
          <nav class="showcase-actions" aria-label="Beat Saber mapping links">
-            <a class="print-action" href="/project/beat_saber#mapping-workshop"
-               >Mapping work & permissions →</a
-            >
-            <a class="print-action" href="/commission/beat_saber/">Commission a map →</a>
+            <a class="print-action" href="/project/beat_saber#mapping-workshop">
+               Mapping work & permissions →
+            </a>
+            <a class="print-action" href="/commission/beat_saber/">
+               Commission a map →
+            </a>
          </nav>
       </section>
 
@@ -169,24 +174,371 @@ const archive = [
          <SectionHeading id="archive-heading" title="Archive" density="low" variant="hardware" />
          <p class="showcase-section-intro">Older experiments, practice, and reference code.</p>
          <ul class="showcase-link-list">
-            {
-               archive.map((project) => (
-                  <li>
-                     <h3>
-                        <a class="project-title-link" href={project.href}>
-                           {project.title} <span aria-hidden="true">↗</span>
-                        </a>
-                     </h3>
-                     <p>{project.description}</p>
-                  </li>
-               ))
-            }
+            {archive.map((project) => (
+               <li>
+                  <h3>
+                     <a class="project-title-link" href={project.href}>
+                        {project.title} <span aria-hidden="true">↗</span>
+                     </a>
+                  </h3>
+                  <p>{project.description}</p>
+               </li>
+            ))}
          </ul>
          <p class="showcase-detail-link">
-            About the <a class="project-inline-link" href="https://adventofcode.com/"
-               >Advent of Code event ↗</a
-            >.
+            About the{' '}
+            <a class="project-inline-link" href="https://adventofcode.com/">
+               Advent of Code event ↗
+            </a>
+            .
          </p>
       </section>
    </div>
 </MainLayout>
+
+<style lang="scss">
+   .project-showcase p,
+   .project-showcase li {
+      text-shadow: none;
+   }
+
+   .project-showcase > section + section {
+      margin-top: clamp(3.5rem, 7vw, 7rem);
+   }
+
+   .project-showcase h3 {
+      font-family: var(--font-display);
+      font-size: clamp(2.3rem, 4.5vw, 4rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      text-shadow: none;
+   }
+
+   .showcase-opening::before {
+      bottom: 3%;
+   }
+
+   .showcase-opening::after {
+      inset: 15% -5% auto 53%;
+      z-index: -1;
+      width: min(34rem, 52%);
+      height: 15rem;
+      content: '';
+      background: #0b1429;
+      mask-image: url('../../assets/ink/ink-mass-1.svg'), url('../../assets/ink/xerox-mask-1.svg');
+      mask-size:
+         100% 100%,
+         74% 88%;
+      mask-position:
+         center,
+         58% 44%;
+      mask-repeat: no-repeat;
+      mask-composite: intersect;
+      opacity: 0.9;
+      pointer-events: none;
+      transform: rotate(5deg);
+   }
+
+   /* Edge loss stays beside the screenshot, outside the heading and copy area. */
+   @supports (mask-composite: subtract) {
+      .showcase-opening::before {
+         mask-image:
+            url('../../assets/ink/project-paper.svg'), url('../../assets/ink/scratch-field-1.svg');
+         mask-size:
+            100% 100%,
+            clamp(4rem, 18vw, 16rem) clamp(4rem, 12vw, 10rem);
+         mask-position:
+            center,
+            right 2% bottom 4%;
+         mask-repeat: no-repeat;
+         mask-composite: subtract;
+      }
+   }
+
+   .showcase-lead,
+   .showcase-project {
+      display: grid;
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+      align-items: center;
+      gap: clamp(1.5rem, 4vw, 4rem);
+   }
+
+   .showcase-lead {
+      position: relative;
+      isolation: isolate;
+      padding: 1.5rem clamp(0.75rem, 2vw, 2rem) 2rem;
+      color: var(--color-ink);
+
+      &::before {
+         position: absolute;
+         top: -1rem;
+         right: 7%;
+         z-index: -1;
+         width: min(25rem, 48%);
+         height: 7rem;
+         content: '';
+         background: #6883ad;
+         mask: url('../../assets/ink/organic-drag-2.svg') center / 100% 100% no-repeat;
+         opacity: 0.72;
+         pointer-events: none;
+         transform: rotate(-4deg);
+      }
+
+      &::after {
+         position: absolute;
+         bottom: -1.25rem;
+         left: 1%;
+         z-index: -1;
+         width: 10rem;
+         height: 7rem;
+         content: '';
+         background: var(--color-signal-red);
+         mask: url('../../assets/ink/splatter-cluster-3.svg') center / contain no-repeat;
+         opacity: 0.68;
+         pointer-events: none;
+      }
+   }
+
+   .project-showcase .showcase-lead h3 {
+      color: var(--color-ink);
+   }
+
+   .showcase-role {
+      margin-top: 0.75rem;
+      color: #6883ad;
+      font-weight: 600;
+   }
+
+   .showcase-lead .showcase-role {
+      color: #29466b;
+   }
+
+   .showcase-summary {
+      max-width: 52ch;
+      margin-top: 1.25rem;
+      line-height: 1.65;
+   }
+
+   .showcase-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem 1rem;
+      margin: 1.25rem 0 0;
+      padding: 0;
+      list-style: none;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: #6883ad;
+   }
+
+   .showcase-lead .showcase-stack {
+      color: #29466b;
+   }
+
+   .showcase-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1.5rem;
+   }
+
+   .showcase-actions .print-action {
+      gap: 0.4rem;
+   }
+
+   .showcase-opening .print-action {
+      color: var(--color-paper);
+
+      &::before {
+         background: var(--color-ink);
+      }
+
+      &:is(:hover, :focus-visible)::before {
+         background: #29466b;
+      }
+
+      &:focus-visible {
+         outline-color: var(--color-ink);
+      }
+   }
+
+   .showcase-image {
+      position: relative;
+      isolation: isolate;
+      min-width: 0;
+      margin: 0;
+
+      &::before {
+         content: '';
+         position: absolute;
+         inset: -12% -5%;
+         z-index: -1;
+         background: #29466b;
+         mask: url('../../assets/ink/organic-drag-1.svg') center / 100% 100% no-repeat;
+         pointer-events: none;
+      }
+   }
+
+   .showcase-lead {
+      &__image::before {
+         background: var(--color-signal-red);
+         opacity: 0.7;
+         transform: rotate(-7deg);
+      }
+
+      &__image::after {
+         content: '';
+         position: absolute;
+         inset: -10% -5% -12% -8%;
+         z-index: -1;
+         background: #29466b;
+         mask: url('../../assets/ink/pigment-pool-blue.svg') center / 100% 100% no-repeat;
+         opacity: 0.65;
+         pointer-events: none;
+      }
+   }
+
+   .showcase-project:nth-child(odd) .showcase-image::before {
+      background: #6883ad;
+      mask-image: url('../../assets/ink/pigment-pool-blue.svg');
+      opacity: 0.76;
+      transform: rotate(4deg);
+   }
+
+   .showcase-project:nth-child(even) .showcase-image::before {
+      background: #0b1429;
+      mask-image: url('../../assets/ink/organic-drag-2.svg');
+      opacity: 0.95;
+      transform: rotate(-3deg);
+   }
+
+   .showcase-image img {
+      display: block;
+      background: var(--color-ink);
+   }
+
+   .showcase-projects {
+      display: grid;
+      gap: clamp(3rem, 6vw, 6rem);
+      margin-top: clamp(3rem, 6vw, 6rem);
+   }
+
+   .showcase-project--reverse {
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+
+      .showcase-project__copy {
+         grid-column: 2;
+      }
+
+      .showcase-image {
+         grid-column: 1;
+         grid-row: 1;
+      }
+   }
+
+   .showcase-library {
+      display: grid;
+      grid-template-columns: minmax(8rem, 0.4fr) minmax(0, 1fr) auto;
+      gap: 1rem 2rem;
+      align-items: center;
+      margin-top: clamp(3rem, 6vw, 6rem);
+      padding-block: 1.5rem;
+      position: relative;
+      isolation: isolate;
+      border-block: 1px solid #29466b;
+
+      &::before {
+         position: absolute;
+         top: -2rem;
+         left: -2rem;
+         z-index: -1;
+         width: 11rem;
+         height: 5rem;
+         content: '';
+         background: #ed1738;
+         mask: url('../../assets/ink/scrape-diagonal-1.svg') center / 100% 100% no-repeat;
+         opacity: 0.6;
+         pointer-events: none;
+      }
+
+      p {
+         max-width: 60ch;
+      }
+   }
+
+   .showcase-detail-link {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+   }
+
+   .showcase-section-intro {
+      max-width: 60ch;
+      margin-top: 1rem;
+   }
+
+   .showcase-link-list {
+      margin: 1.5rem 0 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid #29466b;
+
+      li {
+         display: grid;
+         grid-template-columns: minmax(0, 0.65fr) minmax(0, 1fr);
+         gap: 0.5rem 2rem;
+         align-items: center;
+         padding-block: 1rem;
+         border-bottom: 1px solid rgb(236 235 230 / 24%);
+      }
+   }
+
+   .project-showcase .showcase-link-list h3 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+   }
+
+   .showcase-link-list .project-title-link {
+      gap: 0.4rem;
+   }
+
+   @media (max-width: 47.99rem) {
+      .showcase-lead,
+      .showcase-project,
+      .showcase-project--reverse,
+      .showcase-library,
+      .showcase-link-list li {
+         grid-template-columns: minmax(0, 1fr);
+      }
+
+      .showcase-project--reverse .showcase-project__copy,
+      .showcase-project--reverse .showcase-image {
+         grid-column: auto;
+         grid-row: auto;
+      }
+
+      .showcase-lead {
+         padding-inline: 1rem;
+         gap: 2rem;
+      }
+
+      .showcase-opening::after {
+         top: 11%;
+         right: -8%;
+         width: 62%;
+         height: 10rem;
+      }
+
+      .showcase-lead::before {
+         top: auto;
+         right: -5%;
+         bottom: 11%;
+         width: 52%;
+         height: 5rem;
+      }
+
+      .showcase-library .print-action {
+         justify-self: start;
+      }
+   }
+</style>

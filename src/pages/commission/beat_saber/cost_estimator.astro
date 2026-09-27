@@ -1,6 +1,8 @@
 ---
 import MainLayout from '../../../layouts/MainLayout.astro';
 import CostCalculator from '../../../components/commission/CostCalculator.svelte';
+import PrintTitleText from '../../../components/visual/PrintTitleText.astro';
+import InkCollision from '../../../components/visual/InkCollision.astro';
 
 const pageDetails = {
    title: 'Commission',
@@ -13,100 +15,158 @@ const pageDetails = {
 ---
 
 <MainLayout pageDetails={pageDetails}>
-   <div class="estimator-page site-shell flex flex-col gap-8 px-3 py-8 sm:px-6 md:px-8 md:py-12">
-      <header class="estimator-header max-w-[65ch]" aria-labelledby="estimator-heading">
-         <h2
-            id="estimator-heading"
-            class="font-['Big_Shoulders_Display'] text-4xl font-extrabold uppercase leading-none tracking-tight md:text-5xl"
-         >
-            Cost Estimator
+   <div class="estimator-page site-shell">
+      <header class="estimator-header" aria-labelledby="estimator-heading">
+         <div class="reading-opening__collision">
+            <InkCollision />
+         </div>
+         <h2 id="estimator-heading" class="estimator-header__heading">
+            <PrintTitleText text="Cost Estimator" />
          </h2>
-         <p class="mt-2 leading-relaxed">
+         <p class="estimator-header__intro">
             Enter a song duration, choose one or more difficulties, and select a lighting option to
             calculate an estimate.
          </p>
-         <a class="print-action mt-3 self-start" href="/commission/beat_saber"
-            >Back to the custom map service</a
-         >
+         <a class="print-action estimator-header__back" href="/commission/beat_saber">
+            Back to the custom map service
+         </a>
       </header>
       <div>
          <CostCalculator client:load />
       </div>
-      <aside class="max-w-[65ch] border-t border-[#6883ad] pt-5" aria-labelledby="estimator-notes">
-         <h3
-            id="estimator-notes"
-            class="font-['Big_Shoulders_Display'] text-2xl font-extrabold uppercase leading-none"
-         >
+      <aside class="estimator-notes" aria-labelledby="estimator-notes">
+         <h3 id="estimator-notes" class="estimator-notes__heading">
             Estimator notes
          </h3>
-         <p class="mt-2">
+         <p class="estimator-notes__copy">
             Each additional lower difficulty receives a 25% discount. The displayed total is an
-            estimate, and the final price can change during the order. Read the <a
-               href="/commission/beat_saber#tnc">Terms &amp; Conditions</a
-            > before you order.
+            estimate, and the final price can change during the order. Read the{' '}
+            <a href="/commission/beat_saber#tnc">Terms &amp; Conditions</a> before you order.
          </p>
       </aside>
    </div>
 </MainLayout>
 
-<style>
+<style lang="scss">
+   @layer layout {
+      .estimator-page {
+         display: flex;
+         flex-direction: column;
+         gap: 2rem;
+         padding: 2rem 0.75rem;
+
+         @media (min-width: 40rem) {
+            padding-inline: 1.5rem;
+         }
+
+         @media (min-width: 48rem) {
+            padding: 3rem 2rem;
+         }
+      }
+
+      .estimator-header {
+         max-width: 65ch;
+
+         &__heading {
+            font-family: 'Big Shoulders Display', sans-serif;
+            font-size: 2.25rem;
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.025em;
+            text-transform: uppercase;
+
+            @media (min-width: 48rem) {
+               font-size: 3rem;
+            }
+         }
+
+         &__intro {
+            margin-top: 0.5rem;
+            line-height: 1.625;
+         }
+
+         &__back {
+            align-self: flex-start;
+            margin-top: 0.75rem;
+         }
+      }
+
+      .estimator-notes {
+         max-width: 65ch;
+         padding-top: 1.25rem;
+         border-top: 1px solid #6883ad;
+
+         &__heading {
+            font-family: 'Big Shoulders Display', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            line-height: 1;
+            text-transform: uppercase;
+         }
+
+         &__copy {
+            margin-top: 0.5rem;
+         }
+      }
+   }
+
    .estimator-header {
       position: relative;
       isolation: isolate;
       padding: clamp(1.5rem, 4vw, 3rem);
       color: var(--color-ink);
       text-shadow: none;
+
+      &::before {
+         content: '';
+         position: absolute;
+         inset: 0;
+         z-index: -1;
+         background: var(--color-paper);
+         mask:
+            linear-gradient(#000 0 0) center / 90% 92% no-repeat,
+            url('../../../assets/ink/project-paper.svg') center / 100% 100% no-repeat;
+         pointer-events: none;
+      }
+
+      &::after {
+         content: '';
+         position: absolute;
+         width: clamp(13rem, 32vw, 25rem);
+         height: 13rem;
+         right: -4rem;
+         bottom: -2rem;
+         z-index: -2;
+         background: var(--color-signal-cyan);
+         mask: url('../../../assets/ink/ink-tangle-blue.svg') center / 100% 100% no-repeat;
+         pointer-events: none;
+      }
+
+      &__heading::before {
+         content: '';
+         position: absolute;
+         inset: -1.5rem -2rem 28% 32%;
+         z-index: -2;
+         background: var(--color-signal-red);
+         mask: url('../../../assets/ink/impact-cluster-3.svg') center / 100% 100% no-repeat;
+         rotate: -8deg;
+         pointer-events: none;
+      }
    }
 
-   .estimator-header::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background: var(--color-paper);
-      mask:
-         linear-gradient(#000 0 0) center / 90% 92% no-repeat,
-         url('../../../assets/ink/project-paper.svg') center / 100% 100% no-repeat;
-      pointer-events: none;
-   }
-
-   .estimator-header::after {
-      content: '';
-      position: absolute;
-      width: clamp(13rem, 32vw, 25rem);
-      height: 13rem;
-      right: -4rem;
-      bottom: -2rem;
-      z-index: -2;
-      background: #29466b;
-      mask: url('../../../assets/ink/organic-drag-2.svg') center / 100% 100% no-repeat;
-      pointer-events: none;
-   }
-
-   .estimator-header h2::before {
-      content: '';
-      position: absolute;
-      inset: -1.5rem -2rem 28% 32%;
-      z-index: -2;
-      background: var(--color-signal-red);
-      mask: url('../../../assets/ink/impact-cluster-3.svg') center / 100% 100% no-repeat;
-      rotate: -8deg;
-      pointer-events: none;
-   }
-
-   .estimator-header .print-action {
+   :global(.print-page) .estimator-header .print-action {
       color: var(--color-paper);
-   }
 
-   .estimator-header .print-action::before {
-      background: var(--color-ink);
-   }
+      &::before {
+         background: var(--color-ink);
+      }
 
-   .estimator-header .print-action:is(:hover, :focus-visible)::before {
-      background: #29466b;
-   }
+      &:is(:hover, :focus-visible)::before {
+         background: #29466b;
+      }
 
-   .estimator-header .print-action:focus-visible {
-      outline-color: var(--color-ink);
+      &:focus-visible {
+         outline-color: var(--color-ink);
+      }
    }
 </style>

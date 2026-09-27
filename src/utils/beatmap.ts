@@ -3,6 +3,7 @@ import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { Image } from 'imagescript';
 import { mediainfo } from './mediainfo.ts';
+import type { BeatmapDetails } from '../data/beatmap.ts';
 
 const INPUT_PATH =
    '/mnt/programs/SteamLibrary/steamapps/common/Beat Saber/Beat Saber_Data/Kival Map/';
@@ -63,30 +64,6 @@ const request = [
    '4de13',
    '4f953',
 ];
-
-export interface BeatmapDetails {
-   id: string;
-   songName: string;
-   songSubName: string;
-   songAuthorName: string;
-   coverImage: string;
-   environment: string;
-   environment360: string | null;
-   beatsPerMinute: {
-      base: number;
-      min: number;
-      max: number;
-   };
-   songDuration: number;
-   link: {
-      [key: string]: {
-         name: string;
-         url: string;
-      };
-   };
-   difficulties: { [key: string]: string[] };
-   tag: ('request' | 'showcase')[];
-}
 
 const mapData: BeatmapDetails[] = [];
 

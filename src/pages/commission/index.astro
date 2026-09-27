@@ -1,10 +1,11 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
 import InkCollision from '../../components/visual/InkCollision.astro';
-import '../../styles/commission-print.css';
+import PrintTitleText from '../../components/visual/PrintTitleText.astro';
+import '../../styles/commission-print.scss';
 
 const pageDetails = {
-   title: 'Commission',
+   title: 'Commissions',
    description: 'Review Beat Saber custom map commission prices, proof, and order details.',
    overrideTitle: false,
 };
@@ -13,10 +14,14 @@ const pageDetails = {
 <MainLayout pageDetails={pageDetails}>
    <div class="commission-index site-shell">
       <article class="commission-index__sheet" aria-labelledby="commission-heading">
-         <div class="commission-index__collision"><InkCollision /></div>
+         <div class="commission-index__collision">
+            <InkCollision />
+         </div>
          <div class="commission-index__copy">
             <header>
-               <h2 id="commission-heading">Commission service</h2>
+               <h2 id="commission-heading">
+                  <PrintTitleText text="Commissions" />
+               </h2>
                <p>
                   I currently accept Beat Saber custom map commissions. Review the service or
                   calculate a price estimate below.
@@ -27,16 +32,16 @@ const pageDetails = {
                <h3 id="beat-saber-service">Beat Saber Custom Map</h3>
                <p>
                   Request a map for your favourite song from a mapper with more than six years of
-                  experience. Rates are $10–$20 per minute per difficulty. Easy-only maps use a
+                  experience. Rates are $10-$20 per minute per difficulty. Easy-only maps use a
                   separate $8 rate.
                </p>
                <nav aria-label="Beat Saber commission actions">
-                  <a class="print-action" href="/commission/beat_saber"
-                     >View service details <span aria-hidden="true">→</span></a
-                  >
-                  <a class="print-action" href="/commission/beat_saber/cost_estimator"
-                     >Open cost estimator <span aria-hidden="true">→</span></a
-                  >
+                  <a class="print-action" href="/commission/beat_saber">
+                     View service details <span aria-hidden="true">→</span>
+                  </a>
+                  <a class="print-action" href="/commission/beat_saber/cost_estimator">
+                     Open cost estimator <span aria-hidden="true">→</span>
+                  </a>
                </nav>
             </section>
          </div>

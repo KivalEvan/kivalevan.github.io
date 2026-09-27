@@ -10,7 +10,9 @@ export const PRINT_MOTION_ENTRANCE_SELECTOR = [
    '.permission-print',
    '.blog-opening',
    '.blog-post-header',
+   '.blog-post-navigation',
    '.commission-index__sheet',
+   '.commission-hero',
    '.commission-hero__photo',
    '.commission-hero__paper',
    '.estimator-header',
@@ -29,11 +31,12 @@ export const PRINT_MOTION_ENTRANCE_SELECTOR = [
    '.commission-hero__paper .commission-banner',
    '.estimator-header > h2',
    '.error-print > h1',
+   '.site-footer',
 ].join(', ');
 
 export const PRINT_MOTION_BOOT_TIMEOUT = 1_500;
 
-/** Returns only outer entrance plates so nested content is never clipped twice. */
+/** Returns outer material groups so nested decoration never starts two entrances. */
 export const getPrintMotionTargets = (root: ParentNode = document) => {
    const targets = Array.from(root.querySelectorAll<HTMLElement>(PRINT_MOTION_ENTRANCE_SELECTOR));
    return targets.filter(

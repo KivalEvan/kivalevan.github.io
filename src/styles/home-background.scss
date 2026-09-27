@@ -1,0 +1,171 @@
+/* Shared print inks; the standalone CV retains its document palette. */
+body:has(.mixed-hero),
+body.print-page {
+   --color-paper: #f4f3ef;
+   --color-signal-red: #ff173c;
+   --color-signal-cyan: #00b9d6;
+   --color-ink-cobalt: #008cbb;
+   --color-ink-petrol: #07516b;
+   --color-deep-blue: #021522;
+   --color-ink-deep: #021522;
+}
+
+.home-section {
+   > .site-shell {
+      isolation: isolate;
+
+      &::before,
+      &::after {
+         content: '';
+         position: absolute;
+         z-index: -1;
+         pointer-events: none;
+         background-repeat: no-repeat;
+      }
+   }
+   /* Flat pigment impressions, without a glow or an atmospheric gradient. */
+   &--featured {
+      > .site-shell::before {
+         inset: 5.4rem -3% 1.25rem;
+         border: 1px solid rgb(236 235 230 / 7%);
+         background: rgb(244 243 239 / 4%);
+         mask-image: url('../assets/ink/scratch-field-1.svg');
+         mask-repeat: no-repeat;
+         mask-size: 118% 106%;
+         opacity: 0.54;
+         transform: rotate(-0.35deg);
+      }
+
+      > .site-shell::after {
+         right: 5%;
+         bottom: 0.75rem;
+         width: min(30vw, 25rem);
+         height: 3.25rem;
+         background: rgb(244 243 239 / 18%);
+         mask-image: url('../assets/ink/organic-drag-1.svg');
+         mask-size: 100% 100%;
+         opacity: 0.3;
+         transform: rotate(1.5deg);
+      }
+   }
+
+   /* A muted blue underpainting sits behind the skills heading, with dry residue only. */
+   &--skills {
+      > .site-shell::before {
+         left: -5%;
+         top: 1.55rem;
+         width: min(84%, 55rem);
+         height: clamp(3.2rem, 7vw, 5rem);
+         background: rgb(7 81 107 / 26%);
+         mask-image: url('../assets/ink/organic-drag-2.svg');
+         mask-size: 100% 100%;
+         opacity: 0.62;
+         transform: rotate(-1.15deg);
+      }
+
+      > .site-shell::after {
+         right: 4%;
+         top: 5.3rem;
+         width: min(23vw, 16rem);
+         height: 4.25rem;
+         background: rgb(244 243 239 / 18%);
+         mask-image: url('../assets/ink/spray-fine-1.svg');
+         mask-size: 100% 100%;
+         opacity: 0.32;
+         transform: rotate(7deg);
+      }
+   }
+
+   /* Keep the equipment canvas flat; only the masked residue remains. */
+   &--hardware {
+      > .site-shell::before {
+         content: none;
+      }
+
+      > .site-shell::after {
+         right: 2%;
+         bottom: 3.5rem;
+         width: min(37vw, 29rem);
+         height: 10rem;
+         background: rgb(244 243 239 / 18%);
+         mask-image: url('../assets/ink/scratch-field-1.svg');
+         mask-size: 135% 120%;
+         opacity: 0.55;
+         transform: rotate(-2.5deg);
+      }
+   }
+}
+
+/* Print routes share the closing ink field; links and ghost title stay above it. */
+:is(body:has(.mixed-hero), body.print-page) {
+   .site-footer {
+      isolation: isolate;
+      background: var(--color-ink);
+
+      &::before,
+      &::after {
+         content: '';
+         position: absolute;
+         z-index: -1;
+         pointer-events: none;
+      }
+
+      &::before {
+         inset: auto auto 0 -4%;
+         width: 50%;
+         height: 8rem;
+         background: var(--color-ink-petrol);
+         mask: url('../assets/ink/ink-tangle-blue.svg') center / 100% 100% no-repeat;
+         opacity: 0.6;
+         transform: rotate(-0.7deg) scale(1.08);
+      }
+
+      &::after {
+         right: 6%;
+         bottom: 1rem;
+         width: 25%;
+         height: 7rem;
+         background: var(--color-signal-red);
+         mask-image: url('../assets/ink/spray-fine-2.svg');
+         mask-repeat: no-repeat;
+         mask-size: 100% 100%;
+         opacity: 0.4;
+         transform: rotate(1deg);
+      }
+   }
+
+   .site-footer-proof {
+      color: transparent;
+      -webkit-text-stroke: 1px color-mix(in srgb, var(--color-paper) 52%, transparent);
+      text-shadow: none;
+   }
+
+   .site-footer-links {
+      &::before {
+         background: var(--color-ink-petrol);
+         opacity: 0.35;
+      }
+
+      &::after {
+         background: var(--color-signal-cyan);
+      }
+   }
+}
+
+@media (max-width: 47.99rem) {
+   .home-section {
+      &--featured > .site-shell::before {
+         inset-inline: -1%;
+      }
+
+      &--skills > .site-shell::before {
+         left: -2%;
+         width: 94%;
+      }
+
+      &--hardware > .site-shell::after {
+         width: 52vw;
+         opacity: 0.38;
+      }
+   }
+}

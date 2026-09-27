@@ -1,7 +1,8 @@
 ---
 import Head from '../components/Head.astro';
-import '../styles/tailwind.css';
-import '../styles/print-page-motion.css';
+import '../styles/global.scss';
+import '../styles/site-components.scss';
+import '../styles/print-page-motion.scss';
 import {
    PRINT_MOTION_BOOT_TIMEOUT,
    PRINT_MOTION_ENTRANCE_SELECTOR,
@@ -85,8 +86,13 @@ if (canonicalURL.pathname !== '/') {
             } catch {
                // An invalid percent-encoded hash must not stop the fail-open bootstrap.
             }
-            window.setTimeout(() => {
+            const cleanupBoot = () => {
+               window.clearTimeout(bootTimer);
                document.removeEventListener('focusin', onFocus);
+               document.removeEventListener('astro:before-swap', cleanupBoot);
+            };
+            const bootTimer = window.setTimeout(() => {
+               cleanupBoot();
                if (
                   root.dataset.printMotionBoot !== 'pending' ||
                   root.dataset.printMotionBootId !== bootId
@@ -96,6 +102,7 @@ if (canonicalURL.pathname !== '/') {
                root.dataset.printMotionBoot = 'expired';
                targets.forEach((target) => target.removeAttribute('data-print-motion-prepared'));
             }, printMotionBootTimeout);
+            document.addEventListener('astro:before-swap', cleanupBoot, { once: true });
          })();
       </script>
    </body>
@@ -113,12 +120,25 @@ if (canonicalURL.pathname !== '/') {
 
    if (!document.documentElement.dataset.pageStaggerBound) {
       let pendingPageTransition = false;
-      let pendingPrintTransition = false;
+      const printNavigations = new WeakMap<AbortSignal, { generation: number; enabled: boolean }>();
       let printTransitionGeneration = 0;
       let printBootGeneration = 0;
       let activeAnimations: Animation[] = [];
       let pageVisibilityObserver: IntersectionObserver | undefined;
       let printBootTimer: number | undefined;
+      let exitingPage: HTMLElement | undefined;
+
+      const clearPrintExit = () => {
+         exitingPage?.removeAttribute('data-print-exit');
+         exitingPage?.style.removeProperty('--print-exit-top');
+         exitingPage?.style.removeProperty('--print-exit-unit');
+         if (exitingPage && !exitingPage.style.length) exitingPage.removeAttribute('style');
+         exitingPage = undefined;
+      };
+
+      const clearPrintTransition = () => {
+         document.documentElement.removeAttribute('data-print-transition');
+      };
 
       const exposePreparedPrint = (bootId: string) => {
          window.clearTimeout(printBootTimer);
@@ -237,8 +257,8 @@ if (canonicalURL.pathname !== '/') {
                   },
                ],
                {
-                  duration: 650,
-                  easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+                  duration: (16 * 1_000) / 24,
+                  easing: 'steps(16, end)',
                   fill: 'backwards',
                },
             );
@@ -286,26 +306,79 @@ if (canonicalURL.pathname !== '/') {
 
       document.addEventListener('astro:before-preparation', (event) => {
          pendingPageTransition = true;
+         clearPrintExit();
          clearPageAnimations();
          const transitionEvent = event as TransitionBeforePreparationEvent;
-         ++printTransitionGeneration;
+         const generation = ++printTransitionGeneration;
          const targetPath = transitionEvent.to.pathname.replace(/\/+$/, '') || '/';
-         pendingPrintTransition =
+         const pendingPrintTransition =
             (document.body.classList.contains('print-page') ||
                !!document.querySelector('.mixed-hero')) &&
             targetPath !== '/cv';
+         // A skipped native transition can still swap after the next preparation.
+         // Keep its eligibility and cleanup generation tied to its own navigation.
+         printNavigations.set(transitionEvent.signal, {
+            generation,
+            enabled: pendingPrintTransition,
+         });
          if (
             pendingPrintTransition &&
             !window.matchMedia('(prefers-reduced-motion: reduce)').matches
          ) {
-            document.documentElement.dataset.printTransition = 'true';
+            document.documentElement.dataset.printTransition = transitionEvent.direction;
             document.documentElement.dataset.printMotionWait = 'true';
          } else {
-            document.documentElement.removeAttribute('data-print-transition');
+            clearPrintTransition();
             document.documentElement.removeAttribute('data-print-motion-wait');
          }
+         transitionEvent.signal.addEventListener(
+            'abort',
+            () => {
+               if (generation !== printTransitionGeneration) return;
+               clearPrintExit();
+               clearPrintTransition();
+               document.documentElement.removeAttribute('data-print-motion-wait');
+               document.dispatchEvent(new Event('print-page-motion-ready'));
+            },
+            { once: true },
+         );
          const originalLoader = transitionEvent.loader;
          transitionEvent.loader = async () => {
+            if (pendingPrintTransition) {
+               // Load first: a slow or failed request must leave the old page usable.
+               await originalLoader();
+               if (
+                  transitionEvent.signal.aborted ||
+                  transitionEvent.defaultPrevented ||
+                  document.hidden ||
+                  window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+                  !(
+                     transitionEvent.newDocument.body.classList.contains('print-page') ||
+                     transitionEvent.newDocument.querySelector('.mixed-hero')
+                  )
+               )
+                  return;
+
+               const page = document.querySelector('main');
+               if (!(page instanceof HTMLElement)) return;
+               exitingPage = page;
+               // Size the cuts to the visible page, not a long document's full height.
+               page.style.setProperty('--print-exit-top', `${-page.getBoundingClientRect().top}px`);
+               page.style.setProperty('--print-exit-unit', `${window.innerHeight / 100}px`);
+               page.dataset.printExit = '';
+               const erase = page
+                  .getAnimations()
+                  .find(
+                     (animation) =>
+                        animation instanceof CSSAnimation &&
+                        animation.animationName === 'print-page-ink-out',
+                  );
+               // Hold the final black pose until swap. Removing the marker on
+               // abort, reduced motion, or a hidden tab cancels this wait safely.
+               if (erase) await erase.finished.catch(() => undefined);
+               return;
+            }
+
             const root = document.querySelector('[data-page-stagger-root]');
             if (
                !(root instanceof HTMLElement) ||
@@ -318,8 +391,8 @@ if (canonicalURL.pathname !== '/') {
             }
 
             const depthFade = root.animate([{ opacity: 1 }, { opacity: 0 }], {
-               duration: 180,
-               easing: 'cubic-bezier(0.4, 0, 1, 1)',
+               duration: (4 * 1_000) / 24,
+               easing: 'steps(4, end)',
                fill: 'forwards',
             });
             activeAnimations.push(depthFade);
@@ -329,26 +402,33 @@ if (canonicalURL.pathname !== '/') {
       document.addEventListener('astro:before-swap', (event) => {
          const transitionEvent = event as TransitionBeforeSwapEvent;
          prepareIncomingMotion(transitionEvent.newDocument);
-         const transitionGeneration = printTransitionGeneration;
+         const navigation = printNavigations.get(transitionEvent.signal);
          const printTransition =
-            pendingPrintTransition &&
+            navigation?.enabled &&
             (transitionEvent.newDocument.body.classList.contains('print-page') ||
                !!transitionEvent.newDocument.querySelector('.mixed-hero')) &&
             !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-         pendingPrintTransition = false;
          if (!printTransition) {
-            document.documentElement.removeAttribute('data-print-transition');
+            clearPrintTransition();
             document.documentElement.removeAttribute('data-print-motion-wait');
             return;
          }
-         transitionEvent.newDocument.documentElement.dataset.printTransition = 'true';
+         transitionEvent.newDocument.documentElement.dataset.printTransition =
+            transitionEvent.direction;
          transitionEvent.newDocument.documentElement.dataset.printMotionWait = 'true';
-         const finishPrintTransition = () => {
-            if (transitionGeneration !== printTransitionGeneration) return;
-            document.documentElement.removeAttribute('data-print-transition');
+         const releaseIncomingMotion = () => {
+            if (navigation.generation !== printTransitionGeneration) return;
             document.documentElement.removeAttribute('data-print-motion-wait');
             document.dispatchEvent(new Event('print-page-motion-ready'));
          };
+         const finishPrintTransition = () => {
+            if (navigation.generation !== printTransitionGeneration) return;
+            clearPrintTransition();
+            releaseIncomingMotion();
+         };
+         // The old page is already black before the browser captures it.
+         // A skipped native transition rejects ready, but still must fail open.
+         transitionEvent.viewTransition.ready.catch(finishPrintTransition);
          transitionEvent.viewTransition.finished.then(finishPrintTransition, finishPrintTransition);
       });
       document.addEventListener('astro:page-load', () => {
@@ -356,13 +436,18 @@ if (canonicalURL.pathname !== '/') {
          pendingPageTransition = false;
          animatePageElements();
       });
-      document.addEventListener('astro:after-swap', armPreparedMotion);
+      document.addEventListener('astro:after-swap', () => {
+         clearPrintExit();
+         armPreparedMotion();
+      });
       armPreparedMotion();
       document.documentElement.dataset.pageStaggerBound = 'true';
       window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', () => {
+         clearPrintExit();
          if (document.body.classList.contains('print-page')) clearPageAnimations();
       });
       document.addEventListener('visibilitychange', () => {
+         if (document.hidden) clearPrintExit();
          if (document.hidden && document.body.classList.contains('print-page'))
             clearPageAnimations();
       });

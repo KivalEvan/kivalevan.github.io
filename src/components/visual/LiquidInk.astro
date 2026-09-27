@@ -1,0 +1,31 @@
+---
+import redContour from '../../assets/ink/liquid-pool-red.svg?url';
+import blueContour from '../../assets/ink/liquid-pool-blue.svg?url';
+
+interface Props {
+   /** Selects the contour; its ink color comes from the containing layer. */
+   shape: 'red' | 'blue';
+}
+
+const { shape } = Astro.props;
+const contour = shape === 'red' ? redContour : blueContour;
+---
+
+<span
+   class="liquid-ink"
+   data-liquid-ink-src={contour}
+   style={`--liquid-ink-contour: url("${contour}")`}
+   aria-hidden="true"
+></span>
+
+<style lang="scss">
+   /* Reuse the full-resolution SVG without repeating its path data in page HTML. */
+   .liquid-ink {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: currentColor;
+      mask: var(--liquid-ink-contour) center / 100% 100% no-repeat;
+      pointer-events: none;
+   }
+</style>

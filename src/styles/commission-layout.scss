@@ -1,0 +1,109 @@
+@layer layout {
+   .commission-page {
+      width: 100%;
+   }
+
+   .commission-section {
+      &__intro {
+         margin-top: 0.5rem;
+         line-height: 1.625;
+
+         &--narrow {
+            max-width: 65ch;
+         }
+      }
+
+      &__action {
+         align-self: flex-start;
+         margin-top: 0.75rem;
+      }
+   }
+
+   .commission-proof-links {
+      &__link {
+         display: inline-flex;
+         align-items: center;
+         min-height: 44px;
+         text-underline-offset: 0.25rem;
+
+         &:is(:hover, :focus-visible) {
+            text-decoration-line: underline;
+         }
+      }
+   }
+
+   .commission-proof__copy {
+      line-height: 1.625;
+   }
+
+   .commission-enquiry {
+      &__copy {
+         cursor: pointer;
+      }
+
+      &__details {
+         margin-top: 1rem;
+      }
+   }
+
+   .commission-rates__grid {
+      font-variant-numeric: tabular-nums;
+   }
+
+   .commission-rate-panel {
+      min-width: 0;
+
+      &__heading {
+         font-size: 1.25rem;
+         font-weight: 700;
+         line-height: 1.4;
+      }
+
+      &__rates {
+         margin-top: 0.75rem;
+
+         > :not(:last-child) {
+            margin-block-start: 0;
+            margin-block-end: 0.75rem;
+         }
+      }
+
+      &__rate {
+         display: grid;
+         grid-template-columns: minmax(5rem, auto) minmax(0, 1fr);
+         column-gap: 0.75rem;
+         padding-top: 0.75rem;
+         border-top: 1px solid rgb(255 255 255 / 30%);
+
+         &:first-child {
+            padding-top: 0;
+            border-top: 0;
+         }
+      }
+
+      &__amount,
+      &__name {
+         font-weight: 600;
+      }
+
+      &__description {
+         grid-column: span 2;
+         margin-top: 0.25rem;
+         color: rgb(255 255 255 / 80%);
+         font-size: 0.875rem;
+         line-height: calc(1.25 / 0.875);
+      }
+   }
+
+   .commission-pricing-notes__list,
+   .commission-terms__list {
+      > :not(:last-child) {
+         margin-block-start: 0;
+         margin-block-end: 0.5rem;
+      }
+   }
+
+   .commission-terms__list {
+      width: 100%;
+   }
+}

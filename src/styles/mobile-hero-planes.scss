@@ -1,0 +1,30 @@
+/* Complete transparent ink surfaces. No source material effect is reapplied here. */
+[data-mobile-hero-plane] {
+   display: none;
+}
+
+@media (max-width: 47.99rem) {
+   [data-mobile-hero-plane] {
+      display: block;
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+   }
+   [data-mobile-hero-plane='back'] {
+      z-index: 1;
+   }
+   [data-mobile-hero-plane='mid'] {
+      z-index: 4;
+   }
+   [data-mobile-hero-plane='fore'] {
+      z-index: 6;
+   }
+   [data-mobile-hero-plane='front'] {
+      z-index: 9;
+   }
+   [data-hero-plane-viewport] {
+      display: none;
+      position: absolute;
+      inset: 0;
+   }
+}

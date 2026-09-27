@@ -1,0 +1,311 @@
+// Shared project-route materials and typography.
+.project-page,
+.beat-saber-page {
+   color: #ecebe6;
+}
+
+.project-intro__pocket,
+.tool-lead__pocket {
+   isolation: isolate;
+
+   &::before {
+      content: '';
+      position: absolute;
+      inset: -4% -3%;
+      z-index: -1;
+      background: #0b1429;
+      mask: url('../assets/ink/heavy-ink-mass-1.svg') center / 100% 100% no-repeat;
+      pointer-events: none;
+   }
+}
+
+.project-page,
+.beat-saber-page {
+   :is(.tool-lead, .workshop-feature) {
+      position: relative;
+      isolation: isolate;
+
+      &::before {
+         position: absolute;
+         z-index: -1;
+         content: '';
+         width: 13rem;
+         height: 8rem;
+         background: #29466b;
+         mask: url('../assets/ink/organic-drag-1.svg') center / 100% 100% no-repeat;
+         opacity: 0.7;
+         pointer-events: none;
+      }
+
+      &::after {
+         position: absolute;
+         z-index: -1;
+         content: '';
+         width: 8rem;
+         height: 6rem;
+         background: #ed1738;
+         mask: url('../assets/ink/splatter-cluster-2.svg') center / 100% 100% no-repeat;
+         opacity: 0.62;
+         pointer-events: none;
+      }
+   }
+
+   .print-heading {
+      margin-bottom: 0.8rem;
+   }
+
+   .print-heading__title,
+   .project-title {
+      color: #ecebe6;
+      font-family: var(--font-display);
+      letter-spacing: -0.025em;
+      text-shadow: none;
+   }
+
+   .project-meta {
+      color: #6883ad;
+      letter-spacing: 0.08em;
+   }
+
+   .project-title-link {
+      display: inline-flex;
+      min-height: 2.75rem;
+      align-items: center;
+      color: #ecebe6;
+      text-decoration: none;
+   }
+
+   .project-inline-link {
+      color: #6883ad;
+      text-decoration: underline;
+      text-decoration-color: rgb(104 131 173 / 0.6);
+      text-underline-offset: 0.18em;
+   }
+
+   .project-title-link:hover,
+   .project-inline-link:hover {
+      color: #fff;
+   }
+
+   .project-title-link:focus-visible,
+   .project-action:focus-visible,
+   .project-inline-link:focus-visible {
+      outline: 2px solid #ecebe6;
+      outline-offset: 3px;
+   }
+
+   .project-archive {
+      border-color: rgb(104 131 173 / 0.8);
+
+      li {
+         border-color: rgb(236 235 230 / 0.24);
+      }
+   }
+}
+
+@media (max-width: 47.99rem) {
+   .project-page :is(.tool-lead, .workshop-feature)::before,
+   .beat-saber-page :is(.tool-lead, .workshop-feature)::before {
+      width: 9rem;
+      height: 6rem;
+   }
+}
+
+/* The opening is one paper-and-ink composition, not a row of framed cards. */
+.project-opening {
+   position: relative;
+   isolation: isolate;
+   padding: clamp(1rem, 3vw, 3rem) 0 2rem;
+
+   &::before {
+      content: '';
+      position: absolute;
+      inset: -1.5rem -5% 5% -6%;
+      z-index: -2;
+      background: var(--color-paper);
+      /* The homepage contour stretches here to cover both tall mobile and wide desktop openings. */
+      mask: url('../assets/ink/project-paper.svg') center / 100% 100% no-repeat;
+      transform: rotate(-2deg);
+      pointer-events: none;
+   }
+
+   &::after {
+      content: '';
+      position: absolute;
+      inset: -0.5rem -5% 2rem 24%;
+      z-index: -1;
+      background: #29466b;
+      mask: url('../assets/ink/pigment-pool-blue.svg') center / 100% 100% no-repeat;
+      opacity: 0.78;
+      pointer-events: none;
+   }
+
+   > header {
+      position: relative;
+      z-index: 2;
+      padding-inline: clamp(0.75rem, 2vw, 2rem);
+
+      /* An abraded impact sits at the title edge, leaving its letterforms on clean paper. */
+      &::before {
+         position: absolute;
+         top: -1.5rem;
+         left: -1.75rem;
+         z-index: -1;
+         width: min(15rem, 38%);
+         height: 5rem;
+         content: '';
+         background: #ed1738;
+         mask-image:
+            url('../assets/ink/impact-cluster-2.svg'), url('../assets/ink/print-splatter-field.svg');
+         mask-size:
+            100% 100%,
+            72% 82%;
+         mask-position:
+            center,
+            62% 48%;
+         mask-repeat: no-repeat;
+         mask-composite: intersect;
+         opacity: 0.78;
+         pointer-events: none;
+         transform: rotate(-3deg);
+      }
+
+      &::after {
+         position: absolute;
+         inset: auto -1rem -1.5rem 34%;
+         z-index: -1;
+         width: min(28rem, 66%);
+         height: 3.5rem;
+         content: '';
+         background: #6883ad;
+         mask: url('../assets/ink/scratch-field-1.svg') center / 100% 100% no-repeat;
+         opacity: 0.8;
+         pointer-events: none;
+         transform: rotate(2deg);
+      }
+      .print-heading__title {
+         color: var(--color-ink);
+         font-size: clamp(3.4rem, 7.5vw, 6.5rem);
+         line-height: 0.88;
+         text-shadow: none;
+      }
+
+      > p {
+         max-width: 36ch;
+         color: var(--color-ink);
+         text-shadow: none;
+      }
+   }
+
+   :is(.project-intro__pocket, .tool-lead__pocket) {
+      align-self: start;
+      margin-top: 1rem;
+      padding: clamp(1.8rem, 3vw, 3rem);
+
+      &::before {
+         inset: 0 -2% -2%;
+         background: var(--color-ink);
+         mask-image: url('../assets/ink/project-paper.svg');
+      }
+
+      &::after {
+         position: absolute;
+         right: -1.5rem;
+         bottom: -1.25rem;
+         z-index: -2;
+         width: 9rem;
+         height: 6rem;
+         content: '';
+         background: #ed1738;
+         mask: url('../assets/ink/impact-cluster-2.svg') center / contain no-repeat;
+         opacity: 0.62;
+         pointer-events: none;
+      }
+   }
+
+   :is(.project-feature, .tool-lead) {
+      gap: 1.25rem;
+      align-items: start;
+   }
+
+   :is(.project-intro__collage, .tool-lead__image) {
+      position: relative;
+      z-index: 11;
+      margin-top: 1.5rem;
+   }
+
+   .project-intro {
+      &__main-image {
+         transform: rotate(-2deg);
+      }
+
+      &__small-image--one {
+         transform: translate(0.2rem, -0.7rem) rotate(2deg);
+      }
+
+      &__small-image--two {
+         transform: translate(-0.2rem, 0.5rem) rotate(-3deg);
+      }
+   }
+}
+
+.tool-opening {
+   margin-bottom: clamp(2rem, 5vw, 5rem);
+}
+
+@media (min-width: 64rem) {
+   .project-opening {
+      > header {
+         max-width: 65%;
+      }
+
+      :is(.project-intro__collage, .tool-lead__image) {
+         margin-top: -2rem;
+      }
+
+      .project-intro__pocket {
+         margin-top: 2rem;
+      }
+   }
+}
+
+@media (max-width: 47.99rem) {
+   .project-opening {
+      > header .print-heading__title {
+         font-size: clamp(2.8rem, 13vw, 4.5rem);
+      }
+
+      &::before {
+         inset: -0.5rem -6% 1rem -6%;
+         transform: rotate(-1deg);
+      }
+
+      > header::before {
+         top: -1rem;
+         left: -0.9rem;
+         width: 42%;
+         height: 4rem;
+      }
+
+      > header::after {
+         right: -0.5rem;
+         bottom: -1rem;
+         left: 20%;
+         width: 75%;
+      }
+
+      :is(.project-intro__pocket, .tool-lead__pocket) {
+         margin: 0;
+         padding: 1.6rem 1.35rem 2rem;
+      }
+
+      :is(.project-intro__collage, .tool-lead__image) {
+         margin-top: -1rem;
+         margin-inline: 0.5rem;
+      }
+
+      :is(.project-feature, .tool-lead) {
+         gap: 0;
+      }
+   }
+}

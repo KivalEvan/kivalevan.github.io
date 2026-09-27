@@ -1,0 +1,19 @@
+---
+interface Props {
+   text: string;
+   /** Outline the last word, or the whole title when it contains one word. */
+   outlineLastWord?: boolean;
+}
+
+const { text, outlineLastWord = true } = Astro.props;
+const boundary = text.lastIndexOf(' ');
+---
+
+{!outlineLastWord ? (
+   text
+) : (
+   <>
+      {boundary < 0 ? '' : `${text.slice(0, boundary)} `}
+      <span class="print-heading__outline">{text.slice(boundary + 1)}</span>
+   </>
+)}

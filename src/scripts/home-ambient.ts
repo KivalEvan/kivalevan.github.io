@@ -1,66 +1,24 @@
-/** Passive, additive movement for homepage ink accents and the completed hero title. */
+/** Passive motion belongs to the completed hero title; lower-page artwork stays still. */
 import {
    clearTitleEventReservation,
    requestAmbientEvent,
    reserveTitleEvent,
 } from './ambient-rhythm';
-import { createStripPolygons } from './strip-shapes';
-
-const ROOTS = [
-   {
-      selector: '.mixed-hero',
-      targets: ['.mixed-hero__red-tangle', '.mixed-hero__blue-tangle'],
-      interval: 14_000,
-      title: '.mixed-hero__title .punk-title__text',
-   },
-   {
-      selector: '.punk-video',
-      targets: ['.punk-video__red', '.punk-video__navy'],
-      interval: 19_000,
-      strips: true,
-   },
-   {
-      selector: '.skills-group--tools',
-      targets: [],
-      interval: 19_000,
-      strips: true,
-      tags: true,
-   },
-   {
-      selector: '.skills-group--topics',
-      targets: [],
-      interval: 19_000,
-      tags: true,
-   },
-] as const;
+import { playPoseSequence } from './pose-sequence';
 
 const MOBILE_QUERY = '(max-width: 47.99rem)';
-const STRIP_LAYER_CLASS = 'home-ambient-strips';
-const STRIP_LAYER_ACTIVE_CLASS = 'home-ambient-strips-active';
-const SVG_NAMESPACE = 'http://www.w3.org/2000/svg';
 
 interface AmbientRoot {
    root: HTMLElement;
-   targets: HTMLElement[];
    title?: HTMLElement;
-   interval: number;
    visible: boolean;
    titleVisible: boolean;
    observer: MutationObserver;
-   decorTimer?: number;
-   decorStopTimer?: number;
-   decorAnimation?: Animation;
    titleTimer?: number;
    titleOrigins?: Map<HTMLElement, { translate: string; rotate: string }>;
    glitchTimer?: number;
-   glitchRestoreTimer?: number;
+   cancelGlitchSequence?: () => void;
    glitch?: { glyph: HTMLElement; overlay: HTMLSpanElement };
-   strips: boolean;
-   stripTimer?: number;
-   stripLayer?: SVGSVGElement;
-   tags: HTMLElement[];
-   tagTimer?: number;
-   tagOrigins?: Map<HTMLElement, { rotate: string; clipPath: string }>;
 }
 
 let registrations = new Map<HTMLElement, AmbientRoot>();
@@ -84,20 +42,11 @@ const titleAllowed = (registration: AmbientRoot) =>
    !!registration.title &&
    rootAllowed(registration) &&
    registration.titleVisible &&
-   !registration.root.classList.contains('home-title-resolving');
-
-const clearDecor = (registration: AmbientRoot) => {
-   window.clearTimeout(registration.decorTimer);
-   window.clearTimeout(registration.decorStopTimer);
-   registration.decorTimer = undefined;
-   registration.decorStopTimer = undefined;
-   registration.decorAnimation?.cancel();
-   registration.decorAnimation = undefined;
-};
+   !registration.root.classList.contains('home-title-assembling');
 
 const restoreGlitch = (registration: AmbientRoot) => {
-   window.clearTimeout(registration.glitchRestoreTimer);
-   registration.glitchRestoreTimer = undefined;
+   registration.cancelGlitchSequence?.();
+   registration.cancelGlitchSequence = undefined;
    registration.glitch?.glyph.classList.remove('home-title-resolve__pending');
    registration.glitch?.overlay.remove();
    registration.glitch = undefined;
@@ -115,74 +64,19 @@ const clearTitle = (registration: AmbientRoot) => {
       if (!glyph.style.length) glyph.removeAttribute('style');
    });
    registration.titleOrigins = undefined;
-   clearTitleEventReservation('title');
    clearTitleEventReservation('glitch');
 };
 
 const randomBetween = (minimum: number, maximum: number) =>
    minimum + Math.floor(Math.random() * (maximum - minimum + 1));
 
-const scheduleDecor = (registration: AmbientRoot) => {
-   if (
-      !registration.targets.length ||
-      !rootAllowed(registration) ||
-      registration.decorTimer !== undefined ||
-      registration.decorAnimation
-   )
-      return;
-   const attempt = () => {
-      registration.decorTimer = undefined;
-      if (!rootAllowed(registration)) return;
-      const retryAfter = requestAmbientEvent('ambient');
-      if (retryAfter) {
-         registration.decorTimer = window.setTimeout(attempt, retryAfter);
-         return;
-      }
-      const compact = window.matchMedia(MOBILE_QUERY).matches;
-      let candidates = registration.targets;
-      if (compact) {
-         // The source wrappers retain shared SVG definitions, not mobile paint.
-         const bakedBack = registration.root.querySelector<HTMLElement>(
-            '[data-mobile-hero-plane="back"]',
-         );
-         candidates = bakedBack ? [bakedBack] : candidates.slice(0, 1);
-      }
-      const target = candidates[Math.floor(Math.random() * candidates.length)];
-      const distance = compact ? 1 : 2;
-      const x = Math.random() < 0.5 ? -distance : distance;
-      const y = Math.random() < 0.5 ? -distance : distance;
-      registration.decorAnimation = target.animate(
-         [
-            { transform: 'translate(0, 0)', composite: 'add' },
-            { transform: `translate(${x}px, ${y}px)`, composite: 'add', offset: 0.42 },
-            { transform: 'translate(0, 0)', composite: 'add' },
-         ],
-         { duration: 900, easing: 'steps(2, end)', fill: 'none' },
-      );
-      registration.decorStopTimer = window.setTimeout(() => {
-         registration.decorAnimation?.cancel();
-         registration.decorAnimation = undefined;
-         registration.decorStopTimer = undefined;
-         scheduleDecor(registration);
-      }, 900);
-   };
-   registration.decorTimer = window.setTimeout(attempt, registration.interval);
-};
-
 const scheduleTitle = (registration: AmbientRoot) => {
    if (!titleAllowed(registration) || registration.titleTimer !== undefined) return;
    const compact = window.matchMedia(MOBILE_QUERY).matches;
-   const delay = randomBetween(compact ? 1_400 : 900, compact ? 2_400 : 1_800);
+   const delay = 1_000;
    const attempt = () => {
       registration.titleTimer = undefined;
       if (!registration.title || !titleAllowed(registration)) return;
-      const retryAfter = requestAmbientEvent('title');
-      if (retryAfter) {
-         reserveTitleEvent('title', performance.now() + retryAfter);
-         registration.titleTimer = window.setTimeout(attempt, retryAfter);
-         return;
-      }
-      clearTitleEventReservation('title');
       const distance = compact ? 2 : 4;
       const rotation = compact ? 1 : 2;
       const candidates = Array.from(
@@ -194,23 +88,20 @@ const scheduleTitle = (registration: AmbientRoot) => {
       registration.titleOrigins ??= new Map();
       for (let index = 0; index < count; index++) {
          const [glyph] = candidates.splice(randomBetween(0, candidates.length - 1), 1);
-         const x = randomBetween(-distance, distance);
-         const y = Math.random() < 0.5 ? -distance : distance;
-         const angle = (Math.random() < 0.5 ? -rotation : rotation) * (0.5 + Math.random() * 0.5);
          if (!registration.titleOrigins.has(glyph)) {
             registration.titleOrigins.set(glyph, {
                translate: glyph.style.translate,
                rotate: glyph.style.rotate,
             });
          }
-         // Both properties change in one paint, with no transition or reset-to-origin frame.
-         // Independent transforms preserve the glyph's authored transform and cannot accumulate.
+         const x = randomBetween(-distance, distance);
+         const y = Math.random() < 0.5 ? -distance : distance;
+         const angle = (Math.random() < 0.5 ? -rotation : rotation) * (0.5 + Math.random() * 0.5);
          glyph.style.translate = `${x}px ${y}px`;
          glyph.style.rotate = `${angle}deg`;
       }
       scheduleTitle(registration);
    };
-   reserveTitleEvent('title', performance.now() + delay);
    registration.titleTimer = window.setTimeout(attempt, delay);
 };
 
@@ -241,146 +132,32 @@ const scheduleGlitch = (registration: AmbientRoot) => {
       const characters = Array.from(alphabet).filter(
          (character) => character !== glyph.dataset.letter,
       );
-      overlay.textContent = characters[randomBetween(0, characters.length - 1)];
-      // Reuse the entrance's fixed-slot treatment without changing authored text or the held pose.
+      const firstCharacter = randomBetween(0, characters.length - 1);
+      // Keep the replacement in its fixed slot without changing authored text or the held pose.
       glyph.append(overlay);
       glyph.classList.add('home-title-resolve__pending');
       registration.glitch = { glyph, overlay };
-      registration.glitchRestoreTimer = window.setTimeout(
-         () => {
+      registration.cancelGlitchSequence = playPoseSequence({
+         fps: 12,
+         frames: 2,
+         onFrame: (frame) => {
+            if (!titleAllowed(registration)) {
+               restoreGlitch(registration);
+               return;
+            }
+            overlay.textContent = characters[(firstCharacter + frame) % characters.length];
+         },
+         onFinish: () => {
             restoreGlitch(registration);
             scheduleGlitch(registration);
          },
-         randomBetween(120, compact ? 170 : 200),
-      );
+      });
    };
    reserveTitleEvent('glitch', performance.now() + delay);
    registration.glitchTimer = window.setTimeout(attempt, delay);
 };
 
-const clearStrips = (registration: AmbientRoot) => {
-   window.clearTimeout(registration.stripTimer);
-   registration.stripTimer = undefined;
-   if (registration.root.classList.contains(STRIP_LAYER_ACTIVE_CLASS)) {
-      registration.root.classList.remove(STRIP_LAYER_ACTIVE_CLASS);
-   }
-   registration.stripLayer?.remove();
-   registration.stripLayer = undefined;
-};
-
-const createStripLayer = () => {
-   const layer = document.createElementNS(SVG_NAMESPACE, 'svg');
-   layer.classList.add(STRIP_LAYER_CLASS);
-   layer.setAttribute('viewBox', '0 0 640 120');
-   layer.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-   layer.setAttribute('aria-hidden', 'true');
-   layer.setAttribute('focusable', 'false');
-   return layer;
-};
-
-const renderStrips = (registration: AmbientRoot) => {
-   const layer = registration.stripLayer ?? createStripLayer();
-   const polygons = createStripPolygons().map((points) => {
-      const polygon = document.createElementNS(SVG_NAMESPACE, 'polygon');
-      polygon.setAttribute('points', points);
-      return polygon;
-   });
-
-   // replaceChildren completes before the browser can paint, so the layer never
-   // exposes the transparent frame caused by a freshly rasterized CSS mask.
-   layer.replaceChildren(...polygons);
-   if (!registration.stripLayer) {
-      registration.stripLayer = layer;
-      registration.root.append(layer);
-      registration.root.classList.add(STRIP_LAYER_ACTIVE_CLASS);
-   }
-};
-
-const scheduleStrips = (registration: AmbientRoot) => {
-   if (!registration.strips || !rootAllowed(registration) || registration.stripTimer !== undefined)
-      return;
-   const compact = window.matchMedia(MOBILE_QUERY).matches;
-   const delay = randomBetween(compact ? 1_600 : 1_100, compact ? 3_000 : 2_200);
-   const attempt = () => {
-      registration.stripTimer = undefined;
-      if (!rootAllowed(registration)) return;
-      const retryAfter = requestAmbientEvent('ambient');
-      if (retryAfter) {
-         registration.stripTimer = window.setTimeout(attempt, retryAfter);
-         return;
-      }
-      renderStrips(registration);
-      scheduleStrips(registration);
-   };
-   registration.stripTimer = window.setTimeout(attempt, delay);
-};
-
-const clearTags = (registration: AmbientRoot) => {
-   window.clearTimeout(registration.tagTimer);
-   registration.tagTimer = undefined;
-   registration.tagOrigins?.forEach((origin, tag) => {
-      tag.style.rotate = origin.rotate;
-      tag.style.clipPath = origin.clipPath;
-      if (!tag.style.length) tag.removeAttribute('style');
-   });
-   registration.tagOrigins = undefined;
-};
-
-const scheduleTags = (registration: AmbientRoot) => {
-   if (
-      !registration.tags.length ||
-      !rootAllowed(registration) ||
-      registration.tagTimer !== undefined
-   )
-      return;
-   const compact = window.matchMedia(MOBILE_QUERY).matches;
-   const delay = randomBetween(compact ? 1_400 : 850, compact ? 2_400 : 1_700);
-   const attempt = () => {
-      registration.tagTimer = undefined;
-      if (!rootAllowed(registration)) return;
-      const retryAfter = requestAmbientEvent('ambient');
-      if (retryAfter) {
-         registration.tagTimer = window.setTimeout(attempt, retryAfter);
-         return;
-      }
-      const candidates = registration.tags.filter((tag) => {
-         const rect = tag.getBoundingClientRect();
-         return (
-            rect.bottom > 0 &&
-            rect.top < window.innerHeight &&
-            !tag.matches(':hover, :focus-within')
-         );
-      });
-      const count = Math.min(candidates.length, randomBetween(compact ? 1 : 2, compact ? 2 : 4));
-      registration.tagOrigins ??= new Map();
-      for (let index = 0; index < count; index++) {
-         const [tag] = candidates.splice(randomBetween(0, candidates.length - 1), 1);
-         if (!registration.tagOrigins.has(tag)) {
-            registration.tagOrigins.set(tag, {
-               rotate: tag.style.rotate,
-               clipPath: tag.style.clipPath,
-            });
-         }
-         // Shallow edge changes stay inside the existing padding, away from the label.
-         tag.style.clipPath = `polygon(${randomBetween(0, 3)}% ${randomBetween(1, 7)}%, ${randomBetween(94, 99)}% 0, 100% ${randomBetween(78, 94)}%, ${randomBetween(93, 98)}% 100%, ${randomBetween(0, 3)}% ${randomBetween(92, 99)}%)`;
-         tag.style.rotate = `${randomBetween(-12, 12) / (compact ? 16 : 10)}deg`;
-      }
-      scheduleTags(registration);
-   };
-   registration.tagTimer = window.setTimeout(attempt, delay);
-};
-
 const reconcile = (registration: AmbientRoot) => {
-   if (rootAllowed(registration)) {
-      scheduleDecor(registration);
-      scheduleStrips(registration);
-      scheduleTags(registration);
-   } else {
-      clearDecor(registration);
-      clearStrips(registration);
-      clearTags(registration);
-   }
-
    if (titleAllowed(registration)) {
       scheduleTitle(registration);
       scheduleGlitch(registration);
@@ -392,10 +169,7 @@ const dispose = () => {
    visibilityObserver = undefined;
    registrations.forEach((registration) => {
       registration.observer.disconnect();
-      clearDecor(registration);
       clearTitle(registration);
-      clearStrips(registration);
-      clearTags(registration);
    });
    registrations.clear();
 };
@@ -406,9 +180,11 @@ const registerCurrentPage = () => {
       return;
    }
    dispose();
-   if (!supported() || !document.querySelector('.mixed-hero')) {
+   if (!supported() || !(hero instanceof HTMLElement)) {
       return;
    }
+   const title = hero.querySelector<HTMLElement>('.mixed-hero__title .punk-title__text');
+   if (!title) return;
    const observer = new IntersectionObserver(
       (entries) => {
          entries.forEach((entry) => {
@@ -425,42 +201,20 @@ const registerCurrentPage = () => {
    );
    visibilityObserver = observer;
 
-   ROOTS.forEach((definition) => {
-      const { selector, targets: targetSelectors, interval } = definition;
-      const titleSelector = 'title' in definition ? definition.title : undefined;
-      const root = document.querySelector(selector);
-      if (!(root instanceof HTMLElement)) return;
-      const targets = targetSelectors
-         .map((targetSelector) => root.querySelector<HTMLElement>(targetSelector))
-         .filter((target): target is HTMLElement => target instanceof HTMLElement);
-      const strips = 'strips' in definition && definition.strips;
-      const tags =
-         'tags' in definition && definition.tags
-            ? Array.from(root.querySelectorAll<HTMLElement>('.punk-tags li'))
-            : [];
-      if (!targets.length && !strips && !tags.length) return;
-      const title = titleSelector
-         ? (root.querySelector<HTMLElement>(titleSelector) ?? undefined)
-         : undefined;
-      const registration: AmbientRoot = {
-         root,
-         targets,
-         title,
-         interval,
-         strips,
-         tags,
-         visible: false,
-         titleVisible: !title,
-         observer: new MutationObserver(() => reconcile(registration)),
-      };
-      registrations.set(root, registration);
-      registration.observer.observe(root, {
-         attributes: true,
-         attributeFilter: ['class', 'data-home-motion-boot'],
-      });
-      observer.observe(root);
-      if (title) observer.observe(title);
+   const registration: AmbientRoot = {
+      root: hero,
+      title,
+      visible: false,
+      titleVisible: false,
+      observer: new MutationObserver(() => reconcile(registration)),
+   };
+   registrations.set(hero, registration);
+   registration.observer.observe(hero, {
+      attributes: true,
+      attributeFilter: ['class', 'data-home-motion-boot'],
    });
+   observer.observe(hero);
+   observer.observe(title);
 };
 
 const bind = () => {
@@ -470,10 +224,7 @@ const bind = () => {
    });
    window.matchMedia(MOBILE_QUERY).addEventListener('change', () => {
       registrations.forEach((registration) => {
-         clearDecor(registration);
          clearTitle(registration);
-         clearStrips(registration);
-         clearTags(registration);
          reconcile(registration);
       });
    });

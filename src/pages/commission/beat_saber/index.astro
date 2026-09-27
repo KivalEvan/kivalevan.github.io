@@ -3,9 +3,11 @@ import MainLayout from '../../../layouts/MainLayout.astro';
 import BeatmapList from '../../../components/commission/BeatmapList.svelte';
 import SectionHeading from '../../../components/visual/SectionHeading.astro';
 import InkCollision from '../../../components/visual/InkCollision.astro';
+import PrintTitleText from '../../../components/visual/PrintTitleText.astro';
 import { formatDate } from '../../../utils/date';
 import Commission from '../../../data/commission.json' with { type: 'json' };
-import '../../../styles/commission-print.css';
+import '../../../styles/commission-print.scss';
+import '../../../styles/commission-layout.scss';
 
 const pageDetails = {
    title: 'Commission',
@@ -20,14 +22,18 @@ const pageDetails = {
 ---
 
 <MainLayout pageDetails={pageDetails}>
-   <div class="commission-page w-full">
+   <div class="commission-page">
       <div class="commission-hero">
-         <div class="commission-hero__collision"><InkCollision /></div>
+         <div class="commission-hero__collision">
+            <InkCollision />
+         </div>
          <div class="commission-hero__photo" aria-hidden="true">
             <div class="commission-hero__image"></div>
          </div>
          <div class="commission-hero__paper">
-            <h2 class="commission-banner">Beat Saber Custom Map</h2>
+            <h2 class="commission-banner">
+               <PrintTitleText text="Beat Saber Custom Map" />
+            </h2>
             <section
                id="service-summary"
                class="commission-opening"
@@ -39,7 +45,7 @@ const pageDetails = {
                      title="Custom map commissions"
                      density="low"
                   />
-                  <p class="mt-2 leading-relaxed">
+                  <p class="commission-section__intro">
                      I have made Beat Saber maps in many styles for more than six years. I have been
                      involved in the ranked scene, playlists, and other parts of the community. I
                      mainly map Touhou Project arrangements and give each song its own creative
@@ -56,7 +62,7 @@ const pageDetails = {
          aria-label="Proof of mapping work"
       >
          <header class="site-reading-width commission-proof__intro">
-            <p class="leading-relaxed">
+            <p class="commission-proof__copy">
                My public work includes contest placements, lighting nominations, and a published map
                portfolio.
             </p>
@@ -82,26 +88,27 @@ const pageDetails = {
             </li>
          </ul>
          <nav class="commission-proof-links" aria-label="Mapping proof links">
+            <a class="commission-proof-links__link" href="https://beatsaver.com/profile/4285062">
+               BeatSaver profile <span aria-hidden="true">↗</span>
+            </a>
             <a
-               class="inline-flex min-h-[44px] items-center underline-offset-4 hover:underline focus-visible:underline"
-               href="https://beatsaver.com/profile/4285062"
-               >BeatSaver profile <span aria-hidden="true">↗</span></a
-            >
-            <a
-               class="inline-flex min-h-[44px] items-center underline-offset-4 hover:underline focus-visible:underline"
+               class="commission-proof-links__link"
                href="https://bsaber.com/songs/new/?uploaded_by=kivalevan"
-               >BeastSaber maps <span aria-hidden="true">↗</span></a
             >
+               BeastSaber maps <span aria-hidden="true">↗</span>
+            </a>
             <a
-               class="inline-flex min-h-[44px] items-center underline-offset-4 hover:underline focus-visible:underline"
+               class="commission-proof-links__link"
                href="https://scoresaber.com/u/76561198002258649"
-               >ScoreSaber results <span aria-hidden="true">↗</span></a
             >
+               ScoreSaber results <span aria-hidden="true">↗</span>
+            </a>
             <a
-               class="inline-flex min-h-[44px] items-center underline-offset-4 hover:underline focus-visible:underline"
+               class="commission-proof-links__link"
                href="https://youtube.com/playlist?list=PLp4N5ZtOuDZlhdvoH1INSPn2Qn9zrD19b"
-               >Video Preview <span aria-hidden="true">↗</span></a
             >
+               Video Preview <span aria-hidden="true">↗</span>
+            </a>
          </nav>
       </section>
 
@@ -112,8 +119,8 @@ const pageDetails = {
       >
          <header class="site-reading-width commission-section__heading">
             <SectionHeading id="delivery-heading" title="Order and delivery" density="low" />
-            <p class="mt-2 leading-relaxed">
-               Delivery usually takes 1–2 weeks. My availability, the song, and the selected options
+            <p class="commission-section__intro">
+               Delivery usually takes 1-2 weeks. My availability, the song, and the selected options
                can change the schedule. I share progress during the order so that you can give
                feedback.
             </p>
@@ -123,23 +130,27 @@ const pageDetails = {
             <ul class="commission-enquiry__actions">
                <li>
                   <button
-                     class="discord-popup print-action cursor-pointer"
+                     class="discord-popup print-action commission-enquiry__copy"
                      type="button"
                      data-discord-popup="true"
                      title="Copy Discord username @kivalevan"
-                     aria-label="Copy Discord username @kivalevan">Copy Discord username</button
+                     aria-label="Copy Discord username @kivalevan"
                   >
+                     Copy Discord username
+                  </button>
                </li>
                <li>
-                  <a class="print-action" href="mailto:kivalevan@gmail.com">Send email</a>
+                  <a class="print-action" href="mailto:kivalevan@gmail.com">
+                     Send email
+                  </a>
                </li>
             </ul>
-            <p class="mt-4">
+            <p class="commission-enquiry__details">
                Please read below for <a href="#pricing">Pricing and payment</a> and
-               <a href="#tnc">Terms &amp; Conditions</a> for further information.<br />
-               Once the order is made, you have accepted the <a href="#tnc"
-                  >Terms &amp; Conditions</a
-               >.
+               <a href="#tnc">Terms &amp; Conditions</a> for further information.
+               <br />
+               Once the order is made, you have accepted the{' '}
+               <a href="#tnc">Terms &amp; Conditions</a>.
             </p>
          </div>
       </section>
@@ -151,81 +162,72 @@ const pageDetails = {
       >
          <header class="site-reading-width commission-section__heading">
             <SectionHeading id="pricing-heading" title="Pricing and payment" density="low" />
-            <p class="mt-2 max-w-[65ch] leading-relaxed">
+            <p class="commission-section__intro commission-section__intro--narrow">
                Use the estimator for a quick total. Open the detailed rates when you need to compare
                difficulties, lighting, bonuses, and payment options.
             </p>
-            <a class="print-action mt-3 self-start" href="/commission/beat_saber/cost_estimator"
-               >Open the cost estimator</a
+            <a
+               class="print-action commission-section__action"
+               href="/commission/beat_saber/cost_estimator"
             >
+               Open the cost estimator
+            </a>
          </header>
          <div class="commission-rates">
-            <div class="commission-rates__grid tabular-nums">
-               <article class="commission-rate-panel min-w-0">
-                  <h3 class="text-xl font-bold">Mapping rates</h3>
-                  <dl class="mt-3 space-y-3">
-                     <div
-                        class="grid grid-cols-[minmax(5rem,auto)_minmax(0,1fr)] gap-x-3 border-t border-white/30 pt-3 first:border-0 first:pt-0"
-                     >
-                        <dt class="font-semibold">
+            <div class="commission-rates__grid">
+               <article class="commission-rate-panel">
+                  <h3 class="commission-rate-panel__heading">Mapping rates</h3>
+                  <dl class="commission-rate-panel__rates">
+                     <div class="commission-rate-panel__rate">
+                        <dt class="commission-rate-panel__amount">
                            ${Commission.beatmap.base + Commission.beatmap.difficulty.expertPlus}
                         </dt>
-                        <dd class="font-semibold">Expert+</dd>
-                        <p class="col-span-2 mt-1 text-sm text-white/80">
+                        <dd class="commission-rate-panel__name">Expert+</dd>
+                        <p class="commission-rate-panel__description">
                            Uses dense, complex patterns that represent more details from the song.
                         </p>
                      </div>
-                     <div
-                        class="grid grid-cols-[minmax(5rem,auto)_minmax(0,1fr)] gap-x-3 border-t border-white/30 pt-3"
-                     >
-                        <dt class="font-semibold">
+                     <div class="commission-rate-panel__rate">
+                        <dt class="commission-rate-panel__amount">
                            ${Commission.beatmap.base + Commission.beatmap.difficulty.expert}
                         </dt>
-                        <dd class="font-semibold">Expert</dd>
-                        <p class="col-span-2 mt-1 text-sm text-white/80">
+                        <dd class="commission-rate-panel__name">Expert</dd>
+                        <p class="commission-rate-panel__description">
                            Follows the rhythm and prominent instruments with a challenging pattern.
                         </p>
                      </div>
-                     <div
-                        class="grid grid-cols-[minmax(5rem,auto)_minmax(0,1fr)] gap-x-3 border-t border-white/30 pt-3"
-                     >
-                        <dt class="font-semibold">
+                     <div class="commission-rate-panel__rate">
+                        <dt class="commission-rate-panel__amount">
                            ${Commission.beatmap.base + Commission.beatmap.difficulty.hard}
                         </dt>
-                        <dd class="font-semibold">Hard</dd>
-                        <p class="col-span-2 mt-1 text-sm text-white/80">
+                        <dd class="commission-rate-panel__name">Hard</dd>
+                        <p class="commission-rate-panel__description">
                            A faster-paced map that challenges casual players without reaching Expert
                            difficulty.
                         </p>
                      </div>
-                     <div
-                        class="grid grid-cols-[minmax(5rem,auto)_minmax(0,1fr)] gap-x-3 border-t border-white/30 pt-3"
-                     >
-                        <dt class="font-semibold">
+                     <div class="commission-rate-panel__rate">
+                        <dt class="commission-rate-panel__amount">
                            ${Commission.beatmap.base + Commission.beatmap.difficulty.normal}
                         </dt>
-                        <dd class="font-semibold">Normal</dd>
-                        <p class="col-span-2 mt-1 text-sm text-white/80">
+                        <dd class="commission-rate-panel__name">Normal</dd>
+                        <p class="commission-rate-panel__description">
                            An approachable challenge for casual players.
                         </p>
                      </div>
-                     <div
-                        class="grid grid-cols-[minmax(5rem,auto)_minmax(0,1fr)] gap-x-3 border-t border-white/30 pt-3"
-                     >
-                        <dt class="font-semibold">
+                     <div class="commission-rate-panel__rate">
+                        <dt class="commission-rate-panel__amount">
                            ${Commission.beatmap.base + Commission.beatmap.difficulty.easy}
                         </dt>
-                        <dd class="font-semibold">Easy</dd>
-                        <p class="col-span-2 mt-1 text-sm text-white/80">
+                        <dd class="commission-rate-panel__name">Easy</dd>
+                        <p class="commission-rate-panel__description">
                            A sparse introductory map for new and returning players.
                         </p>
                      </div>
-                     <div
-                        class="grid grid-cols-[minmax(5rem,auto)_minmax(0,1fr)] gap-x-3 border-t border-white/30 pt-3"
-                     >
-                        <dt class="font-semibold">Ask for a price</dt>
-                        <dd class="font-semibold">One Saber</dd>
-                        <p class="col-span-2 mt-1 text-sm text-white/80">
+                     <div class="commission-rate-panel__rate">
+                        <dt class="commission-rate-panel__amount">Ask for a price</dt>
+                        <dd class="commission-rate-panel__name">One Saber</dd>
+                        <p class="commission-rate-panel__description">
                            A one-handed map. It costs half the Standard map rate when ordered with a
                            Standard difficulty. Otherwise, it uses the full rate.
                         </p>
@@ -233,62 +235,58 @@ const pageDetails = {
                   </dl>
                </article>
 
-               <article class="commission-rate-panel min-w-0">
-                  <h3 class="text-xl font-bold">Lighting rates</h3>
-                  <dl class="mt-3 space-y-3">
-                     <div
-                        class="grid grid-cols-[minmax(5rem,auto)_minmax(0,1fr)] gap-x-3 border-t border-white/30 pt-3 first:border-0 first:pt-0"
-                     >
-                        <dt class="font-semibold">${Commission.beatmap.lighting.chromaAdvanced}</dt>
-                        <dd class="font-semibold">Chroma Advanced</dd>
-                        <p class="col-span-2 mt-1 text-sm text-white/80">
+               <article class="commission-rate-panel">
+                  <h3 class="commission-rate-panel__heading">Lighting rates</h3>
+                  <dl class="commission-rate-panel__rates">
+                     <div class="commission-rate-panel__rate">
+                        <dt class="commission-rate-panel__amount">
+                           ${Commission.beatmap.lighting.chromaAdvanced}
+                        </dt>
+                        <dd class="commission-rate-panel__name">Chroma Advanced</dd>
+                        <p class="commission-rate-panel__description">
                            Controls individual lights to create complex Chroma effects.
                         </p>
                      </div>
-                     <div
-                        class="grid grid-cols-[minmax(5rem,auto)_minmax(0,1fr)] gap-x-3 border-t border-white/30 pt-3"
-                     >
-                        <dt class="font-semibold">${Commission.beatmap.lighting.chromaBasic}</dt>
-                        <dd class="font-semibold">Chroma Basic</dd>
-                        <p class="col-span-2 mt-1 text-sm text-white/80">
+                     <div class="commission-rate-panel__rate">
+                        <dt class="commission-rate-panel__amount">
+                           ${Commission.beatmap.lighting.chromaBasic}
+                        </dt>
+                        <dd class="commission-rate-panel__name">Chroma Basic</dd>
+                        <p class="commission-rate-panel__description">
                            Uses Chroma color and rotation controls without per-light effects.
                         </p>
                      </div>
-                     <div
-                        class="grid grid-cols-[minmax(5rem,auto)_minmax(0,1fr)] gap-x-3 border-t border-white/30 pt-3"
-                     >
-                        <dt class="font-semibold">${Commission.beatmap.lighting.vanillaV3}</dt>
-                        <dd class="font-semibold">Vanilla (v3)</dd>
-                        <p class="col-span-2 mt-1 text-sm text-white/80">
+                     <div class="commission-rate-panel__rate">
+                        <dt class="commission-rate-panel__amount">
+                           ${Commission.beatmap.lighting.vanillaV3}
+                        </dt>
+                        <dd class="commission-rate-panel__name">Vanilla (v3)</dd>
+                        <p class="commission-rate-panel__description">
                            Advanced base-game lighting introduced with Weave.
                         </p>
                      </div>
-                     <div
-                        class="grid grid-cols-[minmax(5rem,auto)_minmax(0,1fr)] gap-x-3 border-t border-white/30 pt-3"
-                     >
-                        <dt class="font-semibold">${Commission.beatmap.lighting.vanillaV2}</dt>
-                        <dd class="font-semibold">Vanilla (v2)</dd>
-                        <p class="col-span-2 mt-1 text-sm text-white/80">
+                     <div class="commission-rate-panel__rate">
+                        <dt class="commission-rate-panel__amount">
+                           ${Commission.beatmap.lighting.vanillaV2}
+                        </dt>
+                        <dd class="commission-rate-panel__name">Vanilla (v2)</dd>
+                        <p class="commission-rate-panel__description">
                            Basic base-game lighting for standard or custom environments from before
                            Weave.
                         </p>
                      </div>
-                     <div
-                        class="grid grid-cols-[minmax(5rem,auto)_minmax(0,1fr)] gap-x-3 border-t border-white/30 pt-3"
-                     >
-                        <dt class="font-semibold">Free</dt>
-                        <dd class="font-semibold">Lolighter (automated lighting)</dd>
-                        <p class="col-span-2 mt-1 text-sm text-white/80">
+                     <div class="commission-rate-panel__rate">
+                        <dt class="commission-rate-panel__amount">Free</dt>
+                        <dd class="commission-rate-panel__name">Lolighter (automated lighting)</dd>
+                        <p class="commission-rate-panel__description">
                            The lighting is generated automatically and can be underwhelming in some
                            scenarios.
                         </p>
                      </div>
-                     <div
-                        class="grid grid-cols-[minmax(5rem,auto)_minmax(0,1fr)] gap-x-3 border-t border-white/30 pt-3"
-                     >
-                        <dt class="font-semibold">Free</dt>
-                        <dd class="font-semibold">Static / None</dd>
-                        <p class="col-span-2 mt-1 text-sm text-white/80">
+                     <div class="commission-rate-panel__rate">
+                        <dt class="commission-rate-panel__amount">Free</dt>
+                        <dd class="commission-rate-panel__name">Static / None</dd>
+                        <p class="commission-rate-panel__description">
                            Uses static lighting or no lighting changes. This option applies to GLS
                            environments.
                         </p>
@@ -296,39 +294,29 @@ const pageDetails = {
                   </dl>
                </article>
 
-               <article class="commission-rate-panel min-w-0">
-                  <h3 class="text-xl font-bold">Optional extras</h3>
-                  <dl class="mt-3 space-y-3">
-                     <div
-                        class="grid grid-cols-[minmax(5rem,auto)_minmax(0,1fr)] gap-x-3 border-t border-white/30 pt-3 first:border-0 first:pt-0"
-                     >
-                        <dt class="font-semibold">Free</dt>
-                        <dd class="font-semibold">Difficulty Label</dd>
+               <article class="commission-rate-panel">
+                  <h3 class="commission-rate-panel__heading">Optional extras</h3>
+                  <dl class="commission-rate-panel__rates">
+                     <div class="commission-rate-panel__rate">
+                        <dt class="commission-rate-panel__amount">Free</dt>
+                        <dd class="commission-rate-panel__name">Difficulty Label</dd>
                      </div>
-                     <div
-                        class="grid grid-cols-[minmax(5rem,auto)_minmax(0,1fr)] gap-x-3 border-t border-white/30 pt-3"
-                     >
-                        <dt class="font-semibold">Free</dt>
-                        <dd class="font-semibold">Custom Colour</dd>
+                     <div class="commission-rate-panel__rate">
+                        <dt class="commission-rate-panel__amount">Free</dt>
+                        <dd class="commission-rate-panel__name">Custom Colour</dd>
                      </div>
-                     <div
-                        class="grid grid-cols-[minmax(5rem,auto)_minmax(0,1fr)] gap-x-3 border-t border-white/30 pt-3"
-                     >
-                        <dt class="font-semibold">Free</dt>
-                        <dd class="font-semibold">Chroma Object</dd>
+                     <div class="commission-rate-panel__rate">
+                        <dt class="commission-rate-panel__amount">Free</dt>
+                        <dd class="commission-rate-panel__name">Chroma Object</dd>
                      </div>
-                     <div
-                        class="grid grid-cols-[minmax(5rem,auto)_minmax(0,1fr)] gap-x-3 border-t border-white/30 pt-3"
-                     >
-                        <dt class="font-semibold">Free</dt>
-                        <dd class="font-semibold">Cinema Integration</dd>
+                     <div class="commission-rate-panel__rate">
+                        <dt class="commission-rate-panel__amount">Free</dt>
+                        <dd class="commission-rate-panel__name">Cinema Integration</dd>
                      </div>
-                     <div
-                        class="grid grid-cols-[minmax(5rem,auto)_minmax(0,1fr)] gap-x-3 border-t border-white/30 pt-3"
-                     >
-                        <dt class="font-semibold">Ask for a price</dt>
-                        <dd class="font-semibold">Custom Environment</dd>
-                        <p class="col-span-2 mt-1 text-sm text-white/80">
+                     <div class="commission-rate-panel__rate">
+                        <dt class="commission-rate-panel__amount">Ask for a price</dt>
+                        <dd class="commission-rate-panel__name">Custom Environment</dd>
+                        <p class="commission-rate-panel__description">
                            I can reuse an existing platform or create a new, unique environment from
                            your references.
                         </p>
@@ -339,7 +327,7 @@ const pageDetails = {
             <div class="site-reading-width commission-pricing-notes">
                <div>
                   <h3>Pricing notes</h3>
-                  <ul class="list-arrow space-y-2">
+                  <ul class="list-arrow commission-pricing-notes__list">
                      <li>
                         Optional extras are free. If I enjoy the song and the map allows for
                         creativity, you may receive one of the listed extras. You can request an
@@ -355,9 +343,9 @@ const pageDetails = {
                </div>
                <div>
                   <p>
-                     <a class="print-action" href="/commission/beat_saber/cost_estimator"
-                        >Cost Estimator</a
-                     >
+                     <a class="print-action" href="/commission/beat_saber/cost_estimator">
+                        Cost Estimator
+                     </a>
                   </p>
                   <p>
                      The estimate uses the rate per minute and rounds song length up to a whole or
@@ -365,13 +353,14 @@ const pageDetails = {
                   </p>
                   <div>
                      <h3>Payment options</h3>
-                     <ul class="list-arrow space-y-2">
+                     <ul class="list-arrow commission-pricing-notes__list">
                         <li>50% upfront, 50% upon delivery</li>
                         <li>100% upfront</li>
                      </ul>
                      <p>
-                        Payment uses <a href="https://ko-fi.com/kivalevan">Ko-fi</a> or PayPal in USD,
-                        excluding tax. Ask if you need another trusted payment method. Tips are appreciated.
+                        Payment uses <a href="https://ko-fi.com/kivalevan">Ko-fi</a> or PayPal in
+                        USD, excluding tax. Ask if you need another trusted payment method. Tips are
+                        appreciated.
                      </p>
                   </div>
                </div>
@@ -386,7 +375,7 @@ const pageDetails = {
       >
          <header class="site-reading-width commission-section__heading">
             <SectionHeading id="map-showcase-heading" title="Map showcase" density="low" />
-            <p class="mt-2 leading-relaxed">
+            <p class="commission-section__intro">
                Browse personal releases and maps made for requested songs. Each entry links to
                BeatSaver and an available web preview.
             </p>
@@ -404,7 +393,7 @@ const pageDetails = {
             <SectionHeading id="tnc-heading" title="Terms & Conditions" density="low" />
          </div>
          <div class="site-reading-width commission-terms">
-            <ul class="list-arrow w-full space-y-2">
+            <ul class="list-arrow commission-terms__list">
                <li>I have the right to deny any commission.</li>
                <li>The beatmap will be uploaded to my own BeatSaver account.</li>
                <li>
@@ -466,12 +455,14 @@ const pageDetails = {
                </li>
             </ul>
             <br />
-            <span>Last updated: {formatDate('18 March 2025')}</span><br />
+            <span>Last updated: {formatDate('18 March 2025')}</span>
             <br />
-            <span
-               ><strong>Note:</strong> Terms &amp; Conditions is subjected to change; may not be applicable
-               to existing order or enquiry depending on importance or severity.</span
-            ><br />
+            <br />
+            <span>
+               <strong>Note:</strong> Terms &amp; Conditions is subjected to change; may not be
+               applicable to existing order or enquiry depending on importance or severity.
+            </span>
+            <br />
             <br />
          </div>
       </section>

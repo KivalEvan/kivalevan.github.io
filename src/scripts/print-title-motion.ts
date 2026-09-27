@@ -1,8 +1,7 @@
 import { startPrintTitleResolve } from './print-title-resolve';
-import '../styles/print-title-resolve.css';
 
 const TITLE_SELECTOR = [
-   '.project-opening > header .print-heading__title',
+   '.print-heading__title',
    '.blog-opening__title',
    '.blog-post-title',
    '.commission-index__copy > header > h2',
@@ -113,6 +112,7 @@ if (typeof document !== 'undefined' && !document.documentElement.dataset.printTi
          // A prior navigation may finish after a later body has loaded.
          if (loadedNavigationGeneration === generation) register(generation);
       };
+      // Keep the full letter assembly visible after the outgoing page reaches black.
       void viewTransition.finished.then(release, release);
    });
    document.addEventListener('astro:page-load', () => {

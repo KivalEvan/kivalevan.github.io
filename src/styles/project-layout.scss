@@ -1,0 +1,279 @@
+/* Shared by the project index and Beat Saber detail page. */
+@layer layout {
+   .project-page,
+   .beat-saber-page {
+      padding: 2rem 0.75rem;
+   }
+
+   .beat-saber-page {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+
+      &__section {
+         scroll-margin-top: 1rem;
+      }
+   }
+
+   .showcase-opening {
+      &__intro {
+         margin-top: 0.75rem;
+         line-height: 1.625;
+      }
+   }
+
+   .showcase-image__media {
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      object-fit: contain;
+   }
+
+   .tool-opening {
+      &__header {
+         max-width: 50rem;
+         margin-bottom: 1.25rem;
+      }
+
+      &__intro {
+         margin-top: 0.5rem;
+         line-height: 1.625;
+      }
+
+      &__actions {
+         margin-top: 1rem;
+         font-size: 0.875rem;
+         line-height: 1.25rem;
+         font-weight: 600;
+      }
+   }
+
+   .tool-lead {
+      display: grid;
+      gap: 1.75rem;
+
+      &__pocket {
+         position: relative;
+         z-index: 10;
+         padding: 1.75rem 1.25rem;
+      }
+
+      &__description {
+         max-width: 65ch;
+         margin-top: 1.25rem;
+         text-align: left !important;
+         line-height: 1.625;
+      }
+
+      &__actions {
+         display: flex;
+         flex-wrap: wrap;
+         gap: 0.5rem 0.75rem;
+         margin-top: 1.25rem;
+         font-size: 0.875rem;
+         line-height: 1.25rem;
+         font-weight: 600;
+      }
+
+      &__image {
+         position: relative;
+      }
+
+      &__media {
+         aspect-ratio: 16 / 9;
+         width: 100%;
+         height: 100%;
+         background: #000;
+         object-fit: contain;
+      }
+   }
+
+   .project-title {
+      &--large {
+         font-size: 2.25rem;
+         font-weight: 800;
+         line-height: 1;
+      }
+
+      &--entry {
+         margin-top: 0.25rem;
+         font-size: 1.875rem;
+         font-weight: 800;
+         line-height: 1;
+      }
+
+      &--archive {
+         font-size: 1.5rem;
+         font-weight: 800;
+         line-height: 1;
+      }
+   }
+
+   .project-meta {
+      margin-top: 0.5rem;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--color-site-muted);
+
+      &--lead {
+         margin-top: 0.75rem;
+      }
+   }
+
+   .tool-ledger {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+   }
+
+   .tool-entry {
+      display: grid;
+      gap: 1.25rem;
+
+      &__image {
+         padding: 0.5rem;
+
+         &--chromapper {
+            background: #29466b;
+         }
+
+         &--enhanced {
+            background: #ecebe6;
+         }
+      }
+
+      &__media {
+         aspect-ratio: 16 / 9;
+         width: 100%;
+         background: #000;
+         object-fit: contain;
+      }
+
+      &__description {
+         margin-top: 0.75rem;
+         text-align: left !important;
+         line-height: 1.625;
+      }
+
+      &__actions {
+         margin-top: 1rem;
+         font-size: 0.875rem;
+         line-height: 1.25rem;
+         font-weight: 600;
+      }
+
+      &--library {
+         gap: 0.75rem;
+         padding-block: 1.5rem;
+         border-block: 1px solid rgb(104 131 173 / 70%);
+      }
+   }
+
+   .workshop-feature {
+      padding: 1.75rem 1.25rem;
+      background: #0b1429;
+
+      &__title {
+         margin-top: 0.25rem;
+      }
+
+      &__description {
+         margin-top: 0.75rem;
+         line-height: 1.625;
+      }
+   }
+
+   .project-archive {
+      margin-top: 1.5rem;
+      border-block: 1px solid rgb(255 255 255 / 50%);
+
+      > li {
+         display: grid;
+         gap: 0.5rem;
+         padding-block: 1rem;
+
+         &:not(:last-child) {
+            border-bottom: 1px solid rgb(255 255 255 / 30%);
+         }
+      }
+
+      p {
+         line-height: 1.625;
+      }
+   }
+
+   .permission-print {
+      width: 100%;
+      max-width: 72ch;
+   }
+
+   @media (min-width: 40rem) {
+      .project-page,
+      .beat-saber-page {
+         padding-inline: 1.5rem;
+      }
+
+      .project-archive li {
+         grid-template-columns: minmax(12rem, 0.45fr) minmax(0, 1fr);
+         gap: 1.5rem;
+      }
+   }
+
+   @media (min-width: 48rem) {
+      .project-page,
+      .beat-saber-page {
+         padding: 3rem 2rem;
+      }
+
+      .tool-lead__pocket,
+      .workshop-feature {
+         padding: 2.5rem 2rem;
+      }
+
+      .project-title--large {
+         font-size: 3rem;
+      }
+
+      .tool-entry {
+         grid-template-columns: minmax(13rem, 0.9fr) minmax(0, 1.1fr);
+         align-items: center;
+         gap: 2rem;
+
+         &--enhanced {
+            grid-template-columns: minmax(0, 1.1fr) minmax(13rem, 0.9fr);
+
+            .tool-entry__copy {
+               order: 1;
+            }
+
+            .tool-entry__image {
+               order: 2;
+            }
+         }
+
+         &--library {
+            grid-template-columns: minmax(10rem, 0.35fr) minmax(0, 1fr) auto;
+            gap: 1.5rem;
+
+            > .tool-entry__description,
+            > .tool-entry__actions {
+               margin-top: 0;
+            }
+         }
+      }
+   }
+
+   @media (min-width: 64rem) {
+      .tool-lead {
+         grid-template-columns: minmax(0, 0.85fr) minmax(22rem, 1.15fr);
+         align-items: center;
+         gap: 3rem;
+
+         &__actions {
+            margin-top: auto;
+            padding-top: 2rem;
+         }
+      }
+   }
+}

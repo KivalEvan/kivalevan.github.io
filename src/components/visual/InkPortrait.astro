@@ -10,16 +10,18 @@ import pigmentRedRaw from '../../assets/ink/pigment-pool-red.svg?raw';
 import pigmentBlueRaw from '../../assets/ink/pigment-pool-blue.svg?raw';
 import blueTangleRaw from '../../assets/ink/ink-tangle-blue.svg?raw';
 import edgeSplatterRaw from '../../assets/ink/splatter-cluster-3.svg?raw';
+
 const transparentPixel =
    'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 const registration = decorationMetadata.registration;
 ---
 
 <figure class="media-portrait" data-mobile-portrait>
-   <!-- All eight authored decorations have z-index 1–5, below the core at 6.
+   <!-- All eight authored decorations have z-index 1-5, below the core at 6.
         Their isolated blends are baked together; no core pixels enter this plane. -->
    <picture data-mobile-decoration aria-hidden="true">
       <source media="(max-width: 47.99rem)" srcset={mobileDecoration.src} type="image/webp" />
+      <!-- Native img preserves the transparent desktop fallback without image processing. -->
       <img
          src={transparentPixel}
          alt=""
@@ -69,181 +71,184 @@ const registration = decorationMetadata.registration;
    </div>
 </figure>
 
-<style>
+<style lang="scss">
    .media-portrait {
       position: relative;
       margin: 0;
       width: 100%;
       aspect-ratio: 0.86;
       isolation: isolate;
-   }
 
-   .media-portrait__plate {
-      position: absolute;
-      inset: 2% 6% 1% 4%;
-      overflow: hidden;
-   }
+      &__plate {
+         position: absolute;
+         inset: 2% 6% 1% 4%;
+         overflow: hidden;
 
-   .media-portrait__plate picture {
-      display: contents;
+         picture {
+            display: contents;
+         }
+      }
    }
 
    [data-mobile-decoration] {
       display: none;
    }
 
-   .media-portrait__plate :global(img) {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: 50% 36%;
-   }
+   .media-portrait {
+      &__plate :global(img) {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         object-position: 50% 36%;
+      }
 
-   .media-portrait__plate--core :global(img),
-   .media-portrait__plate--red :global(img),
-   .media-portrait__plate--cyan :global(img) {
-      object-fit: contain;
-   }
+      &__plate--core :global(img),
+      &__plate--red :global(img),
+      &__plate--cyan :global(img) {
+         object-fit: contain;
+      }
 
-   .media-portrait__plate--core {
-      z-index: 6;
-      mask-image: url('../../assets/ink/torn-mass-1.svg');
-      mask-size: 99% 98%;
-      mask-position: center;
-      mask-repeat: no-repeat;
-      filter: brightness(1.1) contrast(1.14) saturate(0.96);
-   }
+      &__plate--core {
+         z-index: 6;
+         mask-image: url('../../assets/ink/torn-mass-1.svg');
+         mask-size: 99% 98%;
+         mask-position: center;
+         mask-repeat: no-repeat;
+         filter: brightness(1.08) contrast(1.24) saturate(0.88);
+      }
 
-   .media-portrait__plate--red,
-   .media-portrait__plate--cyan {
-      z-index: 1;
-      mix-blend-mode: color-burn;
-      opacity: 0.28;
-      mask-image: url('../../assets/ink/pigment-pool-red.svg');
-      mask-size: 128% 118%;
-      mask-position: center;
-      mask-repeat: no-repeat;
-   }
+      &__plate--red,
+      &__plate--cyan {
+         z-index: 1;
+         mix-blend-mode: color-burn;
+         opacity: 0.28;
+         mask-image: url('../../assets/ink/pigment-pool-red.svg');
+         mask-size: 128% 118%;
+         mask-position: center;
+         mask-repeat: no-repeat;
+      }
 
-   .media-portrait__plate--red {
-      transform: translate(4px, 2px) rotate(0.45deg);
-      filter: grayscale(1) contrast(1.8) sepia(1) saturate(7) hue-rotate(316deg);
-   }
+      &__plate--red {
+         transform: translate(4px, 2px) rotate(0.45deg);
+         filter: grayscale(1) contrast(1.8) sepia(1) saturate(7) hue-rotate(316deg);
+      }
 
-   .media-portrait__plate--cyan {
-      opacity: 0.2;
-      mask-image: url('../../assets/ink/pigment-pool-blue.svg');
-      transform: translate(-3px, -1px) rotate(-0.35deg);
-      filter: grayscale(1) contrast(1.85) sepia(1) saturate(3) hue-rotate(175deg);
-   }
+      &__plate--cyan {
+         opacity: 0.2;
+         mask-image: url('../../assets/ink/pigment-pool-blue.svg');
+         transform: translate(-3px, -1px) rotate(-0.35deg);
+         filter: grayscale(1) contrast(1.85) sepia(1) saturate(3) hue-rotate(175deg);
+      }
 
-   .media-portrait__navy-pigment,
-   .media-portrait__red-pigment,
-   .media-portrait__paper-drag,
-   .media-portrait__black-brush,
-   .media-portrait__blue-vein,
-   .media-portrait__edge-splatter {
-      position: absolute;
-      pointer-events: none;
-   }
+      &__navy-pigment,
+      &__red-pigment,
+      &__paper-drag,
+      &__black-brush,
+      &__blue-vein,
+      &__edge-splatter {
+         position: absolute;
+         pointer-events: none;
+      }
 
-   .media-portrait__navy-pigment {
-      z-index: 2;
-      inset: 39% -9% 3% 53%;
-      color: var(--color-ink-petrol);
-      opacity: 0.42;
-      transform: rotate(-7deg);
-      mix-blend-mode: multiply;
-   }
+      &__navy-pigment {
+         z-index: 2;
+         inset: 39% -9% 3% 53%;
+         color: var(--color-ink-cobalt);
+         opacity: 0.78;
+         transform: rotate(-7deg);
+         mix-blend-mode: normal;
+      }
 
-   .media-portrait__red-pigment {
-      z-index: 3;
-      inset: 5% 52% 35% -10%;
-      color: color-mix(in srgb, var(--color-signal-red) 72%, var(--color-ink));
-      opacity: 0.2;
-      transform: rotate(7deg);
-      mix-blend-mode: multiply;
-   }
+      &__red-pigment {
+         z-index: 3;
+         inset: 5% 52% 35% -10%;
+         color: var(--color-signal-red);
+         opacity: 0.72;
+         transform: rotate(7deg);
+         mix-blend-mode: normal;
+      }
 
-   .media-portrait__paper-drag {
-      z-index: 4;
-      left: -12%;
-      right: 9%;
-      top: 80%;
-      height: 13%;
-      color: var(--color-paper);
-      transform: rotate(-12deg);
-      opacity: 0.36;
-   }
+      &__paper-drag {
+         z-index: 4;
+         left: -12%;
+         right: 9%;
+         top: 80%;
+         height: 13%;
+         color: var(--color-paper);
+         transform: rotate(-12deg);
+         opacity: 0.36;
+      }
 
-   .media-portrait__black-brush {
-      z-index: 5;
-      left: 1%;
-      right: -20%;
-      top: 84%;
-      height: 11%;
-      color: var(--color-ink);
-      transform: rotate(7deg);
-      opacity: 0.42;
-   }
+      &__black-brush {
+         z-index: 5;
+         left: 1%;
+         right: -20%;
+         top: 84%;
+         height: 11%;
+         color: var(--color-ink);
+         transform: rotate(7deg);
+         opacity: 0.42;
+      }
 
-   .media-portrait__blue-vein {
-      z-index: 4;
-      inset: 62% -12% 0 52%;
-      color: var(--color-deep-blue);
-      transform: rotate(-4deg);
-      opacity: 0.3;
-      mix-blend-mode: multiply;
-   }
+      &__blue-vein {
+         z-index: 4;
+         inset: 62% -12% 0 52%;
+         color: var(--color-signal-cyan);
+         transform: rotate(-4deg);
+         opacity: 0.78;
+         mix-blend-mode: normal;
+      }
 
-   .media-portrait__edge-splatter {
-      z-index: 5;
-      inset: 10% -5% 0 -6%;
-      color: var(--color-ink);
-      opacity: 0.42;
-      transform: rotate(-3deg);
-   }
+      &__edge-splatter {
+         z-index: 5;
+         inset: 10% -5% 0 -6%;
+         color: var(--color-ink);
+         opacity: 0.42;
+         transform: rotate(-3deg);
+      }
 
-   .media-portrait__navy-pigment svg,
-   .media-portrait__red-pigment svg,
-   .media-portrait__paper-drag svg,
-   .media-portrait__black-brush svg,
-   .media-portrait__blue-vein svg,
-   .media-portrait__edge-splatter svg {
-      width: 100%;
-      height: 100%;
-      display: block;
+      &__navy-pigment :global(svg),
+      &__red-pigment :global(svg),
+      &__paper-drag :global(svg),
+      &__black-brush :global(svg),
+      &__blue-vein :global(svg),
+      &__edge-splatter :global(svg) {
+         width: 100%;
+         height: 100%;
+         display: block;
+      }
    }
 
    @supports not (mask-image: url('x.svg')) {
-      .media-portrait__plate--core,
-      .media-portrait__plate--red,
-      .media-portrait__plate--cyan {
-         clip-path: inset(3% 8% 4% 6%);
-         mask-image: none;
+      .media-portrait {
+         &__plate--core,
+         &__plate--red,
+         &__plate--cyan {
+            clip-path: inset(3% 8% 4% 6%);
+            mask-image: none;
+         }
       }
    }
    @media (max-width: 47.99rem) {
-      .media-portrait[data-mobile-portrait]
-         > .media-portrait__plate:not(.media-portrait__plate--core) {
-         display: none;
-      }
+      .media-portrait {
+         &[data-mobile-portrait] > &__plate:not(.media-portrait__plate--core) {
+            display: none;
+         }
 
-      .media-portrait[data-mobile-portrait] > div:not(.media-portrait__plate) {
-         mix-blend-mode: normal;
-         opacity: 1;
-      }
+         &[data-mobile-portrait] > div:not(.media-portrait__plate) {
+            mix-blend-mode: normal;
+            opacity: 1;
+         }
 
-      /* Other live impressions reference these shared IDs. Keep their definition
-         viewports intact, but suppress every painted child of the original SVGs. */
-      .media-portrait[data-mobile-portrait]
-         > div:not(.media-portrait__plate)
-         :global(svg > :not(defs)) {
-         display: none;
-      }
+         /* Other live impressions reference these shared IDs. Keep their definition
+            viewports intact, but suppress every painted child of the original SVGs. */
+         &[data-mobile-portrait] > div:not(.media-portrait__plate) :global(svg > :not(defs)) {
+            display: none;
+         }
 
-      .media-portrait[data-mobile-portrait] > [data-mobile-decoration] {
-         display: contents;
+         &[data-mobile-portrait] > [data-mobile-decoration] {
+            display: contents;
+         }
       }
 
       [data-mobile-decoration] img {
@@ -256,14 +261,16 @@ const registration = decorationMetadata.registration;
       /* This source contains the complete plate's crop, color, and torn alpha.
          Keep the original box; contain or live effects would apply the crop twice.
          The generator removes this marker before capturing the original source. */
-      .media-portrait__plate--core[data-mobile-core] {
-         mask-image: none;
-         filter: none;
-         clip-path: none;
-      }
+      .media-portrait {
+         &__plate--core[data-mobile-core] {
+            mask-image: none;
+            filter: none;
+            clip-path: none;
+         }
 
-      .media-portrait__plate--core[data-mobile-core] :global(img) {
-         object-fit: fill;
+         &__plate--core[data-mobile-core] :global(img) {
+            object-fit: fill;
+         }
       }
    }
 </style>

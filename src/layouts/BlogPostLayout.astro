@@ -1,7 +1,9 @@
 ---
 import MainLayout from './MainLayout.astro';
+import PrintTitleText from '../components/visual/PrintTitleText.astro';
+import InkCollision from '../components/visual/InkCollision.astro';
 import { formatDate, formatISODate } from '../utils/date';
-import '../styles/blog-print.css';
+import '../styles/blog-print.scss';
 
 export interface Props {
    content: any;
@@ -30,22 +32,71 @@ const publishDateTime = formatISODate(publishDate);
 ---
 
 <MainLayout pageDetails={pageDetails}>
-   <article
-      class="blog-post flex w-full max-w-[72ch] flex-col px-3 pb-8 pt-5 sm:px-6 md:px-8 md:pt-8"
-   >
+   <article class="blog-post">
       <header class="blog-post-header">
-         <h2 class="blog-post-title mt-2 text-4xl font-extrabold leading-none md:text-5xl">
-            {pageDetails.title}
+         <div class="reading-opening__collision">
+            <InkCollision />
+         </div>
+         <h2 class="blog-post-title">
+            <PrintTitleText text={pageDetails.title} />
          </h2>
-         <div class="blog-post-meta mt-4">
+         <div class="blog-post-meta">
             <time datetime={publishDateTime}>{dateString}</time>
          </div>
       </header>
-      <section class="blog-post-content site-prose mt-8 w-full text-left">
+      <section class="blog-post-content site-prose">
          <slot />
       </section>
       <nav class="blog-post-navigation" aria-label="Article navigation">
-         <a class="print-action" href="/blog">Back to blog <span aria-hidden="true">→</span></a>
+         <a class="print-action" href="/blog">
+            Back to blog <span aria-hidden="true">→</span>
+         </a>
       </nav>
    </article>
 </MainLayout>
+
+<style lang="scss">
+   @layer layout {
+      .blog-post {
+         display: flex;
+         width: 100%;
+         max-width: 72ch;
+         flex-direction: column;
+         padding: 1.25rem 0.75rem 2rem;
+      }
+
+      .blog-post-title {
+         margin-top: 0.5rem;
+         font-size: 2.25rem;
+         font-weight: 800;
+         line-height: 1;
+      }
+
+      .blog-post-meta {
+         margin-top: 1rem;
+      }
+
+      .blog-post-content {
+         width: 100%;
+         margin-top: 2rem;
+         text-align: left;
+      }
+
+      @media (min-width: 40rem) {
+         .blog-post {
+            padding-inline: 1.5rem;
+         }
+      }
+
+      @media (min-width: 48rem) {
+         .blog-post {
+            padding-inline: 2rem;
+            padding-top: 2rem;
+         }
+
+         .blog-post-title {
+            font-size: 3rem;
+         }
+      }
+   }
+</style>

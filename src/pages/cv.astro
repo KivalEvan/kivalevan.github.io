@@ -6,8 +6,8 @@ import bsmc from '../assets/img/cv/bsmc.png';
 import chromapper from '../assets/img/cv/chromapper.png';
 import cvContact from '../data/cvContact';
 import { cvAward, cvEducation, cvSummary } from '../data/cvContent';
-import { getImage } from 'astro:assets';
-import type { GetImageResult } from 'astro';
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import { Icon } from 'astro-icon/components';
 
 const pageDetails = {
@@ -24,25 +24,23 @@ interface Project {
    link?: string;
    type: string;
    points: string[];
-   image?: GetImageResult;
+   image?: ImageMetadata;
 }
 const projects: Project[] = [
    {
       name: 'ChroMapper',
       link: 'https://github.com/Caeden117/ChroMapper/tree/dev',
-      type: 'Ongoing open-source contributor | Unity, C#, HLSL',
+      type: 'Core maintainer · Open source | Unity, C#, HLSL',
       points: [
-         'Contributed to the Unity 2021–Unity 6.3 migration. Refactored C# systems and HLSL shaders for runtime performance, memory use, and more accurate lighting previews.',
-         'Implemented contextual editing and grouped-lighting workflows, including grid interaction, selection behavior, and paste handling for each editing mode.',
-         'Added rotation-event editing for beatmap v2, v3, and v4, with synchronized grid and camera behavior, playback handling, and reduced-motion support.',
-         'Reworked beatmap object scaling and model support to align editor geometry with Beat Saber environments.',
+         'Contributed to the migration from Unity 2021 to Unity 6.3 and general codebase cleanup.',
+         'Refactored C# systems and HLSL shaders for runtime performance, lower memory use, and better support for lower-end hardware.',
+         'Revamped lighting previews to better match the game and implemented global lighting and custom asset support. Created object and environment assets with Blender and GIMP.',
+         'Implemented contextual editing and GLS workflows, including grid interaction, selection behavior, and paste handling for each editing mode.',
+         'Added rotation event editing for beatmap v2, v3, and v4, with synchronized grid and camera behavior, playback handling, and reduced-motion support.',
+         'Contributed to beatmap format support and reworked object scaling and models to align editor geometry with Beat Saber environments.',
          'Hardened asynchronous AssetBundle loading through validation, component sanitization, cache invalidation, and deterministic cleanup.',
       ],
-      image: await getImage({
-         src: chromapper,
-         alt: 'ChroMapper Preview',
-         format: 'webp',
-      }),
+      image: chromapper,
    },
    {
       name: 'Beat Saber Map Check',
@@ -50,41 +48,44 @@ const projects: Project[] = [
       type: 'Personal Project | TypeScript, SolidJS',
       points: [
          'Built and maintain a TypeScript progressive web app used by more than 500 mappers. It checks beatmap metadata, statistics, and potential errors before release.',
-         'Implemented validation across multiple beatmap versions and custom data types, with Vitest and jsdom fixtures for map loading and rule checks.',
-         'Extracted parsing and domain logic into @kvl/bsmap, a reusable library with Deno checks, parallel tests, coverage, and npm/JSR publishing workflows.',
+         'Implemented validation across map formats and custom data, with Vitest and jsdom tests for loading and validation rules.',
+         'Extracted parsing and domain logic into @kvl/bsmap, a reusable library with automated tests and npm/JSR publishing workflows.',
       ],
-      image: await getImage({
-         src: bsmc,
-         alt: 'Beat Saber Map Check Preview',
-         format: 'webp',
-      }),
+      image: bsmc,
    },
    {
       name: 'Beat Saber Editor Enhanced',
       link: 'https://github.com/KivalEvan/BeatSaber-EditorEnhanced',
       type: 'Personal Project | Unity, C#, HLSL',
       points: [
-         'Built and maintain a C# mod for the official Beat Saber editor that improves lighting and event-box editing workflows.',
-         'Created interactive gizmos for v3 color, rotation, translation, and FX events, with drag, selection, lane scrolling, and context-aware creation.',
-         'Added event-box tools for reordering, sorting, duplication, parameter replacement, and seed randomization, alongside math expressions and precision controls.',
-         'Cached gizmo instances to improve runtime performance and removed a third-party dependency. Maintained fixes across editor updates.',
+         'Built and maintain a C# mod for the official Beat Saber editor, used by the lighting community to improve lighting workflows.',
+         'Contributed to implementing experimental features later added unofficially to Beat Saber.',
+         'Created interactive editing handles and batch tools for lighting events, with selection, duplication, sorting, mathematical expressions, and precision controls.',
+         'Cached editing handles to improve runtime performance. Maintain compatibility fixes across editor updates.',
       ],
-      image: await getImage({
-         src: bsee,
-         alt: 'Beat Saber Editor Enhanced Preview',
-         format: 'webp',
-      }),
+      image: bsee,
    },
    {
-      name: 'Autonomous Vehicle Display',
-      type: 'In Progress | Qt, gRPC, RTP',
+      name: 'Beat Saber Mapping Utility',
+      link: 'https://github.com/KivalEvan/BeatSaber-MappingUtility',
+      type: 'Personal Project | TypeScript, Astro, SolidJS',
       points: [
-         'Develop a local Qt display for an autonomous vehicle, integrated with an NVIDIA Jetson AGX Thor.',
-         'Integrate vehicle telemetry and GPS data over gRPC for real-time display.',
-         'Display live camera video received over RTP.',
+         'Built a browser-based toolkit for Beat Saber mappers, with calculators for beat timing, note jump speed, reaction time, and scores.',
+         'Added color-scheme editing with JSON output, difficulty-label previews, and random note-pattern generation.',
+         'Currently rewriting the application in Angular.',
       ],
    },
 ];
+
+const freelance = {
+   name: 'Autonomous Vehicle Display & Simulation',
+   type: 'Freelance assignment · In progress | Qt, gRPC, RTP',
+   points: [
+      'Develop a Qt display for an autonomous vehicle with an NVIDIA Jetson AGX Thor.',
+      'Integrate vehicle telemetry and GPS over gRPC, and live camera video over RTP.',
+      'Build a 3D replica of a real-world map for autonomous vehicle simulation.',
+   ],
+};
 
 interface WorkExperience {
    title: string;
@@ -97,13 +98,13 @@ interface WorkExperience {
 const works: WorkExperience[] = [
    {
       title: 'Software Developer',
-      company: 'BGN IT Services',
-      position: 'Full-time',
+      company: 'IBIT',
+      position: 'Contract',
       start: new Date('2026-05-04'),
       points: [
-         'Design and develop six company websites with Astro and Tailwind CSS for on-premises and cloud hosting.',
-         'Maintain ASP.NET Core and C# systems and internal tools, focusing on performance and reliability.',
-         'Build ASP.NET Core and C# tools that automate business processes.',
+         'Develop six company websites with Astro and Tailwind CSS for on-premises and cloud hosting.',
+         'Maintain ASP.NET Core and C# systems and build internal tools to automate business processes.',
+         'Improve codebases, infrastructure, and security. Migrated and rebuilt a third-party project for on-premises deployment.',
          'Research system improvements with potential infrastructure savings of approximately RM2,000 per year.',
       ],
    },
@@ -115,8 +116,8 @@ const works: WorkExperience[] = [
       end: new Date('2025-02-15'),
       points: [
          'Standardized data from multiple internal sources for a PETRONAS client to support a single source of truth.',
-         'Built Python pipelines with Pandas and NumPy for database and API ingestion, format standardization, and record mapping to a master reference.',
-         'Helped debug internal Python and C# tools and optimize database queries.',
+         'Built Python pipelines with Pandas and NumPy to ingest database and API data, standardize formats, and match records to a master reference.',
+         'Resolved inconsistencies in data and record matching. Helped debug internal Python and C# tools and optimize database queries.',
       ],
    },
    {
@@ -127,8 +128,7 @@ const works: WorkExperience[] = [
       end: new Date('2022-08-15'),
       points: [
          'Built a reactive form with an internal form builder, JavaScript, jQuery, and REST APIs.',
-         'Contributed to ETL backend design for data ingestion and extraction across MongoDB and other sources.',
-         'Helped diagnose a local deployment issue with Bash scripts.',
+         'Contributed to ETL backend design across MongoDB and other sources. Helped diagnose a local deployment issue with Bash scripts.',
       ],
    },
 ];
@@ -136,18 +136,20 @@ const works: WorkExperience[] = [
 const skillGroups = [
    {
       name: 'Languages',
-      items: ['C#', 'TypeScript', 'JavaScript', 'Python', 'C++', 'C', 'Bash', 'HLSL'],
+      items: ['C#', 'TypeScript', 'JavaScript', 'Python', 'C++', 'C', 'HLSL'],
    },
    {
       name: 'Web & Applications',
       items: [
          'ASP.NET Core',
          'Astro',
+         'SCSS',
          'Tailwind CSS',
          'Svelte',
          'SolidJS',
+         'Angular',
          'Node.js',
-         'Tauri',
+         'Deno',
          'REST APIs',
       ],
    },
@@ -159,12 +161,12 @@ const skillGroups = [
       name: 'Tools & Practices',
       items: [
          'Unity',
+         'Blender',
          'Git',
          'GitHub Actions',
          'Linux',
          'CMake',
          'Qt',
-         'Blender',
          'Reverse Engineering',
       ],
    },
@@ -181,284 +183,248 @@ function formatMonth(date: Date): string {
 function formatYearMonth(date: Date): string {
    return date.toISOString().slice(0, 7);
 }
-
-const { src } = await getImage({
-   src: avatar,
-   alt: 'Portrait of Nabawi Azizul',
-   format: 'webp',
-   width: 256,
-   height: 256,
-});
 ---
 
-<BaseLayout pageDetails={pageDetails} bodyClass="bg-[#f5f5f5] text-[#111]">
-   <div class="cv-document min-h-screen w-full bg-[#f5f5f5] font-sans text-[#111]">
-      <div
-         class="cv-sheet relative mx-auto min-h-screen w-full max-w-[72rem] bg-[#f5f5f5] before:absolute before:left-3 before:top-3 before:h-6 before:w-6 before:border-l before:border-t before:border-[#f5f5f5] before:content-[''] after:absolute after:bottom-3 after:right-3 after:h-6 after:w-6 after:border-b after:border-r after:border-[#111] after:content-['']"
-      >
-         <header class="cv-profile bg-[#b74242] p-4 text-[#f5f5f5] sm:px-8 sm:py-6">
-            <div class="flex flex-col gap-4 md:flex-row md:items-start">
-               <div class="flex justify-center md:w-[11.25rem] md:shrink-0">
-                  <img
-                     src={src}
+<BaseLayout pageDetails={pageDetails} bodyClass="cv-page">
+   <div class="cv-document">
+      <div class="cv-sheet">
+         <header class="cv-profile">
+            <div class="cv-profile__intro">
+               <div class="cv-profile__portrait-wrap">
+                  <Image
+                     src={avatar}
                      alt="Portrait of Nabawi Azizul"
-                     class="h-40 w-40 rounded-full bg-[#ccc] object-cover md:h-[11.25rem] md:w-[11.25rem]"
+                     class="cv-profile__portrait"
+                     format="webp"
+                     width={256}
+                     height={256}
+                     loading="eager"
                   />
                </div>
-               <div class="min-w-0 flex-1 md:px-2">
-                  <h1 class="text-[2.5rem] font-bold leading-tight">{cvName}</h1>
-                  <p class="text-xl font-semibold">{cvTitle}</p>
-                  <p class="mt-1.5">{cvSummary}</p>
+               <div class="cv-profile__bio">
+                  <h1 class="cv-profile__name">{cvName}</h1>
+                  <p class="cv-profile__role">{cvTitle}</p>
+                  <p class="cv-profile__summary">{cvSummary}</p>
                </div>
             </div>
-            <div class="mt-4">
-               <address class="flex flex-col gap-3 not-italic md:flex-row md:items-start">
-                  <div class="flex w-full flex-col gap-1 md:w-1/2">
-                     <span class="inline-flex items-center gap-1">
+            <div class="cv-profile__contact">
+               <address class="cv-profile__address">
+                  <div class="cv-profile__contact-group">
+                     <span class="cv-profile__location">
                         <Icon
                            name={cvContact.location.icon}
-                           class="inline-block h-4 w-4 align-[-0.15em]"
+                           class="cv-profile__icon"
                            aria-hidden="true"
                         />
                         <span>{cvContact.location.label}</span>
                      </span>
-                     <span class="flex flex-wrap items-center gap-x-3 gap-y-1">
-                        {
-                           cvContact.methods.map((method) => (
-                              <a
-                                 href={method.href}
-                                 class="inline-flex items-center gap-1 text-inherit underline decoration-current/50 underline-offset-2 hover:text-inherit hover:decoration-current"
-                                 aria-label={method.ariaLabel}
-                              >
-                                 <Icon
-                                    name={method.icon}
-                                    class="inline-block h-4 w-4 shrink-0 align-[-0.15em]"
-                                    aria-hidden="true"
-                                 />
-                                 <span>{method.label}</span>
-                              </a>
-                           ))
-                        }
-                     </span>
-                  </div>
-                  <div
-                     class="flex w-full flex-wrap items-center gap-x-3 gap-y-1 md:w-1/2 md:justify-between"
-                  >
-                     {
-                        cvContact.profiles.map((profile) => (
+                     <span class="cv-profile__methods">
+                        {cvContact.methods.map((method) => (
                            <a
-                              href={profile.href}
-                              class="inline-flex items-center gap-1 text-inherit underline decoration-current/50 underline-offset-2 hover:text-inherit hover:decoration-current"
-                              aria-label={profile.ariaLabel}
+                              href={method.href}
+                              class="cv-profile__link"
+                              aria-label={method.ariaLabel}
                            >
                               <Icon
-                                 name={profile.icon}
-                                 class="inline-block h-4 w-4 shrink-0 align-[-0.15em]"
+                                 name={method.icon}
+                                 class="cv-profile__icon cv-profile__icon--fixed"
                                  aria-hidden="true"
                               />
-                              <span>{profile.label}</span>
+                              <span>{method.label}</span>
                            </a>
-                        ))
-                     }
+                        ))}
+                     </span>
+                  </div>
+                  <div class="cv-profile__profiles">
+                     {cvContact.profiles.map((profile) => (
+                        <a
+                           href={profile.href}
+                           class="cv-profile__link"
+                           aria-label={profile.ariaLabel}
+                        >
+                           <Icon
+                              name={profile.icon}
+                              class="cv-profile__icon cv-profile__icon--fixed"
+                              aria-hidden="true"
+                           />
+                           <span>{profile.label}</span>
+                        </a>
+                     ))}
                   </div>
                </address>
             </div>
          </header>
-         <main class="cv-content p-4 sm:px-8 sm:py-6">
-            <div class="cv-sections flex flex-col gap-8">
-               <section class="cv-skills cv-section flex flex-col">
-                  <h2
-                     class="cv-section-title mb-3 grid w-full grid-cols-[1.5rem_auto_1fr] items-center gap-3 text-lg font-bold tracking-[0.12em] sm:text-xl sm:tracking-[0.1875em]"
-                  >
-                     <Icon
-                        name="bi:star"
-                        class="h-6 w-6 bg-[#b74242] p-1 text-[#f5f5f5]"
-                        aria-hidden="true"
-                     />
-                     <span>TECHNICAL SKILLS</span>
-                     <span class="h-px bg-[#b74242]" aria-hidden="true"></span>
+         <main class="cv-content">
+            <div class="cv-sections">
+               <section class="cv-work cv-section">
+                  <h2 class="cv-section-title">
+                     <Icon name="bi:briefcase" class="cv-section-title__icon" aria-hidden="true" />
+                     <span>WORK EXPERIENCE</span>
+                     <span class="cv-section-title__rule" aria-hidden="true"></span>
                   </h2>
-                  <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                     {
-                        skillGroups.map((group) => (
-                           <div class="flex min-w-0 flex-col gap-1">
-                              <h3 class="text-base font-bold">{group.name}</h3>
-                              <ul class="flex flex-wrap gap-1 pl-0 [list-style:none]">
-                                 {group.items.map((item) => (
-                                    <li class="rounded border border-[#ccc] bg-white/50 px-2 py-0.5 text-sm">
-                                       {item}
-                                    </li>
-                                 ))}
-                              </ul>
-                           </div>
-                        ))
-                     }
+                  {works.map((work) => (
+                     <article class="cv-entry cv-entry--timeline">
+                        <h3 class="cv-entry__title">{work.title}</h3>
+                        <div class="cv-entry__details">
+                           <p class="cv-entry__subtitle">
+                              {work.company} <span aria-hidden="true">·</span> {work.position}
+                           </p>
+                           <p class="cv-entry__dates">
+                              <time datetime={formatYearMonth(work.start)}>
+                                 {formatMonth(work.start)}
+                              </time>
+                              <span aria-hidden="true"> - </span>
+                              {work.end ? (
+                                 <time datetime={formatYearMonth(work.end)}>
+                                    {formatMonth(work.end)}
+                                 </time>
+                              ) : (
+                                 <span>Present</span>
+                              )}
+                           </p>
+                        </div>
+                        <ul class="cv-entry__points">
+                           {work.points.map((point) => (
+                              <li>{point}</li>
+                           ))}
+                        </ul>
+                     </article>
+                  ))}
+               </section>
+
+               <section class="cv-freelance cv-section">
+                  <h2 class="cv-section-title">
+                     <Icon name="bi:hammer" class="cv-section-title__icon" aria-hidden="true" />
+                     <span>FREELANCE ENGINEERING</span>
+                     <span class="cv-section-title__rule" aria-hidden="true"></span>
+                  </h2>
+                  <article class="cv-entry">
+                     <h3 class="cv-entry__title">{freelance.name}</h3>
+                     <p class="cv-entry__subtitle">{freelance.type}</p>
+                     <ul class="cv-entry__points cv-entry__points--spaced">
+                        {freelance.points.map((point) => (
+                           <li>{point}</li>
+                        ))}
+                     </ul>
+                  </article>
+               </section>
+
+               <section class="cv-skills cv-section">
+                  <h2 class="cv-section-title">
+                     <Icon name="bi:star" class="cv-section-title__icon" aria-hidden="true" />
+                     <span>TECHNICAL SKILLS</span>
+                     <span class="cv-section-title__rule" aria-hidden="true"></span>
+                  </h2>
+                  <div class="cv-skills__grid">
+                     {skillGroups.map((group) => (
+                        <div class="cv-skills__group">
+                           <h3 class="cv-skills__heading">{group.name}</h3>
+                           <ul class="cv-skills__tags">
+                              {group.items.map((item) => (
+                                 <li class="cv-skills__tag">{item}</li>
+                              ))}
+                           </ul>
+                           <p class="cv-skills__print-list">{group.items.join(', ')}</p>
+                        </div>
+                     ))}
                   </div>
                </section>
 
-               <section class="cv-work cv-section flex flex-col">
-                  <h2
-                     class="cv-section-title mb-3 grid w-full grid-cols-[1.5rem_auto_1fr] items-center gap-3 text-lg font-bold tracking-[0.12em] sm:text-xl sm:tracking-[0.1875em]"
-                  >
-                     <Icon
-                        name="bi:briefcase"
-                        class="h-6 w-6 bg-[#b74242] p-1 text-[#f5f5f5]"
-                        aria-hidden="true"
-                     />
-                     <span>WORK EXPERIENCE</span>
-                     <span class="h-px bg-[#b74242]" aria-hidden="true"></span>
+               <section class="cv-projects cv-section">
+                  <h2 class="cv-section-title">
+                     <Icon name="bi:kanban" class="cv-section-title__icon" aria-hidden="true" />
+                     <span>SELECTED PROJECTS</span>
+                     <span class="cv-section-title__rule" aria-hidden="true"></span>
                   </h2>
-                  {
-                     works.map((work) => (
-                        <article class="cv-entry relative ml-3 border-l-2 border-[#b74242] pb-4 pl-5 before:absolute before:-left-[0.5625rem] before:top-0 before:block before:h-4 before:w-4 before:rounded-full before:border-2 before:border-[#b74242] before:bg-[#f5f5f5] before:content-[''] last:pb-0">
-                           <h3 class="text-lg font-bold leading-tight">{work.title}</h3>
-                           <div class="mb-1 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-0.5">
-                              <p class="font-semibold">
-                                 {work.company} <span aria-hidden="true">·</span> {work.position}
-                              </p>
-                              <p class="whitespace-nowrap text-sm sm:text-base">
-                                 <time datetime={formatYearMonth(work.start)}>
-                                    {formatMonth(work.start)}
-                                 </time>
-                                 <span aria-hidden="true"> – </span>
-                                 {work.end ? (
-                                    <time datetime={formatYearMonth(work.end)}>
-                                       {formatMonth(work.end)}
-                                    </time>
-                                 ) : (
-                                    <span>Present</span>
-                                 )}
-                              </p>
-                           </div>
-                           <ul class="flex flex-col gap-1 pl-0 [list-style:none] [&>li]:flex [&>li::before]:mr-3 [&>li::before]:shrink-0 [&>li::before]:content-['»']">
-                              {work.points.map((point) => (
+                  {projects.map((project) => (
+                     <article class="cv-entry cv-entry--project">
+                        <h3 class="cv-entry__title">
+                           {project.link ? (
+                              <a href={project.link} class="cv-entry__link">
+                                 {project.name}
+                                 <Icon
+                                    name="bi:link-45deg"
+                                    class="cv-entry__link-icon"
+                                    aria-hidden="true"
+                                 />
+                              </a>
+                           ) : (
+                              project.name
+                           )}
+                        </h3>
+                        <p class="cv-entry__subtitle">{project.type}</p>
+                        <div class="cv-entry__body">
+                           {project.image && (
+                              <figure class="cv-entry__figure">
+                                 <Image
+                                    src={project.image}
+                                    alt={`${project.name} project preview`}
+                                    class="cv-entry__image"
+                                    style={`aspect-ratio: ${project.image.width} / ${project.image.height}`}
+                                    format="webp"
+                                    widths={[224, 448, 672, 1024]}
+                                    sizes="12rem"
+                                    loading="eager"
+                                 />
+                              </figure>
+                           )}
+                           <ul class="cv-entry__points">
+                              {project.points.map((point) => (
                                  <li>{point}</li>
                               ))}
                            </ul>
-                        </article>
-                     ))
-                  }
+                        </div>
+                     </article>
+                  ))}
                </section>
 
-               <section class="cv-education cv-section flex flex-col">
-                  <h2
-                     class="cv-section-title mb-3 grid w-full grid-cols-[1.5rem_auto_1fr] items-center gap-3 text-lg font-bold tracking-[0.12em] sm:text-xl sm:tracking-[0.1875em]"
-                  >
-                     <Icon
-                        name="bi:book"
-                        class="h-6 w-6 bg-[#b74242] p-1 text-[#f5f5f5]"
-                        aria-hidden="true"
-                     />
+               <section class="cv-education cv-section">
+                  <h2 class="cv-section-title">
+                     <Icon name="bi:book" class="cv-section-title__icon" aria-hidden="true" />
                      <span>EDUCATION</span>
-                     <span class="h-px bg-[#b74242]" aria-hidden="true"></span>
+                     <span class="cv-section-title__rule" aria-hidden="true"></span>
                   </h2>
-                  {
-                     cvEducation.map((education) => (
-                        <article class="cv-entry relative ml-3 border-l-2 border-[#b74242] pb-4 pl-5 before:absolute before:-left-[0.5625rem] before:top-0 before:block before:h-4 before:w-4 before:rounded-full before:border-2 before:border-[#b74242] before:bg-[#f5f5f5] before:content-[''] last:pb-0">
-                           <h3 class="text-lg font-bold leading-tight">
-                              {education.qualification}
-                           </h3>
-                           <p class="font-semibold">{education.institution}</p>
-                           <p class="mt-1">
-                              <time datetime={formatYearMonth(education.start)}>
-                                 {formatMonth(education.start)}
-                              </time>
-                              <span aria-hidden="true"> – </span>
-                              <time datetime={formatYearMonth(education.end)}>
-                                 {formatMonth(education.end)}
-                              </time>
-                              <span aria-hidden="true"> · </span> {education.result}
-                           </p>
-                        </article>
-                     ))
-                  }
+                  {cvEducation.map((education) => (
+                     <article class="cv-entry cv-entry--timeline">
+                        <h3 class="cv-entry__title">{education.qualification}</h3>
+                        <p class="cv-entry__subtitle">{education.institution}</p>
+                        <p class="cv-entry__result">
+                           <time datetime={formatYearMonth(education.start)}>
+                              {formatMonth(education.start)}
+                           </time>
+                           <span aria-hidden="true"> - </span>
+                           <time datetime={formatYearMonth(education.end)}>
+                              {formatMonth(education.end)}
+                           </time>
+                           <span aria-hidden="true"> · </span> {education.result}
+                        </p>
+                     </article>
+                  ))}
                </section>
 
-               <section class="cv-projects cv-section flex flex-col">
-                  <h2
-                     class="cv-section-title mb-3 grid w-full grid-cols-[1.5rem_auto_1fr] items-center gap-3 text-lg font-bold tracking-[0.12em] sm:text-xl sm:tracking-[0.1875em]"
-                  >
-                     <Icon
-                        name="bi:kanban"
-                        class="h-6 w-6 bg-[#b74242] p-1 text-[#f5f5f5]"
-                        aria-hidden="true"
-                     />
-                     <span>PROJECTS</span>
-                     <span class="h-px bg-[#b74242]" aria-hidden="true"></span>
-                  </h2>
-                  {
-                     projects.map((project) => (
-                        <article class="cv-entry pb-5 last:pb-0">
-                           <h3 class="text-lg font-bold leading-tight">
-                              {project.link ? (
-                                 <a
-                                    href={project.link}
-                                    class="text-[#b74242] underline decoration-current/40 underline-offset-2 hover:text-[#8f2f2f] hover:decoration-current"
-                                 >
-                                    {project.name}
-                                    <Icon
-                                       name="bi:link-45deg"
-                                       class="inline-block h-4 w-4 align-[-0.15em]"
-                                       aria-hidden="true"
-                                    />
-                                 </a>
-                              ) : (
-                                 project.name
-                              )}
-                           </h3>
-                           <p class="font-semibold">{project.type}</p>
-                           <div class="flow-root pt-1">
-                              {project.image && (
-                                 <figure class="mb-3 w-full max-w-[12rem] sm:float-right sm:mb-2 sm:ml-4 sm:w-[30%]">
-                                    <img
-                                       src={project.image.src}
-                                       alt={`${project.name} project preview`}
-                                       class="w-full rounded-lg"
-                                    />
-                                 </figure>
-                              )}
-                              <ul class="flex flex-col gap-1 pl-0 [list-style:none] [&>li]:flex [&>li::before]:mr-3 [&>li::before]:shrink-0 [&>li::before]:content-['»']">
-                                 {project.points.map((point) => (
-                                    <li>{point}</li>
-                                 ))}
-                              </ul>
-                           </div>
-                        </article>
-                     ))
-                  }
-               </section>
-
-               <section class="cv-award cv-section flex flex-col">
-                  <h2
-                     class="cv-section-title mb-3 grid w-full grid-cols-[1.5rem_auto_1fr] items-center gap-3 text-lg font-bold tracking-[0.12em] sm:text-xl sm:tracking-[0.1875em]"
-                  >
-                     <Icon
-                        name="bi:trophy"
-                        class="h-6 w-6 bg-[#b74242] p-1 text-[#f5f5f5]"
-                        aria-hidden="true"
-                     />
+               <section class="cv-award cv-section">
+                  <h2 class="cv-section-title">
+                     <Icon name="bi:trophy" class="cv-section-title__icon" aria-hidden="true" />
                      <span>AWARD</span>
-                     <span class="h-px bg-[#b74242]" aria-hidden="true"></span>
+                     <span class="cv-section-title__rule" aria-hidden="true"></span>
                   </h2>
-                  <article
-                     class="cv-entry relative ml-3 border-l-2 border-[#b74242] pb-3 pl-5 before:absolute before:-left-[0.5625rem] before:top-0 before:block before:h-4 before:w-4 before:rounded-full before:border-2 before:border-[#b74242] before:bg-[#f5f5f5] before:content-['']"
-                  >
-                     <h3 class="text-lg font-bold leading-tight">{cvAward.title}</h3>
+                  <article class="cv-entry cv-entry--timeline cv-entry--award">
+                     <h3 class="cv-entry__title">{cvAward.title}</h3>
                      <p>
                         <time datetime={formatYearMonth(cvAward.start)}>
                            {formatMonth(cvAward.start)}
                         </time>
-                        <span aria-hidden="true"> – </span>
+                        <span aria-hidden="true"> - </span>
                         <time datetime={formatYearMonth(cvAward.end)}>
                            {formatMonth(cvAward.end)}
                         </time>
                         <span aria-hidden="true"> · </span>
                         {cvAward.type}
                      </p>
-                     <ul
-                        class="mt-1 flex flex-col gap-1 pl-0 [list-style:none] [&>li]:flex [&>li::before]:mr-3 [&>li::before]:shrink-0 [&>li::before]:content-['»']"
-                     >
-                        {cvAward.points.map((point) => <li>{point}</li>)}
+                     <ul class="cv-entry__points cv-entry__points--spaced">
+                        {cvAward.points.map((point) => (
+                           <li>{point}</li>
+                        ))}
                      </ul>
                   </article>
                </section>
@@ -468,49 +434,554 @@ const { src } = await getImage({
    </div>
 </BaseLayout>
 
-<style is:global>
+<style lang="scss">
+   @layer layout {
+      :global(body.cv-page) {
+         background: #f5f5f5;
+         color: #111;
+      }
+
+      .cv-document {
+         --cv-leading-small: calc(1.25 / 0.875);
+         --cv-leading-large: calc(1.75 / 1.125);
+         width: 100%;
+         min-height: 100vh;
+         background: #f5f5f5;
+         color: #111;
+         font-family: var(--font-sans);
+      }
+
+      .cv-sheet {
+         position: relative;
+         width: 100%;
+         max-width: 72rem;
+         min-height: 100vh;
+         margin-inline: auto;
+         background: #f5f5f5;
+
+         &::before,
+         &::after {
+            position: absolute;
+            width: 1.5rem;
+            height: 1.5rem;
+            content: '';
+         }
+
+         &::before {
+            top: 0.75rem;
+            left: 0.75rem;
+            border-top: 1px solid #f5f5f5;
+            border-left: 1px solid #f5f5f5;
+         }
+
+         &::after {
+            right: 0.75rem;
+            bottom: 0.75rem;
+            border-right: 1px solid #111;
+            border-bottom: 1px solid #111;
+         }
+      }
+
+      .cv-profile {
+         padding: 1rem;
+         background: #b74242;
+         color: #f5f5f5;
+
+         &__intro {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+         }
+
+         &__portrait-wrap {
+            display: flex;
+            justify-content: center;
+         }
+
+         &__portrait {
+            width: 10rem;
+            height: 10rem;
+            border-radius: 9999px;
+            background: #ccc;
+            object-fit: cover;
+         }
+
+         &__bio {
+            min-width: 0;
+            flex: 1 1 0%;
+         }
+
+         &__name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.25;
+         }
+
+         &__role {
+            font-size: 1.25rem;
+            font-weight: 600;
+            line-height: 1.4;
+         }
+
+         &__summary {
+            margin-top: 0.375rem;
+         }
+
+         &__contact {
+            margin-top: 1rem;
+         }
+
+         &__address {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            font-style: normal;
+         }
+
+         &__contact-group {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            gap: 0.25rem;
+         }
+
+         &__location,
+         &__link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+         }
+
+         &__methods,
+         &__profiles {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            column-gap: 0.75rem;
+            row-gap: 0.25rem;
+         }
+
+         &__profiles {
+            width: 100%;
+         }
+
+         &__link {
+            color: inherit;
+            text-decoration-line: underline;
+            text-decoration-color: color-mix(in oklab, currentColor 50%, transparent);
+            text-underline-offset: 2px;
+
+            &:hover {
+               color: inherit;
+               text-decoration-color: currentColor;
+            }
+         }
+      }
+
+      :global(.cv-profile__icon) {
+         display: inline-block;
+         width: 1rem;
+         height: 1rem;
+         vertical-align: -0.15em;
+      }
+
+      :global(.cv-profile__icon--fixed) {
+         flex-shrink: 0;
+      }
+
+      .cv-content {
+         padding: 1rem;
+      }
+
+      .cv-sections {
+         display: flex;
+         flex-direction: column;
+         gap: 2rem;
+      }
+
+      .cv-section {
+         display: flex;
+         flex-direction: column;
+      }
+
+      .cv-section-title {
+         display: grid;
+         width: 100%;
+         grid-template-columns: 1.5rem auto 1fr;
+         align-items: center;
+         gap: 0.75rem;
+         margin-bottom: 0.75rem;
+         font-size: 1.125rem;
+         font-weight: 700;
+         line-height: var(--cv-leading-large);
+         letter-spacing: 0.12em;
+
+         &__rule {
+            height: 1px;
+            background: #b74242;
+         }
+      }
+
+      :global(.cv-section-title__icon) {
+         width: 1.5rem;
+         height: 1.5rem;
+         padding: 0.25rem;
+         background: #b74242;
+         color: #f5f5f5;
+      }
+
+      .cv-entry {
+         &__title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            line-height: 1.25;
+         }
+
+         &__subtitle {
+            font-weight: 600;
+         }
+
+         &__details {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            justify-content: space-between;
+            column-gap: 1rem;
+            row-gap: 0.125rem;
+            margin-bottom: 0.25rem;
+         }
+
+         &__dates {
+            white-space: nowrap;
+            font-size: 0.875rem;
+            line-height: var(--cv-leading-small);
+         }
+
+         &__result,
+         &__points--spaced {
+            margin-top: 0.25rem;
+         }
+
+         &__points {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            padding-left: 0;
+            list-style: none;
+
+            > li {
+               display: flex;
+
+               &::before {
+                  margin-right: 0.75rem;
+                  flex-shrink: 0;
+                  content: '»';
+               }
+            }
+         }
+
+         &__link {
+            color: #b74242;
+            text-decoration-line: underline;
+            text-decoration-color: color-mix(in oklab, currentColor 40%, transparent);
+            text-underline-offset: 2px;
+
+            &:hover {
+               color: #8f2f2f;
+               text-decoration-color: currentColor;
+            }
+         }
+
+         &__body {
+            display: flow-root;
+            padding-top: 0.25rem;
+         }
+
+         &__figure {
+            width: 100%;
+            max-width: 12rem;
+            margin-bottom: 0.75rem;
+         }
+
+         &__image {
+            width: 100%;
+            border-radius: 0.5rem;
+         }
+
+         &--timeline {
+            position: relative;
+            margin-left: 0.75rem;
+            padding-bottom: 1rem;
+            padding-left: 1.25rem;
+            border-left: 2px solid #b74242;
+
+            &::before {
+               position: absolute;
+               top: 0;
+               left: -0.5625rem;
+               display: block;
+               width: 1rem;
+               height: 1rem;
+               border: 2px solid #b74242;
+               border-radius: 9999px;
+               background: #f5f5f5;
+               content: '';
+            }
+
+            &:last-child {
+               padding-bottom: 0;
+            }
+         }
+
+         &--project {
+            padding-bottom: 1.25rem;
+
+            &:last-child {
+               padding-bottom: 0;
+            }
+         }
+
+         &--award {
+            &:last-child {
+               padding-bottom: 0.75rem;
+            }
+         }
+      }
+
+      :global(.cv-entry__link-icon) {
+         display: inline-block;
+         width: 1rem;
+         height: 1rem;
+         vertical-align: -0.15em;
+      }
+
+      .cv-skills {
+         &__grid {
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 0.75rem;
+         }
+
+         &__group {
+            display: flex;
+            min-width: 0;
+            flex-direction: column;
+            gap: 0.25rem;
+         }
+
+         &__heading {
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1.5;
+         }
+
+         &__tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+            padding-left: 0;
+            list-style: none;
+         }
+
+         &__tag {
+            padding: 0.125rem 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 0.25rem;
+            background: #ffffff80;
+            font-size: 0.875rem;
+            line-height: var(--cv-leading-small);
+         }
+
+         &__print-list {
+            display: none;
+         }
+      }
+
+      @media (min-width: 40rem) {
+         .cv-profile,
+         .cv-content {
+            padding: 1.5rem 2rem;
+         }
+
+         .cv-section-title {
+            font-size: 1.25rem;
+            line-height: 1.4;
+            letter-spacing: 0.1875em;
+         }
+
+         .cv-entry {
+            &__dates {
+               font-size: 1rem;
+               line-height: 1.5;
+            }
+
+            &__figure {
+               float: right;
+               width: 30%;
+               margin-bottom: 0.5rem;
+               margin-left: 1rem;
+            }
+         }
+
+         .cv-skills__grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+         }
+      }
+
+      @media (min-width: 48rem) {
+         .cv-profile {
+            &__intro,
+            &__address {
+               flex-direction: row;
+               align-items: flex-start;
+            }
+
+            &__portrait-wrap {
+               width: 11.25rem;
+               flex-shrink: 0;
+            }
+
+            &__portrait {
+               width: 11.25rem;
+               height: 11.25rem;
+            }
+
+            &__bio {
+               padding-inline: 0.5rem;
+            }
+
+            &__contact-group,
+            &__profiles {
+               width: 50%;
+            }
+
+            &__profiles {
+               justify-content: space-between;
+            }
+         }
+      }
+
+      @media print {
+         .cv-skills {
+            &__tags {
+               display: none;
+            }
+
+            &__print-list {
+               display: block;
+            }
+         }
+      }
+   }
+
    .cv-document :focus-visible {
       outline-color: #111;
    }
 
    @page {
       size: A4 portrait;
-      margin: 0;
+      margin: 10mm;
    }
 
    @media print {
-      html,
-      body {
-         width: 210mm;
-         min-height: 297mm;
+      :global(html):has(.cv-document),
+      :global(body):has(.cv-document) {
+         width: auto;
+         min-height: 0;
          background: #f5f5f5 !important;
-         font-size: 9.5pt;
+         font-size: 10pt;
+         line-height: 1.4;
          print-color-adjust: exact;
          -webkit-print-color-adjust: exact;
       }
 
-      body {
+      :global(body):has(.cv-document) {
          display: block;
       }
 
       .cv-document,
       .cv-sheet {
-         width: 210mm;
+         width: auto;
          max-width: none;
-         min-height: 297mm;
+         min-height: 0;
       }
 
       .cv-profile {
-         padding: 7mm 10mm;
+         padding: 4mm;
          break-inside: avoid;
       }
 
       .cv-content {
-         padding: 7mm 10mm;
+         padding: 5mm 4mm 0;
       }
 
       .cv-sections {
-         gap: 5mm;
+         display: block;
+      }
+
+      .cv-section + .cv-section {
+         margin-top: 4mm;
+      }
+
+      .cv-skills {
+         break-inside: avoid;
+      }
+
+      .cv-skills__grid {
+         grid-template-columns: 1fr;
+         gap: 1mm;
+      }
+
+      .cv-skills__group {
+         display: grid;
+         grid-template-columns: 35mm 1fr;
+         gap: 3mm;
+      }
+
+      .cv-work .cv-entry:not(:last-child) {
+         padding-bottom: 3mm;
+      }
+
+      .cv-projects .cv-entry:not(:last-child) {
+         padding-bottom: 3mm;
+      }
+
+      .cv-projects .cv-entry__points {
+         gap: 0.5mm;
+      }
+
+      .cv-education .cv-entry p {
+         display: inline;
+      }
+
+      .cv-education .cv-entry p + p {
+         margin-left: 3mm;
+      }
+
+      .cv-profile__portrait {
+         width: 25mm;
+         height: 25mm;
+      }
+
+      .cv-profile__portrait:only-child {
+         margin: 0 auto;
+      }
+
+      .cv-profile__intro {
+         flex-direction: row;
+      }
+
+      .cv-profile__portrait-wrap {
+         width: 25mm;
+         flex-shrink: 0;
+      }
+
+      .cv-profile__name {
+         font-size: 24pt;
+      }
+
+      .cv-projects .cv-entry__figure {
+         display: none;
       }
 
       .cv-section-title {
@@ -522,7 +993,8 @@ const { src } = await getImage({
       }
 
       .cv-projects {
-         padding-top: 8mm;
+         margin-top: 0 !important;
+         padding-top: 5mm;
          break-before: page;
       }
 
@@ -531,7 +1003,7 @@ const { src } = await getImage({
          display: none;
       }
 
-      a {
+      .cv-document a {
          color: inherit;
          text-decoration-line: underline;
          text-decoration-thickness: 0.5pt;

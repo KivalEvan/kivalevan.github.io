@@ -1,13 +1,12 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-import '../styles/home-background.css';
-import '../styles/home-motion.css';
-import '../styles/home-material.css';
-import '../styles/home-ambient.css';
-import '../styles/home-socials.css';
+import '../styles/home-background.scss';
+import '../styles/generated/home-motion-frames.css';
 import FeaturedVideo from '../components/FeaturedVideo.svelte';
 import InkPortrait from '../components/visual/InkPortrait.astro';
 import MobileHeroInkPlanes from '../components/visual/MobileHeroInkPlanes.astro';
+import LiquidInk from '../components/visual/LiquidInk.astro';
+import HeroPrintAccents from '../components/visual/HeroPrintAccents.astro';
 import ChromaticTitle from '../components/visual/ChromaticTitle.astro';
 import SectionHeading from '../components/visual/SectionHeading.astro';
 import contacts from '../data/contacts';
@@ -16,8 +15,6 @@ import { Icon } from 'astro-icon/components';
 import heavyMassRaw from '../assets/ink/heavy-ink-mass-1.svg?raw';
 import organicDrag1Raw from '../assets/ink/organic-drag-1.svg?raw';
 import organicDrag2Raw from '../assets/ink/organic-drag-2.svg?raw';
-import pigmentRedRaw from '../assets/ink/pigment-pool-red.svg?raw';
-import pigmentBlueRaw from '../assets/ink/pigment-pool-blue.svg?raw';
 import tangleRedRaw from '../assets/ink/ink-tangle-red.svg?raw';
 import tangleBlueRaw from '../assets/ink/ink-tangle-blue.svg?raw';
 import scratchesRaw from '../assets/ink/scratch-field-1.svg?raw';
@@ -59,11 +56,17 @@ if (
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
             // Prepare before artwork paints; a failed module must never leave it hidden.
             hero.dataset.homeMotionBoot = 'pending';
-            window.setTimeout(() => {
+            const cleanupBoot = () => {
+               window.clearTimeout(bootTimer);
+               document.removeEventListener('astro:before-swap', cleanupBoot);
+            };
+            const bootTimer = window.setTimeout(() => {
+               cleanupBoot();
                if (hero.dataset.homeMotionBoot === 'pending') {
                   hero.dataset.homeMotionBoot = 'expired';
                }
             }, 1500);
+            document.addEventListener('astro:before-swap', cleanupBoot, { once: true });
          })();
       </script>
       <div class="mixed-hero__art mixed-hero__art--back" data-hero-plane-source aria-hidden="true">
@@ -86,28 +89,47 @@ if (
             <div class="mixed-hero__blue-spray">
                <Fragment set:html={splatter2Raw} />
             </div>
-            <div class="mixed-hero__paper-toner"><Fragment set:html={pigmentBlueRaw} /></div>
-            <div class="mixed-hero__navy-pool"><Fragment set:html={pigmentBlueRaw} /></div>
-            <div class="mixed-hero__red-pool"><Fragment set:html={pigmentRedRaw} /></div>
-            <div class="mixed-hero__black-drag"><Fragment set:html={organicDrag1Raw} /></div>
+            <div class="mixed-hero__paper-toner">
+               <LiquidInk shape="blue" />
+            </div>
+            <div class="mixed-hero__navy-pool">
+               <LiquidInk shape="blue" />
+            </div>
+            <div class="mixed-hero__red-pool">
+               <LiquidInk shape="red" />
+            </div>
+            <div class="mixed-hero__black-drag">
+               <Fragment set:html={organicDrag1Raw} />
+            </div>
             <div class="mixed-hero__red-tangle">
                <Fragment set:html={tangleRedRaw} />
             </div>
             <div class="mixed-hero__blue-tangle">
                <Fragment set:html={tangleBlueRaw} />
             </div>
-            <div class="mixed-hero__decay"><Fragment set:html={scratchesRaw} /></div>
+            <div class="mixed-hero__decay">
+               <Fragment set:html={scratchesRaw} />
+            </div>
          </div>
       </div>
 
       <MobileHeroInkPlanes plane="back" />
       <div class="site-shell mixed-hero__stage">
-         <div class="mixed-hero__portrait"><InkPortrait /></div>
+         <HeroPrintAccents />
+         <div class="mixed-hero__portrait">
+            <InkPortrait />
+         </div>
 
          <div class="mixed-hero__midground" data-hero-plane-source aria-hidden="true">
-            <div class="mixed-hero__navy-ribbon"><Fragment set:html={organicDrag2Raw} /></div>
-            <div class="mixed-hero__paper-drag"><Fragment set:html={organicDrag1Raw} /></div>
-            <div class="mixed-hero__paper-shock"><Fragment set:html={impactRaw} /></div>
+            <div class="mixed-hero__navy-ribbon">
+               <Fragment set:html={organicDrag2Raw} />
+            </div>
+            <div class="mixed-hero__paper-drag">
+               <Fragment set:html={organicDrag1Raw} />
+            </div>
+            <div class="mixed-hero__paper-shock">
+               <Fragment set:html={impactRaw} />
+            </div>
             <div class="mixed-hero__red-vein">
                <Fragment set:html={tangleRedRaw} />
             </div>
@@ -119,10 +141,18 @@ if (
          </div>
 
          <div class="mixed-hero__foreground" data-hero-plane-source aria-hidden="true">
-            <div class="mixed-hero__black-vein"><Fragment set:html={organicDrag2Raw} /></div>
-            <div class="mixed-hero__paper-scratches"><Fragment set:html={scratchesRaw} /></div>
-            <div class="mixed-hero__paper-splatter"><Fragment set:html={splatter3Raw} /></div>
-            <div class="mixed-hero__red-deposit"><Fragment set:html={pigmentRedRaw} /></div>
+            <div class="mixed-hero__black-vein">
+               <Fragment set:html={organicDrag2Raw} />
+            </div>
+            <div class="mixed-hero__paper-scratches">
+               <Fragment set:html={scratchesRaw} />
+            </div>
+            <div class="mixed-hero__paper-splatter">
+               <Fragment set:html={splatter3Raw} />
+            </div>
+            <div class="mixed-hero__red-deposit">
+               <LiquidInk shape="red" />
+            </div>
          </div>
 
          <MobileHeroInkPlanes plane="fore" />
@@ -137,37 +167,39 @@ if (
 
          <div class="mixed-hero__actions">
             <ul aria-label="Find me online" class="mixed-hero__socials">
-               {
-                  contacts.map((contact) => {
-                     const label = contact.place === 'X (Twitter)' ? 'X' : contact.place;
-                     return contact.url ? (
-                        <li>
-                           <a href={contact.url} aria-label={contact.place}>
-                              <Icon name={contact.icon} aria-hidden="true" />
-                              <span>{label}</span>
-                           </a>
-                        </li>
-                     ) : (
-                        <li>
-                           <button
-                              type="button"
-                              title={contact.name}
-                              aria-label={contact.place}
-                              data-discord-popup={contact.place === 'Discord' ? true : undefined}
-                           >
-                              <Icon name={contact.icon} aria-hidden="true" />
-                              <span>{label}</span>
-                           </button>
-                        </li>
-                     );
-                  })
-               }
+               {contacts.map((contact) => {
+                  const label = contact.place === 'X (Twitter)' ? 'X' : contact.place;
+                  return contact.url ? (
+                     <li>
+                        <a href={contact.url} aria-label={contact.place}>
+                           <Icon name={contact.icon} aria-hidden="true" />
+                           <span>{label}</span>
+                        </a>
+                     </li>
+                  ) : (
+                     <li>
+                        <button
+                           type="button"
+                           title={contact.name}
+                           aria-label={contact.place}
+                           data-discord-popup={contact.place === 'Discord' ? true : undefined}
+                        >
+                           <Icon name={contact.icon} aria-hidden="true" />
+                           <span>{label}</span>
+                        </button>
+                     </li>
+                  );
+               })}
             </ul>
          </div>
 
          <p class="mixed-hero__meta">
-            <b>Age</b>
-            <span id="age" data-age data-birth-date={birthDate}>{age}</span> · June 10<br />
+            <b>Age::</b>
+            <span id="age" data-age data-birth-date={birthDate}>
+               {age}
+            </span>{' '}
+            · June 10
+            <br />
             Avatar art by <a href="https://www.pixiv.net/en/users/1020785">まひる</a>
          </p>
       </div>
@@ -176,7 +208,7 @@ if (
    <section
       data-page-stagger-item
       aria-labelledby="featured-heading"
-      class="home-section home-section--featured w-full px-3 sm:px-6 md:px-8"
+      class="home-section home-section--featured"
    >
       <div class="site-shell">
          <SectionHeading
@@ -184,6 +216,7 @@ if (
             title="Featured video"
             density="medium"
             variant="featured"
+            outlineLastWord
          />
          <div class="punk-video">
             <div class="punk-video__mount" aria-hidden="true">
@@ -193,8 +226,10 @@ if (
                <Fragment set:html={organicDrag2Raw} />
             </div>
             <div class="punk-video__red" aria-hidden="true">
-               <Fragment set:html={pigmentRedRaw} />
+               <LiquidInk shape="red" />
             </div>
+            <div class="punk-video__cyan" aria-hidden="true"></div>
+            <div class="punk-video__threads" aria-hidden="true"></div>
             <div class="punk-video__frame">
                <FeaturedVideo client:visible />
             </div>
@@ -206,7 +241,7 @@ if (
       data-page-stagger-item
       aria-labelledby="skills-heading"
       id="skills"
-      class="home-section home-section--skills w-full scroll-mt-6 px-3 sm:px-6 md:px-8"
+      class="home-section home-section--skills"
    >
       <div class="site-shell">
          <SectionHeading
@@ -214,18 +249,31 @@ if (
             title="Skills & Interests"
             density="low"
             variant="skills"
+            outlineLastWord
          />
-         <div class="skills-field site-reading-width text-lg">
+         <div class="skills-field site-reading-width">
             <div class="skills-group skills-group--tools">
-               <h3 class="punk-h3">Languages &amp; Technologies</h3>
+               <h3 class="punk-h3">Languages</h3>
                <ul class="punk-tags">
-                  {[...info.languages, ...info.techs].map((e) => <li>{e}</li>)}
+                  {info.languages.map((e) => (
+                     <li>{e}</li>
+                  ))}
+               </ul>
+            </div>
+            <div class="skills-group skills-group--tech">
+               <h3 class="punk-h3">Technologies</h3>
+               <ul class="punk-tags">
+                  {info.techs.map((e) => (
+                     <li>{e}</li>
+                  ))}
                </ul>
             </div>
             <div class="skills-group skills-group--topics">
                <h3 class="punk-h3">Topics</h3>
                <ul class="punk-tags">
-                  {info.topics.map((e) => <li>{e}</li>)}
+                  {info.topics.map((e) => (
+                     <li>{e}</li>
+                  ))}
                </ul>
             </div>
             <p class="punk-note">
@@ -239,7 +287,7 @@ if (
    <section
       data-page-stagger-item
       aria-labelledby="hardware-heading"
-      class="home-section home-section--hardware w-full px-3 sm:px-6 md:px-8"
+      class="home-section home-section--hardware"
    >
       <div class="site-shell">
          <SectionHeading
@@ -247,6 +295,7 @@ if (
             title="Current hardware"
             density="low"
             variant="hardware"
+            outlineLastWord
          />
          <div class="punk-hardware">
             <div>
@@ -329,3 +378,2525 @@ if (
       document.documentElement.dataset.ageUpdaterBound = 'true';
    }
 </script>
+
+<style lang="scss">
+   /* Dense, broken registration inks surround a clean face and reading pocket.
+      Mobile planes bake these same masters; do not filter the resulting images. */
+   .mixed-hero {
+      &__paper,
+      &__paper-impact {
+         mask: url('../assets/ink/print-splatter-field.svg') center / 100% 100% no-repeat;
+      }
+
+      &__paper::before {
+         background: var(--color-ink-petrol);
+         opacity: 0.78;
+      }
+
+      &__paper-toner {
+         color: var(--color-ink);
+         opacity: 0.48;
+      }
+
+      &__red-pool {
+         color: var(--color-signal-red);
+         opacity: 0.96;
+         mix-blend-mode: normal;
+      }
+
+      &__red-spray {
+         opacity: 0.94;
+         mix-blend-mode: normal;
+      }
+
+      &__blue-spray {
+         color: var(--color-signal-cyan);
+         opacity: 0.92;
+         mix-blend-mode: normal;
+      }
+
+      &__navy-pool {
+         color: var(--color-ink-cobalt);
+         opacity: 0.9;
+         mix-blend-mode: normal;
+      }
+
+      &__red-tangle {
+         color: var(--color-signal-red);
+         opacity: 1;
+      }
+
+      &__blue-tangle {
+         color: var(--color-signal-cyan);
+         opacity: 1;
+      }
+
+      &__paper-drag {
+         opacity: 0.86;
+         mask: url('../assets/ink/print-splatter-field.svg') center / 100% 100% no-repeat;
+      }
+
+      &__red-vein,
+      &__red-deposit {
+         color: var(--color-signal-red);
+         opacity: 0.92;
+         mix-blend-mode: normal;
+      }
+
+      &__paper-scratches {
+         opacity: 0.68;
+      }
+
+      &__decay {
+         color: var(--color-signal-cyan);
+         opacity: 0.56;
+      }
+   }
+
+   /* Localized impact fallout gives each existing plate a rough, printed perimeter. */
+   .mixed-hero {
+      &__red-spray::after,
+      &__blue-spray::after,
+      &__red-pool::after,
+      &__navy-pool::after,
+      &__paper-impact::before {
+         content: '';
+         position: absolute;
+         pointer-events: none;
+         background: currentColor;
+         mask-repeat: no-repeat;
+      }
+
+      /* The crimson plate breaks outward in a short, uneven arc rather than a uniform field. */
+      &__red-spray::after {
+         inset: -17% -12% -20% -9%;
+         mask-image: url('../assets/ink/impact-cluster-3.svg');
+         mask-position: 18% 61%;
+         mask-size: 78% 84%;
+         opacity: 0.58;
+         transform: rotate(-17deg);
+      }
+
+      /* Cyan stray marks follow the blue plate's lower edge, away from the biography pocket. */
+      &__blue-spray::after {
+         inset: -12% -8% -21% -16%;
+         mask-image: url('../assets/ink/spray-fine-2.svg');
+         mask-position: 8% 73%;
+         mask-size: 88% 74%;
+         opacity: 0.7;
+         transform: rotate(13deg);
+      }
+
+      /* Dense edge islands, dry throws, and a few detached marks stay tied to their source pools. */
+      &__red-pool::after {
+         inset: 7% -14% -16% -12%;
+         background: var(--color-signal-red);
+         mask-image: url('../assets/ink/impact-cluster-2.svg');
+         mask-position: 18% 57%;
+         mask-size: 74% 86%;
+         opacity: 0.36;
+         transform: rotate(-11deg);
+      }
+
+      &__navy-pool::after {
+         inset: -13% -10% -17% -15%;
+         background: var(--color-ink-petrol);
+         mask-image: url('../assets/ink/impact-cluster-1.svg');
+         mask-position: 29% 54%;
+         mask-size: 76% 82%;
+         opacity: 0.38;
+         transform: rotate(9deg);
+      }
+
+      /* The paper's broken silhouette has a torn, wet fringe. */
+      &__paper-impact::before {
+         inset: -13% -10% -14% -16%;
+         background: var(--color-paper);
+         mask-image: url('../assets/ink/impact-cluster-3.svg');
+         mask-position: 23% 58%;
+         mask-size: 76% 82%;
+         opacity: 0.58;
+         transform: rotate(12deg);
+      }
+   }
+
+   .mixed-hero {
+      &__red-tangle,
+      &__blue-tangle {
+         mix-blend-mode: normal;
+      }
+
+      &__red-pool::before,
+      &__navy-pool::before {
+         content: '';
+         position: absolute;
+         inset: 0;
+         pointer-events: none;
+         mask-repeat: no-repeat;
+         mask-position:
+            center,
+            37% 23%;
+         mask-composite: intersect;
+         mix-blend-mode: screen;
+         transform: none;
+      }
+   }
+
+   /* Broken blue overprint, rather than another smooth colour wash over the crimson. */
+   .mixed-hero {
+      &__red-pool::before {
+         background: linear-gradient(
+            118deg,
+            var(--color-ink-cobalt),
+            var(--color-paper) 48%,
+            var(--color-ink-petrol) 76%
+         );
+         mask-image:
+            url('../assets/ink/liquid-pool-red.svg'), url('../assets/ink/print-splatter-field.svg');
+         mask-size:
+            100% 100%,
+            100% 100%;
+         opacity: 0.48;
+      }
+
+      /* Smaller paper scratches expose the grain of the blue underpainting. */
+      &__navy-pool::before {
+         background: var(--color-paper);
+         mask-image:
+            url('../assets/ink/liquid-pool-blue.svg'), url('../assets/ink/print-splatter-field.svg');
+         mask-size:
+            100% 100%,
+            120% 130%;
+         mask-position:
+            center,
+            65% 70%;
+         opacity: 0.52;
+      }
+
+      /* Black spatter cuts into the paper instead of washing it into grey. */
+      &__paper::after {
+         inset: 0;
+         background: var(--color-ink-deep);
+         mask-image:
+            url('../assets/ink/heavy-ink-mass-1.svg'), url('../assets/ink/print-splatter-field.svg');
+         mask-size:
+            100% 100%,
+            75% 80%;
+         mask-position:
+            center,
+            31% 47%;
+         mask-repeat: no-repeat;
+         mask-composite: intersect;
+         opacity: 0.58;
+         mix-blend-mode: multiply;
+         transform: none;
+      }
+
+      /* One quiet toner pass stays on the paper, never across the clear face or reading area. */
+      &__paper-impact::after {
+         content: '';
+         position: absolute;
+         inset: 0;
+         pointer-events: none;
+         background: url('../assets/ink/grain-speckle-1.svg') 19% 37% / 9rem 9rem repeat;
+         mask: url('../assets/ink/torn-mass-1.svg') center / 100% 100% no-repeat;
+         opacity: 0.18;
+         mix-blend-mode: multiply;
+      }
+   }
+
+   @media (max-width: 47.99rem) {
+      /* Shared fragment IDs need their original SVG viewport, even when another
+         plane uses the definition. Keep that context, not the source's paint. */
+      .mixed-hero [data-hero-plane-source] :global(svg > :not(defs)),
+      .mixed-hero [data-hero-plane-source] :global(.liquid-ink),
+      .mixed-hero [data-hero-plane-source]::before,
+      .mixed-hero [data-hero-plane-source]::after,
+      .mixed-hero [data-hero-plane-source] *::before,
+      .mixed-hero [data-hero-plane-source] *::after {
+         display: none !important;
+      }
+
+      .mixed-hero [data-hero-plane-source],
+      .mixed-hero [data-hero-plane-source] div,
+      .mixed-hero [data-hero-plane-source] :global(svg) {
+         mask: none !important;
+         filter: none !important;
+         clip-path: none !important;
+         mix-blend-mode: normal !important;
+         background: none !important;
+         animation: none !important;
+      }
+
+      .mixed-hero {
+         &__red-pool {
+            opacity: 0.9;
+         }
+
+         &__red-spray {
+            opacity: 0.86;
+         }
+
+         &__red-spray::after {
+            inset: -11% -10% -15% -6%;
+            mask-size: 70% 76%;
+            opacity: 0.44;
+         }
+
+         &__blue-spray::after {
+            inset: -9% -5% -14% -11%;
+            mask-size: 78% 66%;
+            opacity: 0.5;
+         }
+
+         &__red-pool::after,
+         &__navy-pool::after {
+            opacity: 0.28;
+         }
+
+         &__paper-impact::before {
+            inset: -8% -6% -9% -11%;
+            opacity: 0.46;
+         }
+
+         &__red-pool::before,
+         &__navy-pool::before {
+            opacity: 0.56;
+         }
+
+         &__paper::after {
+            opacity: 0.46;
+         }
+      }
+   }
+
+   /* Print controls scale as a unit; randomized cuts affect only their ink plates. */
+   .mixed-hero__socials {
+      gap: 0.12rem 0.35rem;
+
+      :is(a, button) {
+         position: relative;
+         isolation: isolate;
+         width: 100%;
+         gap: 0.45rem;
+         padding: 0.3rem 0.4rem;
+         font-family: var(--font-display);
+         font-size: 1.2rem;
+         font-weight: 800;
+         line-height: 1;
+         letter-spacing: 0.015em;
+         scale: 1;
+         transition: none;
+
+         &::before {
+            content: '';
+            position: absolute;
+            pointer-events: none;
+            z-index: -1;
+            inset: 0.28rem auto 0.28rem 0;
+            width: 2rem;
+            background: var(--color-paper);
+            clip-path: var(
+               --print-interaction-cut,
+               var(--print-paper-cut, polygon(5% 6%, 94% 0, 100% 90%, 89% 100%, 0 94%, 3% 44%))
+            );
+            transform: rotate(-4deg);
+         }
+      }
+
+      li:nth-child(even) :is(a, button)::before {
+         transform: rotate(3deg);
+         clip-path: var(
+            --print-interaction-cut,
+            var(--print-paper-cut, polygon(0 3%, 91% 7%, 100% 0, 97% 97%, 6% 100%))
+         );
+      }
+
+      :global(svg) {
+         width: 1.25rem;
+         height: 1.25rem;
+         margin-right: 0.15rem;
+         color: var(--color-ink);
+      }
+   }
+
+   :global(body:has(.mixed-hero)) .mixed-hero__socials :is(a, button) span {
+      padding: 0.12rem 0.1rem;
+      margin-inline: -0.1rem;
+      background: var(--color-ink);
+      text-shadow: none;
+      transform: none;
+      transition: none;
+   }
+
+   .mixed-hero__socials {
+      :is(a, button):is(:hover, :focus-visible) {
+         scale: 1.05;
+         color: var(--color-ink);
+
+         &::before {
+            width: 100%;
+            transform: none;
+         }
+      }
+   }
+
+   :global(body:has(.mixed-hero))
+      .mixed-hero__socials
+      :is(a, button):is(:hover, :focus-visible)
+      span {
+      background: transparent;
+      text-shadow: none;
+      transform: none;
+      animation: none;
+   }
+
+   .mixed-hero__socials {
+      :is(a, button):focus-visible {
+         outline: 2px solid var(--color-paper);
+         outline-offset: 3px;
+      }
+   }
+
+   @media (max-width: 47.99rem) {
+      .mixed-hero__socials {
+         gap: 0.12rem 0.25rem;
+
+         :is(a, button) {
+            font-size: 1.05rem;
+            gap: 0.35rem;
+         }
+      }
+   }
+
+   @media (prefers-reduced-motion: reduce) {
+      .mixed-hero__socials :is(a, button):is(:hover, :focus-visible) {
+         scale: 1;
+      }
+
+      .mixed-hero__socials :is(a, button),
+      .mixed-hero__socials :is(a, button)::before,
+      :global(body:has(.mixed-hero)) .mixed-hero__socials :is(a, button) span {
+         transition: none;
+      }
+   }
+
+   /* The poster continues below the hero: dense edges, quiet reading surfaces.
+      Scope shared-component refinements to the homepage, never the CV or archives. */
+   .home-section {
+      padding-block: clamp(4.5rem, 7vw, 7rem);
+
+      &--featured {
+         padding-top: clamp(5rem, 8vw, 8rem);
+      }
+   }
+
+   .home-section > .site-shell {
+      max-width: 72rem;
+   }
+
+   .home-section :global(.print-heading__outline) {
+      color: transparent;
+      -webkit-text-stroke: 1.2px var(--color-paper);
+      text-shadow: none;
+   }
+
+   :global(body:has(.mixed-hero))
+      .home-section
+      :global(.print-heading)
+      :global(.print-heading__rule) {
+      width: min(48%, 18rem);
+      height: 0.55rem;
+      margin-top: 0.8rem;
+      background: var(--color-signal-red);
+      mask: url('../assets/ink/stroke-long-1.svg') center / 100% 400% no-repeat;
+      opacity: 1;
+   }
+
+   :global(body:has(.mixed-hero))
+      .home-section--skills
+      :global(.print-heading)
+      :global(.print-heading__rule) {
+      background: var(--color-signal-cyan);
+   }
+
+   .home-section :global(.print-heading__rule)::after {
+      display: none;
+   }
+
+   :global(body:has(.mixed-hero)) .home-section :global(.print-heading)::after {
+      left: auto;
+      right: 4%;
+      bottom: -1.5rem;
+      width: clamp(6rem, 20vw, 15rem);
+      height: 7rem;
+      background: var(--color-signal-cyan);
+      mask-image: url('../assets/ink/spray-fine-2.svg');
+      opacity: 0.7;
+   }
+
+   :global(body:has(.mixed-hero)) .home-section--skills :global(.print-heading)::after {
+      background: var(--color-signal-red);
+   }
+
+   :global(body:has(.mixed-hero)) .home-section--hardware :global(.print-heading)::after {
+      opacity: 0.35;
+   }
+
+   .home-section :global(.print-title-resolve__word) {
+      display: inline-block;
+      white-space: nowrap;
+   }
+
+   .home-section :global(.print-title-resolve__letter) {
+      display: inline-block;
+      text-align: center;
+   }
+
+   /* Replace the pale sheet with broken paper, red deposits and cyan filaments.
+      The media and its caption sit above all masks, with no rotated player. */
+   .punk-video {
+      width: min(94%, 62rem);
+      margin-top: clamp(2.5rem, 5vw, 4rem);
+      padding: 0.5rem;
+
+      &__frame {
+         background: none;
+         box-shadow: none;
+         transform: none;
+      }
+
+      &__mount {
+         inset: -7% -5% -6%;
+         opacity: 1;
+         mask: url('../assets/ink/print-splatter-field.svg') 42% 55% / 100% 100% no-repeat;
+      }
+
+      &__navy {
+         left: -10%;
+         right: 15%;
+         bottom: -9%;
+         height: 25%;
+         color: var(--color-ink-cobalt);
+         opacity: 0.95;
+         mask: url('../assets/ink/print-splatter-field.svg') center / 100% 100% no-repeat;
+      }
+
+      &__red {
+         top: -12%;
+         right: -12%;
+         width: 48%;
+         height: 50%;
+         color: var(--color-signal-red);
+         opacity: 1;
+         mix-blend-mode: normal;
+         mask: url('../assets/ink/print-splatter-field.svg') center / 100% 100% no-repeat;
+      }
+
+      &__cyan,
+      &__threads {
+         position: absolute;
+         z-index: -1;
+         pointer-events: none;
+      }
+
+      &__cyan {
+         inset: -16% 58% 39% -13%;
+         background: var(--color-signal-cyan);
+         mask: url('../assets/ink/ink-tangle-blue.svg') center / 100% 100% no-repeat;
+      }
+
+      &__threads {
+         inset: 36% -10% -12% 48%;
+         background: var(--color-signal-red);
+         mask: url('../assets/ink/filament-red-1.svg') center / 100% 100% no-repeat;
+      }
+
+      &::before {
+         top: -12%;
+         left: -14%;
+         width: 46%;
+         height: 47%;
+         background: var(--color-paper);
+         mask-image: url('../assets/ink/impact-cluster-3.svg');
+         opacity: 0.9;
+      }
+
+      &::after {
+         right: -9%;
+         bottom: -8%;
+         width: 32%;
+         height: 29%;
+         background: var(--color-paper);
+         mask-image: url('../assets/ink/splatter-cluster-3.svg');
+         opacity: 0.8;
+      }
+   }
+
+   /* Languages and technologies are separate inventories, not a proficiency scale. */
+   .skills-field {
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+      gap: 2rem clamp(2rem, 6vw, 5rem);
+      max-width: 66rem;
+      margin-top: 3rem;
+   }
+
+   .skills-group {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+
+      &--tech {
+         padding-top: 2.25rem;
+      }
+
+      &--topics {
+         grid-column: 1 / -1;
+         width: 100%;
+         margin: 0;
+         padding-top: 1.5rem;
+         transform: none;
+      }
+
+      .punk-h3 {
+         font-family: var(--font-display);
+         font-size: clamp(1.5rem, 3vw, 2rem);
+         line-height: 1.1;
+         letter-spacing: 0.015em;
+      }
+   }
+
+   .skills-group {
+      &--tools::before {
+         left: -8%;
+         top: -1.4rem;
+         width: 55%;
+         height: 1rem;
+         background: var(--color-signal-cyan);
+         mask-image: url('../assets/ink/organic-drag-1.svg');
+         opacity: 0.85;
+      }
+
+      &--topics::before {
+         right: 0;
+         bottom: -1rem;
+         width: 35%;
+         background: var(--color-signal-red);
+         opacity: 0.8;
+      }
+   }
+
+   .skills-field {
+      &::before {
+         top: -4rem;
+         left: -8%;
+         width: 23%;
+         height: 9rem;
+         background: var(--color-paper);
+         mask-image: url('../assets/ink/splatter-cluster-2.svg');
+         opacity: 0.45;
+      }
+
+      &::after {
+         top: auto;
+         right: -7%;
+         bottom: -2.5rem;
+         width: 34%;
+         height: 15rem;
+         background: var(--color-signal-cyan);
+         mask-image: url('../assets/ink/ink-tangle-blue.svg');
+         opacity: 0.45;
+      }
+   }
+
+   .punk-tags {
+      gap: 0.8rem 0.55rem;
+      align-items: baseline;
+
+      li {
+         max-width: 100%;
+         font-size: 0.875rem;
+         overflow-wrap: anywhere;
+      }
+
+      li:nth-child(4n) {
+         background: var(--color-ink-petrol);
+      }
+   }
+
+   .skills-group {
+      &--tools .punk-tags li:nth-child(2),
+      &--tech .punk-tags li:nth-child(12),
+      &--topics .punk-tags li:first-child {
+         padding: 0.32rem 0.65rem;
+         color: var(--color-paper);
+         background: var(--color-ink);
+         font-family: var(--font-display);
+         font-size: clamp(1.5rem, 3vw, 2.2rem);
+         font-weight: 800;
+         letter-spacing: 0.01em;
+         line-height: 1;
+      }
+
+      &--topics .punk-tags li:first-child {
+         color: var(--color-ink);
+         background: var(--color-paper);
+      }
+   }
+
+   .skills-field > .punk-note {
+      grid-column: 1 / -1;
+      margin-top: 0.5rem;
+   }
+
+   /* Quiet equipment lists with printed category tabs, not four framed cards. */
+   .punk-hardware {
+      gap: 2.5rem clamp(2rem, 6vw, 5rem);
+      max-width: 66rem;
+      padding: 1.5rem 0;
+      border: 0;
+
+      &::before {
+         inset: -3rem 0 auto auto;
+         width: 32%;
+         height: 2.5rem;
+         background: var(--color-signal-cyan);
+         mask-image: url('../assets/ink/ink-tangle-blue.svg');
+         mask-size: 100% 100%;
+         opacity: 0.4;
+      }
+
+      &::after {
+         display: none;
+      }
+
+      > div {
+         padding: 0 0 1.25rem;
+         border: 0;
+         border-bottom: 1px solid color-mix(in srgb, var(--color-paper) 24%, transparent);
+      }
+
+      > div::before {
+         left: auto;
+         right: 0;
+         top: 0.5rem;
+         width: 40%;
+         height: 0.6rem;
+         background: var(--color-signal-cyan);
+         mask-image: url('../assets/ink/stroke-long-1.svg');
+         mask-size: 100% 400%;
+         opacity: 0.7;
+      }
+
+      > div:nth-child(even)::before {
+         background: var(--color-signal-red);
+      }
+
+      > div::after {
+         display: none;
+      }
+
+      h3 {
+         position: relative;
+         display: inline-block;
+         isolation: isolate;
+         padding: 0.28rem 0.65rem 0.4rem;
+         font-size: clamp(1.5rem, 2.5vw, 2rem);
+         letter-spacing: 0.025em;
+         color: var(--color-ink);
+         text-shadow: none;
+      }
+
+      h3::before {
+         content: '';
+         position: absolute;
+         z-index: -1;
+         inset: 0;
+         background: var(--color-paper);
+         clip-path: var(
+            --print-paper-cut,
+            polygon(1% 5%, 95% 0, 100% 11%, 98% 90%, 82% 97%, 3% 100%, 0 84%)
+         );
+      }
+
+      ul {
+         margin-top: 1.1rem;
+      }
+
+      li {
+         padding-block: 0.25rem;
+      }
+   }
+
+   .home-section {
+      &--hardware > .site-shell > .punk-note {
+         max-width: 66rem;
+         margin-inline: auto;
+      }
+   }
+
+   @media (max-width: 47.99rem) {
+      .home-section {
+         padding-block: 4rem;
+
+         &--featured {
+            padding-top: 5rem;
+         }
+      }
+
+      .punk-video {
+         width: 100%;
+         padding: 0;
+
+         &__mount {
+            inset: -4% -4% -3%;
+         }
+
+         &__red {
+            right: -13%;
+            width: 49%;
+         }
+      }
+
+      .skills-field {
+         grid-template-columns: minmax(0, 1fr);
+         gap: 2.5rem;
+         margin-top: 2.5rem;
+      }
+
+      .skills-group--tech,
+      .skills-group--topics {
+         padding-top: 0;
+      }
+
+      .skills-field {
+         &::before {
+            width: 40%;
+            height: 7rem;
+         }
+
+         &::after {
+            display: none;
+         }
+      }
+
+      .punk-hardware {
+         gap: 2rem;
+         padding: 0;
+
+         &::before {
+            width: 35%;
+         }
+      }
+   }
+
+   @layer components {
+      .punk-note {
+         text-shadow: none;
+      }
+
+      :global(main[data-page-stagger-root]) .mixed-hero p,
+      :global(main[data-page-stagger-root]) .home-section p,
+      :global(main[data-page-stagger-root]) .home-section li {
+         text-shadow: none;
+      }
+
+      /* ===== Mixed-media hero: one poster field, never a column layout. ===== */
+      .mixed-hero {
+         position: relative;
+         width: 100%;
+         min-height: 100vh;
+         min-height: 100svh;
+         overflow: clip;
+         padding-inline: clamp(0.75rem, 2.2vw, 2rem);
+
+         &__stage {
+            position: relative;
+            z-index: 2;
+            width: min(100%, var(--content-max));
+            min-height: clamp(44rem, calc(100svh - 4rem), 55rem);
+            margin-inline: auto;
+         }
+
+         &__art {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            isolation: isolate;
+         }
+
+         &__art--back {
+            z-index: 1;
+            mask-image: url('../assets/ink/hero-paper-loss.svg');
+            mask-size: 100% 100%;
+            mask-repeat: no-repeat;
+         }
+      }
+
+      /* The full-bleed canvas clips only at the viewport; its inner field positions the artwork. */
+      .mixed-hero {
+         &__art-field {
+            inset: 0;
+            overflow: visible;
+         }
+      }
+
+      @media (min-width: 96rem) {
+         .mixed-hero {
+            &__art-field {
+               left: 50%;
+               right: auto;
+               width: min(100%, calc(var(--content-max) + 4rem));
+               transform: translateX(-50%);
+            }
+         }
+      }
+
+      .mixed-hero {
+         &__art > div,
+         &__art-field > div {
+            position: absolute;
+            pointer-events: none;
+         }
+
+         &__art :global(svg) {
+            width: 100%;
+            height: 100%;
+            display: block;
+         }
+      }
+
+      /* Macro collision: a damaged deposit, not a smooth fill or clipped panel. */
+      /* Suppress the star and straight cut only here; the shared asset is also used below the hero. */
+      .mixed-hero {
+         &__paper :global(path[d^='M424.7,109L']),
+         &__paper :global(path[d^='M309.3,108.2q']) {
+            display: none;
+         }
+
+         &__paper {
+            left: -10%;
+            top: -14%;
+            width: min(88vw, 78rem);
+            height: 102%;
+            color: var(--color-paper);
+            opacity: 1;
+            transform: rotate(-5deg) scale(1.08, 0.98);
+         }
+
+         &__paper-impact {
+            left: 20%;
+            top: 5%;
+            width: min(43vw, 39rem);
+            height: 45%;
+            color: var(--color-paper);
+            opacity: 0.94;
+            transform: rotate(-5deg);
+         }
+
+         &__paper-burst {
+            left: 48%;
+            top: 37%;
+            width: min(24vw, 21rem);
+            height: 25%;
+            color: var(--color-paper);
+            opacity: 0.88;
+            transform: rotate(8deg);
+         }
+
+         &__paper-spray {
+            left: 39%;
+            top: 6%;
+            width: min(39vw, 35rem);
+            height: 48%;
+            color: var(--color-paper);
+            opacity: 0.72;
+            transform: rotate(-9deg);
+         }
+
+         &__red-spray {
+            left: 8%;
+            top: 12%;
+            width: min(34vw, 30rem);
+            height: 43%;
+            color: var(--color-signal-red);
+            opacity: 0.38;
+            transform: rotate(11deg);
+            mix-blend-mode: multiply;
+         }
+
+         &__blue-spray {
+            left: 39%;
+            top: 39%;
+            width: min(32vw, 29rem);
+            height: 34%;
+            color: var(--color-ink-petrol);
+            opacity: 0.52;
+            transform: rotate(-5deg);
+            mix-blend-mode: multiply;
+         }
+
+         &__paper::before,
+         &__paper::after {
+            content: '';
+            position: absolute;
+            pointer-events: none;
+            mask-repeat: no-repeat;
+         }
+
+         &__paper::before {
+            inset: 16% 18% 24% 12%;
+            background: color-mix(in srgb, var(--color-ash) 72%, var(--color-paper));
+            mask-image: url('../assets/ink/pigment-pool-blue.svg');
+            mask-size: 100% 100%;
+            opacity: 0.42;
+            mix-blend-mode: multiply;
+            transform: rotate(8deg);
+         }
+
+         &__paper::after {
+            inset: 12% 11% 17% 9%;
+            background: var(--color-ink);
+            mask-image: url('../assets/ink/scratch-field-1.svg');
+            mask-size: 100% 100%;
+            opacity: 0.3;
+            transform: rotate(-23deg);
+         }
+      }
+
+      /* Dirty toner and coloured contamination are clipped by placement rather
+         than one shared mask, so their edges remain independently visible. */
+      .mixed-hero {
+         &__paper-toner {
+            --deposit-cut: transparent;
+            left: -8%;
+            top: 2%;
+            width: min(57vw, 49rem);
+            height: 58%;
+            color: var(--color-ash);
+            opacity: 0.24;
+            mix-blend-mode: multiply;
+            transform: rotate(-11deg);
+         }
+
+         &__navy-pool {
+            left: -3%;
+            top: 37%;
+            width: min(54vw, 47rem);
+            height: 48%;
+            color: var(--color-ink-petrol);
+            opacity: 0.52;
+            mix-blend-mode: multiply;
+            transform: rotate(-8deg);
+         }
+
+         &__navy-pool::before,
+         &__navy-pool::after {
+            content: '';
+            position: absolute;
+            pointer-events: none;
+            mask-repeat: no-repeat;
+            mask-size: 100% 100%;
+         }
+
+         &__navy-pool::before {
+            inset: 38% 8% 10% 15%;
+            background: var(--color-paper);
+            mask-image: url('../assets/ink/scratch-field-1.svg');
+            opacity: 0.2;
+            transform: rotate(7deg);
+         }
+
+         &__navy-pool::after {
+            inset: 54% 18% 4% 42%;
+            background: color-mix(in srgb, var(--color-signal-red) 58%, var(--color-ink));
+            mask-image: url('../assets/ink/pigment-pool-red.svg');
+            opacity: 0.24;
+            transform: rotate(-5deg);
+         }
+
+         &__red-pool {
+            left: 18%;
+            top: 31%;
+            width: min(47vw, 42rem);
+            height: 52%;
+            color: color-mix(in srgb, var(--color-signal-red) 68%, var(--color-ink));
+            opacity: 0.48;
+            mix-blend-mode: multiply;
+            transform: rotate(5deg);
+         }
+
+         &__black-drag {
+            left: -13%;
+            top: 36%;
+            width: min(67vw, 59rem);
+            height: 34%;
+            color: var(--color-ink);
+            opacity: 0.58;
+            transform: rotate(-11deg);
+         }
+
+         &__red-tangle {
+            left: 12%;
+            top: 15%;
+            width: min(52vw, 46rem);
+            height: 55%;
+            color: color-mix(in srgb, var(--color-signal-red) 78%, var(--color-ink));
+            opacity: 0.72;
+            transform: rotate(-7deg);
+            mix-blend-mode: multiply;
+         }
+
+         &__blue-tangle {
+            left: 28%;
+            top: 23%;
+            width: min(55vw, 49rem);
+            height: 52%;
+            color: var(--color-ink-petrol);
+            opacity: 0.86;
+            transform: rotate(4deg);
+            mix-blend-mode: multiply;
+         }
+      }
+
+      /* Density decays through broken blue scratches before the calm biography. */
+      .mixed-hero {
+         &__decay {
+            left: 50%;
+            top: 31%;
+            width: min(36vw, 32rem);
+            height: 34%;
+            color: #1f3c58;
+            opacity: 0.3;
+            transform: rotate(26deg);
+            mask-image: linear-gradient(125deg, #000 0 22%, rgb(0 0 0 / 35%) 55%, transparent 84%);
+         }
+
+         &__midground,
+         &__foreground {
+            position: absolute;
+            inset: 0;
+            overflow: visible;
+            pointer-events: none;
+         }
+
+         &__midground {
+            z-index: 4;
+         }
+
+         &__foreground {
+            z-index: auto;
+         }
+
+         &__midground > div,
+         &__foreground > div {
+            position: absolute;
+         }
+
+         &__foreground > div {
+            z-index: 6;
+         }
+
+         &__midground :global(svg),
+         &__foreground :global(svg) {
+            display: block;
+            width: 100%;
+            height: 100%;
+         }
+
+         &__navy-ribbon {
+            left: 4%;
+            top: 48%;
+            width: min(59vw, 52rem);
+            height: 23%;
+            color: var(--color-deep-blue);
+            opacity: 0.58;
+            transform: rotate(5deg);
+         }
+
+         &__paper-drag {
+            left: 7%;
+            top: 28%;
+            width: min(60vw, 53rem);
+            height: 20%;
+            color: var(--color-paper);
+            opacity: 0.7;
+            transform: rotate(-9deg);
+         }
+
+         &__paper-shock {
+            left: 28%;
+            top: 16%;
+            width: min(35vw, 31rem);
+            height: 36%;
+            color: var(--color-paper);
+            opacity: 0.82;
+            transform: rotate(-6deg);
+         }
+
+         &__red-vein {
+            left: 24%;
+            top: 31%;
+            width: min(49vw, 43rem);
+            height: 46%;
+            color: var(--color-signal-red);
+            opacity: 0.42;
+            transform: rotate(-2deg);
+            mix-blend-mode: multiply;
+         }
+
+         &__black-vein {
+            z-index: 9;
+            left: 2%;
+            top: 63%;
+            width: min(61vw, 54rem);
+            height: 18%;
+            color: var(--color-ink);
+            opacity: 0.3;
+            transform: rotate(-18deg);
+            mask-image: linear-gradient(110deg, #000 0 36%, rgb(0 0 0 / 45%) 65%, transparent 94%);
+         }
+
+         &__paper-scratches {
+            left: 4%;
+            top: 41%;
+            width: min(32vw, 29rem);
+            height: 28%;
+            color: var(--color-paper);
+            opacity: 0.24;
+            transform: rotate(31deg);
+            mask-image: linear-gradient(to right, transparent, #000 16% 76%, transparent);
+         }
+
+         &__paper-splatter {
+            left: 61%;
+            top: 18%;
+            width: min(22vw, 20rem);
+            height: 25%;
+            color: var(--color-paper);
+            opacity: 0.74;
+            transform: rotate(12deg);
+            mask-image: linear-gradient(to right, #000 0 58%, transparent 96%);
+         }
+
+         &__red-deposit {
+            left: 31%;
+            top: 43%;
+            width: min(30vw, 27rem);
+            height: 27%;
+            color: color-mix(in srgb, var(--color-signal-red) 57%, var(--color-ink));
+            opacity: 0.48;
+            transform: rotate(8deg);
+            mix-blend-mode: multiply;
+         }
+
+         &__portrait {
+            position: absolute;
+            z-index: 7;
+            left: 1%;
+            top: 3%;
+            width: min(52vw, 43rem);
+         }
+
+         &__title {
+            position: absolute;
+            z-index: 8;
+            left: 15%;
+            top: 69%;
+            width: 86%;
+            transform: rotate(-1.6deg);
+            transform-origin: left center;
+         }
+      }
+
+      @media (min-width: 64rem) {
+         .mixed-hero {
+            &__title {
+               translate: 0 -20px;
+            }
+         }
+      }
+
+      /* Editorial biography: type revealed inside an irregular black ink pocket. */
+      .mixed-hero {
+         &__bio {
+            position: absolute;
+            z-index: 7;
+            right: 4%;
+            top: 28%;
+            width: min(31vw, 29rem);
+            padding: 1.2rem 0.8rem 1rem 1.2rem;
+            font-size: clamp(0.96rem, 1.15vw, 1.05rem);
+            line-height: 1.6;
+            color: var(--color-paper);
+            text-wrap: pretty;
+            isolation: isolate;
+
+            &::before {
+               content: '';
+               position: absolute;
+               z-index: -1;
+               inset: -20% -18% -18% -24%;
+               background: var(--color-ink);
+               mask-image: url('../assets/ink/torn-mass-1.svg');
+               mask-size: 100% 100%;
+               mask-repeat: no-repeat;
+               opacity: 0.96;
+               transform: rotate(-1deg);
+            }
+
+            p {
+               margin: 0;
+               max-width: 48ch;
+               text-shadow: none;
+            }
+
+            .mixed-hero__bio-lead {
+               position: relative;
+               width: fit-content;
+               max-width: 15ch;
+               padding: 0;
+               color: var(--color-paper);
+               background: transparent;
+               font-family: var(--font-display);
+               font-size: clamp(2.1rem, 3.2vw, 3.1rem);
+               font-weight: 800;
+               line-height: 0.92;
+               letter-spacing: 0.01em;
+               text-wrap: balance;
+               transform: rotate(-0.4deg);
+            }
+
+            .mixed-hero__bio-copy {
+               position: relative;
+               max-width: 36ch;
+               margin-top: 1rem;
+               margin-left: 0.9rem;
+               padding: 0;
+               color: color-mix(in srgb, var(--color-paper) 86%, var(--color-ash));
+               text-wrap: pretty;
+            }
+         }
+
+         &__bio-copy em {
+            color: var(--color-paper);
+            font-weight: 600;
+         }
+
+         &__actions {
+            position: absolute;
+            z-index: 9;
+            left: 0;
+            right: auto;
+            top: 49%;
+            display: flex;
+            align-items: center;
+            gap: 0;
+         }
+
+         &__socials {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(6.2rem, auto));
+            align-items: center;
+            gap: 0 0.25rem;
+            margin: 0;
+            padding: 0.2rem 0.35rem;
+            isolation: isolate;
+            transform: rotate(-1deg);
+
+            li {
+               list-style: none;
+            }
+
+            li:nth-child(2),
+            li:nth-child(5) {
+               transform: none;
+            }
+
+            li:nth-child(3),
+            li:nth-child(6) {
+               transform: none;
+            }
+
+            &::before,
+            &::after {
+               content: '';
+               position: absolute;
+               z-index: -1;
+               pointer-events: none;
+            }
+
+            &::before {
+               inset: auto 8% 0.12rem 6%;
+               height: 0.35rem;
+               background: var(--color-paper);
+               mask-image: url('../assets/ink/organic-drag-1.svg');
+               mask-size: 100% 100%;
+               mask-repeat: no-repeat;
+               transform: rotate(-1deg);
+               opacity: 0.3;
+            }
+
+            &::after {
+               inset: auto 20% -0.1rem 3%;
+               height: 0.6rem;
+               background: #1f3c58;
+               mask-image: url('../assets/ink/organic-drag-2.svg');
+               mask-size: 100% 100%;
+               mask-repeat: no-repeat;
+               transform: rotate(1deg);
+               opacity: 0.65;
+            }
+
+            a,
+            button {
+               display: inline-flex;
+               min-width: 44px;
+               min-height: 44px;
+               align-items: center;
+               justify-content: flex-start;
+               gap: 0.45rem;
+               padding: 0.45rem 0.35rem;
+               border: 0;
+               color: var(--color-paper);
+               background: transparent;
+               cursor: pointer;
+               font-family: var(--font-mono);
+               font-size: 0.7rem;
+               font-weight: 700;
+               letter-spacing: 0.04em;
+               text-decoration: none;
+               text-transform: uppercase;
+               transition: none;
+            }
+
+            a:hover,
+            button:hover,
+            a:focus-visible,
+            button:focus-visible {
+               color: var(--color-signal-red);
+            }
+
+            :global(svg) {
+               width: 1.4rem;
+               height: 1.4rem;
+               flex: 0 0 auto;
+               fill: currentColor;
+            }
+
+            :is(a, button):focus-visible {
+               outline-color: #365b7d;
+            }
+
+            :is(a, button) span {
+               text-shadow:
+                  0 0 2px var(--color-ink),
+                  1px 1px 1px var(--color-ink);
+            }
+
+            :is(a, button):is(:hover, :focus-visible) span {
+               text-shadow:
+                  -1px 1px 0 #365b7d,
+                  1px -1px 0 var(--color-ink);
+            }
+         }
+
+         &__meta {
+            position: absolute;
+            z-index: 8;
+            left: 3%;
+            bottom: -3%;
+            margin: 0;
+            padding: 0.25rem 0.45rem;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            line-height: 1.55;
+            color: var(--color-ash);
+            transform: none;
+            isolation: isolate;
+            text-shadow: none;
+
+            &::before {
+               content: none;
+            }
+
+            &::after {
+               content: none;
+            }
+
+            a {
+               color: var(--color-paper);
+               text-decoration-line: underline;
+               text-decoration-color: rgb(104 131 173 / 95%);
+               text-decoration-thickness: 0.1em;
+               text-underline-offset: 0.18em;
+
+               &:is(:hover, :focus-visible) {
+                  color: var(--color-paper);
+                  text-decoration-color: var(--color-signal-cyan);
+               }
+            }
+         }
+      }
+
+      @media (min-width: 80rem) {
+         .mixed-hero {
+            &__portrait {
+               left: 0;
+               width: min(48vw, 43rem);
+            }
+            &__title {
+               left: 15%;
+               width: 86%;
+            }
+            &__bio {
+               right: 4%;
+               width: min(31vw, 29rem);
+            }
+            &__actions {
+               left: 0;
+               right: auto;
+            }
+         }
+      }
+
+      @media (min-width: 96rem) {
+         .mixed-hero {
+            &__title {
+               left: 30%;
+               width: 66%;
+            }
+         }
+      }
+
+      @media (min-width: 64rem) and (max-height: 48rem) {
+         .mixed-hero {
+            &__title {
+               top: 57%;
+            }
+         }
+      }
+
+      @media (min-width: 48rem) and (max-width: 63.99rem) {
+         .mixed-hero {
+            &__stage {
+               min-height: 52rem;
+            }
+            &__paper {
+               width: 98vw;
+               height: 67%;
+            }
+            &__paper-impact {
+               left: 18%;
+               width: 63vw;
+            }
+            &__paper-burst {
+               left: 57%;
+               width: 34vw;
+            }
+            &__red-pool {
+               width: 78vw;
+            }
+            &__navy-pool {
+               width: 70vw;
+            }
+            &__portrait {
+               left: -7%;
+               top: 2%;
+               width: 70vw;
+            }
+            &__title {
+               left: 3%;
+               top: 53.5%;
+               width: 86%;
+               transform: rotate(-1.6deg);
+            }
+            &__bio {
+               top: 18%;
+               right: 1%;
+               width: 42vw;
+            }
+            &__actions {
+               left: 0;
+               right: auto;
+               top: 72%;
+            }
+            &__meta {
+               bottom: 1%;
+            }
+            &__red-tangle,
+            &__blue-tangle {
+               width: 76vw;
+            }
+            &__navy-ribbon {
+               width: 75vw;
+            }
+            &__paper-scratches {
+               width: 58vw;
+            }
+         }
+      }
+
+      @media (max-width: 47.99rem) {
+         .mixed-hero {
+            padding-inline: 0.75rem;
+            &__stage {
+               min-height: 64rem;
+            }
+            &__paper {
+               left: -47%;
+               top: -8%;
+               width: 182vw;
+               height: 64%;
+            }
+            &__paper-impact {
+               left: 23%;
+               top: 5%;
+               width: 105vw;
+               height: 42%;
+            }
+            &__paper-burst {
+               left: 47%;
+               top: 45%;
+               width: 60vw;
+               height: 21%;
+               opacity: 0.66;
+            }
+            &__paper-spray {
+               left: 39%;
+               top: 2%;
+               width: 92vw;
+               height: 42%;
+               opacity: 0.48;
+            }
+            &__red-spray {
+               left: -5%;
+               top: 10%;
+               width: 74vw;
+               height: 35%;
+               opacity: 0.3;
+            }
+            &__blue-spray {
+               left: 47%;
+               top: 39.5%;
+               width: 62vw;
+               height: 25%;
+               opacity: 0.4;
+            }
+            &__paper-toner {
+               left: -28%;
+               top: 5%;
+               width: 128vw;
+               height: 44%;
+            }
+            &__navy-pool {
+               left: -17%;
+               top: 20%;
+               width: 120vw;
+               height: 38%;
+            }
+            &__red-pool {
+               left: 4%;
+               top: 17%;
+               width: 113vw;
+               height: 43%;
+            }
+            &__black-drag {
+               left: -37%;
+               top: 28%;
+               width: 151vw;
+               height: 25%;
+            }
+            &__paper-toner,
+            &__decay,
+            &__paper-scratches,
+            &__red-deposit {
+               display: none;
+            }
+            &__red-tangle {
+               left: -2%;
+               top: 12%;
+               width: 122vw;
+               height: 43%;
+            }
+            &__blue-tangle {
+               left: 7%;
+               top: 23%;
+               width: 118vw;
+               height: 39%;
+            }
+            &__navy-ribbon {
+               left: -12%;
+               top: 47%;
+               width: 118vw;
+               height: 18%;
+            }
+            &__paper-drag {
+               left: 4%;
+               top: 33%;
+               width: 103vw;
+               height: 13%;
+            }
+            &__paper-shock {
+               left: 36%;
+               top: 23%;
+               width: 72vw;
+               height: 30%;
+               opacity: 0.62;
+            }
+            &__paper-splatter {
+               left: 58%;
+               top: 36%;
+               width: 45vw;
+               height: 24%;
+               opacity: 0.56;
+            }
+            &__red-vein {
+               left: 0;
+               top: 27%;
+               width: 112vw;
+               height: 38%;
+            }
+            &__black-vein {
+               left: -13%;
+               top: 56%;
+               width: 121vw;
+               height: 13%;
+            }
+            &__portrait {
+               z-index: 7;
+               left: -8%;
+               top: 1%;
+               width: 110vw;
+            }
+            &__title {
+               z-index: 8;
+               left: 8%;
+               top: 39%;
+               width: 88%;
+               transform: rotate(-1.6deg);
+            }
+            &__bio {
+               /* Pull the reading pocket toward the fixed wordmark; portrait and title stay pinned. */
+               top: 49.5%;
+               right: 2%;
+               width: 86%;
+               padding: 1rem 0.4rem 1rem 1rem;
+            }
+
+            &__bio &__bio-lead {
+               max-width: 15ch;
+               font-size: clamp(1.9rem, 8vw, 2.35rem);
+            }
+            &__actions {
+               left: 3%;
+               right: auto;
+               top: 75%;
+               justify-content: space-between;
+               gap: 0.5rem;
+            }
+            &__socials {
+               grid-template-columns: repeat(3, minmax(5.35rem, auto));
+               gap: 0;
+               padding-inline: 0.45rem;
+               transform: rotate(-1.25deg);
+            }
+            &__meta {
+               left: 2%;
+               bottom: 1%;
+            }
+         }
+      }
+
+      @media (max-width: 32rem) {
+         .mixed-hero {
+            &__socials {
+               grid-template-columns: repeat(3, minmax(5.35rem, auto));
+            }
+
+            &__socials a,
+            &__socials button {
+               justify-content: flex-start;
+               padding: 0.45rem 0.35rem;
+            }
+         }
+      }
+
+      @media (max-width: 22.5rem) {
+         .mixed-hero {
+            &__stage {
+               min-height: 66rem;
+            }
+
+            &__actions {
+               top: 77%;
+            }
+         }
+      }
+
+      /* ===== Homepage publication rhythm below the frozen hero. ===== */
+      .home-section {
+         position: relative;
+         padding-block: clamp(5rem, 8vw, 8.5rem);
+         isolation: isolate;
+         overflow-x: clip;
+         overflow-y: visible;
+
+         > .site-shell {
+            position: relative;
+            z-index: 1;
+         }
+
+         &--featured {
+            padding-top: clamp(7rem, 11vw, 11rem);
+         }
+
+         /* A shallow tail closes the hero without carrying its full density down. */
+         &--featured::before,
+         &--featured::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: -3.8rem;
+            pointer-events: none;
+            mask-repeat: no-repeat;
+         }
+
+         &--featured::before {
+            top: -1.2rem;
+            width: min(48vw, 34rem);
+            height: 3.4rem;
+            background: var(--color-paper);
+            mask-image: url('../assets/ink/organic-drag-1.svg');
+            mask-size: 100% 100%;
+            opacity: 0.3;
+            transform: rotate(-2deg);
+         }
+
+         &--featured::after {
+            left: 26%;
+            top: -1.8rem;
+            width: min(32vw, 22rem);
+            height: 4rem;
+            background: color-mix(in srgb, var(--color-signal-red) 56%, var(--color-ink));
+            mask-image: url('../assets/ink/pigment-pool-red.svg');
+            mask-size: 100% 100%;
+            opacity: 0.4;
+         }
+
+         &--skills::before,
+         &--hardware::before,
+         &--hardware::after {
+            content: '';
+            position: absolute;
+            pointer-events: none;
+            mask-repeat: no-repeat;
+            mask-size: 100% 100%;
+         }
+
+         &--skills::before {
+            right: 9%;
+            top: -1.5rem;
+            width: min(24vw, 18rem);
+            height: 6rem;
+            background: var(--color-paper);
+            mask-image: url('../assets/ink/spray-fine-2.svg');
+            opacity: 0.2;
+            transform: rotate(8deg);
+         }
+
+         &--hardware::before {
+            left: 4%;
+            top: -1rem;
+            width: min(16vw, 12rem);
+            height: 3.8rem;
+            background: var(--color-paper);
+            mask-image: url('../assets/ink/spray-fine-2.svg');
+            opacity: 0.19;
+            transform: rotate(-11deg);
+         }
+
+         &--hardware::after {
+            right: 6%;
+            bottom: 4%;
+            width: min(18vw, 13rem);
+            height: 4.5rem;
+            background: var(--color-ink-petrol);
+            mask-image: url('../assets/ink/organic-drag-2.svg');
+            opacity: 0.26;
+            transform: rotate(3deg);
+         }
+
+         &--skills,
+         &--hardware {
+            padding-block: clamp(5.5rem, 8vw, 8rem);
+         }
+      }
+
+      .punk-h3 {
+         margin: 0;
+         margin-top: 2.4rem;
+         font-family: var(--font-mono);
+         font-size: 0.92rem;
+         font-weight: 700;
+         letter-spacing: 0.14em;
+         text-transform: uppercase;
+         color: var(--color-paper);
+      }
+
+      .skills-field {
+         position: relative;
+         max-width: 68rem;
+         margin-inline: auto;
+         isolation: isolate;
+      }
+
+      .skills-group {
+         position: relative;
+         width: min(100%, 62rem);
+         margin-top: 2.5rem;
+         padding: 1.15rem 0.8rem 1.4rem;
+         isolation: isolate;
+
+         &--tools::before,
+         &--topics::before {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            pointer-events: none;
+            mask-repeat: no-repeat;
+            mask-size: 100% 100%;
+         }
+
+         &--tools::before {
+            left: -3%;
+            top: 0.15rem;
+            width: min(58%, 32rem);
+            height: 2.6rem;
+            background: var(--color-ink-petrol);
+            mask-image: url('../assets/ink/drybrush-paper.svg');
+            opacity: 0.64;
+            transform: rotate(-1.5deg);
+         }
+
+         &--topics {
+            width: min(88%, 49rem);
+            margin-left: clamp(0rem, 7vw, 6rem);
+            transform: rotate(-0.25deg);
+         }
+
+         &--topics::before {
+            right: -6%;
+            bottom: 0.2rem;
+            width: 62%;
+            height: 1.5rem;
+            background: var(--color-paper);
+            mask-image: url('../assets/ink/organic-drag-1.svg');
+            opacity: 0.32;
+            transform: rotate(2deg);
+         }
+      }
+
+      .skills-group {
+         .punk-h3 {
+            margin-top: 0;
+         }
+      }
+
+      .skills-field {
+         &::before {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            left: 3%;
+            top: 27%;
+            width: min(66vw, 45rem);
+            height: 7.5rem;
+            background: linear-gradient(
+               98deg,
+               var(--color-paper) 0 61%,
+               color-mix(in srgb, var(--color-paper) 84%, var(--color-signal-red)) 68%,
+               var(--color-paper) 74%,
+               color-mix(in srgb, var(--color-paper) 76%, var(--color-ink-petrol)) 83%,
+               transparent 98%
+            );
+            mask-image: url('../assets/ink/organic-drag-1.svg');
+            mask-size: 100% 100%;
+            mask-repeat: no-repeat;
+            opacity: 0.31;
+            transform: rotate(-2deg);
+         }
+
+         &::after {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            right: 4%;
+            top: 42%;
+            width: 31%;
+            height: 6.5rem;
+            background: linear-gradient(
+               100deg,
+               var(--color-paper),
+               var(--color-ash) 62%,
+               var(--color-ink-petrol) 84%,
+               transparent
+            );
+            mask-image: url('../assets/ink/spray-fine-1.svg');
+            mask-size: 100% 100%;
+            mask-repeat: no-repeat;
+            opacity: 0.14;
+            transform: rotate(-6deg);
+         }
+      }
+
+      /* Static inventory labels: varied paper slips, never selectable chips. */
+      .punk-tags {
+         display: flex;
+         flex-wrap: wrap;
+         gap: 0.68rem 0.48rem;
+         margin: 1rem 0 0;
+         padding: 0;
+
+         li {
+            position: relative;
+            list-style: none;
+            margin: 0;
+            padding: 0.22rem 0.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.86rem;
+            font-weight: 700;
+            line-height: 1.3;
+            color: color-mix(in srgb, var(--color-paper) 90%, var(--color-ash));
+            background: color-mix(in srgb, var(--color-deep-blue) 82%, var(--color-ink));
+            clip-path: var(
+               --print-paper-cut,
+               polygon(2% 4%, 97% 0, 100% 88%, 95% 100%, 0 96%, 1% 18%)
+            );
+            isolation: isolate;
+         }
+
+         li::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: var(--color-paper);
+            mask-image: url('../assets/ink/scratch-field-1.svg');
+            mask-size: 150% 170%;
+            opacity: 0.07;
+            pointer-events: none;
+         }
+
+         li:nth-child(4n + 1) {
+            padding: 0.2rem 0.54rem;
+            color: var(--color-ink);
+            background: var(--color-paper);
+            transform: rotate(0.6deg);
+         }
+
+         li:nth-child(4n + 2) {
+            padding: 0.18rem 0.46rem;
+            background: color-mix(in srgb, var(--color-ink) 92%, var(--color-deep-blue));
+            transform: rotate(-0.5deg);
+         }
+
+         li:nth-child(4n + 3) {
+            padding: 0.27rem 0.6rem;
+            background: var(--color-deep-blue);
+            box-shadow: 2px 0 0 rgb(237 23 56 / 42%);
+            transform: rotate(0.8deg);
+         }
+
+         li:nth-child(4n) {
+            padding: 0.22rem 0.52rem;
+            background: color-mix(in srgb, #29466b 62%, var(--color-ink));
+            transform: rotate(-0.8deg);
+         }
+
+         li:nth-child(5n) {
+            translate: 0 0.22rem;
+         }
+      }
+
+      .skills-group {
+         &--tools .punk-tags li:nth-child(2),
+         &--tools .punk-tags li:nth-child(24) {
+            color: var(--color-paper);
+            padding: 0.3rem 0.8rem;
+            font-size: 1rem;
+            letter-spacing: 0.02em;
+         }
+
+         &--tools .punk-tags li:nth-child(2)::before,
+         &--tools .punk-tags li:nth-child(24)::before {
+            content: '';
+            position: absolute;
+            z-index: 1;
+            left: 8%;
+            right: 7%;
+            bottom: 0.08rem;
+            height: 0.12rem;
+            background: var(--color-signal-red);
+            mask-image: url('../assets/ink/organic-drag-1.svg');
+            mask-size: 100% 100%;
+            mask-repeat: no-repeat;
+            opacity: 0.62;
+            transform: translateX(2px) rotate(-1deg);
+            pointer-events: none;
+         }
+
+         &--tools .punk-tags li:nth-child(24)::before {
+            background: var(--color-signal-cyan);
+            transform: translateX(-2px) rotate(1deg);
+         }
+      }
+
+      .punk-note {
+         max-width: 65ch;
+         margin-top: 1.5rem;
+         font-size: 1rem;
+         color: var(--color-ash);
+      }
+
+      /* Media remains rectangular; its accumulated print mount does not. */
+      .punk-video {
+         position: relative;
+         width: min(92%, 66rem);
+         margin: 3rem auto 0;
+         padding: clamp(0.6rem, 1.5vw, 1.2rem);
+         isolation: isolate;
+
+         &::before,
+         &::after {
+            content: '';
+            position: absolute;
+            pointer-events: none;
+            mask-repeat: no-repeat;
+            mask-size: 100% 100%;
+         }
+
+         &::before {
+            z-index: -2;
+            left: -13%;
+            top: -18%;
+            width: 38%;
+            height: 58%;
+            background: linear-gradient(
+               125deg,
+               var(--color-paper),
+               var(--color-ash) 72%,
+               var(--color-ink-petrol) 88%
+            );
+            mask-image: url('../assets/ink/splatter-cluster-2.svg');
+            opacity: 0.82;
+            transform: rotate(-8deg);
+         }
+
+         &::after {
+            z-index: -1;
+            right: -11%;
+            bottom: -16%;
+            width: 48%;
+            height: 28%;
+            background: var(--color-paper);
+            mask-image: url('../assets/ink/drybrush-paper.svg');
+            opacity: 0.78;
+            transform: rotate(5deg);
+         }
+
+         &__mount,
+         &__navy,
+         &__red {
+            position: absolute;
+            pointer-events: none;
+         }
+
+         &__mount :global(svg),
+         &__navy :global(svg),
+         &__red :global(svg) {
+            width: 100%;
+            height: 100%;
+            display: block;
+         }
+
+         &__mount {
+            z-index: -3;
+            inset: -13% -7% -16% -9%;
+            color: var(--color-paper);
+            opacity: 0.9;
+            transform: rotate(-2deg);
+         }
+
+         &__mount::after {
+            content: '';
+            position: absolute;
+            inset: 9% 8% 7% 10%;
+            background: var(--color-ink);
+            mask-image: url('../assets/ink/scratch-field-1.svg');
+            mask-size: 125% 150%;
+            mask-repeat: no-repeat;
+            opacity: 0.28;
+            transform: rotate(1deg);
+         }
+
+         &__navy {
+            z-index: -2;
+            left: -12%;
+            right: 10%;
+            bottom: -12%;
+            height: 27%;
+            color: var(--color-ink-petrol);
+            opacity: 0.76;
+            transform: rotate(3deg);
+         }
+
+         &__red {
+            z-index: -1;
+            right: -7%;
+            top: -8%;
+            width: 38%;
+            height: 44%;
+            color: var(--color-signal-red);
+            opacity: 0.46;
+            mix-blend-mode: multiply;
+            transform: rotate(8deg);
+         }
+
+         &__frame {
+            position: relative;
+            z-index: 1;
+            background: var(--color-ink);
+            box-shadow:
+               -0.28rem 0.14rem 0 rgb(237 23 56 / 46%),
+               0.24rem -0.12rem 0 rgb(104 131 173 / 28%);
+            transform: rotate(-0.25deg);
+         }
+
+         &__frame::after {
+            content: '';
+            position: absolute;
+            z-index: 2;
+            right: 3%;
+            bottom: -1.1rem;
+            width: min(24%, 13rem);
+            height: 3.4rem;
+            background: linear-gradient(
+               100deg,
+               var(--color-paper),
+               var(--color-ash) 65%,
+               var(--color-signal-red) 78%,
+               var(--color-ink-petrol) 90%,
+               transparent
+            );
+            mask-image: url('../assets/ink/spray-fine-1.svg');
+            mask-position: left center;
+            mask-repeat: no-repeat;
+            mask-size: 100% 100%;
+            opacity: 0.26;
+            transform: rotate(4deg);
+            pointer-events: none;
+         }
+      }
+
+      /* Supporting equipment: a photocopied service sheet, not a dashboard. */
+      .punk-hardware {
+         position: relative;
+         display: grid;
+         gap: 2.8rem clamp(2rem, 7vw, 6rem);
+         max-width: 68rem;
+         margin: 2.8rem auto 0;
+         padding: clamp(1.4rem, 4vw, 2.8rem);
+         border-block: 1px solid rgb(236 235 230 / 34%);
+         isolation: isolate;
+
+         &::before,
+         &::after {
+            content: '';
+            position: absolute;
+            pointer-events: none;
+         }
+
+         &::before {
+            z-index: -1;
+            inset: 3% 1% 5% -2%;
+            background: linear-gradient(
+               112deg,
+               var(--color-deep-blue),
+               color-mix(in srgb, var(--color-deep-blue) 72%, var(--color-ink-petrol)) 66%,
+               var(--color-ink) 96%
+            );
+            mask-image: url('../assets/ink/heavy-ink-mass-1.svg');
+            mask-size: 108% 124%;
+            mask-repeat: no-repeat;
+            opacity: 0.29;
+            transform: rotate(-0.8deg);
+         }
+
+         &::after {
+            left: 0;
+            top: -0.35rem;
+            width: 42%;
+            height: 0.7rem;
+            background: repeating-linear-gradient(
+               90deg,
+               var(--color-paper) 0 1px,
+               transparent 1px 0.75rem
+            );
+            opacity: 0.5;
+         }
+
+         > div {
+            position: relative;
+            min-width: 0;
+            padding: 1.5rem 1rem 1.2rem;
+            border-top: 1px solid rgb(236 235 230 / 34%);
+            border-bottom: 1px solid rgb(41 70 107 / 58%);
+         }
+
+         > div::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: min(72%, 16rem);
+            height: 0.5rem;
+            background: var(--color-paper);
+            mask-image: url('../assets/ink/organic-drag-1.svg');
+            mask-size: 100% 100%;
+            mask-repeat: no-repeat;
+            opacity: 0.58;
+         }
+
+         > div::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 1.6rem;
+            height: 1.6rem;
+            border-top: 1px solid var(--color-signal-cyan);
+            border-right: 1px solid var(--color-signal-cyan);
+            opacity: 0.38;
+            transform: translate(0.25rem, -0.25rem);
+            pointer-events: none;
+         }
+
+         h3 {
+            margin: 0;
+            font-family: var(--font-display);
+            font-size: clamp(1.25rem, 2.5vw, 1.45rem);
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+         }
+
+         ul {
+            margin: 0.65rem 0 0;
+            padding: 0;
+            list-style: none;
+         }
+
+         li {
+            position: relative;
+            padding-block: 0.16rem;
+            padding-left: 1.15em;
+            color: var(--color-paper);
+            line-height: 1.55;
+         }
+
+         li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.92em;
+            width: 0.55rem;
+            height: 1px;
+            background: var(--color-ash);
+         }
+
+         li:nth-child(4n)::before {
+            width: 0.75rem;
+            background: var(--color-ash);
+         }
+      }
+
+      @media (min-width: 48rem) {
+         .punk-hardware {
+            grid-template-columns: 1fr 1fr;
+         }
+      }
+
+      @media (max-width: 47.99rem) {
+         .home-section {
+            padding-block: 5.5rem;
+
+            &--featured {
+               padding-top: 7rem;
+            }
+
+            /* Keep the featured pause, then close the Skills-to-Hardware corridor on phones. */
+            &--skills {
+               padding-bottom: 4rem;
+            }
+
+            &--hardware {
+               padding-top: 4rem;
+            }
+
+            &--featured::before {
+               width: 68vw;
+               height: 2.8rem;
+            }
+
+            &--featured::after {
+               width: 52vw;
+            }
+
+            &--skills::before {
+               right: 2%;
+               width: 36vw;
+               opacity: 0.14;
+            }
+
+            &--hardware::before {
+               left: 2%;
+               width: 38vw;
+               opacity: 0.15;
+            }
+
+            &--hardware::after {
+               right: 2%;
+               width: 42vw;
+               opacity: 0.2;
+            }
+         }
+
+         .skills-field {
+            &::before {
+               left: -6%;
+               width: 110%;
+               height: 6rem;
+               opacity: 0.18;
+            }
+
+            &::after {
+               right: -4%;
+               width: 46%;
+               height: 5rem;
+               opacity: 0.13;
+            }
+         }
+
+         .skills-group {
+            width: 100%;
+            padding-inline: 0.25rem;
+
+            &--topics {
+               width: 96%;
+               margin-left: 4%;
+            }
+         }
+
+         .punk-tags {
+            gap: 0.45rem 0.38rem;
+
+            li {
+               font-size: 0.78rem;
+            }
+         }
+
+         .skills-group {
+            &--tools .punk-tags li:nth-child(2),
+            &--tools .punk-tags li:nth-child(24) {
+               font-size: 0.86rem;
+            }
+         }
+
+         .punk-video {
+            width: 100%;
+            margin-left: 0;
+            padding: 0.35rem;
+
+            &__mount {
+               inset: -12% -6% -14% -7%;
+            }
+
+            &__red {
+               width: 42%;
+               opacity: 0.44;
+            }
+
+            &::before {
+               left: -17%;
+               top: -14%;
+               width: 52%;
+               opacity: 0.68;
+            }
+
+            &::after {
+               right: -17%;
+               width: 62%;
+               opacity: 0.62;
+            }
+
+            &__frame::after {
+               right: -2%;
+               width: 32%;
+               opacity: 0.14;
+            }
+         }
+
+         .punk-hardware {
+            gap: 2.2rem;
+            padding: 1.2rem 0.4rem;
+
+            > div {
+               padding-inline: 0.7rem;
+            }
+         }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+         .mixed-hero {
+            &__portrait,
+            &__title,
+            &__art {
+               animation: none;
+            }
+         }
+      }
+   }
+
+   @layer layout {
+      .home-section {
+         width: 100%;
+         padding-inline: 0.75rem;
+
+         &--skills {
+            scroll-margin-top: 1.5rem;
+         }
+      }
+
+      .skills-field {
+         --skills-leading: calc(1.75 / 1.125);
+         font-size: 1.125rem;
+         line-height: var(--skills-leading);
+      }
+
+      @media (min-width: 40rem) {
+         .home-section {
+            padding-inline: 1.5rem;
+         }
+      }
+
+      @media (min-width: 48rem) {
+         .home-section {
+            padding-inline: 2rem;
+         }
+      }
+   }
+</style>

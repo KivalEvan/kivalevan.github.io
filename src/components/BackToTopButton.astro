@@ -5,15 +5,13 @@ import { Icon } from 'astro-icon/components';
 <div
    transition:name="back-to-top"
    transition:animate="none"
-   class="back-to-top z-50 self-end px-3 pb-3 md:fixed md:p-0"
+   class="back-to-top"
    data-back-to-top
    hidden
 >
-   <a class="group block size-[46px] md:size-[48px]" href="#top-of-page" aria-label="Back to top">
-      <span
-         class="flex size-full items-center justify-center rounded-full bg-[#333] ring-[0.125rem] ring-inset ring-white transition-transform duration-200 group-hover:-translate-y-1 md:ring-[0.1875rem]"
-      >
-         <Icon name="bi:chevron-up" class="size-2/3 text-white" aria-hidden="true" />
+   <a class="back-to-top__link" href="#top-of-page" aria-label="Back to top">
+      <span class="back-to-top__disc">
+         <Icon name="bi:chevron-up" class="back-to-top__icon" aria-hidden="true" />
       </span>
    </a>
 </div>
@@ -57,3 +55,57 @@ import { Icon } from 'astro-icon/components';
       document.documentElement.dataset.backToTopBound = 'true';
    }
 </script>
+
+<style lang="scss">
+   @layer layout {
+      .back-to-top {
+         z-index: 50;
+         align-self: flex-end;
+         padding-inline: 0.75rem;
+         padding-bottom: 0.75rem;
+
+         &__link {
+            display: block;
+            width: 46px;
+            height: 46px;
+         }
+
+         &__disc {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #333;
+            box-shadow: inset 0 0 0 0.125rem #fff;
+            transition: none;
+         }
+
+         @media (hover: hover) {
+            &__link:hover &__disc {
+               translate: 0 -0.25rem;
+            }
+         }
+
+         @media (min-width: 48rem) {
+            position: fixed;
+            padding: 0;
+
+            &__link {
+               width: 48px;
+               height: 48px;
+            }
+
+            &__disc {
+               box-shadow: inset 0 0 0 0.1875rem #fff;
+            }
+         }
+      }
+      :global(.back-to-top__icon) {
+         width: calc(200% / 3);
+         height: calc(200% / 3);
+         color: #fff;
+      }
+   }
+</style>

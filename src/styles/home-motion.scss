@@ -1,0 +1,370 @@
+@use 'motion/home-keyframes';
+
+/* Homepage motion rules; pose masters live in motion/_home-keyframes.scss.
+   Hero layers use independent 6/8/12 FPS clocks.
+   Unmarked page/control motion stays at 24 FPS. Regenerate the served stylesheet. */
+:root {
+   --home-motion-ease: cubic-bezier(0.16, 1, 0.3, 1);
+   --home-motion-print-ease: steps(5, end);
+   --home-motion-impact-ease: steps(3, end);
+   --home-motion-fast: 160ms;
+   --home-motion-category-duration: 250ms;
+   --home-motion-medium: 420ms;
+   --home-motion-large: 620ms;
+   --home-motion-step: 45ms;
+   --home-motion-reveal-duration: 620ms;
+   --home-motion-stamp-duration: 190ms;
+   --home-motion-registration-x: 2px;
+   --home-motion-registration-y: -1px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+   /* Armed while offscreen, not after the visitor has already seen the content. */
+   .home-motion--pending {
+      opacity: 0;
+   }
+
+   .mixed-hero[data-home-motion-boot='pending'] {
+      visibility: hidden;
+   }
+}
+
+/* Hero setup and one-time assembly. */
+.mixed-hero {
+   /* ChromaticTitle's self-starting reveal would otherwise race this sequence. */
+   .punk-title__text {
+      animation: none !important;
+   }
+
+   /* The word-level blue ghost must not reveal the destination before its letters land. */
+   &.home-title-assembling .punk-title__word::before {
+      visibility: hidden;
+   }
+
+   /* Shared temporary faces for the entrance scatter and later idle glitches. */
+   .poster-glyph.home-title-resolve__pending {
+      visibility: hidden;
+      mask-image: none !important;
+      clip-path: none !important;
+   }
+
+   .home-title-resolve__glyph {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      visibility: visible;
+      color: transparent;
+      font: inherit;
+      line-height: inherit;
+      -webkit-text-stroke: 0.012em var(--color-paper);
+      pointer-events: none;
+
+      &[data-tone='crimson'] {
+         -webkit-text-stroke-color: var(--color-signal-red);
+      }
+
+      &[data-shape] {
+         inset: 5% 3% 1%;
+         background: var(--color-paper);
+         -webkit-text-stroke: 0;
+      }
+
+      &[data-shape][data-tone='crimson'] {
+         background: var(--color-signal-red);
+      }
+
+      &[data-shape='block'] {
+         clip-path: polygon(
+            4% 0,
+            96% 4%,
+            100% 31%,
+            89% 39%,
+            98% 74%,
+            93% 100%,
+            5% 96%,
+            0 61%,
+            9% 54%
+         );
+      }
+
+      &[data-shape='slash'] {
+         clip-path: polygon(43% 0, 100% 7%, 64% 43%, 72% 51%, 25% 100%, 0 92%, 31% 47%, 20% 39%);
+      }
+
+      &[data-shape='chip'] {
+         clip-path: polygon(10% 18%, 73% 0, 100% 27%, 77% 46%, 95% 84%, 33% 100%, 0 68%, 18% 49%);
+      }
+   }
+
+   /* No rule below applies until the observer starts this one-time assembly. */
+   &.home-motion--playing {
+      .mixed-hero__paper {
+         --home-motion-fps: 6;
+         animation: hero-paper-strike 666.667ms linear backwards;
+      }
+
+      :is(
+         .mixed-hero__paper-impact,
+         .mixed-hero__paper-burst,
+         .mixed-hero__paper-spray,
+         .mixed-hero__paper-drag,
+         .mixed-hero__paper-shock,
+         .mixed-hero__paper-splatter,
+         .mixed-hero__paper-scratches,
+         .punk-title__field-paper
+      ) {
+         --home-motion-fps: 6;
+         animation: hero-paper-strike 666.667ms linear backwards;
+      }
+
+      :is(
+         .mixed-hero__red-spray,
+         .mixed-hero__red-pool,
+         .mixed-hero__red-tangle,
+         .mixed-hero__red-vein,
+         .mixed-hero__red-deposit,
+         .punk-title__field-red,
+         .punk-title__pigment-red
+      ) {
+         --home-motion-fps: 12;
+         animation: hero-red-strike 666.667ms linear backwards;
+      }
+
+      :is(
+         .mixed-hero__blue-spray,
+         .mixed-hero__paper-toner,
+         .mixed-hero__decay,
+         .mixed-hero__navy-pool,
+         .mixed-hero__blue-tangle,
+         .mixed-hero__navy-ribbon,
+         .mixed-hero__black-drag,
+         .mixed-hero__black-vein,
+         .punk-title__field-blue,
+         .punk-title__scrape-black,
+         .punk-title__scratch-paper
+      ) {
+         --home-motion-fps: 12;
+         animation: hero-blue-strike 666.667ms linear 41.667ms backwards;
+      }
+
+      .mixed-hero__portrait {
+         --home-motion-fps: 8;
+         animation: home-portrait-reveal 750ms linear backwards;
+      }
+
+      .hero-print-accents__cut {
+         --home-motion-fps: 6;
+         animation: hero-paper-repaste 666.667ms linear backwards;
+      }
+
+      /* Keep the black reading pocket in place; scrape only its text into view. */
+      .mixed-hero__bio-lead {
+         animation: hero-copy-cut 166.667ms linear 41.667ms backwards;
+      }
+
+      .mixed-hero__bio-copy {
+         animation: hero-copy-cut 166.667ms linear 83.333ms backwards;
+      }
+
+      .mixed-hero__socials li {
+         animation: home-social-print-right 150ms steps(4, end) 125ms backwards;
+
+         &:nth-child(2) {
+            animation-name: home-social-print-left;
+            animation-duration: 150ms;
+            animation-timing-function: steps(4, end);
+         }
+
+         &:nth-child(3) {
+            animation-name: home-social-print-top;
+            animation-duration: 150ms;
+            animation-timing-function: steps(4, end);
+         }
+
+         &:nth-child(4) {
+            animation-name: home-social-print-bottom;
+            animation-duration: 150ms;
+            animation-timing-function: steps(4, end);
+         }
+
+         &:nth-child(5) {
+            animation-name: home-social-print-down-right;
+            animation-duration: 150ms;
+            animation-timing-function: steps(4, end);
+         }
+
+         &:last-child {
+            animation: home-social-print-up-left 150ms steps(4, end) 125ms backwards;
+         }
+      }
+   }
+
+   /* Phones animate four complete plates, not a sequence of raster frames.
+      Material masks stay baked; only held coverage cuts run here. */
+   @media (max-width: 47.99rem) {
+      &.home-motion--playing [data-mobile-hero-plane='back'] {
+         --home-motion-fps: 6;
+         animation: hero-paper-strike 666.667ms linear backwards;
+      }
+
+      &.home-motion--playing [data-mobile-hero-plane='mid'] {
+         --home-motion-fps: 12;
+         animation: hero-red-strike 666.667ms linear backwards;
+      }
+
+      &.home-motion--playing
+         :is([data-mobile-hero-plane='fore'], [data-mobile-hero-plane='front']) {
+         --home-motion-fps: 12;
+         animation: hero-blue-strike 666.667ms linear 41.667ms backwards;
+      }
+   }
+
+   @media (prefers-reduced-motion: reduce) {
+      &.home-motion--playing *,
+      &.home-motion--playing *::before,
+      &.home-motion--playing *::after {
+         animation: none !important;
+      }
+   }
+
+   /* Pause at the first print state, not at the already-complete static composition. */
+   &.home-motion--holding *,
+   &.home-motion--holding *::before,
+   &.home-motion--holding *::after {
+      animation-play-state: paused !important;
+   }
+}
+
+/* ===== Lower homepage sections: each root is observed independently. ===== */
+.print-heading {
+   &.home-motion--playing {
+      .print-heading__rule {
+         --home-motion-fps: 12;
+         animation: hero-red-strike 750ms linear backwards;
+      }
+
+      &::after {
+         --home-motion-fps: 12;
+         animation: hero-blue-strike 500ms linear backwards;
+      }
+   }
+}
+
+.punk-video {
+   &.home-motion--playing {
+      .punk-video__mount,
+      &::before,
+      &::after {
+         --home-motion-fps: 6;
+         animation: hero-paper-strike 666.667ms linear backwards;
+      }
+
+      :is(.punk-video__red, .punk-video__threads) {
+         --home-motion-fps: 12;
+         animation: hero-red-strike 666.667ms linear backwards;
+      }
+
+      :is(.punk-video__navy, .punk-video__cyan) {
+         --home-motion-fps: 12;
+         animation: hero-blue-strike 666.667ms linear 41.667ms backwards;
+      }
+   }
+}
+
+.skills-group {
+   &.home-motion--playing {
+      .punk-h3 {
+         --home-motion-fps: 12;
+         animation: home-print-reveal 333.333ms linear backwards;
+      }
+
+      .punk-tags li {
+         --home-motion-fps: 12;
+         animation: home-label-print 250ms linear backwards;
+
+         &:nth-child(3n + 1) {
+            animation-delay: 0ms;
+         }
+
+         &:nth-child(3n + 2) {
+            animation-delay: 83.333ms;
+         }
+
+         &:nth-child(3n) {
+            animation-delay: 166.667ms;
+         }
+      }
+   }
+}
+
+.punk-hardware > div.home-motion--playing {
+   --home-motion-fps: 12;
+   animation: home-paper-wipe 333.333ms linear backwards;
+}
+
+.site-footer {
+   &.home-motion--playing {
+      &::before {
+         --home-motion-fps: 6;
+         animation: hero-paper-strike 666.667ms linear backwards;
+      }
+
+      &::after {
+         --home-motion-fps: 12;
+         animation: hero-red-strike 500ms linear 83.333ms backwards;
+      }
+
+      .site-footer-proof {
+         --home-motion-fps: 12;
+         animation: home-ink-reveal 666.667ms linear backwards;
+      }
+
+      .site-footer-links li {
+         animation: home-social-print-right 150ms steps(4, end) backwards;
+
+         &:nth-child(even) {
+            animation-name: home-social-print-left;
+            animation-duration: 150ms;
+            animation-timing-function: steps(4, end);
+         }
+
+         &:nth-child(1),
+         &:nth-child(2) {
+            animation-delay: var(--home-motion-step);
+         }
+
+         &:nth-child(3),
+         &:nth-child(4) {
+            animation-delay: calc(var(--home-motion-step) * 2);
+         }
+
+         &:nth-child(5),
+         &:nth-child(6) {
+            animation-delay: calc(var(--home-motion-step) * 3);
+         }
+      }
+
+      .site-footer-support {
+         animation: home-social-print-bottom 150ms steps(4, end) calc(var(--home-motion-step) * 2)
+            backwards;
+      }
+   }
+
+   @media (max-width: 47.99rem) {
+      &.home-motion--playing .site-footer-links li {
+         animation-delay: var(--home-motion-step);
+      }
+   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+   .home-motion--playing,
+   .home-motion--playing *,
+   .home-motion--playing *::before,
+   .home-motion--playing *::after,
+   body:has(.mixed-hero) .mixed-hero__socials :is(a, button):is(:hover, :focus-visible) span {
+      animation: none !important;
+   }
+}

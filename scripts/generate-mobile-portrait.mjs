@@ -7,7 +7,7 @@
  * No packages are installed. sharp is supplied by the existing Astro installation.
  * The isolated browser closes on success or failure. No source masters are changed.
  * Regenerate after changing masters, masks, filters, colors, or portrait/hero geometry.
- * Keep the core separate: every decoration paints at z-index 1–5, below its z-index 6.
+ * Keep the core separate: every decoration paints at z-index 1-5, below its z-index 6.
  */
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
@@ -231,7 +231,9 @@ async function writeDecoration() {
          'src/components/visual/InkPortrait.astro',
          'src/components/Avatar.astro',
          'src/pages/index.astro',
-         'src/styles/tailwind.css',
+         'src/styles/global.scss',
+         'src/styles/reset.scss',
+         'src/styles/site-components.scss',
          'src/assets/img/avatar/kival_evan.jpg',
          ...[
             'organic-drag-1',
@@ -270,7 +272,7 @@ async function writeDecoration() {
             width: image.width / scale / contract.figure.width,
             height: image.height / scale / contract.figure.height,
          },
-         paintOrder: 'decoration (original z-index 1–5), unchanged core (z-index 6)',
+         paintOrder: 'decoration (original z-index 1-5), unchanged core (z-index 6)',
       };
       const core = await readFile(output);
       const coreImage = await sharp(core).metadata();

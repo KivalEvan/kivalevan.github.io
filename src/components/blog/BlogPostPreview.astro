@@ -25,31 +25,81 @@ const updatedDateTime = updatedDate ? formatISODate(updatedDate) : undefined;
 ---
 
 <article class={featured ? 'blog-preview blog-preview--featured' : 'blog-preview'}>
-   <header class="flex max-w-[65ch] flex-col gap-3">
-      <div class="min-w-0">
-         <h3
-            class={featured
-               ? 'blog-preview-title text-3xl font-extrabold leading-none md:text-4xl'
-               : 'blog-preview-title text-2xl font-extrabold leading-none md:text-3xl'}
-         >
-            <a class="blog-preview-title-link" href={post.url}>{title}</a>
+   <header class="blog-preview__header">
+      <div class="blog-preview__title-wrap">
+         <h3 class="blog-preview-title">
+            <a class="blog-preview-title-link" href={post.url}>
+               {title}
+            </a>
          </h3>
       </div>
-      <div class="blog-preview-meta text-sm text-site-muted">
+      <div class="blog-preview-meta">
          <p>By {author}</p>
-         <time datetime={publishDateTime} class="block">Published {formattedDate}</time>
-         {
-            updatedDateTime && (
-               <time datetime={updatedDateTime} class="block">
-                  Updated {formattedUpdatedDate}
-               </time>
-            )
-         }
+         <time datetime={publishDateTime}>Published {formattedDate}</time>
+         {updatedDateTime && <time datetime={updatedDateTime}>Updated {formattedUpdatedDate}</time>}
       </div>
    </header>
 
-   <p class="mt-4 max-w-[65ch] leading-relaxed">{description}</p>
-   <a class="blog-preview-action print-action mt-3 gap-2" href={post.url}
-      >Read post <span aria-hidden="true">→</span></a
-   >
+   <p class="blog-preview__description">{description}</p>
+   <a class="blog-preview-action print-action" href={post.url}>
+      Read post <span aria-hidden="true">→</span>
+   </a>
 </article>
+
+<style lang="scss">
+   @layer layout {
+      .blog-preview {
+         &__header {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            max-width: 65ch;
+         }
+
+         &__title-wrap {
+            min-width: 0;
+         }
+
+         &__description {
+            max-width: 65ch;
+            margin-top: 1rem;
+            line-height: 1.625;
+         }
+      }
+
+      .blog-preview-title {
+         font-size: 1.5rem;
+         font-weight: 800;
+         line-height: 1;
+      }
+
+      .blog-preview--featured .blog-preview-title {
+         font-size: 1.875rem;
+      }
+
+      .blog-preview-meta {
+         font-size: 0.875rem;
+         line-height: 1.25rem;
+         color: var(--color-site-muted);
+
+         time {
+            display: block;
+         }
+      }
+
+      .blog-preview-action {
+         gap: 0.5rem;
+         margin-top: 0.75rem;
+      }
+
+      @media (min-width: 48rem) {
+         .blog-preview-title {
+            font-size: 1.875rem;
+         }
+
+         .blog-preview--featured .blog-preview-title {
+            font-size: 2.25rem;
+         }
+      }
+   }
+</style>

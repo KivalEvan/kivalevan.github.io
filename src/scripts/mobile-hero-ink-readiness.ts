@@ -2,7 +2,8 @@ const MOBILE_QUERY = '(max-width: 47.99rem)';
 const READINESS_BUDGET = 1_200;
 
 /**
- * Decode only the CSS-selected ink registration and portrait before entrance.
+ * Decode the CSS-selected mobile plates or desktop contours, plus the portrait,
+ * before entrance. Hidden source artwork never requests desktop-only contours.
  * Resolves false on failure, cancellation, or the existing bootstrap's expiry;
  * callers must expose the static composition rather than replay a missed pose.
  * The caller owns the signal through the entire entrance (including resize).
@@ -35,23 +36,28 @@ export const prepareHeroInk = (hero: HTMLElement, signal: AbortSignal): Promise<
       document.addEventListener('print-page-motion-ready', check);
 
       const images: HTMLImageElement[] = [];
-      if (window.matchMedia(MOBILE_QUERY).matches) {
+      const urls = new Set<string>();
+      const mobile = window.matchMedia(MOBILE_QUERY).matches;
+      if (mobile) {
          const registrations = Array.from(
             hero.querySelectorAll<HTMLElement>('[data-hero-plane-viewport]'),
          ).filter((plane) => getComputedStyle(plane).display !== 'none');
-         const frames = registrations.flatMap((plane) =>
-            Array.from(plane.querySelectorAll<HTMLElement>('[data-hero-frame-src]')),
+         const plates = registrations.flatMap((plane) =>
+            Array.from(plane.querySelectorAll<HTMLElement>('[data-hero-ink-src]')),
          );
-         // Request the static fallback first, then every distinct state in this registration.
-         frames.sort(
-            (a, b) => Number(b.hasAttribute('data-final')) - Number(a.hasAttribute('data-final')),
-         );
-         for (const url of new Set(frames.map((frame) => frame.dataset.heroFrameSrc!))) {
-            const image = new Image();
-            image.fetchPriority = 'low';
-            image.src = url;
-            images.push(image);
+         for (const plate of plates) urls.add(plate.dataset.heroInkSrc!);
+      } else {
+         for (const ink of hero.querySelectorAll<HTMLElement>('[data-liquid-ink-src]')) {
+            if (getComputedStyle(ink).display !== 'none') urls.add(ink.dataset.liquidInkSrc!);
          }
+      }
+      for (const url of urls) {
+         const image = new Image();
+         image.fetchPriority = 'low';
+         // CSS masks use CORS; matching that mode reuses their in-flight request.
+         if (!mobile) image.crossOrigin = 'anonymous';
+         image.src = url;
+         images.push(image);
       }
       const portraits = hero.querySelectorAll<HTMLImageElement>(
          '[data-mobile-core] img, [data-mobile-decoration] img',

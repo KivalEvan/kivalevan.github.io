@@ -1,15 +1,21 @@
+import '../styles/print-title-resolve.scss';
+
 const CHARACTERS = ['H', 'N', 'X', 'K', 'E', 'A'];
-// Match the homepage's uneven print cadence, without its poster-specific artwork.
+const TITLE_FPS = 12;
+const TITLE_FRAME_MS = 1_000 / TITLE_FPS;
+const RESOLVE_FRAMES = 9;
+// Match the homepage's whole-frame holds, without its poster-specific artwork.
+// Change and settle frame numbers are distinct for every slot.
 const PASSES = [
-   { changes: [20, 70, 125, 180], settle: 245 },
-   { changes: [], settle: 105 },
-   { changes: [85, 125, 170, 220, 290], settle: 345 },
-   { changes: [40, 85, 135, 190, 250, 310, 380, 455], settle: 520 },
-   { changes: [160, 225], settle: 300 },
-   { changes: [], settle: 195 },
-   { changes: [35, 110, 205], settle: 270 },
-   { changes: [55, 95, 140, 190, 240, 320], settle: 390 },
-   { changes: [145, 205, 270, 340], settle: 450 },
+   { changes: [0, 1, 2, 3], settle: 4 },
+   { changes: [], settle: 2 },
+   { changes: [1, 2, 3, 4, 5], settle: 6 },
+   { changes: [1, 2, 3, 4, 5, 6, 8], settle: 9 },
+   { changes: [3, 4], settle: 5 },
+   { changes: [], settle: 3 },
+   { changes: [1, 2, 3], settle: 5 },
+   { changes: [1, 2, 3, 4, 5], settle: 7 },
+   { changes: [2, 3, 5, 6], settle: 8 },
 ];
 const STABLE_CHARACTER = /^[\s\p{P}\p{S}]$/u;
 
@@ -86,7 +92,12 @@ export const startPrintTitleResolve = (title: HTMLElement): (() => void) => {
    title.style.setProperty('width', `${title.getBoundingClientRect().width}px`);
    if (label === null) title.setAttribute('aria-label', title.textContent?.trim() ?? '');
    const wrappers: { wrapper: HTMLSpanElement; text: Text }[] = [];
-   const slots: { element: HTMLSpanElement; final: string }[] = [];
+   const slots: {
+      element: HTMLSpanElement;
+      final: string;
+      pass?: number;
+      settled: boolean;
+   }[] = [];
    for (const source of sources) {
       const wrapper = document.createElement('span');
       wrapper.setAttribute('aria-hidden', 'true');
@@ -108,7 +119,7 @@ export const startPrintTitleResolve = (title: HTMLElement): (() => void) => {
             glyph.textContent = letter.text;
             wordElement.append(glyph);
             if (!STABLE_CHARACTER.test(letter.text))
-               slots.push({ element: glyph, final: letter.text });
+               slots.push({ element: glyph, final: letter.text, settled: false });
          }
          wrapper.append(wordElement);
       }
@@ -117,13 +128,13 @@ export const startPrintTitleResolve = (title: HTMLElement): (() => void) => {
    }
 
    let cleaned = false;
-   const timers = new Set<number>();
+   let animationFrame: number | undefined;
    let resizeObserver: ResizeObserver | undefined;
    const cleanup = () => {
       if (cleaned) return;
       cleaned = true;
-      timers.forEach((timer) => view.clearTimeout(timer));
-      timers.clear();
+      if (animationFrame !== undefined) view.cancelAnimationFrame(animationFrame);
+      animationFrame = undefined;
       resizeObserver?.disconnect();
       view.removeEventListener('resize', cleanup);
       document.fonts?.removeEventListener('loadingdone', cleanup);
@@ -133,33 +144,45 @@ export const startPrintTitleResolve = (title: HTMLElement): (() => void) => {
       if (label === null) title.removeAttribute('aria-label');
    };
 
-   const later = (callback: () => void, delay: number) => {
-      const timer = view.setTimeout(() => {
-         timers.delete(timer);
-         callback();
-      }, delay);
-      timers.add(timer);
-   };
    const compact = view.matchMedia('(max-width: 47.99rem)').matches;
-   slots.forEach(({ element, final }, index) => {
-      const { changes, settle } = PASSES[index % PASSES.length];
-      const substitute = () => {
-         element.textContent =
-            final.toUpperCase() === 'I'
-               ? Math.random() < 0.5
-                  ? 'I'
-                  : '1'
-               : CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)];
-      };
-      if (changes.length) substitute();
-      changes.forEach((time, pass) => {
-         if (!compact || pass % 2 === 0) later(substitute, time * 1.4);
-      });
-      later(() => {
-         element.textContent = final;
-      }, settle * 1.4);
-   });
-   later(cleanup, 730);
+   const startedAt = view.performance.now();
+   let previousFrame = -1;
+   const update = (timestamp: number) => {
+      if (cleaned) return;
+      const frame = Math.max(0, Math.floor((timestamp - startedAt) / TITLE_FRAME_MS));
+      // Restore original text directly on the last frame, without a second glyph write.
+      if (frame >= RESOLVE_FRAMES) {
+         cleanup();
+         return;
+      }
+      if (frame !== previousFrame) {
+         previousFrame = frame;
+         slots.forEach((slot, index) => {
+            if (slot.settled) return;
+            const { element, final } = slot;
+            const { changes, settle } = PASSES[index % PASSES.length];
+            if (frame >= settle) {
+               element.textContent = final;
+               slot.settled = true;
+               return;
+            }
+            if (!changes.length) return;
+            // Only the latest due pose is visible, even after missed browser frames.
+            const pass = changes.findLastIndex(
+               (change, pass) => change <= frame && (!compact || pass % 2 === 0),
+            );
+            if (pass === slot.pass) return;
+            slot.pass = pass;
+            element.textContent =
+               final.toUpperCase() === 'I'
+                  ? Math.random() < 0.5
+                     ? 'I'
+                     : '1'
+                  : CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)];
+         });
+      }
+      animationFrame = view.requestAnimationFrame(update);
+   };
    view.addEventListener('resize', cleanup, { once: true });
    document.fonts?.addEventListener('loadingdone', cleanup);
    if ('ResizeObserver' in view) {
@@ -170,5 +193,6 @@ export const startPrintTitleResolve = (title: HTMLElement): (() => void) => {
       });
       resizeObserver.observe(title);
    }
+   update(startedAt);
    return cleanup;
 };

@@ -21,7 +21,7 @@ const cvContact: CvContact = {
    },
    methods: [
       {
-         label: 'Phone available on request',
+         label: 'Upon Request',
          href: 'https://www.linkedin.com/in/kivalevan/',
          icon: 'bi:telephone',
          ariaLabel: 'Request phone contact via LinkedIn',

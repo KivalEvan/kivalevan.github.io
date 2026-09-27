@@ -1,0 +1,15 @@
+/* Runtime-created title slots are shared across Astro and Svelte boundaries. */
+.print-title-resolve {
+   &__word {
+      display: inline-flex;
+      align-items: baseline;
+      vertical-align: baseline;
+      white-space: nowrap;
+   }
+
+   &__letter {
+      display: inline-block;
+      flex: none;
+      text-align: start;
+   }
+}

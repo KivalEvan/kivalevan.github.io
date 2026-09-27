@@ -4,9 +4,9 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import BackToTopButton from '../components/BackToTopButton.astro';
 import InkBackdrop from '../components/InkBackdrop.astro';
-import '../styles/print-pages.css';
-import '../styles/interior-collage.css';
-import '../styles/home-background.css';
+import '../styles/print-pages.scss';
+import '../styles/interior-collage.scss';
+import '../styles/home-background.scss';
 
 interface PageDetails {
    title: string;
@@ -28,14 +28,17 @@ const { pageDetails } = Astro.props;
    pageDetails={pageDetails}
    bodyClass={Astro.url.pathname === '/' ? undefined : 'print-page'}
 >
-   <a class="skip-link" href="#main-content"> Skip to main content </a>
+   <a class="skip-link" href="#main-content">
+      {' '}
+      Skip to main content{' '}
+   </a>
    <InkBackdrop />
    <Header pageDetails={pageDetails} />
    <main
       id="main-content"
       tabindex="-1"
       data-page-stagger-root
-      class="relative z-10 flex min-h-0 w-full flex-1 flex-col items-center pb-8"
+      class="site-main"
       transition:name="page-content"
       transition:animate="none"
    >
@@ -79,3 +82,19 @@ const { pageDetails } = Astro.props;
       document.documentElement.dataset.navigationFocusBound = 'true';
    }
 </script>
+
+<style lang="scss">
+   @layer layout {
+      .site-main {
+         position: relative;
+         z-index: 10;
+         display: flex;
+         min-height: 0;
+         width: 100%;
+         flex: 1;
+         flex-direction: column;
+         align-items: center;
+         padding-bottom: 2rem;
+      }
+   }
+</style>

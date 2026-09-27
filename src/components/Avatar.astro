@@ -11,11 +11,15 @@ interface Props {
 const { alt = 'Kival Evan avatar', class: className = '' } = Astro.props;
 ---
 
-<Image
-   inferSize
-   loading="eager"
-   fetchpriority="high"
-   alt={alt}
-   src={image}
-   class={`aspect-square h-auto w-full object-cover ${className}`}
-/>
+<Image loading="eager" fetchpriority="high" alt={alt} src={image} class={`avatar ${className}`} />
+
+<style lang="scss">
+   @layer layout {
+      :global(.avatar) {
+         aspect-ratio: 1;
+         height: auto;
+         width: 100%;
+         object-fit: cover;
+      }
+   }
+</style>
