@@ -1,9 +1,5 @@
 /** Passive motion belongs to the completed hero title; lower-page artwork stays still. */
-import {
-   clearTitleEventReservation,
-   requestAmbientEvent,
-   reserveTitleEvent,
-} from './ambient-rhythm';
+import { requestAmbientEvent } from './ambient-rhythm';
 import { playPoseSequence } from './pose-sequence';
 
 const MOBILE_QUERY = '(max-width: 47.99rem)';
@@ -15,7 +11,7 @@ interface AmbientRoot {
    titleVisible: boolean;
    observer: MutationObserver;
    titleTimer?: number;
-   titleOrigins?: Map<HTMLElement, { translate: string; rotate: string }>;
+   titleOrigins?: Map<HTMLElement, string>;
    glitchTimer?: number;
    cancelGlitchSequence?: () => void;
    glitch?: { glyph: HTMLElement; overlay: HTMLSpanElement };
@@ -59,12 +55,11 @@ const clearTitle = (registration: AmbientRoot) => {
    restoreGlitch(registration);
    registration.titleTimer = undefined;
    registration.titleOrigins?.forEach((origin, glyph) => {
-      glyph.style.translate = origin.translate;
-      glyph.style.rotate = origin.rotate;
+      if (origin) glyph.style.setProperty('--title-idle-transform', origin);
+      else glyph.style.removeProperty('--title-idle-transform');
       if (!glyph.style.length) glyph.removeAttribute('style');
    });
    registration.titleOrigins = undefined;
-   clearTitleEventReservation('glitch');
 };
 
 const randomBetween = (minimum: number, maximum: number) =>
@@ -89,16 +84,20 @@ const scheduleTitle = (registration: AmbientRoot) => {
       for (let index = 0; index < count; index++) {
          const [glyph] = candidates.splice(randomBetween(0, candidates.length - 1), 1);
          if (!registration.titleOrigins.has(glyph)) {
-            registration.titleOrigins.set(glyph, {
-               translate: glyph.style.translate,
-               rotate: glyph.style.rotate,
-            });
+            registration.titleOrigins.set(
+               glyph,
+               glyph.style.getPropertyValue('--title-idle-transform'),
+            );
          }
          const x = randomBetween(-distance, distance);
          const y = Math.random() < 0.5 ? -distance : distance;
          const angle = (Math.random() < 0.5 ? -rotation : rotation) * (0.5 + Math.random() * 0.5);
-         glyph.style.translate = `${x}px ${y}px`;
-         glyph.style.rotate = `${angle}deg`;
+         // Keep the masked glyph's pose in one transform; separate properties can
+         // produce intermediate repaints in Firefox even without a second tick.
+         glyph.style.setProperty(
+            '--title-idle-transform',
+            `translate(${x}px, ${y}px) rotate(${angle}deg)`,
+         );
       }
       scheduleTitle(registration);
    };
@@ -113,13 +112,11 @@ const scheduleGlitch = (registration: AmbientRoot) => {
    const attempt = () => {
       registration.glitchTimer = undefined;
       if (!registration.title || !titleAllowed(registration)) return;
-      const retryAfter = requestAmbientEvent('title');
+      const retryAfter = requestAmbientEvent();
       if (retryAfter) {
-         reserveTitleEvent('glitch', performance.now() + retryAfter);
          registration.glitchTimer = window.setTimeout(attempt, retryAfter);
          return;
       }
-      clearTitleEventReservation('glitch');
       const glyphs = Array.from(registration.title.querySelectorAll<HTMLElement>('.poster-glyph'));
       if (!glyphs.length) return;
       const glyph = glyphs[randomBetween(0, glyphs.length - 1)];
@@ -153,7 +150,6 @@ const scheduleGlitch = (registration: AmbientRoot) => {
          },
       });
    };
-   reserveTitleEvent('glitch', performance.now() + delay);
    registration.glitchTimer = window.setTimeout(attempt, delay);
 };
 

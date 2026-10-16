@@ -21,7 +21,38 @@ TypeScript stays on version 6 because the Astro and Svelte checkers do not suppo
 
 Use `npm run format` to format `src/`, or `npm run format:check` to check without changing files.
 Prettier supports both Astro and Svelte components. The deployment workflow checks formatting before building.
-The offline Deno utilities remain outside the website checks. They share browser-safe metadata types from `src/data/beatmap.ts`.
+The offline Deno utilities in `scripts/beatmap/` remain outside the website checks.
+They share browser-safe metadata types from `src/data/beatmap.ts`.
+
+## Source organization
+
+- `src/pages/` defines routes and page content.
+- `src/layouts/` defines document and page markup. Initial motion preparation stays inline so content remains available if scripts fail.
+- `src/components/` contains reusable markup, Svelte controls, and their scoped styles.
+- `src/scripts/` owns browser behavior. `site-navigation.ts` coordinates route transitions, while separate controllers own title, artwork, and control motion.
+- `src/data/` contains content, shared types, and the commission estimate calculation. Components display the calculation without owning pricing rules.
+- `src/utils/` contains shared website helpers. `scripts/` contains offline generators, not browser code.
+
+Internal page links end with `/`, matching the folders served by GitHub Pages. This avoids a redirect before navigation loads the destination.
+File URLs and local section links keep their existing form. Canonical URLs remain unchanged.
+
+## Beatmap metadata
+
+Install Deno 2 and the `mediainfo` command before using the generator.
+Pass a directory containing map folders whose names start with their hexadecimal BeatSaver IDs.
+Each map needs its `Info.dat` or `info.dat`, referenced difficulty files, audio, and cover image.
+
+```sh
+npm run beatmap -- --input "/path/to/map-library"
+```
+
+The command replaces `src/data/beatmap.json` and generated covers under `public/assets/img/cover/` in this repository.
+To inspect output separately, add `--output /path/to/disposable-output`.
+The generator reads all maps before writing output. Invalid input stops generation instead of publishing incomplete metadata.
+Filesystem failures during output writes can still leave partial output.
+
+Use `npm run beatmap -- --help` for arguments.
+To check the Deno source without generating files, run `deno check --no-lock scripts/beatmap/generate.ts`.
 
 ## Images
 
@@ -71,6 +102,15 @@ Edit homepage animation rules in `src/styles/home-motion.scss` and poses in `src
 The generator compiles the entrypoint and samples its poses into `src/styles/generated/home-motion-frames.css`.
 Do not edit the generated stylesheet directly.
 Interior animation rules stay in `src/styles/print-page-motion.scss`, with poses in `src/styles/motion/_print-keyframes.scss`.
+Their organic coverage cuts are generated separately:
+
+```sh
+node scripts/generate-print-coverage.mjs
+```
+
+This command writes `src/styles/generated/_print-coverage.scss` from a seeded density field.
+The cuts reveal stationary artwork and erase the outgoing page without replacing its material masks or loading extra images.
+Edit the generator, not its generated partial. Changes to these cuts do not require new mobile artwork images.
 
 The generator needs Playwright and a Chromium browser. With existing installations, supply their paths:
 

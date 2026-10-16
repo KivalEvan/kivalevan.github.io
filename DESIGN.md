@@ -243,7 +243,12 @@ The site uses its own portrait and artwork, not film assets.
 `home-motion.scss` contains the homepage animation rules and loads the editable poses from `motion/_home-keyframes.scss`.
 `scripts/generate-home-motion-frames.mjs` compiles the entrypoint, then samples it into `generated/home-motion-frames.css` before deployment.
 Interior rules in `print-page-motion.scss` load their poses from `motion/_print-keyframes.scss`.
-Regenerate that stylesheet after motion edits. Timing-only edits do not require new mobile images.
+Their organic coverage comes from `scripts/generate-print-coverage.mjs`, which writes `generated/_print-coverage.scss`.
+The generator traces seven nested cuts from one seeded density field, with unequal pools, broken bridges, and detached fragments.
+Curved CSS contours supply the cuts. Older browsers use detailed polygons from the same contours, not geometric replacement shapes.
+Only coverage changes. The cuts do not replace existing material masks, move the artwork, or request new images.
+Regenerate these cuts with `node scripts/generate-print-coverage.mjs` after changing their generator.
+Regenerate `home-motion-frames.css` after homepage motion edits. Timing-only edits do not require new mobile images.
 Each animation rule can set `--home-motion-fps` to 4, 6, 8, 12, or 24. Unmarked rules use 24 FPS.
 The generator samples each layer at its selected rate. Start delays remain on the shared 24-frame timeline, so layers can begin on different beats.
 Before starting the hero entrance, decode the selected image states and portrait, then wait for the outgoing page to finish erasing to black. Give the first paused pose a paint opportunity, then start the layer clocks together. Readiness has a 1,200ms budget and respects bootstrap expiry; failures expose static content without a late replay. Keep unselected registrations hidden in inline styles during route stylesheet replacement, and serve plate images externally rather than embedding them in page HTML.
@@ -280,6 +285,9 @@ Long-form text keeps its reading font and comfortable measure. Project screensho
 Prominent actions use torn paper backgrounds, whole-control scaling, and visible keyboard focus without decorative broken underlines.
 New shared styles are scoped to `body.print-page`. They do not apply to the homepage or CV.
 Interior artwork prepares before paint, then reveals once through separate, stationary patches. Paper impressions use 6 FPS and ink uses 12 FPS over 666.67ms.
+On phones, an entering group decodes its CSS-selected collision image before its decorative reveal, within a 1,200ms budget.
+Text and controls remain available during that wait. Timeout or failure exposes static artwork without a late replay.
+Unselected variants and offscreen groups do not receive readiness requests. Resize, focus, hidden tabs, reduced motion, and navigation cancel pending readiness.
 The cyan collision layers start 83.33ms later. The service photograph uses four held poses at 8 FPS over 500ms. No entrance changes position or rotation.
 Copy-safe paper, prose, screenshots, prices, and form controls remain visible throughout. Only decorative layers receive coverage cuts.
 Content already exposed by the 1.5-second fail-open timeout must never be hidden again by a late module.
@@ -292,8 +300,17 @@ The heading name stays accessible, and cleanup restores its original text nodes.
 The resolve restores the authored title on completion, resize, focus, hidden tabs, reduced motion, or route disposal. Late modules never scramble already-exposed titles.
 Nested sections do not double-animate. Text, forms, and paper panels are not clipped during entrance.
 Interior headings and artwork remain still after entry. The homepage hero keeps its separate title-only idle animation.
-Astro navigation between styled pages, including the homepage, erases the live outgoing page to black over 416.67ms. Six irregular patches use the hero's held print rhythm: paper coverage changes at 6 FPS and ink at 12 FPS, without interpolation. Each patch shrinks around a fixed center; coverage only decreases, without moving the artwork or bringing back erased fragments. Capture the visible viewport's height and position relative to the outgoing main element once at exit, so long or scrolled pages do not turn the patches into stretched bands. Clear those coordinates on completion or cancellation. The final 83.33ms is a black beat. Load the destination first, then erase the original page in its existing layout before the DOM swap. Native snapshots remain hidden: visible artwork never switches to a captured image with a different raster scale or position. The incoming page stays hidden throughout, with no crossfade or old/new overlap. History scroll restoration is instant during Astro navigation, while ordinary in-page scrolling retains its existing behavior. Navigation stays anchored; the header wordmark swaps without extending the black interval.
-Interior assembly and title resolution begin after the outgoing page reaches black. The homepage keeps its full randomized entrance; navigation involving the CV remains plain. Slow requests leave the old page usable. Superseded navigation cancels the live erase and restores that page; reduced motion and hidden tabs also cancel the exit wait. Skipped native transitions release motion waits, with navigation generations preventing stale cleanup from affecting a newer route. Reduced motion bypasses the erase and black beat.
+Astro navigation between styled pages, including the homepage, erases the live outgoing page to black over 416.67ms.
+Irregular ink contours break the page into shrinking pools and fragments on the existing 12 FPS grid, without interpolation.
+Coverage only decreases. Neither the artwork nor the contours translate or scale, and erased fragments do not return.
+Capture the visible viewport's height and position relative to the outgoing main element once at exit.
+This keeps cuts from stretching into bands on long or scrolled pages. Clear those coordinates on completion or cancellation.
+The final 83.33ms is a black beat. Load the destination first, then erase the original page before the DOM swap.
+Native snapshots remain hidden, so visible artwork never switches to a captured image with a different raster scale or position.
+The incoming page stays hidden throughout, with no crossfade or old/new overlap.
+History scroll restoration is instant during Astro navigation. Ordinary in-page scrolling retains its existing behavior.
+Navigation stays anchored, and the header wordmark swaps without extending the black interval.
+Interior assembly and title resolution begin after the outgoing page reaches black. The homepage keeps its full randomized entrance; navigation involving the CV remains plain. Slow requests leave the old page usable. A request that takes more than 200ms shows a small “Loading page…” status without blocking controls. Static red and cyan splatter surrounds its solid dark reading pocket. Its small contour is inlined in the stylesheet, so loading feedback needs no extra image request. Loading status clears on completion, failure, or cancellation. Superseded navigation cancels the live erase and restores that page; reduced motion and hidden tabs also cancel the exit wait. Skipped native transitions release motion waits, with navigation generations preventing stale cleanup from affecting a newer route. Reduced motion bypasses the erase and black beat.
 Returning home prepares the incoming hero before Astro swaps documents, so reused scripts do not bypass its authored entrance. The preparation retains a 1.5-second fail-open timeout.
 Reduced motion, hidden tabs, offscreen targets, and route disposal restore the authored poses. Homepage motion and the professional CV remain separate.
 
@@ -554,15 +571,28 @@ Playful edges, precise behavior. Printed actions carry the visual character, whi
 ### Page Transitions
 
 The shared header retains consistent dimensions and navigation positions across routes.
-The home link sits on the right as a League Gothic wordmark.
+The home link sits on the right as a League Gothic wordmark on desktop.
+Below `37.99rem`, it centers beneath the navigation and uses `clamp(4rem, 18vw, 6rem)` for its size.
+The wordmark reveals through scrambled characters that settle in a newly randomized order at 12 FPS.
+The nine letters resolve within 750ms. Temporary faces occupy the existing glyph slots and preserve the accessible name and authored text.
+There is no entrance fade, shake, translation, or scaling.
+This happens on initial display and when leaving the homepage, where the wordmark replaces its hidden slot.
+The initial reveal waits for fonts and two painted frames. The reveal after leaving home waits until the native transition finishes.
+Before the DOM swap, hold the incoming wordmark at zero opacity so its snapshot cannot flash before the live reveal starts.
+The temporary faces are ready before releasing that hold. Cancellation or a one-second timeout exposes the static wordmark without a late replay.
+Returning home scrambles the letters in randomized batches at 12 FPS while the wordmark fades out over 333ms.
+The scramble follows the fade's native clock during the outgoing page's existing erase, without adding a navigation delay or extending its final black beat.
+Navigation between interior pages keeps the wordmark still. Hover and keyboard focus do not replay its animation.
+The link and focus outline remain anchored. The wordmark does not receive passive control offsets or an idle loop.
+Reduced motion, hidden tabs, offscreen state, resize, and route disposal restore the original letters.
+Default and no-JavaScript wordmarks stay visible. Late modules do not replay inside an active transition snapshot.
 The homepage replaces that link with a hidden, non-interactive slot of the same size.
 Narrow screens use the same two-row header structure on every route.
-The homepage excludes the shared page fade and uses its own one-time print reveals.
+The homepage uses its own one-time print reveals.
 
 - Print pages use the mixed 6/12 FPS outgoing erase described in Interior pages. Native page snapshots stay hidden during the black handoff, without a crossfade. Incoming live material reveals then use their separate 6, 8, and 12 FPS clocks.
-- Non-print fallback groups use stepped opacity and translation at 24 FPS. The outgoing effect lasts four frames, and the incoming effect lasts sixteen frames. These fallback effects exclude the homepage, print pages, and CV.
-- Start fallback effects only when the group enters the viewport. Pause unfinished effects offscreen. Keep 90ms stagger steps, with the delay capped after eight groups.
-- Keep content visible and unchanged by default. Apply transforms and opacity only during the transition. Cancel stale animations before the next navigation. Skip the sequence for reduced motion and pages without a stagger root, including the CV.
+- The CV uses plain navigation without print motion. There is no separate fallback fade or stagger sequence.
+- Keep content visible and unchanged by default. Cancel stale transitions before the next navigation and bypass print motion for reduced motion.
 
 ### Disclosure
 
@@ -593,7 +623,7 @@ The homepage excludes the shared page fade and uses its own one-time print revea
 
 ### CV Document
 
-- Lead with professional experience, then freelance engineering and technical skills. Selected projects follow in this order: ChroMapper, Map Check, Editor Enhanced. Education and the award close the CV.
+- Lead with professional experience, then freelance engineering, technical skills, and education. Selected projects follow in this order: ChroMapper, Map Check, Editor Enhanced, Mapping Utility. The award closes the CV.
 - Keep freelance assignments distinct from employment and personal projects. Describe unmeasured improvements without invented metrics, and label potential savings as estimates.
 - The A4 print version uses two pages, 10mm page margins, and 10pt body text. Selected projects start page two. Keep project previews on the web, but omit them from print so the engineering details remain readable.
 - Use CV Paper for the full canvas and CV Ink for text.

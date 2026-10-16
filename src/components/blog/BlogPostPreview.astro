@@ -1,15 +1,7 @@
 ---
 import type { MarkdownInstance } from 'astro';
+import type { Frontmatter } from '../../data/frontmatter';
 import { formatDate, formatISODate } from '../../utils/date';
-
-interface Frontmatter {
-   title: string;
-   description: string;
-   author: string;
-   publishDate: string;
-   updatedDate: string;
-   layout: string;
-}
 
 export interface Props {
    post: MarkdownInstance<Frontmatter>;
@@ -18,6 +10,7 @@ export interface Props {
 
 const { post, featured = false } = Astro.props as Props;
 const { title, description, author, publishDate, updatedDate } = post.frontmatter;
+const postUrl = post.url?.replace(/^(\/blog\/post\/[^./?#]+)\/?(?=[?#]|$)/, '$1/');
 const formattedDate = formatDate(publishDate);
 const publishDateTime = formatISODate(publishDate);
 const formattedUpdatedDate = updatedDate ? formatDate(updatedDate) : undefined;
@@ -28,7 +21,7 @@ const updatedDateTime = updatedDate ? formatISODate(updatedDate) : undefined;
    <header class="blog-preview__header">
       <div class="blog-preview__title-wrap">
          <h3 class="blog-preview-title">
-            <a class="blog-preview-title-link" href={post.url}>
+            <a class="blog-preview-title-link" href={postUrl}>
                {title}
             </a>
          </h3>
@@ -41,7 +34,7 @@ const updatedDateTime = updatedDate ? formatISODate(updatedDate) : undefined;
    </header>
 
    <p class="blog-preview__description">{description}</p>
-   <a class="blog-preview-action print-action" href={post.url}>
+   <a class="blog-preview-action print-action" href={postUrl}>
       Read post <span aria-hidden="true">→</span>
    </a>
 </article>

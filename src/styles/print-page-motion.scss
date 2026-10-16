@@ -1,7 +1,14 @@
 @use 'motion/print-keyframes';
+@use 'generated/print-coverage';
 
 /* Interior artwork prints in place. Copy-safe paper and live content are never clipped. */
 @media (prefers-reduced-motion: no-preference) {
+   @include print-coverage.shared-poses('body.print-page', 'main[data-print-exit]', $curved: false);
+
+   @supports (clip-path: shape(from 0% 0%, line to 100% 0%, line to 100% 100%, close)) {
+      @include print-coverage.shared-poses('body.print-page', 'main[data-print-exit]');
+   }
+
    body.print-page {
       :is(
             .blog-post-header,
@@ -82,9 +89,8 @@
    }
 }
 
-/* Erase the anchored page in held paper and ink patches, like the hero's print
-   assembly in reverse. The new page
-   stays hidden until the last black beat; its own entrance begins afterwards. */
+/* Erase the anchored page through nested ink contours. Its layout stays fixed;
+   the incoming page begins its own assembly after the final black beat. */
 /* Astro restores history scroll between snapshots. Smooth scrolling here would
    move the incoming composition while the outgoing plate is still on screen. */
 html[data-astro-transition] {
@@ -105,135 +111,12 @@ html[data-print-transition]::view-transition-new(page-content) {
 }
 
 main[data-print-exit] {
-   --print-exit-paper: 1;
-   --print-exit-ink: 2;
    --print-exit-top: 0px;
    --print-exit-unit: 1vh;
-   /* Six star-shaped patches shrink about fixed centers. Equal winding unions
-      overlaps; retraced bridges add no area. Every later cut is a subset.
-      Keep the dependent clip on the element: Firefox snapshots var() values
-      declared inside keyframes instead of following the animated cut sizes. */
-   clip-path: polygon(
-      nonzero,
-      /* Upper-left paper. */ calc(14% - 33% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (18 - 26 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      calc(14% - 10% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (18 - 40 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      calc(14% + 30% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (18 - 31 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      calc(14% + 39% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (18 - 7 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      calc(14% + 24% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (18 + 21 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      calc(14% + 2% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (18 + 40 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      calc(14% - 31% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (18 + 28 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      calc(14% - 24% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (18 + 3 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      calc(14% - 33% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (18 - 26 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      /* Upper-right ink. */ calc(72% - 42% * var(--print-exit-ink))
-         calc(var(--print-exit-top) + (12 - 14 * var(--print-exit-ink)) * var(--print-exit-unit)),
-      calc(72% - 18% * var(--print-exit-ink))
-         calc(var(--print-exit-top) + (12 - 34 * var(--print-exit-ink)) * var(--print-exit-unit)),
-      calc(72% + 20% * var(--print-exit-ink))
-         calc(var(--print-exit-top) + (12 - 29 * var(--print-exit-ink)) * var(--print-exit-unit)),
-      calc(72% + 42% * var(--print-exit-ink))
-         calc(var(--print-exit-top) + (12 - 10 * var(--print-exit-ink)) * var(--print-exit-unit)),
-      calc(72% + 29% * var(--print-exit-ink))
-         calc(var(--print-exit-top) + (12 + 22 * var(--print-exit-ink)) * var(--print-exit-unit)),
-      calc(72% + 6% * var(--print-exit-ink))
-         calc(var(--print-exit-top) + (12 + 37 * var(--print-exit-ink)) * var(--print-exit-unit)),
-      calc(72% - 23% * var(--print-exit-ink))
-         calc(var(--print-exit-top) + (12 + 29 * var(--print-exit-ink)) * var(--print-exit-unit)),
-      calc(72% - 36% * var(--print-exit-ink))
-         calc(var(--print-exit-top) + (12 + 8 * var(--print-exit-ink)) * var(--print-exit-unit)),
-      calc(72% - 42% * var(--print-exit-ink))
-         calc(var(--print-exit-top) + (12 - 14 * var(--print-exit-ink)) * var(--print-exit-unit)),
-      calc(14% - 33% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (18 - 26 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      /* Middle-left ink. */ calc(24% - 43% * var(--print-exit-ink))
-         calc(var(--print-exit-top) + (57 - 18 * var(--print-exit-ink)) * var(--print-exit-unit)),
-      calc(24% - 15% * var(--print-exit-ink))
-         calc(var(--print-exit-top) + (57 - 42 * var(--print-exit-ink)) * var(--print-exit-unit)),
-      calc(24% + 25% * var(--print-exit-ink))
-         calc(var(--print-exit-top) + (57 - 32 * var(--print-exit-ink)) * var(--print-exit-unit)),
-      calc(24% + 43% * var(--print-exit-ink))
-         calc(var(--print-exit-top) + (57 - 4 * var(--print-exit-ink)) * var(--print-exit-unit)),
-      calc(24% + 28% * var(--print-exit-ink))
-         calc(var(--print-exit-top) + (57 + 31 * var(--print-exit-ink)) * var(--print-exit-unit)),
-      calc(24% - 5% * var(--print-exit-ink))
-         calc(var(--print-exit-top) + (57 + 43 * var(--print-exit-ink)) * var(--print-exit-unit)),
-      calc(24% - 36% * var(--print-exit-ink))
-         calc(var(--print-exit-top) + (57 + 26 * var(--print-exit-ink)) * var(--print-exit-unit)),
-      calc(24% - 28% * var(--print-exit-ink))
-         calc(var(--print-exit-top) + (57 + 2 * var(--print-exit-ink)) * var(--print-exit-unit)),
-      calc(24% - 43% * var(--print-exit-ink))
-         calc(var(--print-exit-top) + (57 - 18 * var(--print-exit-ink)) * var(--print-exit-unit)),
-      calc(14% - 33% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (18 - 26 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      /* Middle-right paper. */ calc(77% - 41% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (55 - 23 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      calc(77% - 17% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (55 - 42 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      calc(77% + 27% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (55 - 35 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      calc(77% + 42% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (55 - 4 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      calc(77% + 29% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (55 + 24 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      calc(77% + 5% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (55 + 41 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      calc(77% - 27% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (55 + 34 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      calc(77% - 34% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (55 + 7 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      calc(77% - 41% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (55 - 23 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      calc(14% - 33% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (18 - 26 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      /* Lower-left paper. */ calc(14% - 37% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (91 - 20 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      calc(14% - 18% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (91 - 37 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      calc(14% + 21% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (91 - 32 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      calc(14% + 42% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (91 - 8 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      calc(14% + 30% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (91 + 21 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      calc(14% - var(--print-exit-paper) * 1%)
-         calc(var(--print-exit-top) + (91 + 37 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      calc(14% - 35% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (91 + 25 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      calc(14% - 28% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (91 + 3 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      calc(14% - 37% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (91 - 20 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      calc(14% - 33% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (18 - 26 * var(--print-exit-paper)) * var(--print-exit-unit)),
-      /* Lower-right ink. */ calc(72% - 39% * var(--print-exit-ink))
-         calc(var(--print-exit-top) + (90 - 22 * var(--print-exit-ink)) * var(--print-exit-unit)),
-      calc(72% - 10% * var(--print-exit-ink))
-         calc(var(--print-exit-top) + (90 - 37 * var(--print-exit-ink)) * var(--print-exit-unit)),
-      calc(72% + 32% * var(--print-exit-ink))
-         calc(var(--print-exit-top) + (90 - 28 * var(--print-exit-ink)) * var(--print-exit-unit)),
-      calc(72% + 43% * var(--print-exit-ink))
-         calc(var(--print-exit-top) + (90 - var(--print-exit-ink)) * var(--print-exit-unit)),
-      calc(72% + 21% * var(--print-exit-ink))
-         calc(var(--print-exit-top) + (90 + 31 * var(--print-exit-ink)) * var(--print-exit-unit)),
-      calc(72% - 4% * var(--print-exit-ink))
-         calc(var(--print-exit-top) + (90 + 37 * var(--print-exit-ink)) * var(--print-exit-unit)),
-      calc(72% - 34% * var(--print-exit-ink))
-         calc(var(--print-exit-top) + (90 + 24 * var(--print-exit-ink)) * var(--print-exit-unit)),
-      calc(72% - 27% * var(--print-exit-ink))
-         calc(var(--print-exit-top) + (90 + 2 * var(--print-exit-ink)) * var(--print-exit-unit)),
-      calc(72% - 39% * var(--print-exit-ink))
-         calc(var(--print-exit-top) + (90 - 22 * var(--print-exit-ink)) * var(--print-exit-unit)),
-      calc(14% - 33% * var(--print-exit-paper))
-         calc(var(--print-exit-top) + (18 - 26 * var(--print-exit-paper)) * var(--print-exit-unit))
-   );
+
+   /* Change nested coverage, never the page's position or scale. Keeping the
+      dependent clip here also avoids Firefox's keyframe var() snapshot issue. */
+   clip-path: var(--print-exit-cut, inset(-40%));
    animation: print-page-ink-out 416.6666667ms steps(1, end) both;
 }
 

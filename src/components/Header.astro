@@ -7,9 +7,9 @@ interface Props {
 }
 
 const navigations: { text: string; link: string; active?: boolean }[] = [
-   { text: 'Projects', link: '/project' },
-   { text: 'Blog', link: '/blog' },
-   { text: 'Commissions', link: '/commission' },
+   { text: 'Projects', link: '/project/' },
+   { text: 'Blog', link: '/blog/' },
+   { text: 'Commissions', link: '/commission/' },
 ];
 const currentPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const isHome = currentPath === '/';
@@ -60,6 +60,10 @@ navigations.forEach((page) => {
       </HomeTag>
    </div>
 </header>
+
+<script>
+   import '../scripts/header-wordmark';
+</script>
 
 <style lang="scss">
    @layer layout {
@@ -219,11 +223,32 @@ navigations.forEach((page) => {
       &__glyph {
          --letter-ink: var(--color-paper);
          --letter-fill: inset(0);
+         --letter-y: 0em;
+         --letter-rotation: 0deg;
          position: relative;
          display: inline-block;
          color: transparent;
          -webkit-text-stroke: 0.7px var(--letter-ink);
          transform-origin: center bottom;
+         transform: translateY(var(--letter-y)) rotate(var(--letter-rotation));
+
+         &--revealing {
+            visibility: hidden;
+         }
+
+         :global(.punk-head__reveal-letter) {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: flex-end;
+            overflow: clip;
+            visibility: visible;
+            color: transparent;
+            font: inherit;
+            line-height: inherit;
+            -webkit-text-stroke: inherit;
+            pointer-events: none;
+         }
       }
 
       /* A few open letterforms echo the poster without carrying its full distress. */
@@ -237,11 +262,11 @@ navigations.forEach((page) => {
       }
 
       &__glyph:nth-child(2) {
-         translate: 0 -0.015em;
+         --letter-y: -0.015em;
       }
 
       &__glyph:nth-child(3) {
-         rotate: -0.5deg;
+         --letter-rotation: -0.5deg;
       }
 
       &__glyph:is(
@@ -255,7 +280,7 @@ navigations.forEach((page) => {
       }
 
       &__glyph:nth-child(5) {
-         translate: 0 0.01em;
+         --letter-y: 0.01em;
       }
 
       &__glyph[data-letter='V'] {
@@ -304,8 +329,11 @@ navigations.forEach((page) => {
 
       .punk-head__home-link,
       .punk-head__home-slot {
-         grid-column: 2;
+         grid-column: 1 / -1;
          grid-row: 2;
+         justify-self: center;
+         justify-content: center;
+         font-size: clamp(4rem, 18vw, 6rem);
       }
    }
 

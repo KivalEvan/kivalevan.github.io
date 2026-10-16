@@ -32,13 +32,13 @@ const projects: Project[] = [
       link: 'https://github.com/Caeden117/ChroMapper/tree/dev',
       type: 'Core maintainer · Open source | Unity, C#, HLSL',
       points: [
-         'Contributed to the migration from Unity 2021 to Unity 6.3 and general codebase cleanup.',
-         'Refactored C# systems and HLSL shaders for runtime performance, lower memory use, and better support for lower-end hardware.',
-         'Revamped lighting previews to better match the game and implemented global lighting and custom asset support. Created object and environment assets with Blender and GIMP.',
-         'Implemented contextual editing and GLS workflows, including grid interaction, selection behavior, and paste handling for each editing mode.',
-         'Added rotation event editing for beatmap v2, v3, and v4, with synchronized grid and camera behavior, playback handling, and reduced-motion support.',
-         'Contributed to beatmap format support and reworked object scaling and models to align editor geometry with Beat Saber environments.',
-         'Hardened asynchronous AssetBundle loading through validation, component sanitization, cache invalidation, and deterministic cleanup.',
+         'Contributed to the migration from Unity 2021 to Unity 6.3.',
+         'Refactored C# systems and HLSL shaders for performance, lower memory use, and lower-end hardware.',
+         'Revamped lighting previews to match the game, added global lighting and custom assets, and created object/environment assets with Blender and GIMP.',
+         'Implemented contextual editing and GLS workflows for grid interaction, selection, and pasting.',
+         'Added v2–v4 rotation-event editing with synchronized grids, cameras, playback, and reduced-motion support.',
+         'Improved beatmap format support and aligned object scaling and models with game environments.',
+         'Hardened asynchronous AssetBundle loading with validation, component sanitization, cache invalidation, and deterministic cleanup.',
       ],
       image: chromapper,
    },
@@ -47,9 +47,11 @@ const projects: Project[] = [
       link: 'https://github.com/KivalEvan/BeatSaber-MapCheck',
       type: 'Personal Project | TypeScript, SolidJS',
       points: [
-         'Built and maintain a TypeScript progressive web app used by more than 500 mappers. It checks beatmap metadata, statistics, and potential errors before release.',
-         'Implemented validation across map formats and custom data, with Vitest and jsdom tests for loading and validation rules.',
-         'Extracted parsing and domain logic into @kvl/bsmap, a reusable library with automated tests and npm/JSR publishing workflows.',
+         'Built and maintain a progressive web app used by 500+ mappers, with local archive and BeatSaver imports.',
+         'Implemented configurable gameplay, lighting, and file-integrity checks with BeatLeader/ScoreSaber presets and Vitest/jsdom tests.',
+         'Developed note/swing density and jump-speed statistics with filterable note distributions.',
+         'Implemented beat-by-beat comparisons of added, removed, and modified gameplay objects.',
+         'Extracted parsing and domain logic into @kvl/bsmap, with automated tests and npm/JSR publishing.',
       ],
       image: bsmc,
    },
@@ -58,21 +60,22 @@ const projects: Project[] = [
       link: 'https://github.com/KivalEvan/BeatSaber-EditorEnhanced',
       type: 'Personal Project | Unity, C#, HLSL',
       points: [
-         'Built and maintain a C# mod for the official Beat Saber editor, used by the lighting community to improve lighting workflows.',
-         'Contributed to implementing experimental features later added unofficially to Beat Saber.',
-         'Created interactive editing handles and batch tools for lighting events, with selection, duplication, sorting, mathematical expressions, and precision controls.',
-         'Cached editing handles to improve runtime performance. Maintain compatibility fixes across editor updates.',
+         'Built and maintain a C# mod for the official Beat Saber editor, improving lighting workflows and compatibility across updates.',
+         'Created interactive lighting gizmos with draggable, cached handles.',
+         'Added batch tools for selection, duplication, sorting, mathematical expressions, and precision control.',
+         'Implemented 3D motion path previews with beat markers and draggable translation and rotation controls.',
+         'Contributed experimental features later added unofficially to Beat Saber.',
       ],
       image: bsee,
    },
    {
       name: 'Beat Saber Mapping Utility',
       link: 'https://github.com/KivalEvan/BeatSaber-MappingUtility',
-      type: 'Personal Project | TypeScript, Astro, SolidJS',
+      type: 'Personal Project | TypeScript, Angular',
       points: [
-         'Built a browser-based toolkit for Beat Saber mappers, with calculators for beat timing, note jump speed, reaction time, and scores.',
-         'Added color-scheme editing with JSON output, difficulty-label previews, and random note-pattern generation.',
-         'Currently rewriting the application in Angular.',
+         'Built calculators for beat timing, note jump speed, jump distance, reaction time, and swing density comparisons across difficulties.',
+         'Added color scheme editing with presets, perceptual colour comparisons, and JSON import/export.',
+         'Developed configurable random pattern generation.',
       ],
    },
 ];
@@ -330,6 +333,30 @@ function formatYearMonth(date: Date): string {
                   </div>
                </section>
 
+               <section class="cv-education cv-section">
+                  <h2 class="cv-section-title">
+                     <Icon name="bi:book" class="cv-section-title__icon" aria-hidden="true" />
+                     <span>EDUCATION</span>
+                     <span class="cv-section-title__rule" aria-hidden="true"></span>
+                  </h2>
+                  {cvEducation.map((education) => (
+                     <article class="cv-entry cv-entry--timeline">
+                        <h3 class="cv-entry__title">{education.qualification}</h3>
+                        <p class="cv-entry__subtitle">{education.institution}</p>
+                        <p class="cv-entry__result">
+                           <time datetime={formatYearMonth(education.start)}>
+                              {formatMonth(education.start)}
+                           </time>
+                           <span aria-hidden="true"> - </span>
+                           <time datetime={formatYearMonth(education.end)}>
+                              {formatMonth(education.end)}
+                           </time>
+                           <span aria-hidden="true"> · </span> {education.result}
+                        </p>
+                     </article>
+                  ))}
+               </section>
+
                <section class="cv-projects cv-section">
                   <h2 class="cv-section-title">
                      <Icon name="bi:kanban" class="cv-section-title__icon" aria-hidden="true" />
@@ -374,30 +401,6 @@ function formatYearMonth(date: Date): string {
                               ))}
                            </ul>
                         </div>
-                     </article>
-                  ))}
-               </section>
-
-               <section class="cv-education cv-section">
-                  <h2 class="cv-section-title">
-                     <Icon name="bi:book" class="cv-section-title__icon" aria-hidden="true" />
-                     <span>EDUCATION</span>
-                     <span class="cv-section-title__rule" aria-hidden="true"></span>
-                  </h2>
-                  {cvEducation.map((education) => (
-                     <article class="cv-entry cv-entry--timeline">
-                        <h3 class="cv-entry__title">{education.qualification}</h3>
-                        <p class="cv-entry__subtitle">{education.institution}</p>
-                        <p class="cv-entry__result">
-                           <time datetime={formatYearMonth(education.start)}>
-                              {formatMonth(education.start)}
-                           </time>
-                           <span aria-hidden="true"> - </span>
-                           <time datetime={formatYearMonth(education.end)}>
-                              {formatMonth(education.end)}
-                           </time>
-                           <span aria-hidden="true"> · </span> {education.result}
-                        </p>
                      </article>
                   ))}
                </section>

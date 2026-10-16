@@ -6,7 +6,6 @@ export {};
 
 const TARGET_SELECTOR = [
    '.punk-nav__link',
-   '.punk-head__home-link',
    '.mixed-hero__socials a',
    '.mixed-hero__socials button',
    '.site-footer-links a',

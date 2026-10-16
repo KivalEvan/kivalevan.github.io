@@ -148,8 +148,8 @@ const accessibleLabel = lines
       line-height: inherit;
       -webkit-text-stroke: 0.012em var(--color-paper);
       paint-order: stroke fill;
-      transform: translateY(var(--glyph-shift)) rotate(var(--glyph-rotate))
-         scaleX(var(--glyph-scale-x));
+      transform: var(--title-idle-transform, translate(0)) translateY(var(--glyph-shift))
+         rotate(var(--glyph-rotate)) scaleX(var(--glyph-scale-x));
       transform-origin: center bottom;
 
       &::before,

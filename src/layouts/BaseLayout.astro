@@ -1,5 +1,6 @@
 ---
 import Head from '../components/Head.astro';
+import type { PageDetails } from '../data/page';
 import '../styles/global.scss';
 import '../styles/site-components.scss';
 import '../styles/print-page-motion.scss';
@@ -8,13 +9,7 @@ import {
    PRINT_MOTION_ENTRANCE_SELECTOR,
 } from '../scripts/print-motion-targets';
 
-export interface PageDetails {
-   title: string;
-   subtitle?: string;
-   browserTitle?: string;
-   description?: string;
-   overrideTitle?: boolean;
-}
+export type { PageDetails } from '../data/page';
 
 export interface Props {
    pageDetails: PageDetails;
@@ -39,6 +34,15 @@ if (canonicalURL.pathname !== '/') {
    <Head title={headTitle} description={description} permalink={canonicalURL.href} />
    <body id="top-of-page" class={bodyClass}>
       <slot />
+      <div class="page-loading-indicator">
+         <p
+            id="page-loading-status"
+            class="page-loading-status"
+            role="status"
+            aria-atomic="true"
+         ></p>
+      </div>
+      <!-- Keep preparation inline: a delayed or failed module must still expose the page. -->
       <script
          is:inline
          define:vars={{
@@ -59,13 +63,10 @@ if (canonicalURL.pathname !== '/') {
             const bootId = root.dataset.printMotionBootId ?? String(Date.now());
             root.dataset.printMotionBootId = bootId;
             root.dataset.printMotionBoot = 'pending';
-            const targets = Array.from(
-               document.querySelectorAll(printMotionEntranceSelector),
-            ).filter(
+            const candidates = Array.from(document.querySelectorAll(printMotionEntranceSelector));
+            const targets = candidates.filter(
                (target) =>
-                  !Array.from(document.querySelectorAll(printMotionEntranceSelector)).some(
-                     (parent) => parent !== target && parent.contains(target),
-                  ),
+                  !candidates.some((parent) => parent !== target && parent.contains(target)),
             );
             targets.forEach((target) =>
                target.setAttribute('data-print-motion-prepared', 'pending'),
@@ -109,351 +110,66 @@ if (canonicalURL.pathname !== '/') {
 </html>
 
 <script>
-   import type {
-      TransitionBeforePreparationEvent,
-      TransitionBeforeSwapEvent,
-   } from 'astro:transitions/client';
-   import {
-      getPrintMotionTargets,
-      PRINT_MOTION_BOOT_TIMEOUT,
-   } from '../scripts/print-motion-targets';
-
-   if (!document.documentElement.dataset.pageStaggerBound) {
-      let pendingPageTransition = false;
-      const printNavigations = new WeakMap<AbortSignal, { generation: number; enabled: boolean }>();
-      let printTransitionGeneration = 0;
-      let printBootGeneration = 0;
-      let activeAnimations: Animation[] = [];
-      let pageVisibilityObserver: IntersectionObserver | undefined;
-      let printBootTimer: number | undefined;
-      let exitingPage: HTMLElement | undefined;
-
-      const clearPrintExit = () => {
-         exitingPage?.removeAttribute('data-print-exit');
-         exitingPage?.style.removeProperty('--print-exit-top');
-         exitingPage?.style.removeProperty('--print-exit-unit');
-         if (exitingPage && !exitingPage.style.length) exitingPage.removeAttribute('style');
-         exitingPage = undefined;
-      };
-
-      const clearPrintTransition = () => {
-         document.documentElement.removeAttribute('data-print-transition');
-      };
-
-      const exposePreparedPrint = (bootId: string) => {
-         window.clearTimeout(printBootTimer);
-         printBootTimer = undefined;
-         if (document.documentElement.dataset.printMotionBootId !== bootId) return;
-         if (document.documentElement.dataset.printMotionBoot !== 'pending') return;
-         document.documentElement.dataset.printMotionBoot = 'expired';
-         getPrintMotionTargets(document).forEach((target) =>
-            target.removeAttribute('data-print-motion-prepared'),
-         );
-      };
-
-      const armPreparedMotion = () => {
-         window.clearTimeout(printBootTimer);
-         const hero = document.querySelector<HTMLElement>('.mixed-hero');
-         if (hero?.dataset.homeMotionBoot === 'pending') {
-            printBootTimer = window.setTimeout(() => {
-               if (hero.isConnected && hero.dataset.homeMotionBoot === 'pending') {
-                  hero.dataset.homeMotionBoot = 'expired';
-               }
-            }, PRINT_MOTION_BOOT_TIMEOUT);
-            return;
-         }
-         if (
-            !document.body.classList.contains('print-page') ||
-            window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
-            document.documentElement.dataset.printMotionBoot !== 'pending'
-         ) {
-            return;
-         }
-         const bootId = document.documentElement.dataset.printMotionBootId;
-         if (!bootId) return;
-         printBootTimer = window.setTimeout(
-            () => exposePreparedPrint(bootId),
-            PRINT_MOTION_BOOT_TIMEOUT,
-         );
-      };
-
-      const prepareIncomingMotion = (nextDocument: Document) => {
-         const hero = nextDocument.querySelector<HTMLElement>('.mixed-hero');
-         if (hero && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            // Astro can reuse the homepage script on return. Prepare the new hero
-            // before its snapshot instead of relying on the inline bootstrap to rerun.
-            hero.dataset.homeMotionBoot = 'pending';
-         }
-         if (
-            !nextDocument.body.classList.contains('print-page') ||
-            window.matchMedia('(prefers-reduced-motion: reduce)').matches
-         ) {
-            return;
-         }
-         nextDocument.documentElement.dataset.printMotionBootId = String(++printBootGeneration);
-         nextDocument.documentElement.dataset.printMotionBoot = 'pending';
-         getPrintMotionTargets(nextDocument).forEach((target) =>
-            target.setAttribute('data-print-motion-prepared', 'pending'),
-         );
-      };
-
-      const clearPageAnimations = () => {
-         pageVisibilityObserver?.disconnect();
-         pageVisibilityObserver = undefined;
-         activeAnimations.forEach((animation) => animation.cancel());
-         activeAnimations = [];
-      };
-
-      const getStaggerItems = () => {
-         const root = document.querySelector('[data-page-stagger-root]');
-         if (!(root instanceof HTMLElement)) return [];
-
-         const explicitItems = Array.from(
-            root.querySelectorAll<HTMLElement>('[data-page-stagger-item]'),
-         ).filter((item) => !item.matches('[hidden], [aria-hidden="true"]'));
-         if (explicitItems.length) return explicitItems;
-
-         const getChildren = (element: Element) =>
-            Array.from(element.children).filter(
-               (child): child is HTMLElement =>
-                  child instanceof HTMLElement &&
-                  !child.matches('script, style, [hidden], [aria-hidden="true"]'),
-            );
-
-         let items = getChildren(root);
-         for (let depth = 0; depth < 4 && items.length === 1; depth += 1) {
-            const nestedItems = getChildren(items[0]);
-            if (!nestedItems.length) break;
-            items = nestedItems;
-         }
-         return items;
-      };
-
-      const animatePageElements = () => {
-         clearPageAnimations();
-         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-         const root = document.querySelector('[data-page-stagger-root]');
-         if (!(root instanceof HTMLElement)) return;
-         // The homepage owns its print assembly; do not stack the shared fade-up over it.
-         if (root.querySelector('.mixed-hero')) return;
-         // Interior routes use their own short print registration assembly.
-         if (document.body.classList.contains('print-page')) return;
-         const items = getStaggerItems();
-         if (!items.length || !('IntersectionObserver' in window)) return;
-
-         const animations = new Map<HTMLElement, Animation>();
-         const startedAnimations = new Set<Animation>();
-         activeAnimations = items.map((item) => {
-            const animation = item.animate(
-               [
-                  {
-                     opacity: 0,
-                     transform: 'translate3d(0, 1.5rem, 0)',
-                  },
-                  {
-                     opacity: 1,
-                     transform: 'translate3d(0, 0, 0)',
-                  },
-               ],
-               {
-                  duration: (16 * 1_000) / 24,
-                  easing: 'steps(16, end)',
-                  fill: 'backwards',
-               },
-            );
-            animation.pause();
-            animation.currentTime = 0;
-            animations.set(item, animation);
-            return animation;
-         });
-
-         const observer = new IntersectionObserver(
-            (entries) => {
-               const visibleEntries = entries
-                  .filter((entry) => entry.isIntersecting)
-                  .sort(
-                     (first, second) =>
-                        items.indexOf(first.target as HTMLElement) -
-                        items.indexOf(second.target as HTMLElement),
-                  );
-
-               entries.forEach((entry) => {
-                  const item = entry.target;
-                  if (!(item instanceof HTMLElement)) return;
-                  const animation = animations.get(item);
-                  if (!animation) return;
-
-                  if (!entry.isIntersecting) {
-                     if (startedAnimations.has(animation)) animation.pause();
-                     return;
-                  }
-
-                  if (!startedAnimations.has(animation)) {
-                     const visibleIndex = visibleEntries.indexOf(entry);
-                     animation.effect?.updateTiming({ delay: Math.min(visibleIndex, 7) * 90 });
-                     startedAnimations.add(animation);
-                     animation.finished.then(() => observer.unobserve(item)).catch(() => undefined);
-                  }
-                  animation.play();
-               });
-            },
-            { threshold: 0.01 },
-         );
-         pageVisibilityObserver = observer;
-         items.forEach((item) => observer.observe(item));
-      };
-
-      document.addEventListener('astro:before-preparation', (event) => {
-         pendingPageTransition = true;
-         clearPrintExit();
-         clearPageAnimations();
-         const transitionEvent = event as TransitionBeforePreparationEvent;
-         const generation = ++printTransitionGeneration;
-         const targetPath = transitionEvent.to.pathname.replace(/\/+$/, '') || '/';
-         const pendingPrintTransition =
-            (document.body.classList.contains('print-page') ||
-               !!document.querySelector('.mixed-hero')) &&
-            targetPath !== '/cv';
-         // A skipped native transition can still swap after the next preparation.
-         // Keep its eligibility and cleanup generation tied to its own navigation.
-         printNavigations.set(transitionEvent.signal, {
-            generation,
-            enabled: pendingPrintTransition,
-         });
-         if (
-            pendingPrintTransition &&
-            !window.matchMedia('(prefers-reduced-motion: reduce)').matches
-         ) {
-            document.documentElement.dataset.printTransition = transitionEvent.direction;
-            document.documentElement.dataset.printMotionWait = 'true';
-         } else {
-            clearPrintTransition();
-            document.documentElement.removeAttribute('data-print-motion-wait');
-         }
-         transitionEvent.signal.addEventListener(
-            'abort',
-            () => {
-               if (generation !== printTransitionGeneration) return;
-               clearPrintExit();
-               clearPrintTransition();
-               document.documentElement.removeAttribute('data-print-motion-wait');
-               document.dispatchEvent(new Event('print-page-motion-ready'));
-            },
-            { once: true },
-         );
-         const originalLoader = transitionEvent.loader;
-         transitionEvent.loader = async () => {
-            if (pendingPrintTransition) {
-               // Load first: a slow or failed request must leave the old page usable.
-               await originalLoader();
-               if (
-                  transitionEvent.signal.aborted ||
-                  transitionEvent.defaultPrevented ||
-                  document.hidden ||
-                  window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
-                  !(
-                     transitionEvent.newDocument.body.classList.contains('print-page') ||
-                     transitionEvent.newDocument.querySelector('.mixed-hero')
-                  )
-               )
-                  return;
-
-               const page = document.querySelector('main');
-               if (!(page instanceof HTMLElement)) return;
-               exitingPage = page;
-               // Size the cuts to the visible page, not a long document's full height.
-               page.style.setProperty('--print-exit-top', `${-page.getBoundingClientRect().top}px`);
-               page.style.setProperty('--print-exit-unit', `${window.innerHeight / 100}px`);
-               page.dataset.printExit = '';
-               const erase = page
-                  .getAnimations()
-                  .find(
-                     (animation) =>
-                        animation instanceof CSSAnimation &&
-                        animation.animationName === 'print-page-ink-out',
-                  );
-               // Hold the final black pose until swap. Removing the marker on
-               // abort, reduced motion, or a hidden tab cancels this wait safely.
-               if (erase) await erase.finished.catch(() => undefined);
-               return;
-            }
-
-            const root = document.querySelector('[data-page-stagger-root]');
-            if (
-               !(root instanceof HTMLElement) ||
-               root.querySelector('.mixed-hero') ||
-               document.body.classList.contains('print-page') ||
-               window.matchMedia('(prefers-reduced-motion: reduce)').matches
-            ) {
-               await originalLoader();
-               return;
-            }
-
-            const depthFade = root.animate([{ opacity: 1 }, { opacity: 0 }], {
-               duration: (4 * 1_000) / 24,
-               easing: 'steps(4, end)',
-               fill: 'forwards',
-            });
-            activeAnimations.push(depthFade);
-            await Promise.all([originalLoader(), depthFade.finished.catch(() => undefined)]);
-         };
-      });
-      document.addEventListener('astro:before-swap', (event) => {
-         const transitionEvent = event as TransitionBeforeSwapEvent;
-         prepareIncomingMotion(transitionEvent.newDocument);
-         const navigation = printNavigations.get(transitionEvent.signal);
-         const printTransition =
-            navigation?.enabled &&
-            (transitionEvent.newDocument.body.classList.contains('print-page') ||
-               !!transitionEvent.newDocument.querySelector('.mixed-hero')) &&
-            !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-         if (!printTransition) {
-            clearPrintTransition();
-            document.documentElement.removeAttribute('data-print-motion-wait');
-            return;
-         }
-         transitionEvent.newDocument.documentElement.dataset.printTransition =
-            transitionEvent.direction;
-         transitionEvent.newDocument.documentElement.dataset.printMotionWait = 'true';
-         const releaseIncomingMotion = () => {
-            if (navigation.generation !== printTransitionGeneration) return;
-            document.documentElement.removeAttribute('data-print-motion-wait');
-            document.dispatchEvent(new Event('print-page-motion-ready'));
-         };
-         const finishPrintTransition = () => {
-            if (navigation.generation !== printTransitionGeneration) return;
-            clearPrintTransition();
-            releaseIncomingMotion();
-         };
-         // The old page is already black before the browser captures it.
-         // A skipped native transition rejects ready, but still must fail open.
-         transitionEvent.viewTransition.ready.catch(finishPrintTransition);
-         transitionEvent.viewTransition.finished.then(finishPrintTransition, finishPrintTransition);
-      });
-      document.addEventListener('astro:page-load', () => {
-         if (!pendingPageTransition) return;
-         pendingPageTransition = false;
-         animatePageElements();
-      });
-      document.addEventListener('astro:after-swap', () => {
-         clearPrintExit();
-         armPreparedMotion();
-      });
-      armPreparedMotion();
-      document.documentElement.dataset.pageStaggerBound = 'true';
-      window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', () => {
-         clearPrintExit();
-         if (document.body.classList.contains('print-page')) clearPageAnimations();
-      });
-      document.addEventListener('visibilitychange', () => {
-         if (document.hidden) clearPrintExit();
-         if (document.hidden && document.body.classList.contains('print-page'))
-            clearPageAnimations();
-      });
-   }
+   import '../scripts/site-navigation';
 </script>
 
 <script>
    import '../scripts/print-page-motion';
 </script>
+
+<style lang="scss">
+   .page-loading-indicator {
+      /* Inline this small existing contour: loading feedback must not wait on another request. */
+      --loading-splatter: url('../assets/ink/splatter-cluster-1.svg?inline');
+      position: fixed;
+      z-index: 10;
+      inset-inline-start: max(1.5rem, env(safe-area-inset-left));
+      inset-block-end: max(2rem, env(safe-area-inset-bottom));
+      isolation: isolate;
+      pointer-events: none;
+
+      &::before,
+      &::after {
+         content: '';
+         position: absolute;
+         z-index: -1;
+         mask: var(--loading-splatter) center / 100% 100% no-repeat;
+      }
+
+      &::before {
+         width: 7rem;
+         height: 6rem;
+         inset-inline-start: -1.5rem;
+         inset-block-end: 0.75rem;
+         background: #ff173c;
+         transform: rotate(-17deg);
+      }
+
+      &::after {
+         width: 7rem;
+         height: 5.5rem;
+         inset-inline-end: -2rem;
+         inset-block-start: -0.5rem;
+         background: #00b9d6;
+         transform: rotate(23deg);
+      }
+
+      &:has(.page-loading-status:empty) {
+         display: none;
+      }
+   }
+
+   .page-loading-status {
+      position: relative;
+      margin: 0;
+      padding: 0.5rem 0.875rem;
+      color: #f4f3ef;
+      background: #030305;
+   }
+
+   @media print {
+      .page-loading-indicator {
+         display: none;
+      }
+   }
+</style>

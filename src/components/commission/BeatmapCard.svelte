@@ -22,6 +22,7 @@
    }
 
    let { beatmap }: { beatmap: BeatmapDetails } = $props();
+   const links = $derived(Object.entries(beatmap.link));
 </script>
 
 <article class="beatmap-card">
@@ -41,10 +42,10 @@
       />
    </a>
    <div class="beatmap-card__details">
-      {#each Object.entries(beatmap.link) as [link, destination], index}
+      {#each links as [link, destination], index}
          <a class="beatmap-card__link" href={destination.url}>{linkLabel(link, destination.name)}</a
          >
-         {#if index !== Object.entries(beatmap.link).length - 1}
+         {#if index !== links.length - 1}
             <span aria-hidden="true">|</span>
          {/if}
       {/each}

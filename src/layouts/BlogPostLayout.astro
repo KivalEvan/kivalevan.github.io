@@ -2,19 +2,13 @@
 import MainLayout from './MainLayout.astro';
 import PrintTitleText from '../components/visual/PrintTitleText.astro';
 import InkCollision from '../components/visual/InkCollision.astro';
+import type { Frontmatter } from '../data/frontmatter';
+import type { PageDetails } from '../data/page';
 import { formatDate, formatISODate } from '../utils/date';
 import '../styles/blog-print.scss';
 
 export interface Props {
-   content: any;
-}
-
-export interface PageDetails {
-   title: string;
-   section: string;
-   subtitle?: string;
-   description: string;
-   overrideTitle: boolean;
+   content: Frontmatter;
 }
 
 const { content } = Astro.props as Props;
@@ -22,8 +16,8 @@ const { title, description, publishDate } = content;
 
 const pageDetails: PageDetails = {
    section: 'Blog',
-   title: title,
-   description: description,
+   title,
+   description,
    overrideTitle: false,
 };
 
@@ -48,7 +42,7 @@ const publishDateTime = formatISODate(publishDate);
          <slot />
       </section>
       <nav class="blog-post-navigation" aria-label="Article navigation">
-         <a class="print-action" href="/blog">
+         <a class="print-action" href="/blog/">
             Back to blog <span aria-hidden="true">→</span>
          </a>
       </nav>

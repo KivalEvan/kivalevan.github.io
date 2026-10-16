@@ -1,22 +1,9 @@
 ---
 import contact from '../data/contacts';
 import { Icon } from 'astro-icon/components';
+import { formatDate } from '../utils/date';
 const date = new Date();
-const monthName = [
-   'January',
-   'February',
-   'March',
-   'April',
-   'May',
-   'June',
-   'July',
-   'August',
-   'September',
-   'October',
-   'November',
-   'December',
-];
-const lastUpdated = `${date.getUTCDate()} ${monthName[date.getUTCMonth()]} ${date.getUTCFullYear()}`;
+const lastUpdated = formatDate(date);
 ---
 
 <footer transition:name="site-footer" transition:animate="none" class="site-footer">

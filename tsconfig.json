@@ -1,7 +1,7 @@
 {
    "extends": "astro/tsconfigs/strict",
    "include": [".astro/types.d.ts", "**/*"],
-   "exclude": ["dist", "src/utils/beatmap.ts", "src/utils/mediainfo.ts"],
+   "exclude": ["dist", "scripts/beatmap/**"],
    "compilerOptions": {
       "checkJs": false,
       "allowImportingTsExtensions": true,

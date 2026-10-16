@@ -1,13 +1,14 @@
 <script lang="ts">
-   import Commission from '../../data/commission.json';
-
-   type RatingDifficulty = 'expertPlus' | 'expert' | 'hard' | 'normal' | 'easy';
-   type RatingLighting = `vanillaV${2 | 3}` | `chroma${'Basic' | 'Advanced'}` | 'lolighter';
-   type EstimateState = 'empty' | 'invalid' | 'calculated';
-   type InvalidReason = 'duration' | 'difficulty' | null;
-
-   const ADDITIONAL_DIFFICULTY_DISCOUNT = 0.25;
-   const MAX_DURATION_SECONDS = 600;
+   import {
+      ADDITIONAL_DIFFICULTY_DISCOUNT,
+      MAX_DURATION_SECONDS,
+      calculateEstimate,
+      difficulties,
+      difficultyRename,
+      lightingOptions,
+      rate,
+      type EstimateInput,
+   } from '../../data/commission-estimate';
    const currencyFormatter = new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
@@ -15,36 +16,7 @@
       maximumFractionDigits: 2,
    });
 
-   interface Input {
-      duration: string;
-      difficulty: { [diff in RatingDifficulty]: boolean };
-      lighting: RatingLighting;
-   }
-
-   interface Rating {
-      base: number;
-      difficulty: { [diff in RatingDifficulty]: number };
-      lighting: { [light in RatingLighting]: number };
-      discounted: number;
-   }
-
-   const difficultyRename: Record<RatingDifficulty, string> = {
-      expertPlus: 'Expert+',
-      expert: 'Expert',
-      hard: 'Hard',
-      normal: 'Normal',
-      easy: 'Easy',
-   };
-   const difficulties: RatingDifficulty[] = ['expertPlus', 'expert', 'hard', 'normal', 'easy'];
-   const lightingOptions: { id: RatingLighting; label: string }[] = [
-      { id: 'chromaAdvanced', label: 'Chroma Advanced' },
-      { id: 'chromaBasic', label: 'Chroma Basic' },
-      { id: 'vanillaV3', label: 'Vanilla (v3)' },
-      { id: 'vanillaV2', label: 'Vanilla (v2)' },
-      { id: 'lolighter', label: 'Lolighter (automated lighting)' },
-   ];
-
-   const input: Input = $state({
+   const input: EstimateInput = $state({
       duration: '',
       difficulty: {
          expertPlus: false,
@@ -56,152 +28,12 @@
       lighting: 'lolighter',
    });
 
-   const rate: Rating = $state({
-      base: Commission.beatmap.base,
-      difficulty: {
-         expertPlus: Commission.beatmap.difficulty.expertPlus,
-         expert: Commission.beatmap.difficulty.expert,
-         hard: Commission.beatmap.difficulty.hard,
-         normal: Commission.beatmap.difficulty.normal,
-         easy: Commission.beatmap.difficulty.easy,
-      },
-      lighting: {
-         lolighter: Commission.beatmap.lighting.lolighter,
-         vanillaV2: Commission.beatmap.lighting.vanillaV2,
-         vanillaV3: Commission.beatmap.lighting.vanillaV3,
-         chromaAdvanced: Commission.beatmap.lighting.chromaAdvanced,
-         chromaBasic: Commission.beatmap.lighting.chromaBasic,
-      },
-      discounted: 0,
-   });
-
-   const display: Record<RatingDifficulty, string | number> = $state({
-      expertPlus: rate.difficulty.expertPlus,
-      expert: rate.difficulty.expert,
-      hard: rate.difficulty.hard,
-      normal: rate.difficulty.normal,
-      easy: rate.difficulty.easy,
-   });
-
-   let estimateState = $state<EstimateState>('empty');
-   let invalidReason = $state<InvalidReason>(null);
-   let rateScale = $state(0);
-   let totalPrice = $state(0);
-
-   function parseDuration(value: string): number | null {
-      const duration = value.trim();
-      if (!duration) return null;
-
-      if (/^\d+(\.\d+)?$/.test(duration)) {
-         const seconds = Number.parseFloat(duration);
-         return Number.isFinite(seconds) && seconds > 0 && seconds <= MAX_DURATION_SECONDS
-            ? seconds
-            : null;
-      }
-
-      const match = /^(\d+):([0-5]?\d)$/.exec(duration);
-      if (!match) return null;
-
-      const seconds = Number.parseInt(match[1], 10) * 60 + Number.parseInt(match[2], 10);
-      return Number.isFinite(seconds) && seconds > 0 && seconds <= MAX_DURATION_SECONDS
-         ? seconds
-         : null;
-   }
+   const estimate = $derived(calculateEstimate(input));
+   const estimateState = $derived(estimate.state);
+   const invalidReason = $derived(estimate.invalidReason);
 
    function formatCurrency(value: number): string {
       return Number.isFinite(value) ? currencyFormatter.format(value) : 'Unavailable';
-   }
-
-   function formatRate(value: string | number): string {
-      if (typeof value === 'number') return formatCurrency(value);
-
-      const [amount, discount] = value.split(' ');
-      return `${formatCurrency(Number(amount))} (${discount} discount)`;
-   }
-
-   function resetEstimate() {
-      rateScale = 0;
-      totalPrice = 0;
-      rate.discounted = 0;
-      for (const diff of difficulties) {
-         display[diff] = rate.difficulty[diff];
-      }
-   }
-
-   function calculateRateScale(duration: number) {
-      return Math.floor(duration / 60) + Math.ceil((duration % 60) / 30) / 2;
-   }
-
-   function calculateCost() {
-      const rawDuration = input.duration.trim();
-      if (!rawDuration) {
-         estimateState = 'empty';
-         invalidReason = null;
-         resetEstimate();
-         return;
-      }
-
-      const duration = parseDuration(rawDuration);
-      if (
-         duration === null ||
-         !Number.isFinite(duration) ||
-         duration <= 0 ||
-         duration > MAX_DURATION_SECONDS
-      ) {
-         estimateState = 'invalid';
-         invalidReason = 'duration';
-         resetEstimate();
-         return;
-      }
-
-      if (!difficulties.some((diff) => input.difficulty[diff])) {
-         estimateState = 'invalid';
-         invalidReason = 'difficulty';
-         resetEstimate();
-         return;
-      }
-
-      estimateState = 'calculated';
-      invalidReason = null;
-      let amt = 0;
-      let multiplier = 1;
-      let noDiscount = 0;
-      rate.discounted = 0;
-      rateScale = calculateRateScale(duration);
-
-      if (!Number.isFinite(rateScale)) {
-         estimateState = 'invalid';
-         invalidReason = 'duration';
-         resetEstimate();
-         return;
-      }
-
-      for (const diff of difficulties) {
-         display[diff] = rate.difficulty[diff];
-         if (multiplier < 1) {
-            display[diff] =
-               `${Math.round(rate.difficulty[diff] * multiplier * 10) / 10} ${Math.round(
-                  (1 - multiplier) * 100,
-               )}%`;
-         }
-         if (input.difficulty[diff]) {
-            amt += (rate.base + rate.difficulty[diff] * multiplier) * rateScale;
-            noDiscount += (rate.base + rate.difficulty[diff]) * rateScale;
-            multiplier -= ADDITIONAL_DIFFICULTY_DISCOUNT;
-         }
-      }
-      noDiscount += rate.lighting[input.lighting] * rateScale;
-      amt += rate.lighting[input.lighting] * rateScale;
-
-      if (!Number.isFinite(amt) || !Number.isFinite(noDiscount)) {
-         estimateState = 'invalid';
-         invalidReason = 'duration';
-         resetEstimate();
-         return;
-      }
-
-      rate.discounted = noDiscount - amt;
-      totalPrice = amt;
    }
 </script>
 
@@ -222,7 +54,6 @@
             aria-errormessage={invalidReason === 'duration' ? 'song-length-feedback' : undefined}
             aria-describedby="song-length-help song-length-feedback"
             bind:value={input.duration}
-            oninput={calculateCost}
          />
          <p id="song-length-help" class="calculator__hint">
             Enter 1-{MAX_DURATION_SECONDS} seconds, such as 90, or minutes:seconds, such as 1:30. Maximum
@@ -248,7 +79,7 @@
          >
             <strong>Price multiplier:</strong>
             {#if estimateState === 'calculated'}
-               {rateScale}×
+               {estimate.rateScale}×
             {:else}
                Not calculated
             {/if}
@@ -276,7 +107,6 @@
                      aria-invalid={invalidReason === 'difficulty' ? 'true' : 'false'}
                      aria-describedby="difficulty-help difficulty-feedback"
                      bind:checked={input.difficulty[inputName]}
-                     onchange={calculateCost}
                   />
                   <label class="calculator__choice-label" for={`difficulty-${inputName}`}
                      >{difficultyRename[inputName]}</label
@@ -308,7 +138,6 @@
                      name="lighting"
                      value={option.id}
                      bind:group={input.lighting}
-                     onchange={calculateCost}
                   />
                   <label class="calculator__choice-label" for={`lighting-${option.id}`}
                      >{option.label}</label
@@ -336,11 +165,11 @@
          {:else}
             <p class="calculator__result-detail">Estimated price for {input.duration.trim()}:</p>
             <p class="calculator__result-total">
-               {formatCurrency(totalPrice)}
+               {formatCurrency(estimate.totalPrice)}
             </p>
-            {#if Number.isFinite(rate.discounted) && rate.discounted > 0}
+            {#if estimate.discounted > 0}
                <p class="calculator__result-detail">
-                  Discount for additional difficulties: {formatCurrency(rate.discounted)}
+                  Discount for additional difficulties: {formatCurrency(estimate.discounted)}
                </p>
             {/if}
          {/if}
@@ -361,7 +190,13 @@
          <span class="calculator-label">Difficulty rates:</span>
          <ul class="calculator__rate-list">
             {#each difficulties as diffName}
-               <li>{difficultyRename[diffName]}: {formatRate(display[diffName])}</li>
+               {@const difficultyRate = estimate.difficultyRates[diffName]}
+               <li>
+                  {difficultyRename[diffName]}: {formatCurrency(difficultyRate.amount)}
+                  {#if difficultyRate.discount > 0}
+                     ({difficultyRate.discount}% discount)
+                  {/if}
+               </li>
             {/each}
          </ul>
       </div>

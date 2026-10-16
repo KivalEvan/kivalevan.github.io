@@ -65,8 +65,16 @@ try {
          throw new Error('Expected all seven original impressions.');
       return clone.outerHTML;
    });
-   const source = await readFile(resolve(root, 'src/components/visual/InkCollision.astro'), 'utf8');
-   const css = compileString(source.split('<style lang="scss">')[1].split('</style>')[0])
+   const sources = await Promise.all(
+      ['InkCollision', 'LiquidInk'].map((name) =>
+         readFile(resolve(root, `src/components/visual/${name}.astro`), 'utf8'),
+      ),
+   );
+   const css = compileString(
+      sources
+         .map((source) => source.split('<style lang="scss">')[1].split('</style>')[0])
+         .join('\n'),
+   )
       .css.replaceAll(':global(svg)', 'svg')
       .replaceAll('../../assets/', new URL('/src/assets/', url).href);
    // Navigate away from Astro's document to close its live-reload connection.

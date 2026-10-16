@@ -171,7 +171,7 @@ export const startPrintTitleResolve = (title: HTMLElement): (() => void) => {
             const pass = changes.findLastIndex(
                (change, pass) => change <= frame && (!compact || pass % 2 === 0),
             );
-            if (pass === slot.pass) return;
+            if (pass < 0 || pass === slot.pass) return;
             slot.pass = pass;
             element.textContent =
                final.toUpperCase() === 'I'
